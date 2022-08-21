@@ -1,0 +1,2035 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Genetic Algorithms</title>
+
+    <link rel="stylesheet" href="reveal/dist/reset.css">
+    <link rel="stylesheet" href="reveal/dist/reveal.css">
+    <link rel="stylesheet" href="reveal/dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="genetic-algos.css">
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <div class="main-text" style="font-size: 1em">
+            <h1>Tight Genes:</h1>
+            <h2>Intro to Genetic Algorithms</h2>
+            <h3>by Dave Aronson</h3>
+            <h4>T.Rex-2022@Codosaur.us</h4>
+            <h5>Codosaur.us/reds/genes-nerdear-22-slides</h5>
+          </div>
+          <aside class="notes">
+            NOTE TO SELF: Current time ~20 mins,
+            slow down a bit, want 20-25
+            <br/><br/>
+
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 7.2em">👋</div>
+          <div class="main-text" style="font-size: 1.5em">
+            ¡Hola Buenos Aires!
+            <br/></br><br/></br></br>
+            (Hello Buenos Aires!)
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+        </section>
+
+        <section>
+          <img src="images/Dave-Aronson-Speaking-at-JSConf-Hawaii-1kx1k.jpg" height="50%" class="autofix" style="border-radius:1em">
+          <div class="main-text" style="font-size: 1.5em">
+            Soy Dave Aronson,
+            <br/></br><br/></br></br>
+            (I'm Dave Aronson,)
+          </div>
+          <span class="slide-caption">Image: me speaking at JSConf Hawai'i 2020!</span>
+        </section>
+
+        <section>
+          <img src="images/CodoLogo-from-EPS.png" height="50%" class="autofix">
+          <div class="main-text" style="font-size: 1.5em">
+            el T. Rex de Codosaurus,
+            <br/></br><br/></br></br>
+            (the T. Rex of Codosaurus,)
+          </div>
+          <span class="slide-caption">Image: my company logo!</span>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 7.2em">👨🏽‍🏫</div>
+          <div class="main-text" style="font-size: 1.5em">
+            y estoy aqui para enseñarles
+            <br/></br><br/></br></br>
+            (and I'm here to teach you)
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+        </section>
+
+        <section>
+          <img src="images/genetic-testing.png" height="50%" class="autofix" style="border-radius:1em">
+          <div class="main-text" style="font-size: 1.5em">
+            sobre Algoritmos Genéticos.
+            <br/></br><br/></br></br>
+            (about Genetic Algorithms.)
+          </div>
+          <span class="slide-caption">Image: https://pixabay.com/vectors/genetic-testing-gene-panel-genetics-2316642</span>
+        </section>
+
+        <!--
+        <section>
+          <div class="main-text" style="font-size: 5em">🛫 . . . 🛬</div>
+          <div class="main-text" style="font-size: 1.5em">
+            y volé aquí
+            <br/></br><br/></br></br>
+            (and I flew here)
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.5em">
+            en mi pterodáctilo mascota
+            <br/></br><br/></br></br>
+            (on my pet pterodactyl)
+          </div>
+          <img src="images/pterodactyl.png" height="60%"
+               style="position: absolute; top: 27%; left: 15%">
+          <img src="images/chrome-offline-t-rex.png" height="35%"
+               style="position: absolute; bottom: 35%; right: 35%">
+          <span class="slide-caption">Images: https://pixabay.com/vectors/dinosaur-tyrannosaurus-t-rex-6273164/<br/>and https://pixabay.com/vectors/bird-flying-wings-dinosaur-ancient-44859/</span>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 7.2em">👨🏽‍🏫</div>
+          <div class="main-text" style="font-size: 1.5em">
+            para enseñarles sobre
+            <br/></br><br/></br></br>
+            (to teach you about)
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+        </section>
+
+        <section>
+          <img src="images/genetic-testing.png" height="50%" class="autofix" style="border-radius:1em">
+          <div class="main-text" style="font-size: 1.5em">
+            Algoritmos Genéticos.
+            <br/></br><br/></br></br>
+            (Genetic Algorithms.)
+          </div>
+          <span class="slide-caption">Image: https://pixabay.com/vectors/genetic-testing-gene-panel-genetics-2316642</span>
+        </section>
+        -->
+
+        <section>
+          <div class="main-text" style="font-size: 7.2em">☝️</div>
+          <div class="main-text" style="font-size: 1.5em">
+            Pero . . .
+            <br/></br><br/></br></br>
+            (But . . .)
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 7.2em">🇺🇸</div>
+          <div class="main-text" style="font-size: 1.5em">
+            lo haré en inglés.
+            <br/></br><br/></br></br>
+            (I will do it in English.)
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+          <aside class="notes">
+            So what are genetic algorithms anyway?&nbsp;
+            They are heuristics, or . . .
+          </aside>
+        </section>
+
+        <!--
+
+        <section>
+          <div class="main-text" style="font-size: 7.2em">🇺🇸</div>
+          <div class="main-text" style="font-size: 1.5em">
+            lo haré en inglés.
+            <br/></br><br/></br></br>
+            (I will do it in English.)
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+          <aside class="notes">
+            But first . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/caution-sign.png" class="autofix">
+          <span class="slide-caption">Image: https://vectorportal.com/vector/other-danger-vector-sign.ai/9045</span>
+          <aside class="notes">
+            . . . a caveat.&nbsp;
+            I am not an expert in Genetic Algorithms.&nbsp;
+            I haven't used them at work, or for anything serious,
+            but I looked into the concept,
+            understood it (I think!),
+            and saw it seems to be a lot simpler
+            than its reputation implies.&nbsp;
+            So I put together a pitch for a talk to explain it,
+            and here I am!<br/><br/>
+            Genetic algorithms are . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/settings_icon-icons.com_49925.png" class="autofix" style="background-color: white; border-radius: 1.03em">
+          <span class="slide-caption">Image: https://icon-icons.com/download/49925/PNG/512/</span>
+          <aside class="notes">
+            optimization heuristics,
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 8em">WAT?</div>
+          <aside class="notes">
+            Okay, optimization means
+            finding a . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/army-reserve-captain-wanda-r-jewell-number-3-platform-from-redstone-arsenal-CROPPED.jpg" class="autofix">
+          <span class="slide-caption">Image: https://picryl.com/media/army-reserve-captain-wanda-r-jewell-number-3-platform-from-redstone-arsenal-7f7d64</span>
+          <aside class="notes">
+            . . . better solution
+            for something, ideally the best.&nbsp;
+            And a heuristic is a . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/shortcut-through-the-dunes.jpg" class="autofix">
+          <span class="slide-caption">Image: https://www.publicdomainpictures.net/en/view-image.php?image=205157</span>
+          <aside class="notes">
+            . . . shortcut
+            that's faster, simpler, cheaper,
+            or in some such way less resource-intensive,
+            than methods like precise calculation or brute-force,
+            but not guaranteed to find
+            the best solution.&nbsp;
+            So "optimization heuristics" are
+            shortcuts to finding better solutions.
+            <br/><br/>
+            There are many kinds of optimization heuristics,
+            but genetic algoritms in particular are inspired by . . .
+          </aside>
+        </section>
+
+        -->
+
+        <section>
+          <img src="images/shortcut-through-the-dunes.jpg" class="autofix">
+          <span class="slide-caption">Image: https://www.publicdomainpictures.net/en/view-image.php?image=205157</span>
+          <aside class="notes">
+            . . . shortcuts to find a good solution to a problem.&nbsp;
+            Heuristics are used because they are
+            faster, simpler, cheaper,
+            or in some such way less resource-intensive,
+            than methods like
+            precise calculation or
+            brute-forcing your way through all possible value.&nbsp;
+            However, heuristics are not guaranteed to find
+            the actual best solution,
+            only something good enough,
+            for whatever value of "good enough".&nbsp;
+            The way Genetic Algorithms in particular work,
+            as you may have guessed from the name,
+            is inspired by . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/Darwin-chart.PNG" class="autofix">
+          <span class="slide-caption">Image: https://commons.wikimedia.org/wiki/File:Darwin-chart.PNG</span>
+          <aside class="notes">
+            . . . real-world biological evolution,
+            primarily the principles of
+            survival of the fittest,
+            random combination of different sets of genes into a new set,
+            and random mutation.
+
+            <br/><br/>
+
+            The history goes back to 1950, when . . .
+
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/turing.png" class="autofix">
+          <span class="slide-caption">Image: https://cdn.britannica.com/81/191581-050-8C0A8CD3/Alan-Turing.jpg</span>
+          <aside class="notes">
+            . . . Alan Turing proposed a "learning machine"
+            in which the mechanism of learning
+            would be similar to evolution.&nbsp;
+            However, simulated evolution didn't catch on much
+            until the 1960's and 70's,
+            and still isn't very common.&nbsp;
+
+            <!--
+            The first commercial product,
+            a mainframe toolkit for industrial processes,
+            came out in the late 1980's, from General Electric.&nbsp;
+            -->
+
+            But it is occasionally seen, in the wild.&nbsp;
+            Most famously,
+            in 2005 NASA used a genetic algorithm to design an . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/st5-antenna.jpg" class="autofix expand-tall">
+          <span class="slide-caption">Image: https://www.jpl.nasa.gov/nmp/st5/IMAGES/st5-antenna.jpg</span>
+          <aside class="notes">
+            . . . antenna for the ST5 satellites,
+            launched in 2006.&nbsp;
+            NASA's Jet Propulsion Laboratory's website says:
+            "Its unusual shape is expected
+            because most human antenna designers
+            would never think of such a design."&nbsp;
+            That is one of the great advantages of this approach,
+            though today we'll only be looking at
+            much simpler problem domains.
+
+            <br/><br/>
+
+            The process of a genetic algorithm is a simple set of steps:
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="text-align: center">
+              <tr><td colspan="9">Init</td></tr>
+              <tr><td colspan="9"></td></tr>
+              <tr><td colspan="9"></td></tr>
+              <tr><td colspan="9"></td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            First, we create an initial population of individuals.&nbsp;
+            In Genetic Algorithm lingo, these are called "chromosomes",
+            but since most living beings contain
+            <i>many</i> chromosomes in every cell,
+            I don't like that term,
+            I think it leads to confusion,
+            so I'm just going to say "individuals".&nbsp;
+            The next step is <i>usually</i> to . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="text-align: center">
+              <tr><td colspan="9">Init</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr><td colspan="9">Assess<br/><center><small>(Maybe)</small></center></td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . assess how "fit" each individual is,
+            according to whatever criteria we want to apply.&nbsp;
+            We <i>might</i> be able to skip this step,
+            depending on what happens in the next step,
+            which is to ask, are we . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="text-align: center">
+              <tr><td colspan="9">Init</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td colspan="7">Done?</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . done?&nbsp;
+            If our stopping criteria don't depend on the fitness,
+            then we can leave that evaluation until the end,
+            or maybe not do it at all.&nbsp;
+            Anyway, if we're not done, then next we . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="text-align: center">
+              <tr><td colspan="9">Init</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td colspan="5">Select</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . select some individuals to breed the next generation . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="text-align: center">
+              <tr><td colspan="9">Init</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . actually do the breeding,
+            to create a whole new population . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="text-align: center">
+              <tr><td colspan="9">Init</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr><td colspan="9">⬇️</td></tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . mutate those new individuals, and . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>⬇️&nbsp;&nbsp;⬇️</td>
+                <td colspan="7"></td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . go back to step 2, assessing their fitness.&nbsp;
+            This could be represented at a high level
+            with some rather simple code, like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.75em">
+            <pre>
+
+how_many = 10  # or however big we want
+pop = intial_pop(how_many)
+evaluate(pop)
+while not done?(pop)
+  breeders = select(pop)
+  pop = breed(breeders, how_many)
+  mutate(pop)
+  evaluate(pop)
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            Now let's take a closer look at what goes on in each step.
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td style="color: white">Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>⬇️&nbsp;&nbsp;⬇️</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            First we create an initial population of individuals.&nbsp;
+            <!- But what is an individual, and how do we create one?&nbsp; -->
+            These are different solutions to some problem,
+            usually represented as
+            different instances of the same data structure.&nbsp;
+            They could be
+            objects of the same class,
+            maps with the same keys,
+            or anything else we want,
+            so long as they can be
+            evaluated to come up with a fitness level,
+            and we can combine two <!-- (or maybe more!) --> old ones
+            to make a new one.&nbsp;
+            Suppose we want to "evolve" a good set of character stats for a
+            Dungeons and Dragons fighter,
+            so our individuals are sets of stats.&nbsp;
+            My DnD knowledge is rather out of date,
+            I haven't played in about thirty years,
+            but back in my day, character stats were . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1em">
+            <div style="display: inline-block; text-align: left">
+              STR<span style="color: gray">ength</span><br/>
+              INT<span style="color: gray">elligence</span><br/>
+              DEX<span style="color: gray">terity</span><br/>
+              CON<span style="color: gray">stitution</span><br/>
+              WIS<span style="color: gray">dom</span><br/>
+              CHA<span style="color: gray">risma</span><br/>
+              <br/>
+              3d6 each<br/>
+              ignoring STR 18/xx
+            </div>
+          </div>
+          <aside class="notes">
+            . . .
+            Strength,
+            Intelligence,
+            Dexterity,
+            Constitution,
+            Wisdom,
+            and Charisma,
+            each determined by rolling three six-sided dice,
+            or 3d6 for short.&nbsp;
+            (I'm going to gloss over
+            how you can sometimes have extra strength.)&nbsp;
+            In code, we could represent them as a class
+            in a language such as Ruby, like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.9em">
+            <pre>
+class Character
+  def initialize()
+    @str = roll(3, 6)
+    @int = roll(3, 6)
+    @dex = roll(3, 6)
+    @con = roll(3, 6)
+    @wis = roll(3, 6)
+    @cha = roll(3, 6)
+  end
+end</pre>
+          </div>
+          <aside class="notes">
+            (Defining the roll function is left
+            as an exercise for the watcher.)&nbsp;
+            To create an initial population,
+            we can just create a bunch of individuals
+            and stuff them into an array, . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 2.2em">
+            <pre>
+
+def self.initial_pop(how_many)
+  population = []
+  for i in 1..how_many
+    population.append(self.new)
+  end
+  return population
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . like so.&nbsp;
+            (This could actually be done in much more idiomatic Ruby,
+            so don't scold me for that,
+            but I'm trying to keep it easily understandable by
+            people who don't know Ruby.)
+            So if we create a population of ten Characters,
+            we might wind up with a list like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha
+ 11    9    9   10    7   15
+  4   14    8   12   13   10
+  9   14   15   11    9   16
+ 14   15   10    7    6   14
+ 13   12    7   13   11   10
+ 12   12   10    9    5   16
+ 11   12    9   13    6   12
+ 10   14   12    8    8   16
+ 14    7    8    9    8    8
+ 14   12   13    5   13   13
+            </pre>
+          </div>
+          <aside class="notes">
+            The next step is . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td style="color: white">Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . to
+            assess how "fit" each of these characters is.&nbsp;
+            We do this with what's called a "fitness function".&nbsp;
+            Just like how biological creatures might be perfectly fit
+            for one environment but a lousy fit for another,
+            this should reflect how fit an individual is
+            <i>for some particular purpose</i>.&nbsp;
+            We're trying to evolve a good set of Fighter stats,
+            so it should be based mainly on strength and constitution.&nbsp;
+            Dexterity is also helpful.&nbsp;
+            Intelligence, wisdom, and charisma, not so much,
+            but we don't want them too low,
+            for the sake of occasional saving throws.&nbsp;
+            I toyed with a few different things, such as
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+def fitness()
+  str * 2 + con + dex / 2
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            totaling up double the strength,
+            the constitution,
+            and half the dexterity.&nbsp;
+            But, the other stats tended to get too low,
+            and even the dexterity.&nbsp;
+            So I tried . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.5em">
+            <pre>
+def fitness()
+  stats = [str, con, dex, int, wis, cha]
+  (0..5).
+    map { |idx| stats[idx] * (6 - idx) }.
+    sum
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            prioritizing them linearly,
+            adding up six times the strength, five times the constitution,
+            and so on down to one times the charisma.&nbsp;
+            But then the other stats got too high,
+            and the characters seemed too generalized.&nbsp;
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.5em">
+            <pre>
+def fitness()
+  stats = [str, con, dex, int, wis, cha]
+  (0..5).
+    map { |idx| stats[idx] * 2 ** (5 - idx) }.
+    sum
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            So I finally settled on this:
+            . . . prioritizing the stats
+            again but much more strongly,
+            totaling up 32 times the strength,
+            16 times the constitution,
+            and so on down to one times the charisma.&nbsp;
+            We could get as complex as we want in this function,
+            and NASA's antenna fitness function
+            must have been.&nbsp;
+            Even though the fitness function itself can be very simple,
+            it can be difficult to figure out
+            one that will yield good results.
+
+            <br/><br/>
+
+            If we run this on our population, we get this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha  Fit
+ 11    9    9   10    7   15  649
+  4   14    8   12   13   10  476
+  9   14   15   11    9   16  674
+ 14   15   10    7    6   14  726
+ 13   12    7   13   11   10  760
+ 12   12   10    9    5   16  682
+ 11   12    9   13    6   12  703
+ 10   14   12    8    8   16  632
+ 14    7    8    9    8    8  708
+ 14   12   13    5   13   13  719
+            </pre>
+          </div>
+          <aside class="notes">
+            Now that we know how fit each one is,
+            the next step is to see if . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td style="color: white">Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . we're done.&nbsp;
+            So what are our criteria?&nbsp;
+            Let's say we're done if
+            any individuals get 90% of the way to the maximum score
+            of our fitness function.&nbsp;
+            The maximum is 1,134, so 90% would round to 1,021.&nbsp;
+            In code, that looks like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+def Character.done?(population)
+  population.any? { |indiv|
+    indiv.fitness &gt;= 1021
+  }
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            As usual, we can get as complex as we want,
+            with other stopping criteria,
+            like if the
+            maximum, average, or minimum fitness is not improving,
+            or some number of generations,
+            or some amount of time,
+            or when the user presses a STOP button,
+            or many other parameters,
+            or a combination of ways.&nbsp;
+            
+            <br/><br/>
+
+            Anyway, none of our current individuals score
+            anywhere near 1021, so we . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td style="color: white">Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . select some individuals to use in
+            breeding the next generation.&nbsp;
+            The obvious way is to take the top two scorers, like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+def Character.select_breeders(population)
+  population.
+    sort_by(&:fitness).
+    reverse.
+    take(2)
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            Take the population,
+            sort them by fitness in descending order,
+            and take the first two.&nbsp;
+            With our current population, we get:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha  Fit
+
+ 13   12    7   13   11   10  760
+
+ 14   15   10    7    6   14  726
+            </pre>
+          </div>
+          <aside class="notes">
+            these two.&nbsp;
+            <!--
+            Of course the abstraction gets a bit leaky now,
+            because we're ignoring sexes;
+            we have no guarantee that they'll be a male and a female,
+            as we're not even making that part of the data.&nbsp;
+            -->
+            We also could get more complicated,
+            like selecting two randomly
+            with each individual having a <i>chance</i> to be selected,
+            proportional to their fitness,
+            and lots of other ways.&nbsp;
+
+            <br/><br/>
+
+            We could also take more than two,
+            whether to breed all pairs in that set
+            or to combine more than two at once.&nbsp;
+            Or we could combine strategies,
+            such as using all trios from a randomly chosen five,
+            with the fitter ones having a better chance to be chosen.
+
+            <br/><br/>
+
+            Now that we've chosen our breeders, next we actually . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td style="color: white">Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . breed them.&nbsp;
+            The usual way is called crossover,
+            and it consists of taking the data from one parent,
+            up to some randomly chosen crossover point,
+            then switching to the other parent.&nbsp;
+            <!--
+            This can be extended with multiple crossover points.&nbsp;
+            There are also lots of ways we can combine <i>three</i> or more
+            individuals into one new one.&nbsp;
+            -->
+            Another common way is to randomly decide
+            which parent contributes which part of the data,
+            or in Genetic Algorithm lingo, which "gene".&nbsp;
+            That's what we'll do here, like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+
+def Character.combine(p1, p2)
+  char = Character.new
+  char.str = rand(2) == 1 ? p1.str : p2.str
+  char.int = rand(2) == 1 ? p1.int : p2.int
+  char.dex = rand(2) == 1 ? p1.dex : p2.dex
+  char.con = rand(2) == 1 ? p1.con : p2.con
+  char.wis = rand(2) == 1 ? p1.wis : p2.wis
+  char.cha = rand(2) == 1 ? p1.cha : p2.cha
+  return char
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            We go through the stats one by one,
+            flip a coin<!-- (also called "roll a d2")-->,
+            and if it comes up 1,
+            we get that stat from the first parent,
+            else we get it from the other parent.&nbsp;
+            That gets us a result like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha
+ 13   12    7   13   11   10
+
+              +
+
+ 14   15   10    7    6   14
+
+              =
+
+ 13   12   10    7    6   14
+            </pre>
+          </div>
+          <aside class="notes">
+            This new character got the
+            strength and intelligence of the first parent,
+            and everything else from the second parent.&nbsp;
+            This is the same results as the crossover method,
+            if the crossover point happened to be
+            between Intelligence and Dexterity.&nbsp;
+            But this is just one of ten results,
+            because we're making a whole new population, like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.45em">
+            <pre>
+def Character.breed(p1, p2, how_many)
+  population = []
+  for i in 1..how_many
+    population.append(Character.combine(p1,p2))
+  end
+  return population
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            This is just like how we created the initial population,
+            except that instead of each individual being
+            made from scratch,
+            they're the product of breeding our chosen breeders.&nbsp;
+            The whole list looks like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha
+ 13   12   10    7    6   14
+ 13   12    7   13    6   14
+ 14   12   10   13   11   14
+ 14   15    7   13    6   14
+ 13   12   10   13    6   14
+ 14   15   10    7   11   10
+ 14   12   10   13    6   10
+ 13   15   10   13    6   14
+ 13   15   10   13    6   10
+ 14   12    7    7    6   14
+            </pre>
+          </div>
+          <aside class="notes">
+            Lots of family resemblance there, eh?&nbsp;
+            For each stat, there are only two values,
+            or in Genetic Algorithm terms, "alleles",
+            for a total of 64 possible combinations,
+            even less if any stats were the same between the parents.&nbsp;
+            On average, these look much more suitable as fighters
+            than the previous generation.&nbsp;
+            (We'll figure their actual fitness scores later.)
+            If we were to just continue
+            breeding the fittest of this population,
+            we wouldn't see any further improvement
+            in the the values of each stat,
+            but we fix that in the next step, which is to . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td style="color: white">Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . mutate them.&nbsp;
+            <!--
+              To do this, we need to determine how to determine
+              whether a given stat gets mutated,
+              and by how much.&nbsp;
+            -->
+            Again, I'm going to keep it very simple,
+            and give each stat
+            a 1/3 chance of staying the same,
+            going up a point, or going down a point,
+            within the valid range.&nbsp;
+            In code, that looks like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.3em">
+            <pre>
+def maybe_mutate()
+  @str = maybe_mutate_stat(@str)
+  @int = maybe_mutate_stat(@int)
+  @dex = maybe_mutate_stat(@dex)
+  @con = maybe_mutate_stat(@con)
+  @wis = maybe_mutate_stat(@wis)
+  @cha = maybe_mutate_stat(@cha)
+end
+
+def maybe_mutate_stat(stat)
+  val = stat + rand(3) - 1
+  return 18 if val &gt; 18
+  return  3 if val &lt;  3
+  return val
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            For each stat,
+            we add a random number from 0 to 2,
+            and subtract one,
+            which is like adding a random number from -1 to 1,
+            but we keep it within the range 3 to 18.&nbsp;
+            Again, we could get as complex as we want,
+            like giving it a higher chance of
+            going down, maybe by multiple points, if it's very high,
+            and of going up, maybe by multiple points, if it's very low,
+            or all kinds of other options.&nbsp;
+            If we run this on our new population,
+            we wind up with something like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha
+<span style="color:#0f0"> 14</span>   12   10    7 <span style="color:#0f0">   7</span> <span style="color:#f33">  13</span>
+<span style="color:#f33"> 12</span> <span style="color:#0f0">  13</span>    7 <span style="color:#0f0">  14</span>    6   14
+<span style="color:#f33"> 13</span>   12   10 <span style="color:#0f0">  14</span>   11 <span style="color:#0f0">  15</span>
+<span style="color:#0f0"> 15</span> <span style="color:#0f0">  16</span>    7 <span style="color:#0f0">  14</span>    6 <span style="color:#0f0">  15</span>
+ 13 <span style="color:#f33">  11</span>   10 <span style="color:#f33">  12</span> <span style="color:#f33">   5</span> <span style="color:#0f0">  15</span>
+<span style="color:#f33"> 13</span>   15 <span style="color:#0f0">  11</span>    7   11   10
+ 14 <span style="color:#0f0">  13</span> <span style="color:#f33">   9</span> <span style="color:#f33">  12</span>    6 <span style="color:#f33">   9</span>
+<span style="color:#0f0"> 14</span>   15 <span style="color:#f33">   9</span>   13    6 <span style="color:#0f0">  15</span>
+ 13   15 <span style="color:#0f0">  11</span> <span style="color:#f33">  12</span> <span style="color:#f33">   5</span> <span style="color:#f33">   9</span>
+<span style="color:#f33"> 13</span>   12 <span style="color:#f33">   6</span> <span style="color:#f33">   6</span> <span style="color:#0f0">   7</span>   13
+            </pre>
+          </div>
+          <aside class="notes">
+            I've colored the stats that went up in green,
+            and down, in red.&nbsp;
+            Looking at the values in each column,
+            you can see it's now much more diverse.&nbsp;
+            Now we go back to . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td style="color: white">Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . Step 2, assessing the fitness of
+            the individuals in this new population.&nbsp;
+            If we sort on fitness descending,
+            just to make it easy to find the best,
+            we get this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha  Fit
+ 15   16    7   14    6   15  851
+ 14   15    9   13    6   15  815
+ 13   12   10   14   11   15  805
+ 14   13    9   12    6    9  785
+ 13   15   11   12    5    9  775
+ 13   11   10   12    5   15  757
+ 12   13    7   14    6   14  742
+ 14   12   10    7    7   13  715
+ 13   15   11    7   11   10  708
+ 13   12    6    6    7   13  635
+            </pre>
+          </div>
+          <aside class="notes">
+            Now we can see for sure,
+            that this generation is much improved from the prior one.&nbsp;
+            <!--
+              The old one ranged from 476 to 760,
+              and the new one from 635 to 851.&nbsp;
+            -->
+            It's still nowhere near our stopping criterion of 1021,
+            so fast-forwarding through six more rounds of
+            selection, breeding, mutation, and assessment,
+            we finally get one with good enough individuals,
+            like . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha   Fit
+ 18   18    9   18    4   13  1029<span style="color:gray">
+ 18   17    7   18    6   14  1014
+ 18   16    8   18    3   13  1011
+ 18   15    7   18    3   13   999
+ 18   16    8   17    4   13   997
+ 18   16    6   18    3   15   997
+ 17   18    8   18    6   13   993
+ 17   16    9   18    3   14   988
+ 18   16    6   17    3   13   979
+ 17   16    8   17    4   12   964</span>
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . this,
+            <!-- ranging in fitness from 964 to 1029, -->
+            with one suitable character
+            having 18 Strength and Constitution,
+            but sub-par Dexterity,
+            and surprisingly high Intelligence.&nbsp;
+            If we really wanted it more specialized,
+            we could complicate the fitness function further,
+            and do things like explicitly demand above average
+            in the class's needed stats,
+            and forbid it to be so high in the others.
+
+            <br/><br/>
+
+            Let's suppose we don't need any more Fighters in the party,
+            and now we need a Wizard.&nbsp;
+            All we need to do is tweak our fitness function, like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.5em">
+            <pre>
+def fitness()
+  # below is the only line that changed!
+  stats = [int, wis, dex, con, cha, str]
+  (0..5).
+    map { |idx| stats[idx] * 2 ** (5 - idx) }.
+    sum
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . to prioritize intelligence first,
+            then wisdom, dexterity, constitution, charisma,
+            and finally strength.&nbsp;
+            An initial population would look the same,
+            since we haven't changed how that is generated, so
+            I'll spare you the steps,
+            but after 11 more generations
+            I got this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Str  Int  Dex  Con  Wis  Cha   Fit
+ 12   18   17   12   15   18  1048
+ 14   18   16    9   15   16  1026
+ 15   18   15   10   15   16  1023<span style="color:gray">
+ 13   18   17   11   13   18  1013
+ 14   18   17   10   13   18  1010
+ 13   18   16    8   14   18  1009
+ 12   17   16   11   15   17  1002
+ 12   18   15    9   14   16  1000
+ 14   17   16   10   15   16   998
+ 14   17   17   11   13   18   982</span>
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . containing three individuals 90% fit to be wizards.&nbsp;
+            They're mostly pretty good in the other stats,
+            but not so much as to be
+            obviously better suited for some other class.
+
+            <!--
+
+            <br/><br/>
+
+            Remember though that this is all very random.&nbsp;
+            It may converge on a good solution faster, or more slowly,
+            and the fitness function may be good or poor at
+            getting just the right mix of alleles.
+
+            -->
+
+            <br/><br/>
+
+            Now, suppose we want to evolve . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/something-completely-different.jpg" class="autofix">
+          <span class="slide-caption">Image: https://image.tmdb.org/t/p/w500/ajbdFQLvJTlNu4LnVWGnNMb4mZ8.jpg (used for edu fair use)</span>
+          <aside class="notes">
+            . . . something completely different.&nbsp;
+            In my spare time, I make . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/2021-06-12-Meads-Assembled.jpg" class="autofix" height="60%">
+          <div class="main-text" style="font-size: 1.5em">
+            Mead
+            <br/></br><br/></br></br>
+            (Hidromiel)
+          </div>
+          <span class="slide-caption">Image: my own pic of five batches of plain mead in progress</span>
+          <aside class="notes">
+            . . . mead,
+            or in Spanish, "hidromiel",
+            a wine-like drink made by fermenting honey.&nbsp;
+            Let's see if we can evolve a good recipe.&nbsp;
+            Our recipe will be based on two simple factors:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+class Recipe
+  def initialize()
+    # water-to-honey ratio of 1.5 to 15
+    @ratio = roll(3, 10) / 2.0
+    # alcohol tolerance of 6-20
+    @tolerance = 4 + roll(2, 8)
+  end
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            the ratio of water to honey,
+            and the alcohol tolerance of the yeast we'll use,
+            both by volume.&nbsp;
+            The more honey per volume,
+            in other words the lower the ratio of water,
+            the higher the level of alcohol you <i>could</i> get,
+            <i>if</i> the yeast will tolerate that level of alcohol.&nbsp;
+            Any leftover honey,
+            that the yeast doesn't eat and convert into alcohol,
+            is what makes the mead sweet.&nbsp;
+            Those two resulting factors,
+            the percent alcohol by volume, or ABV,
+            and the sweetness,
+            will be how we'll evaluate the recipe,
+            but I'll spare you the details of how we figure them out.&nbsp;
+            Of course we'll need a new . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+
+def fitness()
+  target_abv = 12
+  target_sweet = 15
+  abv, sweet = evaluate(self)
+  abv_off = (target_abv - abv).abs
+  sweet_off = (target_sweet - sweet).abs
+  off = abv_off ** 2 + sweet_off ** 2
+  100 - off;
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . fitness function.&nbsp;
+            This looks at how far off we are
+            from our desired target values.&nbsp;
+            We square the error in each aspect separately,
+            so that something that's, say, one point off in each,
+            will score higher than something that's spot-on in one
+            but two points off in the other.&nbsp;
+            In other words,
+            we want them both close,
+            not just trading off one for the other directly.
+
+            <br/><br/>
+
+            You can see here we are targeting 12% ABV,
+            out of a range from 0 to 20,
+            and 15 "points" of sweetness,
+            which is on a custom scale . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <table>
+              <tr><th>Level</th><th class="numeric">Min</th><th class="numeric">Max</th></tr> 
+              <tr><td>Dry</td><td class="numeric">0</td><td class="numeric">9</td></tr>
+              <tr><td>Semi-Sweet</td><td class="numeric">10</td><td class="numeric">19</td></tr>
+              <tr><td>Sweet</td><td class="numeric">20</td><td class="numeric">29</td></tr>
+              <tr><td>Dessert</td><td class="numeric">30</td><td class="numeric">39</td></tr>
+              <tr><td>Too Sweet</td><td class="numeric">40</td><td class="numeric"></td></tr>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . of zero to about 80 for anything reasonable
+            as a finished product.&nbsp;
+            So we're going for roughly typical wine strength, and semi-sweet.
+
+            <br/><br/>
+
+            Of course there are a few other bits of code we'll need to change.&nbsp;
+            For starters, the . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.1em">
+            <pre>
+def self.combine(p1, p2)
+  rec = self.new
+  rec.ratio     = rand(2) == 1 ? p1.ratio     : p2.ratio
+  rec.tolerance = rand(2) == 1 ? p1.tolerance : p2.tolerance
+  return rec
+end
+
+def maybe_mutate()
+  @ratio = maybe_mutate_stat(@ratio, 1.5, 15)
+  @tolerance = maybe_mutate_stat(@tolerance, 6, 20)
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . breeding and individual-mutation functions
+            will only need to take care of two stats, instead of six,
+            just like the individual creation function.&nbsp;
+            But . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+def maybe_mutate_stat(stat, min, max)
+  val = stat * (0.79 + roll(2, 20) / 100.0)
+  return max if val &gt; max
+  return min if val &lt; min
+  return val
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . the generic stat mutator,
+            and the calls to it from the individual mutator,
+            will be a bit more complex,
+            as it needs to take different limits into account,
+            and work well on differently-sized numbers.&nbsp;
+            What this one does is
+            to multiply by somewhere between 81% and 119%,
+            so it's got very little chance of staying the same,
+            and the difference will usually be rather small,
+            since we're using multiple dice so we have a bell curve,
+            but could go up to 19%.
+
+            <br/><br/>
+
+            Everything else, such as
+            creating the initial population,
+            selecting breeders,
+            breeding a new population,
+            the concept of how to check if we're done,
+            though with a different threshold,
+            and the overall structure of
+            how it simulates evolution,
+            all remain unchanged.
+
+            <br/><br/>
+ 
+            To demonstrate how this one runs, an initial population might look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Ratio  Tolerance  %ABV  Sweet     Fit
+ 6.50       10.0   7.4    0.0  -145.8
+ 7.00       11.0   7.0    0.0  -150.3
+ 7.50        9.0   6.6    0.0  -154.6
+ 8.00       14.0   6.2    0.0  -158.7
+ 8.50       12.0   5.9    0.0  -162.6
+ 9.00       14.0   5.6    0.0  -166.2
+ 9.00        9.0   5.6    0.0  -166.2
+12.50       11.0   4.1    0.0  -186.9
+12.50       16.0   4.1    0.0  -186.9
+13.00        9.0   4.0    0.0  -189.3
+            </pre>
+          </div>
+          <aside class="notes">
+            and the next generation like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Ratio  Tolerance  %ABV  Sweet     Fit
+ 5.46       10.6   8.6    0.0  -136.3
+ 5.52       11.7   8.5    0.0  -136.9
+ 5.72        9.6   8.3    0.0  -138.7
+ 5.95        9.4   8.0    0.0  -140.8
+ 5.98       10.7   8.0    0.0  -141.1
+ 6.37       10.9   7.6    0.0  -144.6
+ 6.44       11.3   7.5    0.0  -145.2
+ 6.56       12.2   7.4    0.0  -146.4
+ 7.42        9.7   6.6    0.0  -153.9
+ 7.84        9.6   6.3    0.0  -157.4
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . and after just 7 generations, finally this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Ratio  Tolerance  %ABV  Sweet     Fit
+ 3.46       10.4  10.4   16.4    95.2<span style="color:gray">
+ 3.59        9.9   9.9   17.4    89.5
+ 3.85        8.9   8.9   20.1    64.6
+ 3.42        9.7   9.7   22.5    38.1
+ 4.53        9.2   9.2    6.7    24.0
+ 3.50        9.2   9.2   24.4     4.6
+ 4.33        9.8   9.8    5.3     1.8
+ 3.94        7.7   7.7   27.1   -64.1
+ 4.33       11.0  10.5    0.0  -127.4
+ 3.53        8.3   8.3   30.6  -156.7</span>
+            </pre>
+          </div>
+          <aside class="notes">
+            with a candidate weaker and sweeter than we want,
+            but within our 90%-fit criterion.&nbsp;
+            If we get really picky and demand a 99.9% fit,
+            my first run like that took 45 generations,
+            and yielded this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Ratio  Tolerance  %ABV  Sweet     Fit
+ 3.05       11.8  11.8   15.2    99.9<span style="color:gray">
+ 3.21       10.9  10.9   18.2    88.7
+ 3.34       11.4  11.4   10.8    81.7
+ 3.28       10.5  10.5   19.2    79.8
+ 3.35       11.7  11.7    8.9    62.9
+ 3.31       11.8  11.8    8.8    61.4
+ 3.48        9.7   9.7   21.0    58.9
+ 3.05       13.1  13.1    4.9    -2.9
+ 3.60       11.8  11.8    2.6   -53.9
+ 3.68       12.2  11.9    0.0  -125.0</span>
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . a tiny bit weaker and sweeter than asked for.&nbsp;
+
+            <br/><br/>
+
+            Just like with the DnD characters,
+            if we want to change what we're after,
+            we just have to tweak the fitness function.&nbsp;
+            I asked for 7% and sweetness of 5,
+            a low-alcohol dry mead, often called a "session" mead,
+            and still demanding a 99.9% fit,
+            it took 37 generations to get this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Ratio  Tolerance  %ABV  Sweet     Fit
+ 6.38        6.9   6.9    5.0   100.0<span style="color:gray">
+ 5.73        7.6   7.6    5.4    99.5
+ 5.32        8.2   8.2    4.9    98.6
+ 5.61        7.6   7.6    6.5    97.3
+ 6.25        6.7   6.7    7.8    92.2
+ 5.34        7.7   7.7    8.8    85.5
+ 5.23        8.8   8.8    1.0    80.7
+ 6.25        8.2   7.7    0.0    74.5
+ 6.02        8.3   7.9    0.0    74.1
+ 5.61        6.8   6.8   12.3    46.5</span>
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . spot-on in sweetness and just a tiny bit weaker.&nbsp;
+            Then I asked for 16% and a sweetness of 35,
+            a strong and sweet mead,
+            historically called sack mead or a great mead,
+            and it took 149 generations to produce this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+Ratio  Tolerance  %ABV  Sweet     Fit
+ 1.69       16.1  16.1   34.9   100.0<span style="color:gray">
+ 1.70       15.8  15.8   36.9    96.4
+ 2.06       13.6  13.6   35.2    94.3
+ 1.96       14.0  14.0   36.5    94.0
+ 1.94       15.4  15.4   27.3    39.9
+ 1.75       14.6  14.6   43.0    33.8
+ 1.92       13.3  13.3   43.8    16.1
+ 1.68       14.2  14.2   50.6  -146.3
+ 1.93       17.6  17.6   10.6  -497.1
+ 1.70       11.8  11.8   67.8  -992.7</span>
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . just a tiny bit stronger and drier than asked for.
+
+            <br/><br/>
+
+            Now, just a little bit ago I said a lot of stuff was unchanged
+            between these two usages.&nbsp;
+            I usually wait until we have three,
+            but let's pretend we have a third one.&nbsp;
+            That means we should . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/tooth-extraction.png" class="autofix">
+          <span class="slide-caption">Image: from https://www.authoritydental.org/tooth-extraction-recovery</span>
+          <aside class="notes">
+            . . . extract those part into something they all can use,
+            something with a name like, oh, say, . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/evolver-license-plate.png" class="autofix">
+          <span class="slide-caption">Image: my picture, of my actual license plate!</span>
+          <aside class="notes">
+            . . . Evolver!&nbsp;
+            That's my actual license plate, by the way.&nbsp;
+
+            <br/><br/>
+
+            With just a little bit of tweaking,
+            and a slight sprinkling of fancy Ruby magic dust,
+            we can extract a class
+            that will take another class
+            that defines the necessary items, and run evolution on it,
+            like so:
+
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text">
+            <pre style="font-size: .21em; line-height:1.1em">
+class Evolver
+  attr_reader :klazz, :header, :how_many
+
+  def initialize(klazz, options={})
+    @klazz = klazz
+    @header = options[:header] || klazz::REPORT_HEADER rescue nil  # blank OK
+    @how_many = options[:how_many] || 10
+  end
+
+  def evolve()
+    pop = initial_pop().sort_by(&:fitness).reverse
+    generations = 1
+    report(generations, pop)
+    while not klazz.done?(pop, generations)
+      breeders = klazz.select_breeders(pop)
+      pop = breed(breeders)
+      pop.each { |indiv| indiv.maybe_mutate }
+      pop = pop.sort_by(&:fitness).reverse
+      generations += 1
+      report(generations, pop)
+    end
+  end
+
+  def initial_pop()
+    (1..how_many).map { |_| klazz.new() }
+  end
+
+  def report(generations, pop)
+    puts "After #{generations} generations:"
+    puts header
+    pop.each { |indiv| indiv.report() }
+  end
+
+  def breed(breeders)
+    (1..how_many).map { |_| klazz.combine(breeders) }
+  end
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . and then our character and recipe classes
+            can be shortened like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text">
+            <pre style="font-size: .1em; line-height:1.35em">
+class Character
+  REPORT_HEADER = "Str  Int  Dex  Con  Wis  Cha   Fit"
+  attr_accessor :str, :int, :dex, :con, :wis, :cha, :fit
+
+  def initialize()
+    @str = roll(3, 6)
+    @int = roll(3, 6)
+    @dex = roll(3, 6)
+    @con = roll(3, 6)
+    @wis = roll(3, 6)
+    @cha = roll(3, 6)
+  end
+
+  def roll(num_dice, die_size)
+    (1..num_dice).map { rand(die_size) + 1 }.sum
+  end
+
+  def report
+    printf(" %2d   %2d   %2d   %2d   %2d   %2d  %4d\n",
+           str, int, dex, con, wis, cha, fit)
+  end
+
+  def self.done?(population, _generations)
+    population.first.fitness &gt;= 1021
+  end
+
+  def fitness()
+    stats = [int, wis, dex, con, cha, str]  # for wizards
+    @fit = (0..5).map { |idx| stats[idx] * 2 ** (5 - idx) }.sum
+  end
+
+  def self.select_breeders(population)
+    population.sort_by(&:fitness).reverse.take(2)
+  end
+
+  def self.combine(breeders)
+    p1,p2 = breeders
+    char = self.new
+    char.str = rand(2) == 1 ? p1.str : p2.str
+    char.int = rand(2) == 1 ? p1.int : p2.int
+    char.dex = rand(2) == 1 ? p1.dex : p2.dex
+    char.con = rand(2) == 1 ? p1.con : p2.con
+    char.wis = rand(2) == 1 ? p1.wis : p2.wis
+    char.cha = rand(2) == 1 ? p1.cha : p2.cha
+    return char
+  end
+
+  def maybe_mutate()
+    @str = maybe_mutate_stat(@str)
+    @int = maybe_mutate_stat(@int)
+    @dex = maybe_mutate_stat(@dex)
+    @con = maybe_mutate_stat(@con)
+    @wis = maybe_mutate_stat(@wis)
+    @cha = maybe_mutate_stat(@cha)
+  end
+
+  def maybe_mutate_stat(stat)
+    val = stat + rand(3) - 1
+    return 18 if val &gt; 18
+    return  3 if val &lt;  3
+    return val
+  end
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            and like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text">
+            <pre style="font-size: .1em; line-height:1.3em">
+class Recipe
+  REPORT_HEADER = "Ratio  Tolerance  %ABV  Sweet     Fit"
+  attr_accessor :ratio, :tolerance, :abv, :sweet, :fit
+
+  def initialize()
+    @ratio = roll(3, 10) / 2.0
+    @tolerance = 4 + roll(2, 8)
+  end
+
+  def roll(num_dice, die_size)
+    (1..num_dice).map { rand(die_size) + 1 }.sum
+  end
+
+  def report
+    printf("%5.2f       %4.1f  %4.1f   %4.1f  %6.1f\n", ratio, tolerance, abv, sweet, fit)
+  end
+
+  def self.done?(population, _generations)
+    population.first.fitness &gt;= 99.9
+  end
+
+  def fitness()
+    target_abv = 12
+    target_sweet = 15
+    @abv, @sweet = evaluate()
+    abv_off = (target_abv - abv).abs
+    sweet_off = (target_sweet - sweet).abs
+    off = abv_off ** 2 + sweet_off ** 2
+    @fit = 100 - off;
+  end
+
+  def evaluate()
+    honey_volume = 1.0 / ratio
+    total_mass = honey_volume * 1.425 + 1
+    total_volume = honey_volume + 1
+    og = total_mass / total_volume
+    potential = (og - 1) * 1000 / 7.62
+    abv = [tolerance, potential].min
+    fg = og - abv * 7.62 / 1000
+    return abv, (fg - 1) * 1000
+  end
+
+  def self.select_breeders(population)
+    population.sort_by(&:fitness).reverse.take(2)
+  end
+
+  def self.combine(breeders)
+    p1,p2 = breeders
+    rec = self.new
+    rec.ratio     = rand(2) == 1 ? p1.ratio     : p2.ratio
+    rec.tolerance = rand(2) == 1 ? p1.tolerance : p2.tolerance
+    return rec
+  end
+
+  def maybe_mutate()
+    @ratio = maybe_mutate_stat(@ratio, 1.5, 15)
+    @tolerance = maybe_mutate_stat(@tolerance, 6, 20)
+  end
+
+  def maybe_mutate_stat(stat, min, max)
+    val = stat * (0.79 + roll(2, 20) / 100.0)
+    return max if val &gt; max
+    return min if val &lt; min
+    return val
+  end
+end
+            </pre>
+          </div>
+          <aside class="notes">
+            . . . no I don't expect you to read that,
+            let alone remember it, the final slide . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1em">
+            <h1>? ? ? ? ?</h1>
+            <h5>
+              www.Codosaur.us<br/>
+              T.Rex-2022@Codosaur.us<br/>
+              @DaveAronson (Twitter)<br/>
+              linkedin.com/in/DaveAronson<br/>
+              toptal.com/#accept-only-candid-coders<br/>
+              <!-- www.Codosaur.us/reds/genes-nerdear-22-slides -->
+              www.Codosaur.us/reds/genes-nerdear-22-code</h5>
+          </div>
+          <aside class="notes">
+            . . . has the URL for all the code.&nbsp;
+            Any questions?
+          </aside>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="reveal/dist/reveal.js"></script>
+    <script src="reveal/plugin/notes/notes.js"></script>
+    <script src="reveal/plugin/markdown/markdown.js"></script>
+    <script src="reveal/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      const ratio = 9/16;
+      const width = 960;
+      Reveal.initialize({
+        controls: false,
+        hash: true,
+        history: true,
+        transition: "none",
+        transitionSpeed: "fast",
+        width: width,
+        height: width * ratio,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
