@@ -21,15 +21,12 @@
             <h1>Tight Genes:</h1>
             <h2>Intro to Genetic Algorithms</h2>
             <h3>by Dave Aronson</h3>
-            <h4>T.Rex-2022@Codosaur.us</h4>
-            <h5>Codosaur.us/reds/genes-nerdear-22-slides</h5>
+            <h4>
+              twitter.com/DaveAronson<br/>
+              T.Rex-2022@Codosaur.us
+            </h4>
+            <h5>github.com/CodosaurusLLC/tight-genes</h5>
           </div>
-          <aside class="notes">
-            NOTE TO SELF: Current time ~20 mins,
-            slow down a bit, want 20-25
-            <br/><br/>
-
-          </aside>
         </section>
 
         <section>
@@ -1455,7 +1452,7 @@ Str  Int  Dex  Con  Wis  Cha   Fit
             <pre>
 class Recipe
   def initialize()
-    # water-to-honey ratio of 1.5 to 15
+    # water:honey ratio ranges from 1.5-15
     @ratio = roll(3, 10) / 2.0
     # alcohol tolerance of 6-20
     @tolerance = 4 + roll(2, 8)
@@ -1983,7 +1980,8 @@ end
           </div>
           <aside class="notes">
             . . . no I don't expect you to read that,
-            let alone remember it, the final slide . . .
+            let alone remember it,
+            but the final slide . . .
           </aside>
         </section>
 
@@ -1999,7 +1997,10 @@ end
               toptal.com/#accept-only-candid-coders</h5>
           </div>
           <aside class="notes">
-            . . . has the URL for all the code.&nbsp;
+            . . . has the URL for all the code,
+            and I'm going to ask that the editors
+            leave the slide view visible
+            during QnA.&nbsp;
             Any questions?
           </aside>
         </section>
@@ -2029,6 +2030,7 @@ end
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
+      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
     </script>
   </body>
 </html>

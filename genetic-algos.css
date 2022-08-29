@@ -58,7 +58,7 @@ section.present::after {
 }
 
 .reveal section.present {
-  border: 1px solid red; /* for debugging */
+  /* border: 1px solid red; */ /* for debugging */
   height: 100%;
 }
 
