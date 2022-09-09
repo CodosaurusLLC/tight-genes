@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- CURRENT TIME: about 22:10, want 20-25, feel free to ad-lib a LITTLE -->
 <html>
   <head>
     <meta charset="utf-8">
@@ -236,11 +237,12 @@
             or in some such way less resource-intensive,
             than methods like
             precise calculation or
-            brute-forcing your way through all possible value.&nbsp;
+            brute-forcing your way through all possible values.&nbsp;
             However, heuristics are not guaranteed to find
             the actual best solution,
             only something good enough,
-            for whatever value of "good enough".&nbsp;
+            for whatever value of "good enough"
+            we care to apply.&nbsp;
             The way Genetic Algorithms in particular work,
             as you may have guessed from the name,
             is inspired by . . .
@@ -268,10 +270,14 @@
           <img src="images/turing.png" class="autofix">
           <span class="slide-caption">Image: https://cdn.britannica.com/81/191581-050-8C0A8CD3/Alan-Turing.jpg</span>
           <aside class="notes">
-            . . . Alan Turing proposed a "learning machine"
+            . . . Alan Turing,
+            as in Turing Test, Turing Machine, Turing Completeness,
+            the ACM's Turing Award, and so on,
+            proposed a "learning machine"
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
             However, simulated evolution didn't catch on much
+            as a general approach
             until the 1960's and 70's,
             and still isn't very common.&nbsp;
 
@@ -297,8 +303,8 @@
             "Its unusual shape is expected
             because most human antenna designers
             would never think of such a design."&nbsp;
-            That is one of the great advantages of this approach,
-            though today we'll only be looking at
+            That is one of the great advantages of this approach.&nbsp;
+            However, today we'll only be looking at
             much simpler problem domains.
 
             <br/><br/>
@@ -324,7 +330,7 @@
             I don't like that term,
             I think it leads to confusion,
             so I'm just going to say "individuals".&nbsp;
-            The next step is <i>usually</i> to . . .
+            The next step is to . . .
           </aside>
         </section>
 
@@ -334,15 +340,13 @@
               <tr><td colspan="9">Init</td></tr>
               <tr><td colspan="9">⬇️</td></tr>
               <tr><td colspan="9">⬇️</td></tr>
-              <tr><td colspan="9">Assess<br/><center><small>(Maybe)</small></center></td></tr>
+              <tr><td colspan="9">Assess</td></tr>
             </table>
           </div>
           <aside class="notes">
             . . . assess how "fit" each individual is,
             according to whatever criteria we want to apply.&nbsp;
-            We <i>might</i> be able to skip this step,
-            depending on what happens in the next step,
-            which is to ask, are we . . .
+            Next we ask, are we . . .
           </aside>
         </section>
 
@@ -353,7 +357,7 @@
               <tr><td colspan="9">⬇️</td></tr>
               <tr><td colspan="9">⬇️</td></tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td colspan="7">Done?</td>
               </tr>
@@ -361,10 +365,7 @@
           </div>
           <aside class="notes">
             . . . done?&nbsp;
-            If our stopping criteria don't depend on the fitness,
-            then we can leave that evaluation until the end,
-            or maybe not do it at all.&nbsp;
-            Anyway, if we're not done, then next we . . .
+            If not, then next we . . .
           </aside>
         </section>
 
@@ -375,7 +376,7 @@
               <tr><td colspan="9">⬇️</td></tr>
               <tr><td colspan="9">⬇️</td></tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -384,7 +385,7 @@
             </table>
           </div>
           <aside class="notes">
-            . . . select some individuals to breed the next generation . . .
+            . . . select some individuals to breed the next generation, . . .
           </aside>
         </section>
 
@@ -395,7 +396,7 @@
               <tr><td colspan="9">⬇️</td></tr>
               <tr><td colspan="9">⬇️</td></tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -420,7 +421,7 @@
               <tr><td colspan="9">⬇️</td></tr>
               <tr><td colspan="9">⬇️</td></tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -460,7 +461,7 @@
                 <td>↖️</td>
               </tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -483,7 +484,7 @@
           <div class="main-text" style="font-size: 1.75em">
             <pre>
 
-how_many = 10  # or however big we want
+how_many = 10  <span style="color:gray"># or however big we want</span>
 pop = intial_pop(how_many)
 evaluate(pop)
 while not done?(pop)
@@ -528,7 +529,7 @@ end
                 <td>↖️</td>
               </tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -684,7 +685,7 @@ Str  Int  Dex  Con  Wis  Cha
                 <td>↖️</td>
               </tr>
               <tr>
-                <td style="color: white">Assess<br/><center><small>(Maybe)</small></center></td>
+                <td style="color: white">Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -827,7 +828,7 @@ Str  Int  Dex  Con  Wis  Cha  Fit
                 <td>↖️</td>
               </tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td style="color: white">Done?</td>
                 <td>➡️</td>
@@ -900,7 +901,7 @@ end
                 <td>↖️</td>
               </tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -999,7 +1000,7 @@ Str  Int  Dex  Con  Wis  Cha  Fit
                 <td>↖️</td>
               </tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -1017,8 +1018,8 @@ Str  Int  Dex  Con  Wis  Cha  Fit
             and it consists of taking the data from one parent,
             up to some randomly chosen crossover point,
             then switching to the other parent.&nbsp;
-            <!--
             This can be extended with multiple crossover points.&nbsp;
+            <!--
             There are also lots of ways we can combine <i>three</i> or more
             individuals into one new one.&nbsp;
             -->
@@ -1047,7 +1048,7 @@ end
           </div>
           <aside class="notes">
             We go through the stats one by one,
-            flip a coin<!-- (also called "roll a d2")-->,
+            flip a coin (or "roll a d2"),
             and if it comes up 1,
             we get that stat from the first parent,
             else we get it from the other parent.&nbsp;
@@ -1158,7 +1159,7 @@ Str  Int  Dex  Con  Wis  Cha
                 <td>↖️</td>
               </tr>
               <tr>
-                <td>Assess<br/><center><small>(Maybe)</small></center></td>
+                <td>Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -1214,10 +1215,12 @@ end
             but we keep it within the range 3 to 18.&nbsp;
             Again, we could get as complex as we want,
             like giving it a higher chance of
-            going down, maybe by multiple points, if it's very high,
-            and of going up, maybe by multiple points, if it's very low,
+            going up or down, maybe by multiple points,
+            if it's very low or very high,
+            to simulate the real-world phenomenon of regression to the mean,
             or all kinds of other options.&nbsp;
-            If we run this on our new population,
+            If we run this mutation function
+            on the individuals in our new population,
             we wind up with something like this:
           </aside>
         </section>
@@ -1269,7 +1272,7 @@ Str  Int  Dex  Con  Wis  Cha
                 <td>↖️</td>
               </tr>
               <tr>
-                <td style="color: white">Assess<br/><center><small>(Maybe)</small></center></td>
+                <td style="color: white">Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -1309,10 +1312,8 @@ Str  Int  Dex  Con  Wis  Cha  Fit
           <aside class="notes">
             Now we can see for sure,
             that this generation is much improved from the prior one.&nbsp;
-            <!--
-              The old one ranged from 476 to 760,
-              and the new one from 635 to 851.&nbsp;
-            -->
+            The old one ranged from 476 to 760,
+            and the new one from 635 to 851.&nbsp;
             It's still nowhere near our stopping criterion of 1021,
             so fast-forwarding through six more rounds of
             selection, breeding, mutation, and assessment,
@@ -1342,18 +1343,20 @@ Str  Int  Dex  Con  Wis  Cha   Fit
             <!-- ranging in fitness from 964 to 1029, -->
             with one suitable character
             having 18 Strength and Constitution,
-            but sub-par Dexterity,
+            but sub-par Dexterity, though not <i>too</i> horrible,
             and surprisingly high Intelligence.&nbsp;
             If we really wanted it more specialized,
             we could complicate the fitness function further,
-            and do things like explicitly demand above average
+            and do things like explicitly demand
+            well above average scores
             in the class's needed stats,
-            and forbid it to be so high in the others.
+            and forbid it to be so high in the others,
+            or at least apply a penalty.
 
             <br/><br/>
 
-            Let's suppose we don't need any more Fighters in the party,
-            and now we need a Wizard.&nbsp;
+            Now, let's suppose we don't need any more Fighters in the party,
+            but now we need a Wizard.&nbsp;
             All we need to do is tweak our fitness function, like so:
           </aside>
         </section>
@@ -1372,11 +1375,11 @@ end
           </div>
           <aside class="notes">
             . . . to prioritize intelligence first,
-            then wisdom, dexterity, constitution, charisma,
-            and finally strength.&nbsp;
-            An initial population would look the same,
+            then wisdom, dexterity, and so on,
+            down to strength.&nbsp;
+            An initial population would look roughly the same,
             since we haven't changed how that is generated, so
-            I'll spare you the steps,
+            I'll spare you those steps,
             but after 11 more generations
             I got this:
           </aside>
@@ -1402,9 +1405,8 @@ Str  Int  Dex  Con  Wis  Cha   Fit
             . . . containing three individuals 90% fit to be wizards.&nbsp;
             They're mostly pretty good in the other stats,
             but not so much as to be
-            obviously better suited for some other class.
-
-            <!--
+            obviously better suited for some other class,
+            except that that top one looks like a bard to me.
 
             <br/><br/>
 
@@ -1412,8 +1414,6 @@ Str  Int  Dex  Con  Wis  Cha   Fit
             It may converge on a good solution faster, or more slowly,
             and the fitness function may be good or poor at
             getting just the right mix of alleles.
-
-            -->
 
             <br/><br/>
 
@@ -1497,7 +1497,7 @@ end
           </div>
           <aside class="notes">
             . . . fitness function.&nbsp;
-            This looks at how far off we are
+            This one looks at how far off we are
             from our desired target values.&nbsp;
             We square the error in each aspect separately,
             so that something that's, say, one point off in each,
@@ -1697,7 +1697,9 @@ Ratio  Tolerance  %ABV  Sweet     Fit
             Just like with the DnD characters,
             if we want to change what we're after,
             we just have to tweak the fitness function.&nbsp;
-            I asked for 7% and sweetness of 5,
+            In this case we could even ask the user for the numbers,
+            but I'll leave that as an exercise for you.&nbsp;
+            Anyway, I asked for 7% alcohol and sweetness of 5,
             a low-alcohol dry mead, often called a "session" mead,
             and still demanding a 99.9% fit,
             it took 37 generations to get this:
@@ -1722,10 +1724,14 @@ Ratio  Tolerance  %ABV  Sweet     Fit
           </div>
           <aside class="notes">
             . . . spot-on in sweetness and just a tiny bit weaker.&nbsp;
-            Then I asked for 16% and a sweetness of 35,
+            Then I asked for 16% alcohol and a sweetness of 35,
             a strong and sweet mead,
             historically called sack mead or a great mead,
-            and it took 149 generations to produce this:
+            a style very popular in Poland.&nbsp;
+            It took 149 generations,
+            which was still very fast,
+            because the functions were so simple,
+            to produce this:
           </aside>
         </section>
 
@@ -1751,7 +1757,8 @@ Ratio  Tolerance  %ABV  Sweet     Fit
             <br/><br/>
 
             Now, just a little bit ago I said a lot of stuff was unchanged
-            between these two usages.&nbsp;
+            between these two usages,
+            the DnD characters and the mead recipes.&nbsp;
             I usually wait until we have three,
             but let's pretend we have a third one.&nbsp;
             That means we should . . .
@@ -1773,6 +1780,7 @@ Ratio  Tolerance  %ABV  Sweet     Fit
           <aside class="notes">
             . . . Evolver!&nbsp;
             That's my actual license plate, by the way.&nbsp;
+            I've had it for several years.
 
             <br/><br/>
 
@@ -1780,7 +1788,8 @@ Ratio  Tolerance  %ABV  Sweet     Fit
             and a slight sprinkling of fancy Ruby magic dust,
             we can extract a class
             that will take another class
-            that defines the necessary items, and run evolution on it,
+            that defines the necessary functions,
+            and run evolution on it,
             like so:
 
           </aside>
@@ -1991,17 +2000,21 @@ end
             <h5>
               www.Codosaur.us<br/>
               T.Rex-2022@Codosaur.us<br/>
-              @DaveAronson (Twitter)<br/>
+              twitter.com/DaveAronson<br/>
               linkedin.com/in/DaveAronson<br/>
-              github.com/CodosaurusLLC/tight-genes<br/>
-              toptal.com/#accept-only-candid-coders</h5>
+              <!-- toptal.com/#accept-only-candid-coders<br/> -->
+              github.com/CodosaurusLLC/tight-genes</h5>
           </div>
           <aside class="notes">
             . . . has the URL for all the code,
-            and I'm going to ask that the editors
+            plus the HTML and images for the slides,
+            complete with script.&nbsp;
+            It's the last URL here, the one at Github.&nbsp;
+            I'm going to ask that the editors
             leave the slide view visible
-            during QnA.&nbsp;
-            Any questions?
+            during QnA,
+            but just in case,
+            you might want to take a screenshot now.
           </aside>
         </section>
 
