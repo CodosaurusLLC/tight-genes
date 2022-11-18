@@ -53,7 +53,7 @@
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 7.2em">👨🏽‍🏫</div>
+          <div class="main-text" style="font-size: 10em">👨🏽‍🏫</div>
           <span class="slide-caption">Image: standard emoji</span>
           <aside class="notes">
             . . . to teach you about . . .
@@ -61,7 +61,7 @@
         </section>
 
         <section>
-          <img src="images/genetic-testing.png" height="50%" class="autofix" style="border-radius:1em">
+          <img src="images/genetic-testing.png" class="autofix" style="border-radius:1em">
           <span class="slide-caption">Image: https://pixabay.com/vectors/genetic-testing-gene-panel-genetics-2316642</span>
           <aside class="notes">
             . . . Genetic Algorithms!&nbsp;
@@ -101,7 +101,7 @@
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 8em">WAT?</div>
+          <div class="main-text" style="font-size: 9em">WAT?!</div>
           <aside class="notes">
             Okay, optimization means
             finding a . . .
@@ -439,7 +439,7 @@ end
           </div>
           <aside class="notes">
             First we create an initial population of candidates.&nbsp;
-            <!- But what is an candidate, and how do we create one?&nbsp; -->
+            But what is a candidate, and how do we create one?&nbsp;
             These are different solutions to some problem,
             usually represented as
             different instances of the same data structure.&nbsp;
@@ -449,8 +449,201 @@ end
             or anything else we want,
             so long as they can be
             evaluated to come up with a fitness level,
-            and we can combine two <!-- (or maybe more!) --> old ones
+            and we can combine two (or maybe more!) old ones
             to make a new one.&nbsp;
+            The simplest common type of candidate is . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: .75em">
+            <b>
+              <code>
+                01001000<br/>
+                01100101<br/>
+                01101100<br/>
+                01101100<br/>
+                01101111<br/>
+                00100000<br/>
+                01110111<br/>
+                01101111<br/>
+                01110010<br/>
+                01101100<br/>
+                01100100<br/>
+                00100001<br/>
+              </code>
+            </b>
+          </div>
+          <aside class="notes">
+            . . . a simple string of bits.&nbsp;
+            This will do fine for candidates that consist of
+            a simple series of yes/no decisions.&nbsp;
+            This may sound simplistic,
+            but there is a huge class of problems that boil down to this,
+            called . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/backpack.png" class="autofix">
+          <span class="slide-caption">Image: https://publicdomainvectors.org/en/free-clipart/Rucksack-vector-image/9910.html</span>
+          <aside class="notes">
+            . . . knapsack problems,
+            because they are computationally equivalent to
+            The Knapsack Problem.&nbsp;
+            So what is <i>that</i>?&nbsp;
+            You have a knapsack --
+            or rucksack, backpack, or whatever you call it --
+            and many things you want to carry in it,
+            but they won't all fit,
+            or the total weight is more than you can carry,
+            or some such similar constraint,
+            or combination of constraints.&nbsp;
+            So you want to find the combination of items,
+            that will fit the constraints,
+            and has the maximum value.&nbsp;
+            That could be the literal cash value,
+            like if you're a jewel thief,
+            or something more metaphorical,
+            like if you're literally putting items in a knapsack,
+            to go on a camping trip, with the items of most usefulness.&nbsp;
+            If we have only, say, three items,
+            that's only eight combinations,
+            so we can probably brute-force
+            our way through the solution space
+            pretty easily.&nbsp;
+            However, each time we add a possible item,
+            that doubles the number of combinations.&nbsp;
+            So if we have ten items to consider,
+            that's 1024 possible combinations,
+            and not all of them might even fit.&nbsp;
+            Suppose we know . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 9em">
+            🧑🏾‍🌾
+            🚚
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+          <aside class="notes">
+            . . . a farmer,
+            with a smallish truck,
+            and he needs to decide what to take to market.&nbsp;
+            And on this farm he has . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 4em">
+            🐄 🐄 🐄 🐄
+          </div>
+          <span class="slide-caption">Images: standard emoji</span>
+          <aside class="notes">
+            . . . some cows, EIEIO!&nbsp;
+            So among the things he can take to market are:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 4em">
+            🐄
+            🥛
+            🧀
+            🧈
+            🍨
+            🥩
+            <span style="background-image: url(images/leather.png)">&nbsp;&nbsp;&nbsp;<span>
+          </div>
+          <span class="slide-caption">Images: standard emoji plus https://www.rawpixel.com/image/6130389/</span>
+          <aside class="notes">
+            . . . cows,
+            milk,
+            cheese,
+            butter,
+            ice cream,
+            meat,
+            and leather.&nbsp;
+            For the sake of simplicity,
+            it's very unrealistic but
+            we'll assume that
+            he can only take a set amount of everything.&nbsp;
+            His truck has <i>room</i> to take all he wants,
+            but it can only carry so much <i>weight</i>,
+            so that's our constraint.&nbsp;
+            His choices are as follows:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.2em">
+            <table class="all-right">
+              <tr>
+                <th>What</th><th>Quantity</th><th>Pounds</th><th>Value</th>
+              </tr>
+              <tr>
+                <td>🐄</td><td>1</td><td>1600</td><td>$4,000</td>
+              </tr>
+              <tr>
+                <td>🥛</td><td>100 gal</td><td></td><td></td>
+              </tr>
+              <tr>
+                <td>🧀</td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td>🧈</td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td>🍨</td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td>🥩</td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <td><span style="background-image: url(images/leather.png)">&nbsp;&nbsp;&nbsp;<span></td><td></td><td></td><td></td>
+              </tr>
+            </table>
+          </div>
+          <span class="slide-caption">Images: standard emoji plus https://www.rawpixel.com/image/6130389/</span>
+          <aside class="notes">
+            One cow weighs
+            milk,
+            cheese,
+            butter,
+            ice cream,
+            meat,
+            and leather.&nbsp;
+            For the sake of simplicity,
+            it's very unrealistic but
+            we'll assume that
+            he can only take a set amount of everything.&nbsp;
+            His choices are as follows:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1em">
+          </div>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1em">
+            <div style="display: inline-block; text-align: left">
+              STR<span style="color: gray">ength</span><br/>
+              INT<span style="color: gray">elligence</span><br/>
+              DEX<span style="color: gray">terity</span><br/>
+              CON<span style="color: gray">stitution</span><br/>
+              WIS<span style="color: gray">dom</span><br/>
+              CHA<span style="color: gray">risma</span><br/>
+              <br/>
+              3d6 each<br/>
+              ignoring STR 18/xx
+            </div>
+          </div>
+          <aside class="notes">
             Suppose we want to "evolve" a good set of character stats for a
             Dungeons and Dragons fighter,
             so our candidates are sets of stats.&nbsp;
