@@ -31,7 +31,7 @@
   padding: 0 .25em;
 }
 
-.reveal table td.numeric {
+.reveal table tr td.numeric !important {
   text-align: right;
 }
 
@@ -97,6 +97,24 @@ section.present::after {
   width: 100%;
 }
 
-.reveal section.present table.all-right td {
+table.all-right td, table.all-right th {
+  border: 0;
+  padding: 0 .4em;
   text-align: right;
+}
+
+table.centered td, table.centered th {
+  text-align: center;
+}
+
+table.centered tr td.numeric, table.centered tr td.numeric {
+  text-align: right;
+}
+
+table.all-right td.text, table.all-right th.text {
+  text-align: left;
+}
+
+td.changed {
+  color: #0f0;
 }

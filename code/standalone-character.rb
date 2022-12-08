@@ -92,9 +92,6 @@ class Character
   end
 
   def maybe_mutate_stat(stat)
-    val = stat + rand(3) - 1
-    return 18 if val > 18
-    return  3 if val <  3
-    return val
+    (stat + rand(3) - 1).clamp(3, 18)
   end
 end

@@ -566,10 +566,13 @@ end
             meat,
             and leather.&nbsp;
             For the sake of simplicity,
-            it's very unrealistic but
+            we won't differentiate between
+            between price and profit,
+            nor dairy versus meat cows,
+            and it's very unrealistic but
             we'll assume that
             he can only take a set amount of everything.&nbsp;
-            His truck has <i>room</i> to take all he wants,
+            His truck has <i>room</i> to take all the items,
             but it can only carry so much <i>weight</i>,
             so that's our constraint.&nbsp;
             His choices are as follows:
@@ -577,75 +580,980 @@ end
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.2em">
+          <div class="main-text" style="font-size: 0.8em">
             <table class="all-right">
               <tr>
-                <th>What</th><th>Quantity</th><th>Pounds</th><th>Value</th>
+                <th class="text">What</th><th class="text">Unit</th><th>Qty</th><th>Pounds</th><th>Value</th><th>$/lb</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="6"><hr/></td></tr>
+              <tr>
+                <td class="text">Cow</td><td class="text">cow</td><td>1</td><td>1,500</td><td>$2,000</td><td>$1.33</td>
               </tr>
               <tr>
-                <td>🐄</td><td>1</td><td>1600</td><td>$4,000</td>
+                <td class="text">Milk</td><td class="text">1-gal jug</td><td>200</td><td>1,720</td><td>$800</td><td>$0.47</td>
               </tr>
               <tr>
-                <td>🥛</td><td>100 gal</td><td></td><td></td>
+                <td class="text">Cheese</td><td class="text">5-lb wheel</td><td>200</td><td>1,000</td><td>$12,000</td><td>$12.00</td>
               </tr>
               <tr>
-                <td>🧀</td><td></td><td></td><td></td>
+                <td class="text">Butter</td><td class="text">1-lb block</td><td>1,000</td><td>1,000</td><td>$3,000</td><td>$3.00</td>
               </tr>
               <tr>
-                <td>🧈</td><td></td><td></td><td></td>
+                <td class="text">Ice Cream</td><td class="text">1-gal tubs</td><td>200</td><td>1,000</td><td>$2,000</td><td>$2.00</td>
               </tr>
               <tr>
-                <td>🍨</td><td></td><td></td><td></td>
+                <td class="text">Meat</td><td class="text">side</td><td>4</td><td>1,280</td><td>$8,000</td><td>$6.25</td>
               </tr>
               <tr>
-                <td>🥩</td><td></td><td></td><td></td>
-              </tr>
-              <tr>
-                <td><span style="background-image: url(images/leather.png)">&nbsp;&nbsp;&nbsp;<span></td><td></td><td></td><td></td>
+                <td class="text">Leather</td><td class="text">hide</td><td>20</td><td>1,100</td><td>$6,000</td><td>$5.45</td>
               </tr>
             </table>
           </div>
-          <span class="slide-caption">Images: standard emoji plus https://www.rawpixel.com/image/6130389/</span>
           <aside class="notes">
-            One cow weighs
-            milk,
-            cheese,
-            butter,
-            ice cream,
-            meat,
-            and leather.&nbsp;
-            For the sake of simplicity,
-            it's very unrealistic but
-            we'll assume that
-            he can only take a set amount of everything.&nbsp;
-            His choices are as follows:
+            That all totals 8,600 pounds.&nbsp;
+            But, his truck's suspension
+            can only handle
+            two tons, or 4,000 pounds.&nbsp;
+            We could run through all the possible combinations,
+            and see what totals the highest,
+            or use a different very common heuristic
+            of adding the most expensive thing that we can,
+            over and over until we can't,
+            but let's see what happens if we use a genetic algorithm.&nbsp;
+            First we need a way to represent each candidate.&nbsp;
+            In code, we could represent them as a class
+            in a language such as Ruby,
+            and create one randomly,
+            or optionally with a passed-in value
+            (as that will be handy later),
+            like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+class Truckload
+  def initialize(val=nil)
+    @contents = val || rand(128)
+  end
+end</pre>
+          </div>
+          <aside class="notes">
+            Whoa, that looks like we're just making a random number!&nbsp;
+            That's right, we're making a random number
+            <i>with seven bits</i>,
+            meaning that we have a random 1 or 0
+            for each of our seven possible items.&nbsp;
+            We could get as complex as we want in this function,
+            like dictating that we can have no more than
+            a certain number of items,
+            but there's not much else we can do to complicate this one.&nbsp;
+            Many of the further functions are more amenable to complexity.
+
+            <br/><br/>
+
+            To create an initial population,
+            we can just create a bunch of candidates
+            and stuff them into an array, . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 2.2em">
+            <pre>
+  def self.initial_population(how_many)
+    population = []
+    for i in 1..how_many
+      population.append(self.new)
+    end
+    return population
+  end</pre>
+          </div>
+          <aside class="notes">
+            . . . like so.&nbsp;
+            (This could actually be done in much more idiomatic Ruby,
+            so don't scold me for that,
+            but I'm trying to keep it easily understandable by
+            people who don't know Ruby.)
+            So if we create a population of ten Truckloads,
+            we might wind up with a list like this:
+          </aside>
+        </section>
+        
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="7"><hr/></td></tr>
+<tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>Y</td></tr>
+<tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>N</td></tr>
+<tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td></tr>
+<tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td></tr>
+<tr><td>Y</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            Now wait a minute,
+            how did we get from random numbers to those combinations?&nbsp;
+            Behind the scenes, that translation might look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.9em">
+            <pre>
+  class Truckload
+    class Item
+      attr_reader :name, :weight, :value
+      def initialize(name, weight, value)
+        @name   = name
+        @weight = weight
+        @value  = value
+      end
+    end
+    ITEMS = [
+      Item.new("Cow",       1500,  2000),
+      Item.new("Milk",      1720,   800),
+      Item.new("Cheese",    1000, 12000),
+      Item.new("Butter",    1000,  3000),
+      Item.new("Ice Cream", 1000,  2000),
+      Item.new("Meat",      1280,  8000),
+      Item.new("Leather",   1100,  6000),
+    ]
+  ...
+  end</pre>
+          </div>
+          <aside class="notes">
+            and we can iterate through the ITEMS list,
+            checking whether the corresponding bit is on in our manifest.&nbsp;
+            The next step is . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td style="color: white">Assess</td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . to
+            assess how "fit" each of these truckloads is.&nbsp;
+            We do this with what's called a "fitness function".&nbsp;
+            Just like how biological creatures might be perfectly fit
+            for one environment but a lousy fit for another,
+            this should reflect how fit a candidate is
+            <i>for some particular purpose</i>.&nbsp;
+            In this case, we already know we want the total value,
+            BUT, any load that's too heavy for the truck, is worthless.&nbsp;
+            In Ruby, or any language with a ternary operator,
+            that would look like this:
           </aside>
         </section>
 
         <section>
           <div class="main-text" style="font-size: 1em">
+            <pre>
+  def fitness()
+    weight =
+      (0 ... ITEMS.count).
+      map { |n| ((1 &lt;&lt; n) & @contents) &gt; 0 ? ITEMS[n].weight : 0 }.
+      sum
+    return 0 if weight > 4000
+    (0 ... ITEMS.count).
+      map { |n| ((1 &lt;&lt; n) & @contents) &gt; 0 ? ITEMS[n].value : 0 }.
+      sum
+  end</pre>
           </div>
           <aside class="notes">
+            We iterate through the possible items,
+            summing up the weights of the ones we want to take,
+            determined by whether the corresponding bit is on
+            in our list of contents.&nbsp;
+            If that exceeds the truck's capacity, we return zero,
+            else we use the same technique
+            to sum up the <i>values</i> of those same items.
+
+            <br/><br/>
+
+            Once again,
+            we could get as complex as we want in this function,
+            and NASA's antenna fitness function
+            certainly must have been.&nbsp;
+            For instance, if we also had the <i>volume</i> of each item,
+            and the truck were smaller,
+            we could also total up the volume,
+            and make sure it all fits.&nbsp;
+            We could even take into account very long or flat shapes,
+            so that for instance a flagpole might not fit,
+            even though its weight and total volume may be relatively small.
+
+            <br/><br/>
+
+            Anyway, if we run this function on our population, we get this:
           </aside>
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1em">
-            <div style="display: inline-block; text-align: left">
-              STR<span style="color: gray">ength</span><br/>
-              INT<span style="color: gray">elligence</span><br/>
-              DEX<span style="color: gray">terity</span><br/>
-              CON<span style="color: gray">stitution</span><br/>
-              WIS<span style="color: gray">dom</span><br/>
-              CHA<span style="color: gray">risma</span><br/>
-              <br/>
-              3d6 each<br/>
-              ignoring STR 18/xx
-            </div>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+                <th>Fitness</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="8"><hr/></td></tr>
+<tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
+<tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td class="numeric">5,000</td></tr>
+<tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">8,800</td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td class="numeric">14,800</td></tr>
+<tr><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td class="numeric">13,000</td></tr>
+<tr><td>Y</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">2,800</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">20,000</td></tr>
+            </table>
           </div>
           <aside class="notes">
-            Suppose we want to "evolve" a good set of character stats for a
-            Dungeons and Dragons fighter,
+            Now that we know how fit each one is,
+            the next step is to see if . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess</td>
+                <td>➡️</td>
+                <td style="color: white">Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . we're done.&nbsp;
+            So what are our criteria?&nbsp;
+            The function can be simple,
+            but it can take some thinking to figure out
+            what the function should <i>do</i>.&nbsp;
+            With a knapsack problem,
+            a good solution can be made worthless by
+            adding just one more item, exceeding the capacity.&nbsp;
+            So, we're going to record the best we've seen,
+            and stop if we haven't seen anything better
+            within 100 generations.&nbsp;
+            Why 100?&nbsp;
+            Pretty much random.&nbsp;
+            It seems like enough for a good chance for improvement,
+            and since what we're doing is so simple,
+            using lots of generations isn't very slow.&nbsp;
+            In Ruby, that would look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.2em">
+            <pre>
+  @@best_combo  = self.new(0)
+  @@generations = 0
+
+  def self.done?(population)
+    @@generations += 1
+    candidates =
+      population.
+      select { |c| c.fitness > @@best_combo.fitness }
+    return @@generations >= 100 if candidates.none?
+    @@best_combo = candidates.sort_by(&:fitness).last
+    @@generations = 0
+    false
+  end</pre>
+          </div>
+          <aside class="notes">
+            When the code is initially parsed,
+            we set the initial best combo as empty,
+            and we set how many generations it's been since we saw that,
+            as zero,
+            both as class-variables.&nbsp;
+            (Remember, this is within the definition of class Truckload.)&nbsp;
+            When the function is called,
+            we increment the number of generations,
+            look at the fitness of each member of the current population,
+            and select only the ones with a better fitness than
+            the best one so far.&nbsp;
+            If there are none,
+            then we return true
+            if it's been 100 generations since the best one,
+            else we return false.&nbsp;
+            Otherwise, we sort them by fitness,
+            take the fittest one,
+            and make that our new benchmark.
+
+            <br/><br/>
+
+            Again, we can get as complex as we want,
+            with other stopping criteria,
+            like also looking at the
+            average or minimum fitness,
+            or achieving some specific level of maximum fitness,
+            or some number of generations in total,
+            or some amount of time (whether clock time or CPU or whatever),
+            or when the user presses a STOP button,
+            or many other parameters,
+            or a combination of ways.
+
+            <br/><br/>
+
+            Since we're not done, the next step is to . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess</td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td style="color: white">Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . select some candidates to use in
+            breeding the next generation.&nbsp;
+            The obvious way is to take the top two scorers, like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.6em">
+            <pre>
+  def Truckload.select_breeders(population)
+    population.
+      sort_by(&:fitness).
+      reverse.
+      take(2)
+  end</pre>
+          </div>
+          <aside class="notes">
+            Take the population,
+            sort them by fitness in descending order,
+            and take the first two.&nbsp;
+            Out of our current population, we would choose:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+                <th>Fitness</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="8"><hr/></td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">20,000</td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td class="numeric">14,800</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            these two.&nbsp;
+
+            As usual, we also could get more complicated,
+            like selecting two randomly
+            with each candidate having a <i>chance</i> to be selected,
+            proportional to their fitness,
+            and lots of other ways.&nbsp;
+
+            <br/><br/>
+
+            We could also take more than two,
+            whether to breed all pairs in that set
+            or to combine more than two at once.&nbsp;
+            Or we could combine strategies,
+            such as using all trios from a randomly chosen five,
+            with the fitter ones having a better chance to be chosen.
+
+            <br/><br/>
+
+            Now that we've chosen our breeders, next we actually . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess</td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td style="color: white">Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . breed them.&nbsp;
+            The usual way is called crossover.&nbsp;
+            This consists of taking the data points,
+            or in Genetic Algorithm lingo, the "genes",
+            from one parent,
+            up to some randomly chosen crossover point,
+            then switching to the other parent.&nbsp;
+            This can be extended with multiple crossover points,
+            but we're just going to use one, like so:
+            <!--
+            There are also lots of ways we can combine <i>three</i> or more
+            candidates into one new one.&nbsp;
+            Another common way is to randomly decide
+            which parent contributes which part of the data,
+            -->
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.4em">
+            <pre>
+  def self.combine(p1, p2)
+    cross_point = rand(ITEMS.count + 1)
+    list =
+      (0..ITEMS.count).
+      map { |index|
+        parent = index < cross_point ? p1 : p2
+        parent.contents & (1 << index)
+      }.
+      sum
+    return self.new(list)
+  end</pre>
+          </div>
+          <aside class="notes">
+            We establish the crossover point,
+            as a random number
+            between zero and how many items there are.&nbsp;
+            Then we iterate through the list of items,
+            by index number.&nbsp;
+            If we haven't yet hit the crossover point,
+            we get the decision for that item from the first parent,
+            else we get it from the other parent.&nbsp;
+            This means that it could be all copied
+            from one parent or the other,
+            or it could switch at some point.&nbsp;
+            Doing the bitwise math like that
+            gets us zero if the bit was off,
+            and value of that bit if it was on.&nbsp;
+            Then we sum them up.&nbsp;
+            Doing this once,
+            with a crossover point of 3,
+            meaning we take 3 values from the first parent,
+            gets us a result like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="7"><hr/></td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
+<tr><td colspan="7" style="text-align: center">+</td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td colspan="7" style="text-align: center">=</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            But this is just one of ten results,
+            because we're making a whole new population, like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.45em">
+            <pre>
+  def self.new_population(p1, p2, how_many)
+    population = []
+    for i in 1..how_many
+      population.append(self.breed(p1,p2))
+    end
+    return population
+  end</pre>
+          </div>
+          <aside class="notes">
+            This is just like how we created the initial population,
+            except that instead of each candidate being
+            made from scratch,
+            they're the product of breeding our chosen breeders.&nbsp;
+            The whole list might look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="7"><hr/></td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            Lots of family resemblance there, eh?&nbsp;
+            None of these loads include a cow, butter, or leather,
+            and they all include cheese.&nbsp;
+            That's because our two breeders were like that.&nbsp;
+            If we were to just continue
+            breeding the fittest of this population,
+            we wouldn't <i>ever</i> see any loads
+            including a cow, butter, or leather,
+            or not including cheese,
+            but we fix that in the next step, which is to . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td>Assess</td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td style="color: white">Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . mutate them.&nbsp;
+            Again, I'm going to keep it very simple,
+            and give each gene
+            a 1 in 4 chance of flipping.&nbsp;
+            In code, that looks like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.3em">
+            <pre>
+  def maybe_mutate()
+    (0..ITEMS.count).
+      each { |index|
+        if rand(4) == 0
+          @contents ^= 1 << index
+        end
+      }
+  end</pre>
+          </div>
+          <aside class="notes">
+            We iterate through the item numbers,
+            and for each one,
+            if a random number from zero to three is a zero,
+            we flip that bit, by x-or-ing it.&nbsp;
+            Again, we could get as complex as we want,
+            like having some genes more likely to mutate than others,
+            or having some minimum or maximum
+            number of mutations per candidate,
+            or all kinds of other options.&nbsp;
+            If we run this mutation function
+            on the candidates in our new population,
+            we might wind up with something like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="7"><hr/></td></tr>
+<tr><td>N</td><td class="changed">Y</td><td class="changed">N</td><td class="changed">Y</td><td class="changed">N</td><td>N</td><td class="changed">Y</td></tr>
+<tr><td>N</td><td class="changed">N</td><td>Y</td><td class="changed">Y</td><td class="changed">N</td><td>N</td><td>N</td></tr>
+<tr><td class="changed">Y</td><td>N</td><td>Y</td><td class="changed">Y</td><td>Y</td><td class="changed">Y</td><td>N</td></tr>
+<tr><td class="changed">Y</td><td class="changed">Y</td><td>Y</td><td class="changed">Y</td><td class="changed">Y</td><td>Y</td><td>N</td></tr>
+<tr><td class="changed">Y</td><td class="changed">Y</td><td>Y</td><td class="changed">Y</td><td class="changed">N</td><td>N</td><td class="changed">Y</td></tr>
+<tr><td>N</td><td class="changed">Y</td><td class="changed">N</td><td class="changed">Y</td><td class="changed">N</td><td>N</td><td class="changed">Y</td></tr>
+<tr><td class="changed">Y</td><td class="changed">Y</td><td class="changed">N</td><td class="changed">Y</td><td>N</td><td>N</td><td class="changed">Y</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td class="changed">Y</td><td>N</td><td class="changed">N</td><td class="changed">Y</td><td>Y</td><td>N</td><td>N</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td class="changed">Y</td><td class="changed">N</td><td>N</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            I've colored the ones that changed, in green.&nbsp;
+            You can see that we now DO have some truckloads that
+            include a cow, butter, or leather,
+            or omit cheese.&nbsp;
+            Now we go back to . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="position: absolute; top: 25%">
+            <table style="color: gray; text-align: center">
+              <tr>
+                <td>Init</td>
+              </tr>
+              <tr>
+                <td>⬇️</td>
+                <td>↙️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td><center>⬅️</center></td>
+                <td>⬅️</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
+                <td>↖️</td>
+              </tr>
+              <tr>
+                <td style="color: white">Assess</td>
+                <td>➡️</td>
+                <td>Done?</td>
+                <td>➡️</td>
+                <td>Select</td>
+                <td>➡️</td>
+                <td>Breed</td>
+                <td>➡️</td>
+                <td>Mutate</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . Step 2, assessing the fitness of
+            the candidates in this new population.&nbsp;
+            If we sort on fitness descending,
+            just to make it easy to find the best,
+            we get this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+                <th>Fitness</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="8"><hr/></td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td>N</td><td class="numeric">15,000</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td class="numeric">14,000</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td class="numeric">14,000</td></tr>
+<tr><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td class="numeric">9,800</td></tr>
+<tr><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td class="numeric">9,800</td></tr>
+<tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td class="numeric">7,000</td></tr>
+<tr><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td class="numeric">0</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            Oh noes!&nbsp;
+            Our maximum fitness actually went <i>down!</i>&nbsp;
+            But that's not too bad,
+            as you may recall from our "are we done yet" function,
+            we hang onto the best one,
+            and just try to outdo it.&nbsp;
+            So let's keep going.&nbsp;
+            The next generation might look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+                <th>Fitness</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="8"><hr/></td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">12,000</td></tr>
+<tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td class="numeric">11,000</td></tr>
+<tr><td>N</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">10,000</td></tr>
+<tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td class="numeric">3,000</td></tr>
+<tr><td>Y</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td class="numeric">0</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            Still going down, oh no!&nbsp;
+            But the one after that might look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+                <th>Fitness</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="8"><hr/></td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">20,800</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">20,000</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">20,000</td></tr>
+<tr><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td class="numeric">14,000</td></tr>
+<tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">12,000</td></tr>
+<tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td class="numeric">2,800</td></tr>
+<tr><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
+<tr><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
+<tr><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . a small improvement over our prior best!&nbsp;
+            <i>This</i> is why we don't give up so easily.&nbsp;
+            If we let this run to completion,
+            we might wind up with something like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 0.8em">
+            <table class="centered">
+              <tr>
+                <th>Cow</th>
+                <th>Milk</th>
+                <th>Cheese</th>
+                <th>Butter</th>
+                <th>Ice Cream</th>
+                <th>Meat</th>
+                <th>Leather</th>
+                <th>Fitness</th>
+              </tr>
+              <tr style="font-size: 0.1em"><td colspan="8"><hr/></td></tr>
+              <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td class="numeric">26,000</td></tr>
+              <tr><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td class="numeric">21,000</td></tr>
+              <tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">10,800</td></tr>
+              <tr><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>Y</td><td class="numeric">8,000</td></tr>
+              <tr><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">8,000</td></tr>
+              <tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td class="numeric">5,000</td></tr>
+              <tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">8,00</td></tr>
+              <tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">8,00</td></tr>
+              <tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td class="numeric">0</td></tr>
+              <tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td>
+            </table>
+          </div>
+
+          <aside class="notes">
+            Actually, that that top line there,
+            with just cheese, meat, and leather,
+            is the best combination
+            I've ever seen this particular system produce.
+
+            <br/><br/>
+
+            Now, suppose we want to evolve . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/something-completely-different.jpg" class="autofix">
+          <span class="slide-caption">Image: https://image.tmdb.org/t/p/w500/ajbdFQLvJTlNu4LnVWGnNMb4mZ8.jpg (used for edu fair use)</span>
+          <aside class="notes">
+            . . . something completely different.&nbsp;
+            Suppose we want to "evolve" a good set of stats for a
+            Dungeons and Dragons fighter character,
             so our candidates are sets of stats.&nbsp;
             My DnD knowledge is rather out of date,
             I haven't played in about thirty years,
@@ -679,8 +1587,7 @@ end
             or 3d6 for short.&nbsp;
             (I'm going to gloss over
             how you can sometimes have extra strength.)&nbsp;
-            In code, we could represent them as a class
-            in a language such as Ruby, like so:
+            In Ruby that might look like this:
           </aside>
         </section>
 
@@ -701,31 +1608,6 @@ end</pre>
           <aside class="notes">
             (Defining the roll function is left
             as an exercise for the watcher.)&nbsp;
-            To create an initial population,
-            we can just create a bunch of candidates
-            and stuff them into an array, . . .
-          </aside>
-        </section>
-
-        <section>
-          <div class="main-text" style="font-size: 2.2em">
-            <pre>
-
-def self.initial_pop(how_many)
-  population = []
-  for i in 1..how_many
-    population.append(self.new)
-  end
-  return population
-end
-            </pre>
-          </div>
-          <aside class="notes">
-            . . . like so.&nbsp;
-            (This could actually be done in much more idiomatic Ruby,
-            so don't scold me for that,
-            but I'm trying to keep it easily understandable by
-            people who don't know Ruby.)
             So if we create a population of ten Characters,
             we might wind up with a list like this:
           </aside>
@@ -787,13 +1669,7 @@ Str  Int  Dex  Con  Wis  Cha
             </table>
           </div>
           <aside class="notes">
-            . . . to
-            assess how "fit" each of these characters is.&nbsp;
-            We do this with what's called a "fitness function".&nbsp;
-            Just like how biological creatures might be perfectly fit
-            for one environment but a lousy fit for another,
-            this should reflect how fit a candidate is
-            <i>for some particular purpose</i>.&nbsp;
+            . . . to assess how "fit" each of these characters is.&nbsp;
             We're trying to evolve a good set of Fighter stats,
             so it should be based mainly on strength and constitution.&nbsp;
             Dexterity is also helpful.&nbsp;
@@ -807,9 +1683,9 @@ Str  Int  Dex  Con  Wis  Cha
         <section>
           <div class="main-text" style="font-size: 1.6em">
             <pre>
-def fitness()
-  str * 2 + con + dex / 2
-end
+  def fitness()
+    str * 2 + con + dex / 2
+  end
             </pre>
           </div>
           <aside class="notes">
@@ -825,12 +1701,12 @@ end
         <section>
           <div class="main-text" style="font-size: 1.5em">
             <pre>
-def fitness()
-  stats = [str, con, dex, int, wis, cha]
-  (0..5).
-    map { |idx| stats[idx] * (6 - idx) }.
-    sum
-end
+  def fitness()
+    stats = [str, con, dex, int, wis, cha]
+    (0..5).
+      map { |idx| stats[idx] * (6 - idx) }.
+      sum
+  end
             </pre>
           </div>
           <aside class="notes">
@@ -839,31 +1715,29 @@ end
             and so on down to one times the charisma.&nbsp;
             But then the other stats got too high,
             and the characters seemed too generalized.&nbsp;
+            So I finally settled on this:
           </aside>
         </section>
 
         <section>
           <div class="main-text" style="font-size: 1.5em">
             <pre>
-def fitness()
-  stats = [str, con, dex, int, wis, cha]
-  (0..5).
-    map { |idx| stats[idx] * 2 ** (5 - idx) }.
-    sum
-end
+  def fitness()
+    stats = [str, con, dex, int, wis, cha]
+    (0..5).
+      map { |idx| stats[idx] * 2 ** (5 - idx) }.
+      sum
+  end
             </pre>
           </div>
           <aside class="notes">
-            So I finally settled on this:
             . . . prioritizing the stats
             again but much more strongly,
             totaling up 32 times the strength,
             16 times the constitution,
             and so on down to one times the charisma.&nbsp;
-            We could get as complex as we want in this function,
-            and NASA's antenna fitness function
-            must have been.&nbsp;
-            Even though the fitness function itself can be very simple,
+            Here we see that
+            even though the fitness function itself can be very simple,
             it can be difficult to figure out
             one that will yield good results.
 
@@ -890,8 +1764,7 @@ Str  Int  Dex  Con  Wis  Cha  Fit
             </pre>
           </div>
           <aside class="notes">
-            Now that we know how fit each one is,
-            the next step is to see if . . .
+            But are we done?
           </aside>
         </section>
 
@@ -930,12 +1803,12 @@ Str  Int  Dex  Con  Wis  Cha  Fit
             </table>
           </div>
           <aside class="notes">
-            . . . we're done.&nbsp;
-            So what are our criteria?&nbsp;
+            What are our criteria?&nbsp;
             Let's say we're done if
             any candidates get 90% of the way to the maximum score
             of our fitness function.&nbsp;
-            The maximum is 1,134, so 90% would round to 1,021.&nbsp;
+            I'll spare you the math,
+            but the maximum is 1,134, so 90% would round to 1,021.&nbsp;
             In code, that looks like this:
           </aside>
         </section>
@@ -943,27 +1816,14 @@ Str  Int  Dex  Con  Wis  Cha  Fit
         <section>
           <div class="main-text" style="font-size: 1.6em">
             <pre>
-def Character.done?(population)
-  population.any? { |indiv|
-    indiv.fitness &gt;= 1021
-  }
-end
-            </pre>
+  def Character.done?(population)
+    population.any? { |cand|
+      cand.fitness &gt;= 1021
+    }
+  end</pre>
           </div>
           <aside class="notes">
-            As usual, we can get as complex as we want,
-            with other stopping criteria,
-            like if the
-            maximum, average, or minimum fitness is not improving,
-            or some number of generations,
-            or some amount of time,
-            or when the user presses a STOP button,
-            or many other parameters,
-            or a combination of ways.&nbsp;
-
-            <br/><br/>
-
-            Anyway, none of our current candidates score
+            None of our current candidates score
             anywhere near 1021, so we . . .
           </aside>
         </section>
@@ -1005,26 +1865,7 @@ end
           <aside class="notes">
             . . . select some candidates to use in
             breeding the next generation.&nbsp;
-            The obvious way is to take the top two scorers, like so:
-          </aside>
-        </section>
-
-        <section>
-          <div class="main-text" style="font-size: 1.6em">
-            <pre>
-def Character.select_breeders(population)
-  population.
-    sort_by(&:fitness).
-    reverse.
-    take(2)
-end
-            </pre>
-          </div>
-          <aside class="notes">
-            Take the population,
-            sort them by fitness in descending order,
-            and take the first two.&nbsp;
-            With our current population, we get:
+            Taking the top two scorers again we get:
           </aside>
         </section>
 
@@ -1040,30 +1881,19 @@ Str  Int  Dex  Con  Wis  Cha  Fit
           </div>
           <aside class="notes">
             these two.&nbsp;
-            <!--
             Of course the abstraction gets a bit leaky now,
             because we're ignoring sexes;
             we have no guarantee that they'll be a male and a female,
             as we're not even making that part of the data.&nbsp;
-            -->
-            We also could get more complicated,
-            like selecting two randomly
-            with each candidate having a <i>chance</i> to be selected,
-            proportional to their fitness,
-            and lots of other ways.&nbsp;
-
-            <br/><br/>
-
-            We could also take more than two,
-            whether to breed all pairs in that set
-            or to combine more than two at once.&nbsp;
-            Or we could combine strategies,
-            such as using all trios from a randomly chosen five,
-            with the fitter ones having a better chance to be chosen.
-
-            <br/><br/>
-
-            Now that we've chosen our breeders, next we actually . . .
+            We had the same leak last time, with the Truckloads,
+            but then it was pretty obvious so I let it slide.&nbsp;
+            Now that they're living beings
+            (whether humans or elves or whatever),
+            though, we could add such complications,
+            and even add what race they are
+            and bring in considerations of
+            which races <i>can</i> breed together.&nbsp;
+            Anyway, next we actually . . .
           </aside>
         </section>
 
@@ -1102,38 +1932,26 @@ Str  Int  Dex  Con  Wis  Cha  Fit
             </table>
           </div>
           <aside class="notes">
-            . . . breed them.&nbsp;
-            The usual way is called crossover,
-            and it consists of taking the data from one parent,
-            up to some randomly chosen crossover point,
-            then switching to the other parent.&nbsp;
-            This can be extended with multiple crossover points.&nbsp;
-            <!--
-            There are also lots of ways we can combine <i>three</i> or more
-            candidates into one new one.&nbsp;
-            -->
-            Another common way is to randomly decide
-            which parent contributes which part of the data,
-            or in Genetic Algorithm lingo, which "gene".&nbsp;
-            That's what we'll do here, like so:
+            . . . breed them,
+            this time using another common strategy,
+            of essentially flipping a coin for each gene,
+            like so:
           </aside>
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.6em">
+          <div class="main-text" style="font-size: 1.5em">
             <pre>
-
-def Character.combine(p1, p2)
-  char = Character.new
-  char.str = rand(2) == 1 ? p1.str : p2.str
-  char.int = rand(2) == 1 ? p1.int : p2.int
-  char.dex = rand(2) == 1 ? p1.dex : p2.dex
-  char.con = rand(2) == 1 ? p1.con : p2.con
-  char.wis = rand(2) == 1 ? p1.wis : p2.wis
-  char.cha = rand(2) == 1 ? p1.cha : p2.cha
-  return char
-end
-            </pre>
+  def Character.breed(p1, p2)
+    char = Character.new
+    char.str = rand(2) == 1 ? p1.str : p2.str
+    char.int = rand(2) == 1 ? p1.int : p2.int
+    char.dex = rand(2) == 1 ? p1.dex : p2.dex
+    char.con = rand(2) == 1 ? p1.con : p2.con
+    char.wis = rand(2) == 1 ? p1.wis : p2.wis
+    char.cha = rand(2) == 1 ? p1.cha : p2.cha
+    return char
+  end</pre>
           </div>
           <aside class="notes">
             We go through the stats one by one,
@@ -1141,7 +1959,7 @@ end
             and if it comes up 1,
             we get that stat from the first parent,
             else we get it from the other parent.&nbsp;
-            That gets us a result like this:
+            That could get us a result like this:
           </aside>
         </section>
 
@@ -1164,32 +1982,13 @@ Str  Int  Dex  Con  Wis  Cha
             This new character got the
             strength and intelligence of the first parent,
             and everything else from the second parent.&nbsp;
-            This is the same results as the crossover method,
+            This just happens to be
+            the same results as the crossover method,
             if the crossover point happened to be
             between Intelligence and Dexterity.&nbsp;
-            But this is just one of ten results,
-            because we're making a whole new population, like so:
-          </aside>
-        </section>
-
-        <section>
-          <div class="main-text" style="font-size: 1.45em">
-            <pre>
-def Character.breed(p1, p2, how_many)
-  population = []
-  for i in 1..how_many
-    population.append(Character.combine(p1,p2))
-  end
-  return population
-end
-            </pre>
-          </div>
-          <aside class="notes">
-            This is just like how we created the initial population,
-            except that instead of each candidate being
-            made from scratch,
-            they're the product of breeding our chosen breeders.&nbsp;
-            The whole list looks like this:
+            But again, this is just one of ten results,
+            because we're making a whole new population,
+            which might look something like this:
           </aside>
         </section>
 
@@ -1210,7 +2009,7 @@ Str  Int  Dex  Con  Wis  Cha
             </pre>
           </div>
           <aside class="notes">
-            Lots of family resemblance there, eh?&nbsp;
+            Lots of family resemblance there, again!&nbsp;
             For each stat, there are only two values,
             or in Genetic Algorithm terms, "alleles",
             for a total of 64 possible combinations,
@@ -1222,7 +2021,7 @@ Str  Int  Dex  Con  Wis  Cha
             breeding the fittest of this population,
             we wouldn't see any further improvement
             in the the values of each stat,
-            but we fix that in the next step, which is to . . .
+            but again, we fix that in the next step, which is to . . .
           </aside>
         </section>
 
@@ -1277,24 +2076,20 @@ Str  Int  Dex  Con  Wis  Cha
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.3em">
+          <div class="main-text" style="font-size: 1.5em">
             <pre>
-def maybe_mutate()
-  @str = maybe_mutate_stat(@str)
-  @int = maybe_mutate_stat(@int)
-  @dex = maybe_mutate_stat(@dex)
-  @con = maybe_mutate_stat(@con)
-  @wis = maybe_mutate_stat(@wis)
-  @cha = maybe_mutate_stat(@cha)
-end
+  def maybe_mutate()
+    @str = maybe_mutate_stat(@str)
+    @int = maybe_mutate_stat(@int)
+    @dex = maybe_mutate_stat(@dex)
+    @con = maybe_mutate_stat(@con)
+    @wis = maybe_mutate_stat(@wis)
+    @cha = maybe_mutate_stat(@cha)
+  end
 
-def maybe_mutate_stat(stat)
-  val = stat + rand(3) - 1
-  return 18 if val &gt; 18
-  return  3 if val &lt;  3
-  return val
-end
-            </pre>
+  def maybe_mutate_stat(stat)
+    (stat + rand(3) - 1).clamp(3, 18)
+  end</pre>
           </div>
           <aside class="notes">
             For each stat,
@@ -1432,7 +2227,7 @@ Str  Int  Dex  Con  Wis  Cha   Fit
             <!-- ranging in fitness from 964 to 1029, -->
             with one suitable character
             having 18 Strength and Constitution,
-            but sub-par Dexterity, though not <i>too</i> horrible,
+            acceptable but sub-par Dexterity,
             and surprisingly high Intelligence.&nbsp;
             If we really wanted it more specialized,
             we could complicate the fitness function further,
@@ -1453,14 +2248,13 @@ Str  Int  Dex  Con  Wis  Cha   Fit
         <section>
           <div class="main-text" style="font-size: 1.5em">
             <pre>
-def fitness()
-  # below is the only line that changed!
-  stats = [int, wis, dex, con, cha, str]
-  (0..5).
-    map { |idx| stats[idx] * 2 ** (5 - idx) }.
-    sum
-end
-            </pre>
+  def fitness()
+    # below is the only line that changed!
+    stats = [int, wis, dex, con, cha, str]
+    (0..5).
+      map { |idx| stats[idx] * 2 ** (5 - idx) }.
+      sum
+  end</pre>
           </div>
           <aside class="notes">
             . . . to prioritize intelligence first,
@@ -1506,15 +2300,17 @@ Str  Int  Dex  Con  Wis  Cha   Fit
 
             <br/><br/>
 
-            Now, suppose we want to evolve . . .
+            Now, suppose we want to evolve yet another item.&nbsp;
+            By the Rule of Three,
+            it's about time we . . .
+            TODO: MOVE EXTRACTION STUFF HERE!
           </aside>
         </section>
 
         <section>
-          <img src="images/something-completely-different.jpg" class="autofix">
-          <span class="slide-caption">Image: https://image.tmdb.org/t/p/w500/ajbdFQLvJTlNu4LnVWGnNMb4mZ8.jpg (used for edu fair use)</span>
+          <img src="" class="autofix">
+          <span class="slide-caption">Image: </span>
           <aside class="notes">
-            . . . something completely different.&nbsp;
             In my spare time, I make . . .
           </aside>
         </section>
@@ -1572,17 +2368,15 @@ end
         <section>
           <div class="main-text" style="font-size: 1.6em">
             <pre>
-
-def fitness()
-  target_abv = 12
-  target_sweet = 15
-  abv, sweet = evaluate(self)
-  abv_off = (target_abv - abv).abs
-  sweet_off = (target_sweet - sweet).abs
-  off = abv_off ** 2 + sweet_off ** 2
-  100 - off;
-end
-            </pre>
+  def fitness()
+    target_abv = 12
+    target_sweet = 15
+    abv, sweet = evaluate(self)
+    abv_off = (target_abv - abv).abs
+    sweet_off = (target_sweet - sweet).abs
+    off = abv_off ** 2 + sweet_off ** 2
+    100 - off;
+  end</pre>
           </div>
           <aside class="notes">
             . . . fitness function.&nbsp;
@@ -1632,18 +2426,17 @@ end
         <section>
           <div class="main-text" style="font-size: 1.1em">
             <pre>
-def self.combine(p1, p2)
-  rec = self.new
-  rec.ratio     = rand(2) == 1 ? p1.ratio     : p2.ratio
-  rec.tolerance = rand(2) == 1 ? p1.tolerance : p2.tolerance
-  return rec
-end
+  def self.combine(p1, p2)
+    rec = self.new
+    rec.ratio     = rand(2) == 1 ? p1.ratio     : p2.ratio
+    rec.tolerance = rand(2) == 1 ? p1.tolerance : p2.tolerance
+    return rec
+  end
 
-def maybe_mutate()
-  @ratio = maybe_mutate_stat(@ratio, 1.5, 15)
-  @tolerance = maybe_mutate_stat(@tolerance, 6, 20)
-end
-            </pre>
+  def maybe_mutate()
+    @ratio = maybe_mutate_stat(@ratio, 1.5, 15)
+    @tolerance = maybe_mutate_stat(@tolerance, 6, 20)
+  end</pre>
           </div>
           <aside class="notes">
             . . . breeding and candidate-mutation functions
@@ -1656,13 +2449,12 @@ end
         <section>
           <div class="main-text" style="font-size: 1.6em">
             <pre>
-def maybe_mutate_stat(stat, min, max)
-  val = stat * (0.79 + roll(2, 20) / 100.0)
-  return max if val &gt; max
-  return min if val &lt; min
-  return val
-end
-            </pre>
+  def maybe_mutate_stat(stat, min, max)
+    val = stat * (0.79 + roll(2, 20) / 100.0)
+    return max if val &gt; max
+    return min if val &lt; min
+    return val
+  end</pre>
           </div>
           <aside class="notes">
             . . . the generic stat mutator,
@@ -1897,27 +2689,27 @@ class Evolver
   end
 
   def evolve()
-    pop = initial_pop().sort_by(&:fitness).reverse
+    pop = initial_population().sort_by(&:fitness).reverse
     generations = 1
     report(generations, pop)
     while not klazz.done?(pop, generations)
       breeders = klazz.select_breeders(pop)
       pop = breed(breeders)
-      pop.each { |indiv| indiv.maybe_mutate }
+      pop.each { |cand| cand.maybe_mutate }
       pop = pop.sort_by(&:fitness).reverse
       generations += 1
       report(generations, pop)
     end
   end
 
-  def initial_pop()
+  def initial_population()
     (1..how_many).map { |_| klazz.new() }
   end
 
   def report(generations, pop)
     puts "After #{generations} generations:"
     puts header
-    pop.each { |indiv| indiv.report() }
+    pop.each { |cand| cand.report() }
   end
 
   def breed(breeders)
