@@ -20,7 +20,7 @@
 
 .reveal span.slide-caption {
   bottom: 0;
-  font-size: 0.05em;  /* NEED TO MAKE THIS SMALLER!!! */
+  font-size: 0.05em;  /* makes it as small as browser settings will allow */
   left: 0;
   position: absolute;
   width: 100%;
@@ -31,7 +31,7 @@
   padding: 0 .25em;
 }
 
-.reveal table tr td.numeric !important {
+.reveal table th.numeric, .reveal table td.numeric {
   text-align: right;
 }
 
@@ -105,10 +105,6 @@ table.all-right td, table.all-right th {
 
 table.centered td, table.centered th {
   text-align: center;
-}
-
-table.centered tr td.numeric, table.centered tr td.numeric {
-  text-align: right;
 }
 
 table.all-right td.text, table.all-right th.text {

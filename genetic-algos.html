@@ -24,11 +24,15 @@
             <h3>by Dave Aronson</h3>
             <h4>
               twitter.com/DaveAronson<br/>
-              T.Rex-2022@Codosaur.us
+              T.Rex-2023@Codosaur.us
             </h4>
             <h5>github.com/CodosaurusLLC/tight-genes</h5>
           </div>
           <aside class="notes">
+            NOTE TO SELF: Timeslot is 60 mins, so aim for 45-50 of content.
+
+            <br/><br/>
+
             Hi everybody, I'm Dave Aronson, the T. Rex of Codosaurus, and . . .
           </aside>
         </section>
@@ -101,7 +105,7 @@
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 9em">WAT?!</div>
+          <div class="main-text" style="font-size: 8em">WAT?!</div>
           <aside class="notes">
             Okay, optimization means
             finding a . . .
@@ -259,7 +263,8 @@
           <aside class="notes">
             . . . done?&nbsp;
             This could be based on the fitness,
-            which is why we do it now,
+            which is why we just did that,
+            so we can use it now,
             or other criteria, or a combination.&nbsp;
             If not, then next we . . .
           </aside>
@@ -377,18 +382,18 @@
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.75em">
+          <div class="main-text" style="font-size: 1.6em">
             <pre>
 
-how_many = 10  <span style="color:gray"># or however big we want</span>
-pop = intial_pop(how_many)
-evaluate(pop)
-while not done?(pop)
-  breeders = select(pop)
-  pop = breed(breeders, how_many)
-  mutate(pop)
+  how_many = 10  <span style="color:gray"># or however big we want</span>
+  pop = intial_pop(how_many)
   evaluate(pop)
-end
+  while not done?(pop)
+    breeders = select(pop)
+    pop = breed(breeders, how_many)
+    mutate(pop)
+    evaluate(pop)
+  end
             </pre>
           </div>
           <aside class="notes">
@@ -571,7 +576,7 @@ end
             nor dairy versus meat cows,
             and it's very unrealistic but
             we'll assume that
-            he can only take a set amount of everything.&nbsp;
+            he can only take a set amount of each item.&nbsp;
             His truck has <i>room</i> to take all the items,
             but it can only carry so much <i>weight</i>,
             so that's our constraint.&nbsp;
@@ -615,7 +620,8 @@ end
             can only handle
             two tons, or 4,000 pounds.&nbsp;
             We could run through all the possible combinations,
-            and see what totals the highest,
+            see which ones total light enough,
+            and see which one of those totals the highest,
             or use a different very common heuristic
             of adding the most expensive thing that we can,
             over and over until we can't,
@@ -624,18 +630,16 @@ end
             In code, we could represent them as a class
             in a language such as Ruby,
             and create one randomly,
-            or optionally with a passed-in value
-            (as that will be handy later),
             like so:
           </aside>
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.6em">
+          <div class="main-text" style="font-size: 2em">
             <pre>
 class Truckload
-  def initialize(val=nil)
-    @contents = val || rand(128)
+  def initialize()
+    @contents = rand(128)
   end
 end</pre>
           </div>
@@ -660,7 +664,7 @@ end</pre>
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 2.2em">
+          <div class="main-text" style="font-size: 1.7em">
             <pre>
   def self.initial_population(how_many)
     population = []
@@ -738,8 +742,12 @@ end</pre>
   end</pre>
           </div>
           <aside class="notes">
-            and we can iterate through the ITEMS list,
-            checking whether the corresponding bit is on in our manifest.&nbsp;
+            We have a list of items we can take,
+            as instances of a class describing them.&nbsp;
+            To check what's in our cargo manifest,
+            represented by our Truckload's contents value,
+            we can iterate through the list,
+            checking whether the corresponding bit is on.&nbsp;
             The next step is . . .
           </aside>
         </section>
@@ -808,7 +816,7 @@ end</pre>
   end</pre>
           </div>
           <aside class="notes">
-            We iterate through the possible items,
+            We iterate through the possible items again,
             summing up the weights of the ones we want to take,
             determined by whether the corresponding bit is on
             in our list of contents.&nbsp;
@@ -1300,7 +1308,7 @@ end</pre>
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.3em">
+          <div class="main-text" style="font-size: 1.5em">
             <pre>
   def maybe_mutate()
     (0..ITEMS.count).
@@ -1681,7 +1689,7 @@ Str  Int  Dex  Con  Wis  Cha
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.6em">
+          <div class="main-text" style="font-size: 1.4em">
             <pre>
   def fitness()
     str * 2 + con + dex / 2
@@ -1699,7 +1707,7 @@ Str  Int  Dex  Con  Wis  Cha
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.5em">
+          <div class="main-text" style="font-size: 1.4em">
             <pre>
   def fitness()
     stats = [str, con, dex, int, wis, cha]
@@ -1720,7 +1728,7 @@ Str  Int  Dex  Con  Wis  Cha
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.5em">
+          <div class="main-text" style="font-size: 1.4em">
             <pre>
   def fitness()
     stats = [str, con, dex, int, wis, cha]
@@ -2246,7 +2254,7 @@ Str  Int  Dex  Con  Wis  Cha   Fit
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.5em">
+          <div class="main-text" style="font-size: 1.4em">
             <pre>
   def fitness()
     # below is the only line that changed!
@@ -2260,6 +2268,9 @@ Str  Int  Dex  Con  Wis  Cha   Fit
             . . . to prioritize intelligence first,
             then wisdom, dexterity, and so on,
             down to strength.&nbsp;
+            (We could also make it take parameters,
+            and pass in different ones this time,
+            but I'm just going to hardcode it here for simplicity.)&nbsp;
             An initial population would look roughly the same,
             since we haven't changed how that is generated, so
             I'll spare you those steps,
@@ -2303,29 +2314,199 @@ Str  Int  Dex  Con  Wis  Cha   Fit
             Now, suppose we want to evolve yet another item.&nbsp;
             By the Rule of Three,
             it's about time we . . .
-            TODO: MOVE EXTRACTION STUFF HERE!
           </aside>
         </section>
 
         <section>
-          <img src="" class="autofix">
-          <span class="slide-caption">Image: </span>
+          <img src="images/tooth-extraction.png" class="autofix">
+          <span class="slide-caption">Image: from https://www.authoritydental.org/tooth-extraction-recovery</span>
           <aside class="notes">
+            . . . extract the common parts into something they all can use,
+            something with a name like, oh, say, . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/evolver-license-plate.png" class="autofix">
+          <span class="slide-caption">Image: my picture, of my actual license plate!</span>
+          <aside class="notes">
+            . . . Evolver!&nbsp;
+            That's my actual license plate, by the way.&nbsp;
+            I've had it for several years.
+
+            <br/><br/>
+
+            With just a little bit of tweaking,
+            and a slight sprinkling of fancy Ruby magic dust,
+            we can extract a class
+            that defines the common parts,
+            and takes another class
+            that defines the varying parts,
+            and run evolution on it,
+            like so:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text">
+            <pre style="font-size: .2em; line-height:1.25em">
+class Evolver
+  attr_reader :type, :how_many
+  def initialize(type, how_many=10)
+    @type = type
+    @how_many = @how_many
+  end
+
+  def evolve()
+    pop = initial_population().sort_by(&:fitness).reverse
+    while not type.done?(pop)
+      breeders = type.select_breeders(pop)
+      pop = breed(breeders)
+      pop.each { |cand| cand.maybe_mutate }
+      pop = pop.sort_by(&:fitness).reverse
+    end
+    return pop
+  end
+
+  def initial_population()
+    population = []
+    for i in 1..how_many
+      population.append(type.new)
+    end
+    return population
+  end
+
+  def breed(breeders)
+    population = []
+    for i in 1..how_many
+      population.append(type.combine(breeders))
+    end
+    return population
+  end
+end</pre>
+          </div>
+          <aside class="notes">
+            That might be a lot of code to look at at once,
+            so let's go through it piece by piece.&nbsp;
+            Since it is meant to accept a class,
+            and hold onto it for later use,
+            we can use . . .
+          </aside>
+        </section>
+
+
+        <section>
+          <div class="main-text">
+            <pre style="font-size: .5em; line-height:1.25em">
+class Evolver
+  attr_reader :type, :how_many
+  def initialize(type, how_many=10)
+    @type = type
+    @how_many = @how_many
+  end</pre>
+          </div>
+          <aside class="notes">
+            . . an initializer that just grabs that class,
+            using type as a name for class
+            so as not to conflict with a reserved word,
+            and also an option for how big a population to use.&nbsp;
+            How we tell it to "run evolution" can look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text">
+            <pre style="font-size: .42em; line-height:1.25em">
+  def evolve()
+    pop = initial_population().sort_by(&:fitness).reverse
+    while not type.done?(pop)
+      breeders = type.select_breeders(pop)
+      pop = breed(breeders)
+      pop.each { |cand| cand.maybe_mutate }
+      pop = pop.sort_by(&:fitness).reverse
+    end
+    return pop
+  end</pre>
+          </div>
+          <aside class="notes">
+            . . . just a slight variation on
+            our original high-level code.&nbsp;
+            Mainly, we're passing the responsibility for
+            determining whether we're done,
+            selecting breeders,
+            and mutating each candidate,
+            over to the passed-in class.&nbsp;
+            We'll do the same with some other things,
+            in the other methods,
+            as we'll see in a moment.&nbsp;
+            We're also sorting the population on descending fitness.&nbsp;
+            Creating the initial population could look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text">
+            <pre style="font-size: .7em; line-height:1.25em">
+  def initial_population()
+    population = []
+    for i in 1..how_many
+      population.append(type.new)
+    end
+    return population
+  end</pre>
+          </div>
+          <aside class="notes">
+            . . . nearly identical to our original code,
+            but, again, passing the creation responsibility
+            along to our passed-in class.&nbsp;
+            Breeding a <i>new</i> population could look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text">
+            <pre style="font-size: .5em; line-height:1.25em">
+  def breed(breeders)
+    population = []
+    for i in 1..how_many
+      population.append(type.combine(breeders))
+    end
+    return population
+  end
+end</pre>
+          </div>
+          <aside class="notes">
+            . . . again nearly identical to our original code,
+            but passing the responsibility for
+            how to combine the breeders,
+            over to our passed-in class.
+
+            <br/><br/>
+
+            With this Evolver class handling most of the infrastructure,
+            we don't need to repeat most of the boilerplate
+            that we had in both the Truckload and Character classes.&nbsp;
+            We can demonstrate that by evolving something else,
+            and supplying only the parts that vary.&nbsp;
+            So . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/pinky-and-brain.jpg" class="autofix" >
+          <span class="slide-caption">Image: https://www.flickr.com/photos/jdhancock/3725688716</span>
+          <aside class="notes">
+            . . . what are we going to evolve this time, Brain?&nbsp;
             In my spare time, I make . . .
           </aside>
         </section>
 
         <section>
-          <img src="images/2021-06-12-Meads-Assembled.jpg" class="autofix" height="60%">
-          <div class="main-text" style="font-size: 1.5em">
-            Mead
-            <br/></br><br/></br></br>
-            (Hidromiel)
-          </div>
+          <div style="font-size: 2em">Mead</div>
+          <img src="images/2021-06-12-Meads-Assembled.jpg" height="67%">
           <span class="slide-caption">Image: my own pic of five batches of plain mead in progress</span>
           <aside class="notes">
             . . . mead,
-            or in Spanish, "hidromiel",
             a wine-like drink made by fermenting honey.&nbsp;
             Let's see if we can evolve a good recipe.&nbsp;
             Our recipe will be based on two simple factors:
@@ -2342,8 +2523,7 @@ class Recipe
     # alcohol tolerance of 6-20
     @tolerance = 4 + roll(2, 8)
   end
-end
-            </pre>
+end</pre>
           </div>
           <aside class="notes">
             the ratio of water to honey,
@@ -2361,7 +2541,7 @@ end
             and the sweetness,
             will be how we'll evaluate the recipe,
             but I'll spare you the details of how we figure them out.&nbsp;
-            Of course we'll need a new . . .
+            Beyond simple creation, we'll need a . . .
           </aside>
         </section>
 
@@ -2418,8 +2598,11 @@ end
 
             <br/><br/>
 
-            Of course there are a few other bits of code we'll need to change.&nbsp;
-            For starters, the . . .
+            We'll stick with the breeder selection function
+            of just taking the top two most fit,
+            but we'll also need a combiner function,
+            to combine two parents into one,
+            which could look like this:
           </aside>
         </section>
 
@@ -2431,38 +2614,32 @@ end
     rec.ratio     = rand(2) == 1 ? p1.ratio     : p2.ratio
     rec.tolerance = rand(2) == 1 ? p1.tolerance : p2.tolerance
     return rec
-  end
-
-  def maybe_mutate()
-    @ratio = maybe_mutate_stat(@ratio, 1.5, 15)
-    @tolerance = maybe_mutate_stat(@tolerance, 6, 20)
   end</pre>
           </div>
           <aside class="notes">
-            . . . breeding and candidate-mutation functions
-            will only need to take care of two stats, instead of six,
-            just like the candidate creation function.&nbsp;
-            But . . .
+            . . . sticking with the tactic of flipping a coin
+            to see which parent contributes each gene.&nbsp;
+            Once each candidate combination is created,
+            we need a method to mutate it, such as . . .
           </aside>
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.6em">
+          <div class="main-text" style="font-size: 1.2em">
             <pre>
+  def mutate()
+    @ratio = maybe_mutate_stat(@ratio, 1.5, 15)
+    @tolerance = maybe_mutate_stat(@tolerance, 6, 20)
+  end
+
   def maybe_mutate_stat(stat, min, max)
     val = stat * (0.79 + roll(2, 20) / 100.0)
-    return max if val &gt; max
-    return min if val &lt; min
-    return val
+    return val.clamp(min, max)
   end</pre>
           </div>
           <aside class="notes">
-            . . . the generic stat mutator,
-            and the calls to it from the candidate mutator,
-            will be a bit more complex,
-            as it needs to take different limits into account,
-            and work well on differently-sized numbers.&nbsp;
-            What this one does is
+            . . . this one.&nbsp;
+            What we do here is
             to multiply by somewhere between 81% and 119%,
             so it's got very little chance of staying the same,
             and the difference will usually be rather small,
@@ -2479,11 +2656,40 @@ end
             though with a different threshold,
             and the overall structure of
             how it simulates evolution,
-            all remain unchanged.
+            are all handled by the Evolver class.&nbsp;
+            To actually use them together could look like this:
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 2em">
+            <pre>  Evolver.new(Recipe).evolve</pre>
+          </div>
+          <aside class="notes">
+            With our current version of Evolver,
+            this would return the current population of Recipes,
+            when the Recipe class says that it's done.&nbsp;
+            We could add all sorts of things to
+            report progress along the way,
+            pick a final winner,
+            count generations,
+            and lots more.&nbsp;
+            We could even add some common options in Evolver, such as
+            the "pick the two best" way of picking breeders,
+            some randomized alternatives,
+            the crossover, multi-crossover, and coin-toss
+            ways to combine two breeders,
+            the bit-flipping style of mutation and some alternatives,
+            being done when
+            a certain amount of time or number of generations
+            has passed
+            or the user presses a key,
+            and much more.
 
             <br/><br/>
 
-            To demonstrate how this one runs, an initial population might look like this:
+            To demonstrate briefly how it might evolve mead recipes,
+            an initial population might look like this:
           </aside>
         </section>
 
@@ -2577,10 +2783,9 @@ Ratio  Tolerance  %ABV  Sweet     Fit
 
             Just like with the DnD characters,
             if we want to change what we're after,
-            we just have to tweak the fitness function.&nbsp;
-            In this case we could even ask the user for the numbers,
-            but I'll leave that as an exercise for you.&nbsp;
-            Anyway, I asked for 7% alcohol and sweetness of 5,
+            we just have to tweak the fitness function
+            (or pass in different parameters if we bothered with that).&nbsp;
+            This time, I asked for 7% alcohol and sweetness of 5,
             a low-alcohol dry mead, often called a "session" mead,
             and still demanding a 99.9% fit,
             it took 37 generations to get this:
@@ -2637,241 +2842,120 @@ Ratio  Tolerance  %ABV  Sweet     Fit
 
             <br/><br/>
 
-            Now, just a little bit ago I said a lot of stuff was unchanged
-            between these two usages,
-            the DnD characters and the mead recipes.&nbsp;
-            I usually wait until we have three,
-            but let's pretend we have a third one.&nbsp;
-            That means we should . . .
+            To recap what you've learned here today:
           </aside>
         </section>
 
         <section>
-          <img src="images/tooth-extraction.png" class="autofix">
-          <span class="slide-caption">Image: from https://www.authoritydental.org/tooth-extraction-recovery</span>
+          <div style="font-size: 2; text-align: left">
+            <br/><b><big><center>Genetic Algorithms:</center></big></b><br/>
+            <ul>
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+            </ul>
+          </div>
           <aside class="notes">
-            . . . extract those part into something they all can use,
-            something with a name like, oh, say, . . .
+            Genetic Algorithms are optimization heuristics,
+            which is fancy-talk for shortcuts to finding good solutions.&nbsp;
+            They're . . .
           </aside>
         </section>
 
         <section>
-          <img src="images/evolver-license-plate.png" class="autofix">
-          <span class="slide-caption">Image: my picture, of my actual license plate!</span>
+          <div style="font-size: 2; text-align: left">
+            <br/><b><big><center>Genetic Algorithms:</center></big></b><br/>
+            <ul>
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are simpler than you probably thought</li>
+            </ul>
+          </div>
           <aside class="notes">
-            . . . Evolver!&nbsp;
-            That's my actual license plate, by the way.&nbsp;
-            I've had it for several years.
+            . . . simpler than you probably thought --
+            all you have to do is
+            create an initial population,
+            assess their fitness
+            (maybe not even do that yet if the next step doesn't need it),
+            see if you're done,
+            pick breeders,
+            breed them to make a new population,
+            mutate those new candidates,
+            and go back to assessing.&nbsp;
+            They . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="font-size: 2; text-align: left">
+            <br/><b><big><center>Genetic Algorithms:</center></big></b><br/>
+            <ul>
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are simpler than you probably thought</li>
+              <li>can use very simple functions</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            . . . can use very simple functions, but . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="font-size: 2; text-align: left">
+            <br/><b><big><center>Genetic Algorithms:</center></big></b><br/>
+            <ul>
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are simpler than you probably thought</li>
+              <li>can use very simple functions</li>
+              <li>can be tricky to make converge well</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            . . . it can be tricky to
+            craft the functions,
+            especially for fitness and checking if you're done,
+            so as to
+            make the solutions converge quickly enough,
+            and not ignore too many other very good solutions.&nbsp;
+            This approach is also . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="font-size: 2; text-align: left">
+            <br/><b><big><center>Genetic Algorithms:</center></big></b><br/>
+            <ul>
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are simpler than you probably thought</li>
+              <li>can use very simple functions</li>
+              <li>can be tricky to make converge well</li>
+              <li>are a widely applicable abstraction</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            . . . a sufficiently widely applicable abstraction,
+            that it can be used for a huge variety of problems,
+            including ones so complex that . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="font-size: 2; text-align: left">
+            <br/><b><big><center>Genetic Algorithms:</center></big></b><br/>
+            <ul>
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are simpler than you probably thought</li>
+              <li>can use very simple functions</li>
+              <li>can be tricky to make converge well</li>
+              <li>are a widely applicable abstraction</li>
+              <li>can create solutions we would not have</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            . . . a semi-random algorithm can come up with
+            excellent solutions that we humans
+            would never have thought of.
 
             <br/><br/>
 
-            With just a little bit of tweaking,
-            and a slight sprinkling of fancy Ruby magic dust,
-            we can extract a class
-            that will take another class
-            that defines the necessary functions,
-            and run evolution on it,
-            like so:
-
-          </aside>
-        </section>
-
-        <section>
-          <div class="main-text">
-            <pre style="font-size: .21em; line-height:1.1em">
-class Evolver
-  attr_reader :klazz, :header, :how_many
-
-  def initialize(klazz, options={})
-    @klazz = klazz
-    @header = options[:header] || klazz::REPORT_HEADER rescue nil  # blank OK
-    @how_many = options[:how_many] || 10
-  end
-
-  def evolve()
-    pop = initial_population().sort_by(&:fitness).reverse
-    generations = 1
-    report(generations, pop)
-    while not klazz.done?(pop, generations)
-      breeders = klazz.select_breeders(pop)
-      pop = breed(breeders)
-      pop.each { |cand| cand.maybe_mutate }
-      pop = pop.sort_by(&:fitness).reverse
-      generations += 1
-      report(generations, pop)
-    end
-  end
-
-  def initial_population()
-    (1..how_many).map { |_| klazz.new() }
-  end
-
-  def report(generations, pop)
-    puts "After #{generations} generations:"
-    puts header
-    pop.each { |cand| cand.report() }
-  end
-
-  def breed(breeders)
-    (1..how_many).map { |_| klazz.combine(breeders) }
-  end
-end
-            </pre>
-          </div>
-          <aside class="notes">
-            . . . and then our character and recipe classes
-            can be shortened like so:
-          </aside>
-        </section>
-
-        <section>
-          <div class="main-text">
-            <pre style="font-size: .1em; line-height:1.35em">
-class Character
-  REPORT_HEADER = "Str  Int  Dex  Con  Wis  Cha   Fit"
-  attr_accessor :str, :int, :dex, :con, :wis, :cha, :fit
-
-  def initialize()
-    @str = roll(3, 6)
-    @int = roll(3, 6)
-    @dex = roll(3, 6)
-    @con = roll(3, 6)
-    @wis = roll(3, 6)
-    @cha = roll(3, 6)
-  end
-
-  def roll(num_dice, die_size)
-    (1..num_dice).map { rand(die_size) + 1 }.sum
-  end
-
-  def report
-    printf(" %2d   %2d   %2d   %2d   %2d   %2d  %4d\n",
-           str, int, dex, con, wis, cha, fit)
-  end
-
-  def self.done?(population, _generations)
-    population.first.fitness &gt;= 1021
-  end
-
-  def fitness()
-    stats = [int, wis, dex, con, cha, str]  # for wizards
-    @fit = (0..5).map { |idx| stats[idx] * 2 ** (5 - idx) }.sum
-  end
-
-  def self.select_breeders(population)
-    population.sort_by(&:fitness).reverse.take(2)
-  end
-
-  def self.combine(breeders)
-    p1,p2 = breeders
-    char = self.new
-    char.str = rand(2) == 1 ? p1.str : p2.str
-    char.int = rand(2) == 1 ? p1.int : p2.int
-    char.dex = rand(2) == 1 ? p1.dex : p2.dex
-    char.con = rand(2) == 1 ? p1.con : p2.con
-    char.wis = rand(2) == 1 ? p1.wis : p2.wis
-    char.cha = rand(2) == 1 ? p1.cha : p2.cha
-    return char
-  end
-
-  def maybe_mutate()
-    @str = maybe_mutate_stat(@str)
-    @int = maybe_mutate_stat(@int)
-    @dex = maybe_mutate_stat(@dex)
-    @con = maybe_mutate_stat(@con)
-    @wis = maybe_mutate_stat(@wis)
-    @cha = maybe_mutate_stat(@cha)
-  end
-
-  def maybe_mutate_stat(stat)
-    val = stat + rand(3) - 1
-    return 18 if val &gt; 18
-    return  3 if val &lt;  3
-    return val
-  end
-end
-            </pre>
-          </div>
-          <aside class="notes">
-            and like so:
-          </aside>
-        </section>
-
-        <section>
-          <div class="main-text">
-            <pre style="font-size: .1em; line-height:1.3em">
-class Recipe
-  REPORT_HEADER = "Ratio  Tolerance  %ABV  Sweet     Fit"
-  attr_accessor :ratio, :tolerance, :abv, :sweet, :fit
-
-  def initialize()
-    @ratio = roll(3, 10) / 2.0
-    @tolerance = 4 + roll(2, 8)
-  end
-
-  def roll(num_dice, die_size)
-    (1..num_dice).map { rand(die_size) + 1 }.sum
-  end
-
-  def report
-    printf("%5.2f       %4.1f  %4.1f   %4.1f  %6.1f\n", ratio, tolerance, abv, sweet, fit)
-  end
-
-  def self.done?(population, _generations)
-    population.first.fitness &gt;= 99.9
-  end
-
-  def fitness()
-    target_abv = 12
-    target_sweet = 15
-    @abv, @sweet = evaluate()
-    abv_off = (target_abv - abv).abs
-    sweet_off = (target_sweet - sweet).abs
-    off = abv_off ** 2 + sweet_off ** 2
-    @fit = 100 - off;
-  end
-
-  def evaluate()
-    honey_volume = 1.0 / ratio
-    total_mass = honey_volume * 1.425 + 1
-    total_volume = honey_volume + 1
-    og = total_mass / total_volume
-    potential = (og - 1) * 1000 / 7.62
-    abv = [tolerance, potential].min
-    fg = og - abv * 7.62 / 1000
-    return abv, (fg - 1) * 1000
-  end
-
-  def self.select_breeders(population)
-    population.sort_by(&:fitness).reverse.take(2)
-  end
-
-  def self.combine(breeders)
-    p1,p2 = breeders
-    rec = self.new
-    rec.ratio     = rand(2) == 1 ? p1.ratio     : p2.ratio
-    rec.tolerance = rand(2) == 1 ? p1.tolerance : p2.tolerance
-    return rec
-  end
-
-  def maybe_mutate()
-    @ratio = maybe_mutate_stat(@ratio, 1.5, 15)
-    @tolerance = maybe_mutate_stat(@tolerance, 6, 20)
-  end
-
-  def maybe_mutate_stat(stat, min, max)
-    val = stat * (0.79 + roll(2, 20) / 100.0)
-    return max if val &gt; max
-    return min if val &lt; min
-    return val
-  end
-end
-            </pre>
-          </div>
-          <aside class="notes">
-            . . . no I don't expect you to read that,
-            let alone remember it,
-            but the final slide . . .
+            If you have any . . .
           </aside>
         </section>
 
@@ -2880,22 +2964,18 @@ end
             <h1>? ? ? ? ?</h1>
             <h5>
               www.Codosaur.us<br/>
-              T.Rex-2022@Codosaur.us<br/>
+              T.Rex-2023@Codosaur.us<br/>
               twitter.com/DaveAronson<br/>
               linkedin.com/in/DaveAronson<br/>
               <!-- toptal.com/#accept-only-candid-coders<br/> -->
               github.com/CodosaurusLLC/tight-genes</h5>
           </div>
           <aside class="notes">
-            . . . has the URL for all the code,
+            . . . questions, I'll take them now,
+            or at the contact info shown up there,
+            and that last URL, the one at Github, is for all the code,
             plus the HTML and images for the slides,
             complete with script.&nbsp;
-            It's the last URL here, the one at Github.&nbsp;
-            I'm going to ask that the editors
-            leave the slide view visible
-            during QnA,
-            but just in case,
-            you might want to take a screenshot now.
           </aside>
         </section>
 
