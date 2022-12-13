@@ -1,5 +1,4 @@
 <!doctype html>
-<!-- CURRENT TIME: about 22:10, want 20-25, feel free to ad-lib a LITTLE -->
 <html>
   <head>
     <meta charset="utf-8">
@@ -30,6 +29,7 @@
           </div>
           <aside class="notes">
             NOTE TO SELF: Timeslot is 60 mins, so aim for 45-50 of content.
+            CURRENT TIME: about 48, so WATCH THE AD-LIBS!
 
             <br/><br/>
 
@@ -69,7 +69,7 @@
           <span class="slide-caption">Image: https://pixabay.com/vectors/genetic-testing-gene-panel-genetics-2316642</span>
           <aside class="notes">
             . . . Genetic Algorithms!&nbsp;
-            So what are genetic algorithms anyway?&nbsp;
+            So what are those anyway?&nbsp;
             They are . . .
           </aside>
         </section>
@@ -126,7 +126,7 @@
           <img src="images/shortcut-through-the-dunes.jpg" class="autofix">
           <span class="slide-caption">Image: https://www.publicdomainpictures.net/en/view-image.php?image=205157</span>
           <aside class="notes">
-            . . . shortcut to find a good solution to a problem.&nbsp;
+            . . . shortcut to find a solution to a problem.&nbsp;
             Heuristics are used because they are
             faster, simpler, cheaper,
             or in some such way less resource-intensive,
@@ -138,7 +138,13 @@
             only something good enough,
             for whatever value of "good enough"
             we care to apply.&nbsp;
+            So, genetic algorithms are shortcuts
+            to find a good solution to a problem,
+            ideally the best,
+            but we'll settle for something "good enough".
+
             <br/><br/>
+            
             There are many kinds of optimization heuristics,
             but genetic algoritms in particular,
             as you may have guessed from the name,
@@ -168,14 +174,14 @@
           <span class="slide-caption">Image: https://cdn.britannica.com/81/191581-050-8C0A8CD3/Alan-Turing.jpg</span>
           <aside class="notes">
             . . . Alan Turing,
-            as in Turing Test, Turing Machine, Turing Completeness,
-            the ACM's Turing Award, and so on,
+            as in Turing Test, Turing Machine, Turing Completeness, and so on,
             proposed a "learning machine"
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
             However, simulated evolution didn't catch on much
             as a general approach
             until the 1960's and 70's,
+            even then didn't catch on very widely,
             and still isn't very common.&nbsp;
 
             <!--
@@ -184,7 +190,7 @@
             came out in the late 1980's, from General Electric.&nbsp;
             -->
 
-            But it is occasionally seen, in the wild.&nbsp;
+            But it is still seen occasionally.&nbsp;
             Most famously,
             in 2005 NASA used a genetic algorithm to design an . . .
           </aside>
@@ -194,7 +200,7 @@
           <img src="images/st5-antenna.jpg" class="autofix expand-tall">
           <span class="slide-caption">Image: https://www.jpl.nasa.gov/nmp/st5/IMAGES/st5-antenna.jpg</span>
           <aside class="notes">
-            . . . antenna for the ST5 satellites,
+            . . . antenna for the ST5 series of satellites,
             launched in 2006.&nbsp;
             NASA's Jet Propulsion Laboratory's website says:
             "Its unusual shape is expected
@@ -243,7 +249,10 @@
           <aside class="notes">
             . . . assess how "fit" each candidate is,
             according to whatever criteria we want to apply.&nbsp;
-            Next we ask, are we . . .
+            We might even be able to skip this step;
+            we do it here mainly because
+            it usually supplies the data for the next step,
+            which is to ask, are we . . .
           </aside>
         </section>
 
@@ -262,10 +271,9 @@
           </div>
           <aside class="notes">
             . . . done?&nbsp;
-            This could be based on the fitness,
-            which is why we just did that,
-            so we can use it now,
-            or other criteria, or a combination.&nbsp;
+            This is <i>usually</i> based on the fitness,
+            but <i>could</i> be based on other criteria,
+            or a combination.&nbsp;
             If not, then next we . . .
           </aside>
         </section>
@@ -511,18 +519,22 @@
             like if you're a jewel thief,
             or something more metaphorical,
             like if you're literally putting items in a knapsack,
-            to go on a camping trip, with the items of most usefulness.&nbsp;
+            to go on a camping trip,
+            with the items of most usefulness
+            for your survival and comfort.&nbsp;
             If we have only, say, three items,
             that's only eight combinations,
             so we can probably brute-force
             our way through the solution space
             pretty easily.&nbsp;
             However, each time we add a possible item,
-            that doubles the number of combinations.&nbsp;
+            that doubles the number of combinations,
+            just like adding a bit to the width of an integer type,
+            and for exactly the same reason.&nbsp;
             So if we have ten items to consider,
             that's 1024 possible combinations,
             and not all of them might even fit.&nbsp;
-            Suppose we know . . .
+            To look at a concrete example, suppose we know . . .
           </aside>
         </section>
 
@@ -635,7 +647,7 @@
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 2em">
+          <div class="main-text" style="font-size: 2.5em">
             <pre>
 class Truckload
   def initialize()
@@ -730,6 +742,7 @@ end</pre>
       end
     end
     ITEMS = [
+      <span style="color: gray;">#         name      weight  value</span>
       Item.new("Cow",       1500,  2000),
       Item.new("Milk",      1720,   800),
       Item.new("Cheese",    1000, 12000),
@@ -737,16 +750,14 @@ end</pre>
       Item.new("Ice Cream", 1000,  2000),
       Item.new("Meat",      1280,  8000),
       Item.new("Leather",   1100,  6000),
-    ]
-  ...
-  end</pre>
+    ]</pre>
           </div>
           <aside class="notes">
             We have a list of items we can take,
             as instances of a class describing them.&nbsp;
             To check what's in our cargo manifest,
             represented by our Truckload's contents value,
-            we can iterate through the list,
+            we can iterate through the list of possible items,
             checking whether the corresponding bit is on.&nbsp;
             The next step is . . .
           </aside>
@@ -807,19 +818,18 @@ end</pre>
   def fitness()
     weight =
       (0 ... ITEMS.count).
-      map { |n| ((1 &lt;&lt; n) & @contents) &gt; 0 ? ITEMS[n].weight : 0 }.
+      map { |n| bit_on?(n, contents) ? ITEMS[n].weight : 0 }.
       sum
     return 0 if weight > 4000
     (0 ... ITEMS.count).
-      map { |n| ((1 &lt;&lt; n) & @contents) &gt; 0 ? ITEMS[n].value : 0 }.
+      map { |n| bit_on?(n, contents) ? ITEMS[n].value : 0 }.
       sum
   end</pre>
           </div>
           <aside class="notes">
             We iterate through the possible items again,
-            summing up the weights of the ones we want to take,
-            determined by whether the corresponding bit is on
-            in our list of contents.&nbsp;
+            summing up the weights of the ones we want to take.&nbsp;
+            (Writing the bit_on? function is left as an exercise.)&nbsp;
             If that exceeds the truck's capacity, we return zero,
             else we use the same technique
             to sum up the <i>values</i> of those same items.
@@ -835,7 +845,8 @@ end</pre>
             we could also total up the volume,
             and make sure it all fits.&nbsp;
             We could even take into account very long or flat shapes,
-            so that for instance a flagpole might not fit,
+            so that for instance
+            a flagpole or a large sheet of plywood might not fit,
             even though its weight and total volume may be relatively small.
 
             <br/><br/>
@@ -917,8 +928,8 @@ end</pre>
             but it can take some thinking to figure out
             what the function should <i>do</i>.&nbsp;
             With a knapsack problem,
-            a good solution can be made worthless by
-            adding just one more item, exceeding the capacity.&nbsp;
+            a good solution can be made totally worthless by
+            adding just one more item, and exceeding the capacity.&nbsp;
             So, we're going to record the best we've seen,
             and stop if we haven't seen anything better
             within 100 generations.&nbsp;
@@ -964,7 +975,9 @@ end</pre>
             then we return true
             if it's been 100 generations since the best one,
             else we return false.&nbsp;
-            Otherwise, we sort them by fitness,
+            Otherwise,
+            meaning there is at least one candidate exceeding our benchmark,
+            we sort them by fitness,
             take the fittest one,
             and make that our new benchmark.
 
@@ -978,7 +991,7 @@ end</pre>
             or some number of generations in total,
             or some amount of time (whether clock time or CPU or whatever),
             or when the user presses a STOP button,
-            or many other parameters,
+            or many other ways,
             or a combination of ways.
 
             <br/><br/>
@@ -1024,7 +1037,7 @@ end</pre>
           <aside class="notes">
             . . . select some candidates to use in
             breeding the next generation.&nbsp;
-            The obvious way is to take the top two scorers, like so:
+            The obvious way is to take the top two most fit, like so:
           </aside>
         </section>
 
@@ -1170,7 +1183,9 @@ end</pre>
             or it could switch at some point.&nbsp;
             Doing the bitwise math like that
             gets us zero if the bit was off,
-            and value of that bit if it was on.&nbsp;
+            and that bit's positional value if it was on.&nbsp;
+            In other words, if a bit in the 8's place is 0, we get 0,
+            but if it's a 1, we get 8.&nbsp;
             Then we sum them up.&nbsp;
             Doing this once,
             with a crossover point of 3,
@@ -1254,7 +1269,7 @@ end</pre>
             Lots of family resemblance there, eh?&nbsp;
             None of these loads include a cow, butter, or leather,
             and they all include cheese.&nbsp;
-            That's because our two breeders were like that.&nbsp;
+            That's because both of our two breeders were like that.&nbsp;
             If we were to just continue
             breeding the fittest of this population,
             we wouldn't <i>ever</i> see any loads
@@ -1308,15 +1323,14 @@ end</pre>
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.5em">
+          <div class="main-text" style="font-size: 1.8em">
             <pre>
   def maybe_mutate()
-    (0..ITEMS.count).
-      each { |index|
-        if rand(4) == 0
-          @contents ^= 1 << index
-        end
-      }
+    (0..ITEMS.count).each do |index|
+      if rand(4) == 0
+        @contents ^= 1 << index
+      end
+    end
   end</pre>
           </div>
           <aside class="notes">
@@ -1510,7 +1524,8 @@ end</pre>
           </div>
           <aside class="notes">
             . . . a small improvement over our prior best!&nbsp;
-            <i>This</i> is why we don't give up so easily.&nbsp;
+            So, we set that as our new best value,
+            and reset the counter of generations since we saw it.&nbsp;
             If we let this run to completion,
             we might wind up with something like this:
           </aside>
@@ -1562,7 +1577,8 @@ end</pre>
             . . . something completely different.&nbsp;
             Suppose we want to "evolve" a good set of stats for a
             Dungeons and Dragons fighter character,
-            so our candidates are sets of stats.&nbsp;
+            so our candidates are sets of stats,
+            rather than strings of bits.&nbsp;
             My DnD knowledge is rather out of date,
             I haven't played in about thirty years,
             but back in my day, character stats were . . .
@@ -1689,12 +1705,11 @@ Str  Int  Dex  Con  Wis  Cha
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.4em">
+          <div class="main-text" style="font-size: 1.6em">
             <pre>
   def fitness()
     str * 2 + con + dex / 2
-  end
-            </pre>
+  end</pre>
           </div>
           <aside class="notes">
             totaling up double the strength,
@@ -1707,15 +1722,15 @@ Str  Int  Dex  Con  Wis  Cha
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.4em">
+          <div class="main-text" style="font-size: 1.6em">
             <pre>
   def fitness()
     stats = [str, con, dex, int, wis, cha]
-    (0..5).
-      map { |idx| stats[idx] * (6 - idx) }.
-      sum
-  end
-            </pre>
+    (0..5).map { |idx|
+      stats[idx] * (6 - idx)
+    }.
+    sum
+  end</pre>
           </div>
           <aside class="notes">
             prioritizing them linearly,
@@ -1728,15 +1743,15 @@ Str  Int  Dex  Con  Wis  Cha
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 1.4em">
+          <div class="main-text" style="font-size: 1.6em">
             <pre>
   def fitness()
     stats = [str, con, dex, int, wis, cha]
-    (0..5).
-      map { |idx| stats[idx] * 2 ** (5 - idx) }.
-      sum
-  end
-            </pre>
+    (0..5).map { |idx|
+      stats[idx] * 2 ** (5 - idx)
+    }.
+    sum
+  end</pre>
           </div>
           <aside class="notes">
             . . . prioritizing the stats
@@ -1772,7 +1787,7 @@ Str  Int  Dex  Con  Wis  Cha  Fit
             </pre>
           </div>
           <aside class="notes">
-            But are we done?
+            But are we . . .
           </aside>
         </section>
 
@@ -1811,6 +1826,7 @@ Str  Int  Dex  Con  Wis  Cha  Fit
             </table>
           </div>
           <aside class="notes">
+            . . . done?&nbsp;
             What are our criteria?&nbsp;
             Let's say we're done if
             any candidates get 90% of the way to the maximum score
@@ -2018,17 +2034,21 @@ Str  Int  Dex  Con  Wis  Cha
           </div>
           <aside class="notes">
             Lots of family resemblance there, again!&nbsp;
-            For each stat, there are only two values,
+            For each stat, there are only two possible values,
             or in Genetic Algorithm terms, "alleles",
-            for a total of 64 possible combinations,
-            even less if any stats were the same between the parents.&nbsp;
-            On average, these look much more suitable as fighters
+            for each stat,
+            for a total of 64 possible combinations.&nbsp;
+            There would be only <i>one</i> possible value,
+            and therefore half as many possible combinations,
+            if any stats were the same between the parents.&nbsp;
+            At a glance, these look on average
+            much more suitable as fighters
             than the previous generation.&nbsp;
             (We'll figure their actual fitness scores later.)
             If we were to just continue
             breeding the fittest of this population,
-            we wouldn't see any further improvement
-            in the the values of each stat,
+            we wouldn't see any improvement
+            in the possible values of each stat,
             but again, we fix that in the next step, which is to . . .
           </aside>
         </section>
@@ -2235,7 +2255,7 @@ Str  Int  Dex  Con  Wis  Cha   Fit
             <!-- ranging in fitness from 964 to 1029, -->
             with one suitable character
             having 18 Strength and Constitution,
-            acceptable but sub-par Dexterity,
+            acceptable though sub-par Dexterity,
             and surprisingly high Intelligence.&nbsp;
             If we really wanted it more specialized,
             we could complicate the fitness function further,
@@ -2530,12 +2550,13 @@ end</pre>
             and the alcohol tolerance of the yeast we'll use,
             both by volume.&nbsp;
             The more honey per volume,
-            in other words the lower the ratio of water,
-            the higher the level of alcohol you <i>could</i> get,
+            in other words the lower the ratio of water to honey,
+            the higher the level of alcohol we <i>could</i> get,
             <i>if</i> the yeast will tolerate that level of alcohol.&nbsp;
             Any leftover honey,
             that the yeast doesn't eat and convert into alcohol,
             is what makes the mead sweet.&nbsp;
+            (There are other ways, but this is the simplest.)&nbsp;
             Those two resulting factors,
             the percent alcohol by volume, or ABV,
             and the sweetness,
