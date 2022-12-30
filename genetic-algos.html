@@ -29,7 +29,7 @@
           </div>
           <aside class="notes">
             NOTE TO SELF: Timeslot is 60 mins, so aim for 45-50 of content.
-            CURRENT TIME: about 48, so WATCH THE AD-LIBS!
+            CURRENT TIME: about 42, so REMEMBER STUFF and SLOW DOWN!
 
             <br/><br/>
 
@@ -69,32 +69,33 @@
           <span class="slide-caption">Image: https://pixabay.com/vectors/genetic-testing-gene-panel-genetics-2316642</span>
           <aside class="notes">
             . . . Genetic Algorithms!&nbsp;
-            So what are those anyway?&nbsp;
-            They are . . .
+            But first . . .
           </aside>
         </section>
-
-        <!--
 
         <section>
           <img src="images/caution-sign.png" class="autofix">
           <span class="slide-caption">Image: https://vectorportal.com/vector/other-danger-vector-sign.ai/9045</span>
           <aside class="notes">
-            But first . . .
             . . . a caveat.&nbsp;
             I am not an expert in Genetic Algorithms.&nbsp;
-            I haven't used them at work, or for anything serious,
-            but I looked into the concept,
-            understood it (I think!),
-            and saw it seems to be a lot simpler
-            than its reputation implies.&nbsp;
+            I haven't used them at work, or for anything else serious.&nbsp;
+            But, I looked into the concept,
+            understood it (or at least I think so!),
+            saw it seems to be a lot simpler
+            than its reputation implies,
+            and played with it a bit.&nbsp;
+            It was very easy to put together what became
+            one of the examples from this talk.&nbsp;
             So I put together a pitch for a talk to explain it,
-            and here I am!<br/><br/>
-            Genetic algorithms are . . .
+            and here I am!
+
+            <br/><br/>
+
+            So . . . what <i>are</i> Genetic Algorithms, anyway?&nbsp;
+            They are . . .
           </aside>
         </section>
-
-        -->
 
         <section>
           <img src="images/settings_icon-icons.com_49925.png" class="autofix" style="background-color: white; border-radius: 1.03em">
@@ -138,7 +139,9 @@
             only something good enough,
             for whatever value of "good enough"
             we care to apply.&nbsp;
-            So, genetic algorithms are shortcuts
+            So, optimization heuristics,
+            such as genetic algorithms,
+            are shortcuts
             to find a good solution to a problem,
             ideally the best,
             but we'll settle for something "good enough".
@@ -146,7 +149,7 @@
             <br/><br/>
             
             There are many kinds of optimization heuristics,
-            but genetic algoritms in particular,
+            but genetic algorithms in particular,
             as you may have guessed from the name,
             are inspired by . . .
           </aside>
@@ -159,7 +162,7 @@
             . . . real-world biological evolution,
             primarily the principles of
             survival of the fittest,
-            random combination of different sets of genes into a new set,
+            random combination of different sets of genes into one new set,
             and random mutation.
 
             <br/><br/>
@@ -181,18 +184,47 @@
             However, simulated evolution didn't catch on much
             as a general approach
             until the 1960's and 70's,
-            even then didn't catch on very widely,
-            and still isn't very common.&nbsp;
+            even then didn't catch on very widely quite yet.&nbsp;
 
-            <!--
-            The first commercial product,
-            a mainframe toolkit for industrial processes,
+            <br/><br/>
+
+            The first commercial product based on genetic algorithms,
+            a mainframe toolkit for . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/industrial-process.jpg" class="autofix">
+          <span class="slide-caption">Image: https://pxhere.com/en/photo/267871</span>
+          <aside class="notes">
+            . . . industrial processes,
             came out in the late 1980's, from General Electric.&nbsp;
-            -->
+            In 1989 Axcelis released Evolver,
+            a genetic algorithm product for <i>desktop</i> computers, and
+            Palisade Corporation now maintains and sells it.&nbsp;
+            MATLAB has a few kinds of genetic algorithms built-in.&nbsp;
+            But, the actual usages of genetic algorithms
+            generally remain obscure,
+            mostly used by companies in their
+            industrial processes, scheduling, logistics, and so on.
 
-            But it is still seen occasionally.&nbsp;
+            <br/><br/>
+
+            But once in a while, they get used for
+            something more interesting.&nbsp;
             Most famously,
-            in 2005 NASA used a genetic algorithm to design an . . .
+            in 2005 . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/nasa-logo-web-rgb.png" class="autofix">
+          <span class="slide-caption">Image: https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png</span>
+          <aside class="notes">
+            . . . NASA
+            (yes, <i>that</i> NASA,
+            the United States National Aeronautics and Space Administration)
+            used a genetic algorithm to design an . . .
           </aside>
         </section>
 
@@ -202,17 +234,26 @@
           <aside class="notes">
             . . . antenna for the ST5 series of satellites,
             launched in 2006.&nbsp;
-            NASA's Jet Propulsion Laboratory's website says:
+            No, that's not just a paperclip
+            that got all bent up by someone
+            sitting bored and fidgeting,
+            in a meeting they couldn't escape.&nbsp;
+            The NASA Jet Propulsion Laboratory website says:
             "Its unusual shape is expected
             because most human antenna designers
             would never think of such a design."&nbsp;
             That is one of the great advantages of this approach.&nbsp;
+            These algorithms are much less hampered by
+            expectations of similarity to past solutions.&nbsp;
             However, today we'll only be looking at
-            much simpler problem domains.
+            much simpler problem domains,
+            so that we can all easily understand the solutions.
 
             <br/><br/>
 
-            The process of a genetic algorithm is a simple set of steps:
+            The process of a genetic algorithm is
+            actually just
+            a simple series of steps:
           </aside>
         </section>
 
@@ -229,10 +270,17 @@
             First, we create an initial population of candidates.&nbsp;
             In Genetic Algorithm lingo, these are called "chromosomes",
             but since most living beings contain
-            <i>many</i> chromosomes in every cell,
+            <i>many</i> chromosomes in each and every cell,
             I don't like that term,
             I think it leads to confusion,
             so I'm just going to say "candidates".&nbsp;
+            I've also heard them called individuals, solutions,
+            or <i>phenotypes</i>,
+            an actual genetic term that seems applicable,
+            but most people don't already know that word.&nbsp;
+
+            <br/><br/>
+
             The next step is to . . .
           </aside>
         </section>
@@ -249,9 +297,11 @@
           <aside class="notes">
             . . . assess how "fit" each candidate is,
             according to whatever criteria we want to apply.&nbsp;
-            We might even be able to skip this step;
-            we do it here mainly because
-            it usually supplies the data for the next step,
+            We <i>might</i> even be able to
+            <i>skip</i> or at least <i>delay</i> this step!&nbsp;
+            We do it here mainly because
+            it usually supplies the data
+            <i>usually</i> used in the next step,
             which is to ask, are we . . .
           </aside>
         </section>
@@ -270,11 +320,12 @@
             </table>
           </div>
           <aside class="notes">
-            . . . done?&nbsp;
+            . . . done yet?&nbsp;
             This is <i>usually</i> based on the fitness,
             but <i>could</i> be based on other criteria,
+            and we'll discuss some of those later,
             or a combination.&nbsp;
-            If not, then next we . . .
+            If we're not done, then next we . . .
           </aside>
         </section>
 
@@ -294,7 +345,21 @@
             </table>
           </div>
           <aside class="notes">
-            . . . select some candidates to breed the next generation, . . .
+            . . . select some candidates to breed the next generation.&nbsp;
+            This is usually <i>also</i> based on the fitness,
+            to simulate survival of the fittest.&nbsp;
+            Remember, it's not about survival to a ripe old age,
+            evolution is only concerned with
+            survival to the point of passing along one's genes.&nbsp;
+            Survival of an elder
+            may contribute to survival of the young,
+            but that's a much more complicated discussion
+            of indirect evolutionary pressures.
+
+            <br/><br/>
+
+            Anyway, after that, as you may have guessed,
+            we <i>use</i> the candidates we just selected . . .
           </aside>
         </section>
 
@@ -318,8 +383,17 @@
             </table>
           </div>
           <aside class="notes">
-            . . . actually do the breeding,
-            to create a whole new population . . .
+            . . . to actually <i>do</i> the breeding
+            of a new population.&nbsp;
+            Some of the previous population,
+            especially the fittest ones,
+            <i>may</i> be carried over into this new population,
+            but usually not.
+
+            <br/><br/>
+
+            Next is a very important but easily forgotten step,
+            which is to . . .
           </aside>
         </section>
 
@@ -343,7 +417,12 @@
             </table>
           </div>
           <aside class="notes">
-            . . . mutate those new candidates, and . . .
+            . . . <i>mutate</i> those new candidates,
+            so that we get some more diversity in the gene pool.
+
+            <br/><br/>
+
+            Finally, we . . .
           </aside>
         </section>
 
@@ -413,7 +492,7 @@
           <div style="position: absolute; top: 25%">
             <table style="color: gray; text-align: center">
               <tr>
-                <td style="color: white">Init</td>
+                <td class="current-step">Init</td>
               </tr>
               <tr>
                 <td>⬇️</td>
@@ -459,6 +538,7 @@
             They could be
             objects of the same class,
             maps with the same keys,
+            arrays where the elements have meanings based on the index,
             or anything else we want,
             so long as they can be
             evaluated to come up with a fitness level,
@@ -540,7 +620,7 @@
 
         <section>
           <div class="main-text" style="font-size: 9em">
-            🧑🏾‍🌾
+            🧑🏽‍🌾
             🚚
           </div>
           <span class="slide-caption">Image: standard emoji</span>
@@ -600,29 +680,29 @@
           <div class="main-text" style="font-size: 0.8em">
             <table class="all-right">
               <tr>
-                <th class="text">What</th><th class="text">Unit</th><th>Qty</th><th>Pounds</th><th>Value</th><th>$/lb</th>
+                <th class="text">What</th><th class="text">Unit</th><th>Qty</th><th>Pounds</th><th>Value</th><!--<th>$/lb</th>-->
               </tr>
-              <tr style="font-size: 0.1em"><td colspan="6"><hr/></td></tr>
+              <tr style="font-size: 0.1em"><td colspan="5"><hr/></td></tr>
               <tr>
-                <td class="text">Cow</td><td class="text">cow</td><td>1</td><td>1,500</td><td>$2,000</td><td>$1.33</td>
-              </tr>
-              <tr>
-                <td class="text">Milk</td><td class="text">1-gal jug</td><td>200</td><td>1,720</td><td>$800</td><td>$0.47</td>
+                <td class="text">Cow</td><td class="text">cow</td><td>1</td><td>1,500</td><td>$2,000</td><!-- <td>$1.33</td> -->
               </tr>
               <tr>
-                <td class="text">Cheese</td><td class="text">5-lb wheel</td><td>200</td><td>1,000</td><td>$12,000</td><td>$12.00</td>
+                <td class="text">Milk</td><td class="text">1-gal jug</td><td>200</td><td>1,720</td><td>$800</td><!-- <td>$0.47</td> -->
               </tr>
               <tr>
-                <td class="text">Butter</td><td class="text">1-lb block</td><td>1,000</td><td>1,000</td><td>$3,000</td><td>$3.00</td>
+                <td class="text">Cheese</td><td class="text">5-lb wheel</td><td>200</td><td>1,000</td><td>$12,000</td><!-- <td>$12.00</td> -->
               </tr>
               <tr>
-                <td class="text">Ice Cream</td><td class="text">1-gal tubs</td><td>200</td><td>1,000</td><td>$2,000</td><td>$2.00</td>
+                <td class="text">Butter</td><td class="text">1-lb block</td><td>1,000</td><td>1,000</td><td>$3,000</td><!-- <td>$3.00</td> -->
               </tr>
               <tr>
-                <td class="text">Meat</td><td class="text">side</td><td>4</td><td>1,280</td><td>$8,000</td><td>$6.25</td>
+                <td class="text">Ice Cream</td><td class="text">1-gal tubs</td><td>200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
               </tr>
               <tr>
-                <td class="text">Leather</td><td class="text">hide</td><td>20</td><td>1,100</td><td>$6,000</td><td>$5.45</td>
+                <td class="text">Meat</td><td class="text">side</td><td>4</td><td>1,280</td><td>$8,000</td><!-- <td>$6.25</td> -->
+              </tr>
+              <tr>
+                <td class="text">Leather</td><td class="text">hide</td><td>20</td><td>1,100</td><td>$6,000</td><!-- <td>$5.45</td> -->
               </tr>
             </table>
           </div>
@@ -785,7 +865,7 @@ end</pre>
                 <td>↖️</td>
               </tr>
               <tr>
-                <td style="color: white">Assess</td>
+                <td class="current-step">Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -829,7 +909,8 @@ end</pre>
           <aside class="notes">
             We iterate through the possible items again,
             summing up the weights of the ones we want to take.&nbsp;
-            (Writing the bit_on? function is left as an exercise.)&nbsp;
+            (Writing the bit_on? function is left as an exercise,
+            to keep this code simple.)&nbsp;
             If that exceeds the truck's capacity, we return zero,
             else we use the same technique
             to sum up the <i>values</i> of those same items.
@@ -911,7 +992,7 @@ end</pre>
               <tr>
                 <td>Assess</td>
                 <td>➡️</td>
-                <td style="color: white">Done?</td>
+                <td class="current-step">Done?</td>
                 <td>➡️</td>
                 <td>Select</td>
                 <td>➡️</td>
@@ -1026,7 +1107,7 @@ end</pre>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
-                <td style="color: white">Select</td>
+                <td class="current-step">Select</td>
                 <td>➡️</td>
                 <td>Breed</td>
                 <td>➡️</td>
@@ -1129,7 +1210,7 @@ end</pre>
                 <td>➡️</td>
                 <td>Select</td>
                 <td>➡️</td>
-                <td style="color: white">Breed</td>
+                <td class="current-step">Breed</td>
                 <td>➡️</td>
                 <td>Mutate</td>
               </tr>
@@ -1145,12 +1226,6 @@ end</pre>
             then switching to the other parent.&nbsp;
             This can be extended with multiple crossover points,
             but we're just going to use one, like so:
-            <!--
-            There are also lots of ways we can combine <i>three</i> or more
-            candidates into one new one.&nbsp;
-            Another common way is to randomly decide
-            which parent contributes which part of the data,
-            -->
           </aside>
         </section>
 
@@ -1309,7 +1384,7 @@ end</pre>
                 <td>➡️</td>
                 <td>Breed</td>
                 <td>➡️</td>
-                <td style="color: white">Mutate</td>
+                <td class="current-step">Mutate</td>
               </tr>
             </table>
           </div>
@@ -1405,7 +1480,7 @@ end</pre>
                 <td>↖️</td>
               </tr>
               <tr>
-                <td style="color: white">Assess</td>
+                <td class="current-step">Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -1680,7 +1755,7 @@ Str  Int  Dex  Con  Wis  Cha
                 <td>↖️</td>
               </tr>
               <tr>
-                <td style="color: white">Assess</td>
+                <td class="current-step">Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -1815,7 +1890,7 @@ Str  Int  Dex  Con  Wis  Cha  Fit
               <tr>
                 <td>Assess</td>
                 <td>➡️</td>
-                <td style="color: white">Done?</td>
+                <td class="current-step">Done?</td>
                 <td>➡️</td>
                 <td>Select</td>
                 <td>➡️</td>
@@ -1878,7 +1953,7 @@ Str  Int  Dex  Con  Wis  Cha  Fit
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
-                <td style="color: white">Select</td>
+                <td class="current-step">Select</td>
                 <td>➡️</td>
                 <td>Breed</td>
                 <td>➡️</td>
@@ -1949,7 +2024,7 @@ Str  Int  Dex  Con  Wis  Cha  Fit
                 <td>➡️</td>
                 <td>Select</td>
                 <td>➡️</td>
-                <td style="color: white">Breed</td>
+                <td class="current-step">Breed</td>
                 <td>➡️</td>
                 <td>Mutate</td>
               </tr>
@@ -2083,17 +2158,12 @@ Str  Int  Dex  Con  Wis  Cha
                 <td>➡️</td>
                 <td>Breed</td>
                 <td>➡️</td>
-                <td style="color: white">Mutate</td>
+                <td class="current-step">Mutate</td>
               </tr>
             </table>
           </div>
           <aside class="notes">
             . . . mutate them.&nbsp;
-            <!--
-              To do this, we need to determine how to determine
-              whether a given stat gets mutated,
-              and by how much.&nbsp;
-            -->
             Again, I'm going to keep it very simple,
             and give each stat
             a 1/3 chance of staying the same,
@@ -2184,7 +2254,7 @@ Str  Int  Dex  Con  Wis  Cha
                 <td>↖️</td>
               </tr>
               <tr>
-                <td style="color: white">Assess</td>
+                <td class="current-step">Assess</td>
                 <td>➡️</td>
                 <td>Done?</td>
                 <td>➡️</td>
@@ -2252,7 +2322,6 @@ Str  Int  Dex  Con  Wis  Cha   Fit
           </div>
           <aside class="notes">
             . . . this,
-            <!-- ranging in fitness from 964 to 1029, -->
             with one suitable character
             having 18 Strength and Constitution,
             acceptable though sub-par Dexterity,
@@ -2356,7 +2425,7 @@ Str  Int  Dex  Con  Wis  Cha   Fit
 
             <br/><br/>
 
-            With just a little bit of tweaking,
+            Anyway, with just a little bit of tweaking,
             and a slight sprinkling of fancy Ruby magic dust,
             we can extract a class
             that defines the common parts,

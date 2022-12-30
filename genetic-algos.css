@@ -35,6 +35,11 @@
   text-align: right;
 }
 
+.reveal table td.current-step {
+  border: 2px solid red !important;
+  color: white;
+}
+
 /*
 section.present::before {
   content: "@davearonson";
@@ -98,7 +103,6 @@ section.present::after {
 }
 
 table.all-right td, table.all-right th {
-  border: 0;
   padding: 0 .4em;
   text-align: right;
 }
