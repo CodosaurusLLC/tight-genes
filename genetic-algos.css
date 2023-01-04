@@ -24,6 +24,7 @@
   left: 0;
   position: absolute;
   width: 100%;
+  display: none;
 }
 
 .reveal table th, .reveal table td {
@@ -79,6 +80,15 @@ section.present::after {
   top: calc(var(--main-height) / 2);
   left: 50%;
   transform: translate(-50%,-50%);  /* of the image size! */
+}
+
+.reveal img {
+  border-radius: 1em;
+  margin: 0;
+}
+
+.reveal img.code {
+  border-radius: 0;
 }
 
 .reveal img.expand-tall {
