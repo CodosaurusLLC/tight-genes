@@ -27,6 +27,10 @@
   display: none;
 }
 
+.reveal table thead {
+  border-bottom: 2px solid white;
+}
+
 .reveal table th, .reveal table td {
   border: 0;
   padding: 0 .25em;
