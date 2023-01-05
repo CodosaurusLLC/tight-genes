@@ -238,7 +238,7 @@
           <aside class="notes">
             . . . industrial processes,
             came out in the late 1980's, from General Electric.&nbsp;
-            In 1989 one called Evolver
+            In 1989 a toolkit called Evolver
             came out for <i>PCs</i>, and
             MATLAB has a few genetic algorithm tools built-in.&nbsp;
             But, the actual usages of genetic algorithms
@@ -813,8 +813,13 @@
             </table>
           </div>
           <aside class="notes">
-            Now wait a minute,
-            how did we get from random numbers to those combinations?&nbsp;
+            Why ten?&nbsp;
+            Because that's what fits on the screen
+            in a decently readable font.&nbsp;
+            If I were doing this for real,
+            with a much more complex domain,
+            I might use a hundred or a thousand.&nbsp;
+            And how did we get from random numbers to those combinations?&nbsp;
             Behind the scenes, that translation might look like this:
           </aside>
         </section>
@@ -885,7 +890,7 @@
         <section>
           <img src="images/code/def-truckload-fitness.png" class="autofix code">
           <aside class="notes">
-            We iterate through the possible items again,
+            We iterate through the possible items,
             summing up the weights of the ones we want to take.&nbsp;
             (Writing the bit_on? function is left as an exercise,
             to keep this code simple.)&nbsp;
@@ -903,10 +908,10 @@
             and the truck were smaller,
             we could also total up the volume,
             and make sure it all fits.&nbsp;
-            We could even take into account very long or flat shapes,
+            <!-- We could even take into account very long or flat shapes,
             so that for instance
             a flagpole or a large sheet of plywood might not fit,
-            even though its weight and total volume may be relatively small.
+            even though its weight and total volume may be relatively small. -->
 
             <br/><br/>
 
@@ -2567,6 +2572,7 @@
             With our current version of Evolver,
             this would return the current population of Recipes,
             when the Recipe class says that it's done.&nbsp;
+            <!--
             We could add all sorts of things to
             report progress along the way,
             pick a final winner,
@@ -2583,6 +2589,7 @@
             has passed
             or the user presses a key,
             and much more.
+            -->
 
             <br/><br/>
 
