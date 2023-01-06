@@ -295,14 +295,7 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="text-align: center">
-              <tr><td colspan="9">Init</td></tr>
-              <tr><td colspan="9"></td></tr>
-              <tr><td colspan="9"></td></tr>
-              <tr><td colspan="9"></td></tr>
-            </table>
-          </div>
+          <span class="center cycle-stage cycle-stage-init">Initialize</span>
           <aside class="notes">
             First, we create an initial population of candidates.&nbsp;
             In Genetic Algorithm lingo, these are called "chromosomes",
@@ -322,14 +315,9 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="text-align: center">
-              <tr><td colspan="9">Init</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr><td colspan="9">Assess</td></tr>
-            </table>
-          </div>
+          <span class="center cycle-stage cycle-stage-init">Initialize</span>
+          <span class="center cycle-arrow-init">⬇️</span>
+          <span class="center cycle-stage cycle-stage-assess">Assess</span>
           <aside class="notes">
             . . . assess the "fitness" of each candidate,
             according to whatever criteria we want to apply.&nbsp;
@@ -341,18 +329,11 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="text-align: center">
-              <tr><td colspan="9">Init</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td colspan="7">Done?</td>
-              </tr>
-            </table>
-          </div>
+          <span class="center cycle-stage cycle-stage-init">Initialize</span>
+          <span class="center cycle-arrow-init">⬇️</span>
+          <span class="center cycle-stage cycle-stage-assess">Assess</span>
+          <span class="cycle-arrow-assess">⬅️</span>
+          <span class="cycle-stage cycle-stage-done">Done?</span>
           <aside class="notes">
             . . . done yet?&nbsp;
             This is <i>usually</i> based on the fitness,
@@ -364,20 +345,13 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="text-align: center">
-              <tr><td colspan="9">Init</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td colspan="5">Select</td>
-              </tr>
-            </table>
-          </div>
+          <span class="center cycle-stage cycle-stage-init">Initialize</span>
+          <span class="center cycle-arrow-init">⬇️</span>
+          <span class="center cycle-stage cycle-stage-assess">Assess</span>
+          <span class="cycle-arrow-assess">⬅️</span>
+          <span class="cycle-stage cycle-stage-done">Done?</span>
+          <span class="cycle-arrow-done">⬇️</span>
+          <span class="cycle-stage cycle-stage-select">Select</span>
           <aside class="notes">
             . . . select some candidates to breed the next generation.&nbsp;
             This is usually <i>also</i> based on the fitness,
@@ -398,24 +372,15 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="text-align: center">
-              <tr><td colspan="9">Init</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td></td>
-                <td></td>
-              </tr>
-            </table>
-          </div>
+          <span class="center cycle-stage cycle-stage-init">Initialize</span>
+          <span class="center cycle-arrow-init">⬇️</span>
+          <span class="center cycle-stage cycle-stage-assess">Assess</span>
+          <span class="cycle-arrow-assess">⬅️</span>
+          <span class="cycle-stage cycle-stage-done">Done?</span>
+          <span class="cycle-arrow-done">⬇️</span>
+          <span class="cycle-stage cycle-stage-select">Select</span>
+          <span class="center cycle-arrow-select">➡️</span>
+          <span class="cycle-stage cycle-stage-breed">Breed</span>
           <aside class="notes">
             . . . to actually <i>breed</i>
             a new population.&nbsp;
@@ -432,24 +397,17 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="text-align: center">
-              <tr><td colspan="9">Init</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr><td colspan="9">⬇️</td></tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
-          </div>
+          <span class="center cycle-stage cycle-stage-init">Initialize</span>
+          <span class="center cycle-arrow-init">⬇️</span>
+          <span class="center cycle-stage cycle-stage-assess">Assess</span>
+          <span class="cycle-arrow-assess">⬅️</span>
+          <span class="cycle-stage cycle-stage-done">Done?</span>
+          <span class="cycle-arrow-done">⬇️</span>
+          <span class="cycle-stage cycle-stage-select">Select</span>
+          <span class="center cycle-arrow-select">➡️</span>
+          <span class="cycle-stage cycle-stage-breed">Breed</span>
+          <span class="cycle-arrow-breed">⬆️</span>
+          <span class="cycle-stage cycle-stage-mutate">Mutate</span>
           <aside class="notes">
             . . . <i>mutate</i> those new candidates,
             so that we get some more diversity in the gene pool.
@@ -461,40 +419,18 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>⬇️&nbsp;&nbsp;⬇️</td>
-                <td colspan="7"></td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
-          </div>
+          <span class="center cycle-stage cycle-stage-init">Initialize</span>
+          <span class="center cycle-arrow-init">⬇️</span>
+          <span class="center cycle-stage cycle-stage-assess">Assess</span>
+          <span class="cycle-arrow-assess">⬅️</span>
+          <span class="cycle-stage cycle-stage-done">Done?</span>
+          <span class="cycle-arrow-done">⬇️</span>
+          <span class="cycle-stage cycle-stage-select">Select</span>
+          <span class="center cycle-arrow-select">➡️</span>
+          <span class="cycle-stage cycle-stage-breed">Breed</span>
+          <span class="cycle-arrow-breed">⬆️</span>
+          <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+          <span class="cycle-arrow-mutate">⬅️</span>
           <aside class="notes">
             . . . go back to step 2, assessing their fitness.&nbsp;
             This could be represented at a high level
@@ -510,45 +446,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td class="current-step">Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>⬇️&nbsp;&nbsp;⬇️</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="current-step center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             First we create an initial population of candidates.&nbsp;
@@ -839,38 +749,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td class="current-step">Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="current-step center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . to
@@ -956,38 +847,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td class="current-step">Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="current-step cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . we're done.&nbsp;
@@ -1055,38 +927,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td class="current-step">Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="current-step cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . select some candidates to use in
@@ -1152,38 +1005,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td class="current-step">Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="current-step cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . breed them.&nbsp;
@@ -1308,38 +1142,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td class="current-step">Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="current-step cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . mutate them.&nbsp;
@@ -1406,38 +1221,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td class="current-step">Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="current-step center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . Step 2, assessing the fitness of
@@ -1696,39 +1492,21 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td class="current-step">Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="current-step center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
+
           <aside class="notes">
             . . . to assess how "fit" each of these characters is.&nbsp;
             We're trying to evolve a good set of Fighter stats,
@@ -1810,38 +1588,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td class="current-step">Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="current-step cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . done?&nbsp;
@@ -1864,38 +1623,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td class="current-step">Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="current-step cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . select some candidates to use in
@@ -1935,38 +1675,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td class="current-step">Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="current-step cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . breed them,
@@ -2063,38 +1784,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td>Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td class="current-step">Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="current-step cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . mutate them.&nbsp;
@@ -2157,38 +1859,19 @@
         </section>
 
         <section>
-          <div style="position: absolute; top: 25%">
-            <table style="color: gray; text-align: center">
-              <tr>
-                <td>Init</td>
-              </tr>
-              <tr>
-                <td>⬇️</td>
-                <td>↙️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td><center>⬅️</center></td>
-                <td>⬅️</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="8">⬇️&nbsp;&nbsp;⬇️</td>
-                <td>↖️</td>
-              </tr>
-              <tr>
-                <td class="current-step">Assess</td>
-                <td>➡️</td>
-                <td>Done?</td>
-                <td>➡️</td>
-                <td>Select</td>
-                <td>➡️</td>
-                <td>Breed</td>
-                <td>➡️</td>
-                <td>Mutate</td>
-              </tr>
-            </table>
+          <div class="cycling-steps">
+            <span class="center cycle-stage cycle-stage-init">Initialize</span>
+            <span class="center cycle-arrow-init">⬇️</span>
+            <span class="current-step center cycle-stage cycle-stage-assess">Assess</span>
+            <span class="cycle-arrow-assess">⬅️</span>
+            <span class="cycle-stage cycle-stage-done">Done?</span>
+            <span class="cycle-arrow-done">⬇️</span>
+            <span class="cycle-stage cycle-stage-select">Select</span>
+            <span class="center cycle-arrow-select">➡️</span>
+            <span class="cycle-stage cycle-stage-breed">Breed</span>
+            <span class="cycle-arrow-breed">⬆️</span>
+            <span class="cycle-stage cycle-stage-mutate">Mutate</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
             . . . Step 2, assessing the fitness of

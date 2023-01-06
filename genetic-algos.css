@@ -18,6 +18,88 @@
   margin-top: 0.05em;
 }
 
+.reveal .center {
+  left:      50%;
+  position:  absolute;
+  transform: translateX(-50%);
+}
+
+.reveal span.cycle-arrow-init {
+  position: absolute;
+  top:      17%;
+}
+
+.reveal span.cycle-arrow-assess {
+  position: absolute;
+  top:      41.7%;
+  left:     38.3%;
+  rotate:   -36deg;
+}
+
+.reveal span.cycle-arrow-done {
+  position: absolute;
+  top:      70%;
+  left:     33.5%;
+  rotate:   -18deg;
+}
+
+.reveal span.cycle-arrow-select {
+  position: absolute;
+  top:      89%;
+}
+
+.reveal span.cycle-arrow-breed {
+  position: absolute;
+  top:      70%;
+  right:    33.5%;
+  rotate:   18deg;
+}
+
+.reveal span.cycle-arrow-mutate {
+  position: absolute;
+  top:      41.7%;
+  right:    38.3%;
+  rotate:   36deg;
+}
+
+.reveal span.cycle-stage {
+  background:    black;
+  border:        2px solid white;
+  border-radius: 0.25em;
+  font-size:     0.8em;
+  padding:       0.25em;
+  position:      absolute;
+}
+
+.reveal span.cycle-stage-init {
+  top: 2%;
+}
+
+.reveal span.cycle-stage-assess {
+  top:      30%;
+}
+
+.reveal span.cycle-stage-done {
+  left:     27%;
+  top:      52%;
+}
+
+.reveal span.cycle-stage-select {
+  left:     33%;
+  top:      87%;
+}
+
+.reveal span.cycle-stage-breed {
+  right:    33%;
+  top:      87%;
+}
+
+.reveal span.cycle-stage-mutate {
+  right:    26%;
+  top:      52%;
+}
+
+
 .reveal span.slide-caption {
   bottom: 0;
   font-size: 0.05em;  /* makes it as small as browser settings will allow */
@@ -40,9 +122,14 @@
   text-align: right;
 }
 
-.reveal table td.current-step {
-  border: 2px solid red !important;
-  color: white;
+.reveal div.cycling-steps span.cycle-stage {
+  border: 2px solid gray;
+  color: gray;
+}
+
+.reveal span.current-step {
+  border: 2px solid white !important;
+  color: white !important;
 }
 
 /*
