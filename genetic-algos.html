@@ -29,7 +29,7 @@
           </div>
           <aside class="notes">
             NOTE TO SELF: Timeslot is 60 mins, so aim for 45-50 of content.<br/>
-            CURRENT TIME: ~52-53, so maybe skip some less useful bits.
+            CURRENT TIME: ~50
 
             <br/><br/>
 
@@ -75,9 +75,47 @@
           </div>
           <span class="slide-caption">Image: https://pixabay.com/vectors/genetic-testing-gene-panel-genetics-2316642</span>
           <aside class="notes">
-            . . . Genetic Algorithms --
-            mainly what they are, how they work, and
-            when and why you might want to use one.&nbsp;
+            . . . Genetic Algorithms,
+            mainly . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="font-size: 1.2em; text-align: left">
+            <h2>Agenda</h2><br/>
+            <ul>
+              <li>what Genetic Algorithms are</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            . . . what they are, . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="font-size: 1.2em; text-align: left">
+            <h2>Agenda</h2><br/>
+            <ul>
+              <li>what Genetic Algorithms are</li><br/>
+              <li>why use a Genetic Algorithm</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            . . . when and why you might want to use one, and . . .
+          </aside>
+        </section>
+
+        <section>
+          <div style="font-size: 1.2em; text-align: left">
+            <h2>Agenda</h2><br/>
+            <ul>
+              <li>what Genetic Algorithms are</li><br/>
+              <li>why use a Genetic Algorithm</li><br/>
+              <li>how Genetic Algorithms work</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            . . . how they work, with some demos.
 
             <!--
 
@@ -180,8 +218,8 @@
             . . . optimization heuristics,
             such as genetic algorithms,
             are shortcuts
-            to find a good solution to a problem,
-            ideally the best,
+            to find a good enough solution to a problem,
+            ideally the best solution,
             but we'll usually have to settle for
             something "good enough",
             due to operational constraints such as time.
@@ -433,7 +471,7 @@
           <span class="cycle-arrow-mutate">⬅️</span>
           <aside class="notes">
             . . . go back to step 2, assessing their fitness.&nbsp;
-            This could be represented at a high level
+            This sequence could be represented at a high level
             with some rather simple code, like so:
           </aside>
         </section>
@@ -441,7 +479,8 @@
         <section>
           <img src="images/code/overview.png" class="autofix code">
           <aside class="notes">
-            Now let's take a closer look at what goes on in each step.
+            Now let's take a closer look at what goes on in each step,
+            by working through an example.
           </aside>
         </section>
 
@@ -762,7 +801,7 @@
             <span class="cycle-arrow-breed">⬆️</span>
             <span class="cycle-stage cycle-stage-mutate">Mutate</span>
             <span class="cycle-arrow-mutate">⬅️</span>
-            <span class="center cycle-ptr">↑</span>
+            <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
             . . . to
@@ -1776,7 +1815,6 @@
             Lots of family resemblance there, again!&nbsp;
             For each stat, there are only two possible values,
             or in Genetic Algorithm terms, "alleles",
-            for each stat,
             for a total of 64 possible combinations.&nbsp;
             There would be only <i>one</i> possible value,
             and therefore half as many possible combinations,
