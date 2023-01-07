@@ -24,6 +24,40 @@
   transform: translateX(-50%);
 }
 
+.reveal span.cycle-ptr {
+  color:    white;
+  position: absolute;
+  top:      50%;
+  left:     50%;
+  font-size: 3em;
+}
+
+.reveal span.cycle-ptr-assess {}
+
+.reveal span.cycle-ptr-done {
+  top:      45%;
+  left:     45%;
+  rotate:   -72deg;
+}
+
+.reveal span.cycle-ptr-select {
+  top:      50%;
+  left:     42%;
+  rotate:   -144deg;
+}
+
+.reveal span.cycle-ptr-breed {
+  top:      60%;
+  left:     44%;
+  rotate:   144deg;
+}
+
+.reveal span.cycle-ptr-mutate {
+  top:      55%;
+  left:     50%;
+  rotate:   72deg;
+}
+
 .reveal span.cycle-arrow-init {
   position: absolute;
   top:      17%;
@@ -102,11 +136,11 @@
 
 .reveal span.slide-caption {
   bottom: 0;
-  font-size: 0.05em;  /* makes it as small as browser settings will allow */
+  font-size: 0.2em;
   left: 0;
   position: absolute;
   width: 100%;
-  display: none;
+  /* display: none; */
 }
 
 .reveal table thead {
