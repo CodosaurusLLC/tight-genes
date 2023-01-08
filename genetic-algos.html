@@ -30,7 +30,7 @@
           </div>
           <aside class="notes">
             NOTE TO SELF: Timeslot is 60 mins, so aim for 45-50 of content.<br/>
-            CURRENT TIME: ~50
+            CURRENT TIME: ~40
 
             <br/><br/>
 
@@ -117,7 +117,7 @@
           </div>
           <aside class="notes">
             . . . how they work, with some demos,
-            which will actually be the majority of the talk.
+            which will actually be the majority of the time.
 
             <!--
 
@@ -192,7 +192,7 @@
           </div>
           <span class="slide-caption">Image: https://www.publicdomainpictures.net/en/view-image.php?image=205157</span>
           <aside class="notes">
-            . . . shortcut to find a solution to a problem.&nbsp;
+            . . . shortcut to finding a solution to a problem.&nbsp;
             Heuristics are used because they are
             faster, simpler, cheaper,
             or in some such way less resource-intensive,
@@ -202,7 +202,7 @@
             However, heuristics are not guaranteed to find
             the best solution,
             only <i>a</i> solution,
-            though <i>sometimes</i> there's an element of
+            though <i>usually</i> there's an element of
             it being "good enough",
             for whatever value of "good enough"
             we care to apply.&nbsp;
@@ -226,7 +226,7 @@
             ideally the best solution,
             but we'll usually have to settle for
             something "good enough",
-            due to operational constraints such as time.
+            due to operational constraints such as time or money.
 
             <br/><br/>
 
@@ -265,7 +265,8 @@
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
             However, simulated evolution didn't catch on very well
-            as a general approach.&nbsp;
+            as a general approach,
+            and it didn't prove useful for a learning machine either.
 
             <br/><br/>
 
@@ -279,7 +280,8 @@
           <span class="slide-caption">Image: https://pxhere.com/en/photo/267871</span>
           <aside class="notes">
             . . . industrial processes,
-            came out in the late 1980's, from General Electric.&nbsp;
+            didn't come out until the late 1980's,
+            from General Electric.&nbsp;
             In 1989 a toolkit called Evolver
             came out for <i>PCs</i>, and
             MATLAB has a few genetic algorithm tools built-in.&nbsp;
@@ -313,8 +315,8 @@
           </div>
           <span class="slide-caption">Image: https://www.jpl.nasa.gov/nmp/st5/IMAGES/st5-antenna.jpg</span>
           <aside class="notes">
-            . . . antenna for the ST5 series of satellites<!--,
-            launched in 2006 -->.&nbsp;
+            . . . antenna for the ST5 series of satellites,
+            launched in 2006.&nbsp;
             (No, that's not just a paperclip
             that got all bent up by someone
             sitting bored and fidgeting,
@@ -326,8 +328,8 @@
             That is one of the great advantages of this approach.&nbsp;
             These algorithms are much less hampered by
             expectations of similarity to past solutions.&nbsp;
-            <!-- However, today we'll only be looking at
-              much simpler problem domains. -->
+            However, today we'll only be looking at
+            much simpler problem domains.
 
             <br/><br/>
 
@@ -399,10 +401,10 @@
             . . . select some candidates to breed the next generation.&nbsp;
             This is usually <i>also</i> based on the fitness,
             to simulate <i>survival</i> of the fittest.&nbsp;
-            <!-- Remember, evolution is not about survival to a ripe old age,
+            Remember, evolution is not about survival to a ripe old age,
             it's only concerned with
             survival to the point of passing along one's genes.&nbsp;
-            Survival of an elder
+            <!-- Survival of an elder
             may contribute to survival of the young,
             but that's a much more complicated discussion
             of indirect evolutionary pressures. -->
@@ -488,6 +490,7 @@
         <section>
           <img src="images/code/overview.png" class="autofix code">
           <aside class="notes">
+            (I'll give you a moment to take pictures.)&nbsp;
             Now let's take a closer look at what goes on in each step,
             by working through an example.
           </aside>
@@ -518,7 +521,7 @@
             <!-- objects of the same class,
             maps with the same keys,
             arrays where the elements have meanings based on the index,
-            or --> anything else we want,
+            or --> anything <!-- else --> we want,
             so long as we can
             evaluate their fitness,
             and combine <!-- two (or maybe more!) --> old ones
@@ -562,12 +565,9 @@
           <br/><br/>Knapsack / Rucksack / Backpack / Whatever!
           <aside class="notes">
             . . . knapsack problems,
-            <!-- because they are computationally equivalent to
-              The Knapsack Problem, -->
             which is a category of
             constrained resource allocation problems.&nbsp;
-            <!-- So what is <i>that</i>?&nbsp;
-            You have a knapsack --
+            The canonical example is that you have a knapsack --
             or rucksack, backpack, or whatever you call it --
             and many things you want to carry in it,
             but they won't all fit,
@@ -578,12 +578,19 @@
             that will fit the constraints,
             and has the maximum value.&nbsp;
             That could be the literal cash value,
-            like if you're a jewel thief,
+            as we'll see in a moment,
             or something more metaphorical,
-            like if you're literally putting items in a knapsack,
-            to go on a camping trip,
-            with the items of most usefulness
-            for your survival and comfort.&nbsp;
+            like . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/survival-gear.jpg">
+          <span class="slide-caption">Image: https://www.pexels.com/photo/first-aid-and-surival-kits-5125690/</span>
+          <aside class="notes">
+            . . . usefulness for survival and comfort,
+            when <i>literally</i> putting items in a knapsack,
+            to go on a camping trip.&nbsp;
             If we have only, say, three items,
             that's only eight combinations,
             so we can probably brute-force
@@ -595,7 +602,7 @@
             and for exactly the same reason.&nbsp;
             So if we have ten items to consider,
             that's 1024 possible combinations,
-            and not all of them might even fit.&nbsp; -->
+            and not all of them might even fit.&nbsp;
             To look at a concrete example, suppose we know . . .
           </aside>
         </section>
@@ -650,7 +657,8 @@
             nor dairy versus meat cows,
             and <!-- it's very unrealistic but
             we'll assume that -->
-            he can only take a set amount of each item.&nbsp;
+            he can only take a set amount of each item,
+            and always has that amount on hand.&nbsp;
             His truck has <i>room</i> to take all the items,
             but it can only carry so much <i>weight</i>,
             so that's our constraint.&nbsp;
@@ -692,11 +700,13 @@
             </table>
           </div>
           <aside class="notes">
-            That all totals 8,600 pounds.&nbsp;
+            You don't need to remember all that,
+            just realize that
+            it totals 8,600 pounds.&nbsp;
             But, his truck's suspension
             can only handle
             two tons, or 4,000 pounds.&nbsp;
-            We could run through all the possible combinations,
+            We <i>could</i> run through all the possible combinations,
             <!-- see which ones total light enough,
               and see which one of those totals the highest, -->
             or use another kind of heuristic,
@@ -826,8 +836,7 @@
             <i>for some particular purpose</i>.&nbsp;
             In this case, we already know we want the total value,
             BUT, any load that's too heavy for the truck, is worthless.&nbsp;
-            In Ruby, <!-- or any language with a ternary operator, -->
-            that would look like this:
+            In Ruby, that would look like this:
           </aside>
         </section>
 
@@ -852,10 +861,11 @@
             and the truck were smaller,
             we could also total up the volume,
             and make sure it all fits.&nbsp;
-            <!-- We could even take into account very long or flat shapes,
+            We could even take into account very long or flat shapes,
             so that for instance
             a flagpole or a large sheet of plywood might not fit,
-            even though its weight and total volume may be relatively small. -->
+            even though its weight and total volume
+            may be relatively small.
 
             <br/><br/>
 
@@ -2567,14 +2577,13 @@
             . . . simpler than you probably thought --
             all you have to do is
             create an initial population,
-            <!-- assess their fitness
-             (maybe not even do that yet if the next step doesn't need it),
-            see if you're done,
-            pick breeders,
-            breed them to make a new population,
-            mutate those new candidates,
-            and go back to assessing -->
-            and cycle through five simple steps until done.&nbsp;
+            and cycle through five simple steps,
+            of assessing their fitness,
+            checking if you're done,
+            picking breeders,
+            breeding them,
+            and mutating the new candidates,
+            until you're done.&nbsp;
             They . . .
           </aside>
         </section>
@@ -2590,7 +2599,7 @@
             </ul>
           </div>
           <aside class="notes">
-            . . . can use very simple functions, but . . .
+            . . . can use very simple functions, but it . . .
           </aside>
         </section>
 
@@ -2606,8 +2615,8 @@
             </ul>
           </div>
           <aside class="notes">
-            . . . it can be tricky to
-            craft the functions,
+            . . . can be tricky to
+            figure out exactly what the functions should do,
             especially for fitness and checking if you're done,
             so as to
             make the solutions converge quickly enough,
