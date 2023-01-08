@@ -22,10 +22,11 @@
             <h2>Intro to Genetic Algorithms</h2>
             <h3>by Dave Aronson</h3>
             <h4>
+              T.Rex-2023@Codosaur.us<br/>
               twitter.com/DaveAronson<br/>
-              T.Rex-2023@Codosaur.us
+              linkedin.com/in/DaveAronson<br/>
+              github.com/CodosaurusLLC/tight-genes
             </h4>
-            <h5>github.com/CodosaurusLLC/tight-genes</h5>
           </div>
           <aside class="notes">
             NOTE TO SELF: Timeslot is 60 mins, so aim for 45-50 of content.<br/>
@@ -115,11 +116,14 @@
             </ul>
           </div>
           <aside class="notes">
-            . . . how they work, with some demos.
+            . . . how they work, with some demos,
+            which will actually be the majority of the talk.
 
             <!--
 
-            But first . . .
+              <br/><br/>
+
+              But first . . .
           </aside>
         </section>
 
@@ -343,8 +347,9 @@
             I think it leads to confusion,
             so I'm just going to say "candidates".&nbsp;
             I've also heard them called individuals, solutions,
-            or <i>phenotypes</i><!-- ,
-            to use a much more appropriate actual genetic term -->.&nbsp;
+            or <i>phenotypes</i>,
+            to use a much more appropriate actual genetic term,
+            but most people don't know that word.
 
             <br/><br/>
 
@@ -471,6 +476,10 @@
           <span class="cycle-arrow-mutate">⬅️</span>
           <aside class="notes">
             . . . go back to step 2, assessing their fitness.&nbsp;
+            (You might want to take a picture of this slide
+            and the next one,
+            because they're the big takeaways about
+            how genetic algorithms work at a high level.)&nbsp;
             This sequence could be represented at a high level
             with some rather simple code, like so:
           </aside>
@@ -553,9 +562,11 @@
           <br/><br/>Knapsack / Rucksack / Backpack / Whatever!
           <aside class="notes">
             . . . knapsack problems,
-            because they are computationally equivalent to
-            The Knapsack Problem.&nbsp;
-            So what is <i>that</i>?&nbsp;
+            <!-- because they are computationally equivalent to
+              The Knapsack Problem, -->
+            which is a category of
+            constrained resource allocation problems.&nbsp;
+            <!-- So what is <i>that</i>?&nbsp;
             You have a knapsack --
             or rucksack, backpack, or whatever you call it --
             and many things you want to carry in it,
@@ -584,7 +595,7 @@
             and for exactly the same reason.&nbsp;
             So if we have ten items to consider,
             that's 1024 possible combinations,
-            and not all of them might even fit.&nbsp;
+            and not all of them might even fit.&nbsp; -->
             To look at a concrete example, suppose we know . . .
           </aside>
         </section>
@@ -637,8 +648,8 @@
             we won't differentiate between
             between price and profit,
             nor dairy versus meat cows,
-            and it's very unrealistic but
-            we'll assume that
+            and <!-- it's very unrealistic but
+            we'll assume that -->
             he can only take a set amount of each item.&nbsp;
             His truck has <i>room</i> to take all the items,
             but it can only carry so much <i>weight</i>,
@@ -652,30 +663,30 @@
             <table class="all-right">
               <thead>
                 <tr>
-                  <th class="text">What</th><th class="text">Unit</th><th>Qty</th><th>Pounds</th><th>Value</th><!--<th>$/lb</th>-->
+                  <th class="text">What</th><th style="color:gray" class="text">Unit</th><th style="color:gray">Qty</th><th>Pounds</th><th>Value</th><!--<th>$/lb</th>-->
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="text">Cow</td><td class="text">cow</td><td>1</td><td>1,500</td><td>$2,000</td><!-- <td>$1.33</td> -->
+                  <td class="text">Cow</td><td style="color:gray" class="text">cow</td><td style="color:gray">1</td><td>1,500</td><td>$2,000</td><!-- <td>$1.33</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Milk</td><td class="text">1-gal jug</td><td>200</td><td>1,720</td><td>$800</td><!-- <td>$0.47</td> -->
+                  <td class="text">Milk</td><td style="color:gray" class="text">1-gal jug</td><td style="color:gray">200</td><td>1,720</td><td>$800</td><!-- <td>$0.47</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Cheese</td><td class="text">5-lb wheel</td><td>200</td><td>1,000</td><td>$12,000</td><!-- <td>$12.00</td> -->
+                  <td class="text">Cheese</td><td style="color:gray" class="text">5-lb wheel</td><td style="color:gray">200</td><td>1,000</td><td>$12,000</td><!-- <td>$12.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Butter</td><td class="text">1-lb block</td><td>1,000</td><td>1,000</td><td>$3,000</td><!-- <td>$3.00</td> -->
+                  <td class="text">Butter</td><td style="color:gray" class="text">1-lb block</td><td style="color:gray">1,000</td><td>1,000</td><td>$3,000</td><!-- <td>$3.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Ice Cream</td><td class="text">1-gal tubs</td><td>200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
+                  <td class="text">Ice Cream</td><td style="color:gray" class="text">1-gal tubs</td><td style="color:gray">200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Meat</td><td class="text">side</td><td>4</td><td>1,280</td><td>$8,000</td><!-- <td>$6.25</td> -->
+                  <td class="text">Meat</td><td style="color:gray" class="text">side</td><td style="color:gray">4</td><td>1,280</td><td>$8,000</td><!-- <td>$6.25</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Leather</td><td class="text">hide</td><td>20</td><td>1,100</td><td>$6,000</td><!-- <td>$5.45</td> -->
+                  <td class="text">Leather</td><td style="color:gray" class="text">hide</td><td style="color:gray">20</td><td>1,100</td><td>$6,000</td><!-- <td>$5.45</td> -->
                 </tr>
               </tbody>
             </table>
@@ -688,10 +699,12 @@
             We could run through all the possible combinations,
             <!-- see which ones total light enough,
               and see which one of those totals the highest, -->
-            or use a different very common heuristic
+            or use another kind of heuristic,
+            <!-- a different very common heuristic
             of adding the most expensive thing that we can,
-            <!-- over and over --> until we can't,
-            but let's see what happens if we use a genetic algorithm.&nbsp;
+                 over and over until we can't, -->
+            but let's see what happens if we use a genetic algorithm,
+            and walk through this example to completion.&nbsp;
             First we need a way to represent each candidate.&nbsp;
             In code, we could represent them as a class
             in a language such as Ruby,
@@ -777,7 +790,7 @@
           <img src="images/code/class-item.png" class="autofix code">
           <aside class="notes">
             We have a list of items we can take,
-            as instances of a class describing them.&nbsp;
+            as instances of an inner class describing them.&nbsp;
             To check what's in our cargo manifest,
             represented by our Truckload's contents value,
             we can iterate through the list of possible items,
@@ -813,7 +826,7 @@
             <i>for some particular purpose</i>.&nbsp;
             In this case, we already know we want the total value,
             BUT, any load that's too heavy for the truck, is worthless.&nbsp;
-            In Ruby, or any language with a ternary operator,
+            In Ruby, <!-- or any language with a ternary operator, -->
             that would look like this:
           </aside>
         </section>
@@ -945,16 +958,19 @@
             meaning there is at least one candidate exceeding our benchmark,
             we sort them by fitness,
             take the fittest one,
-            and make that our new benchmark.
+            make that our new benchmark,
+            and reset the generation counter.
 
             <br/><br/>
 
             Again, we can get as complex as we want,
-            with other stopping criteria,
+            not only in checking the fitness,
             like also looking at the
             average or minimum fitness,
             or achieving some specific level of maximum fitness,
-            or some number of generations in total,
+            but also
+            with other stopping criteria,
+            like some number of generations in total,
             or some amount of time (whether clock time or CPU or whatever),
             or when the user presses a STOP button,
             or many other ways,
@@ -1177,6 +1193,7 @@
             That's because both of our two breeders were like that.&nbsp;
             If we were to just continue
             breeding the fittest of this population,
+            and the next, and so on,
             we wouldn't <i>ever</i> see any loads
             including a cow, butter, or leather,
             or not including cheese,
@@ -1396,7 +1413,7 @@
           </div>
           <aside class="notes">
             . . . a small improvement over our prior best!&nbsp;
-            So, we set that as our new best value,
+            So, we set that as our new best solution,
             and reset the counter of generations since we saw it.&nbsp;
             If we let this run to completion,
             we might wind up with something like this:
@@ -1444,8 +1461,9 @@
             we could just run it again.&nbsp;
             And again, as many times as we like,
             since it's so much faster than precise calculation.&nbsp;
-            Okay, maybe not when we've only got seven items,
-            and such simple functions,
+            Okay, maybe it's not so much better
+            when we've only got seven items,
+            and such simple criteria,
             but if we had to choose among a hundred items,
             or choose a hundred truckloads a day,
             this might be more worthwhile.
@@ -1461,6 +1479,7 @@
           <span class="slide-caption">Image: https://image.tmdb.org/t/p/w500/ajbdFQLvJTlNu4LnVWGnNMb4mZ8.jpg (used for edu fair use)</span>
           <aside class="notes">
             . . . something completely different.&nbsp;
+            (No, not a man with nine legs!)&nbsp;
             Suppose we want to "evolve" a good set of stats for a
             Dungeons and Dragons fighter character,
             so our candidates are sets of stats,
@@ -1504,9 +1523,8 @@
         <section>
           <img src="images/code/class-character.png" class="autofix code">
           <aside class="notes">
-            (Defining the roll function is left
-            as an exercise for the watcher.)&nbsp;
-            So if we create a population of ten Characters,
+            (Defining the roll function is left as an exercise.)&nbsp;
+            So if we create an initial population of ten Characters,
             we might wind up with a list like this:
           </aside>
         </section>
@@ -1532,6 +1550,7 @@
             </table>
           </div>
           <aside class="notes">
+            So that's the Initialize step.&nbsp;
             The next step is . . .
           </aside>
         </section>
@@ -1555,7 +1574,7 @@
 
           <aside class="notes">
             . . . to assess how "fit" each of these characters is.&nbsp;
-            We're trying to evolve a good set of Fighter stats,
+            We're trying to evolve a good set of <i>Fighter</i> stats,
             so it should be based mainly on strength and constitution.&nbsp;
             Dexterity is also helpful.&nbsp;
             Intelligence, wisdom, and charisma, not so much,
@@ -1629,6 +1648,7 @@
             </table>
           </div>
           <aside class="notes">
+            So that's the Assess step taken care of.&nbsp;
             But are we . . .
           </aside>
         </section>
@@ -1646,7 +1666,7 @@
             <span class="cycle-stage cycle-stage-breed">Breed</span>
             <span class="cycle-arrow-breed">⬆️</span>
             <span class="cycle-stage cycle-stage-mutate">Mutate</span>
-            <span class="cycle-arrow-mutate">d⬅️</span>
+            <span class="cycle-arrow-mutate">⬅️</span>
             <span class="center cycle-ptr cycle-ptr-done">↑</span>
           </div>
           <aside class="notes">
@@ -1655,9 +1675,11 @@
             Let's say we're done if
             any candidates get 90% of the way to the maximum score
             of our fitness function.&nbsp;
-            I'll spare you the math,
-            but the maximum is 1,134, so 90% would round to 1,021.&nbsp;
-            In code, that looks like this:
+            I'll spare you the math, but
+            <!-- the maximum is 1,134, so 90% would round to -->
+            that would be
+            1,021.&nbsp;
+            In code, checking that would look like this:
           </aside>
         </section>
 
@@ -1706,18 +1728,22 @@
           </div>
           <aside class="notes">
             these two.&nbsp;
-            Of course the abstraction gets a bit leaky now,
+            Of course the abstraction gets a bit more
+            <i>obviously</i> leaky now,
             because we're ignoring sexes;
-            we have no guarantee that they'll be a male and a female,
+            we have no guarantee that
+            these characters will be a male and a female,
             as we're not even making that part of the data.&nbsp;
             We had the same leak last time, with the Truckloads,
-            but then it was pretty obvious so I let it slide.&nbsp;
+            but then it was not so relevant, so I let it slide.&nbsp;
             Now that they're living beings
             (whether humans or elves or whatever),
             though, we could add such complications,
             and even add what race they are
             and bring in considerations of
             which races <i>can</i> breed together.&nbsp;
+            That could complicate our breeder selection enormously,
+            maybe even make it impossible to find a viable pair.&nbsp;
             Anyway, next we actually . . .
           </aside>
         </section>
@@ -1739,7 +1765,7 @@
             <span class="center cycle-ptr cycle-ptr-breed">↑</span>
           </div>
           <aside class="notes">
-            . . . breed them,
+            . . . breed our chosen pair,
             this time using another common strategy,
             of essentially flipping a coin for each gene,
             like so:
@@ -1825,9 +1851,13 @@
             (We'll figure their actual fitness scores later.)
             If we were to just continue
             breeding the fittest of this population,
+            and the next, and so on,
             we wouldn't see any improvement
-            in the possible values of each stat,
-            but again, we fix that in the next step, which is to . . .
+            in the possible values of each stat.&nbsp;
+            For instance, the Wisdom would never be
+            anything other than 6 or 11,
+            never mind anything <i>higher</i> than 11.&nbsp;
+            But again, we fix that in the next step, which is to . . .
           </aside>
         </section>
 
@@ -2001,7 +2031,8 @@
 
             <br/><br/>
 
-            Now, let's suppose we don't need any more Fighters in the party,
+            So now we've finished evolving a set of Fighter stats.&nbsp;
+            Let's suppose we don't need any more Fighters in the party . . .
             but now we need a Wizard.&nbsp;
             All we need to do is tweak our fitness function, like so:
           </aside>
