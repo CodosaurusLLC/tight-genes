@@ -34,7 +34,7 @@
 
             <br/><br/>
 
-            Hi everybody, I'm Dave Aronson, the T. Rex of Codosaurus, and . . .
+            Howdy, Texas, I'm Dave Aronson, the T. Rex of Codosaurus, and . . .
           </aside>
         </section>
 
@@ -148,7 +148,7 @@
 
             <br/><br/>
 
-            So . . . what <i>are</i> Genetic Algorithms, anyway?&nbsp;
+            So . . . what <i>are</i> Genetic Algorithms?&nbsp;
             They are . . .
           </aside>
         </section>
@@ -176,10 +176,14 @@
           <span class="slide-caption">Image: https://picryl.com/media/army-reserve-captain-wanda-r-jewell-number-3-platform-from-redstone-arsenal-7f7d64</span>
           <aside class="notes">
             . . . finding a better solution
-            for something, ideally the best,
+            for something.&nbsp;
+            Ideally you get the best solution,
             but you might not have time
             to do all the calculations and such
             to get all the way there.&nbsp;
+            So, just making it as better as you can,
+            still counts as <i>some</i> optimization.&nbsp;
+            So you could sum it up as <i>improvement</i>.&nbsp;
             And a heuristic is a . . .
           </aside>
         </section>
@@ -222,7 +226,7 @@
             . . . optimization heuristics,
             such as genetic algorithms,
             are shortcuts
-            to find a good enough solution to a problem,
+            to find a good solution to a problem,
             ideally the best solution,
             but we'll usually have to settle for
             something "good enough",
@@ -250,7 +254,6 @@
             <br/><br/>
 
             The history goes back to 1950, when . . .
-
           </aside>
         </section>
 
@@ -570,12 +573,12 @@
             The canonical example is that you have a knapsack --
             or rucksack, backpack, or whatever you call it --
             and many things you want to carry in it,
-            but they won't all fit,
+            but they won't all fit<!--,
             or the total weight is more than you can carry,
             or some such similar constraint,
-            or <i>combination</i> of constraints.&nbsp;
+            or <i>combination</i> of constraints -->.&nbsp;
             So you want to find the combination of items,
-            that will fit the constraints,
+            that will fit <!-- the constraints --> in the knapsack,
             and has the maximum value.&nbsp;
             That could be the literal cash value,
             as we'll see in a moment,
@@ -588,9 +591,11 @@
           <img src="images/survival-gear.jpg">
           <span class="slide-caption">Image: https://www.pexels.com/photo/first-aid-and-surival-kits-5125690/</span>
           <aside class="notes">
-            . . . usefulness for survival and comfort,
+            . . .
             when <i>literally</i> putting items in a knapsack,
-            to go on a camping trip.&nbsp;
+            to go on a camping trip,
+            we would probably be much more concerned with each item's
+            usefulness for survival and comfort.&nbsp;
             If we have only, say, three items,
             that's only eight combinations,
             so we can probably brute-force
@@ -2545,6 +2550,19 @@
 
             <br/><br/>
 
+            I bet if each of you put your minds to it,
+            you could come up with something in your life,
+            where you're looking for a better solution,
+            that might be amenable to using a genetic algorithm.&nbsp;
+            Mey Beisaron has a talk on genetic algorithms,
+            where she uses it to decide her schedule of college classes.&nbsp;
+            That and many others,
+            including using genetic algorithms to
+            creat images and music,
+            are available on YouTube.
+
+            <br/><br/>
+
             To recap what you've learned here today:
           </aside>
         </section>
@@ -2559,7 +2577,8 @@
           </div>
           <aside class="notes">
             Genetic Algorithms are optimization heuristics,
-            which is fancy-talk for shortcuts to finding good-enough solutions.&nbsp;
+            which is fancy-shmancy talk for
+            shortcuts to finding good-enough solutions.&nbsp;
             They're . . .
           </aside>
         </section>
@@ -2583,6 +2602,7 @@
             picking breeders,
             breeding them,
             and mutating the new candidates,
+            over and over
             until you're done.&nbsp;
             They . . .
           </aside>
