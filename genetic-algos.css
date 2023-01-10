@@ -38,7 +38,7 @@
 .reveal span.cycle-ptr-done {
   top:      40%;
   left:     43%;
-  rotate:   -72deg;
+  rotate:   -80deg;
 }
 
 .reveal span.cycle-ptr-select {
@@ -56,7 +56,7 @@
 .reveal span.cycle-ptr-mutate {
   top:      55%;
   left:     51%;
-  rotate:   72deg;
+  rotate:   80deg;
 }
 
 .reveal span.cycle-arrow-init {
@@ -66,14 +66,14 @@
 
 .reveal span.cycle-arrow-assess {
   position: absolute;
-  top:      41.7%;
+  top:      43.7%;
   left:     38.3%;
   rotate:   -36deg;
 }
 
 .reveal span.cycle-arrow-done {
   position: absolute;
-  top:      70%;
+  top:      73%;
   left:     33.5%;
   rotate:   -18deg;
 }
@@ -85,14 +85,14 @@
 
 .reveal span.cycle-arrow-breed {
   position: absolute;
-  top:      70%;
+  top:      73%;
   right:    33.5%;
   rotate:   18deg;
 }
 
 .reveal span.cycle-arrow-mutate {
   position: absolute;
-  top:      41.7%;
+  top:      43.7%;
   right:    38.3%;
   rotate:   36deg;
 }
@@ -116,7 +116,7 @@
 
 .reveal span.cycle-stage-done {
   left:     27%;
-  top:      52%;
+  top:      56%;
 }
 
 .reveal span.cycle-stage-select {
@@ -131,7 +131,7 @@
 
 .reveal span.cycle-stage-mutate {
   right:    26%;
-  top:      52%;
+  top:      56%;
 }
 
 
