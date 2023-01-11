@@ -167,10 +167,9 @@
   color: white !important;
 }
 
-/*
 section.present::before {
   content: "@davearonson";
-  font-size: 0.5em;
+  font-size: 0.25em;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -178,12 +177,11 @@ section.present::before {
 
 section.present::after {
   content: "www.Codosaur.us";
-  font-size: 0.5em;
+  font-size: 0.25em;
   position: absolute;
   right: 0;
   bottom: 0;
 }
-*/
 
 .reveal section {
   background: #112;
