@@ -26,11 +26,12 @@
             linkedin.com/in/DaveAronson<br/>
             github.com/CodosaurusLLC/tight-genes
           </h5>
-          <aside class="notes">
-            NOTE TO SELF: current time ~35,
-            speaking fast but w/ some ad-libs;
-            want 30-35 for JOTB, so CHOP SOME AND DON'T AD-LIB!
-          </aside>
+            <!--
+            NOTE TO SELF: current time ~30,
+            speaking semi-fast,
+            want 30-35 for JOTB, done SLOW,
+            so CHOP SOME MORE and DON'T AD-LIB!
+            -->
         </section>
 
         <section>
@@ -46,7 +47,7 @@
         <section>
           <img src="images/Dave-Aronson-Speaking-at-JSConf-Hawaii-1kx1k.jpg" height="50%" class="autofix" style="border-radius:1em">
           <div class="main-text" style="font-size: 1.5em">
-            Soy Dave Aronson,
+            Me llamo Dave Aronson,
             <br/></br><br/></br></br>
             (I'm Dave Aronson,)
           </div>
@@ -66,7 +67,7 @@
         <section>
           <div class="main-text" style="font-size: 5em">🛫 . . . 🛬</div>
           <div class="main-text" style="font-size: 1.5em">
-            y volé aquí
+            y volé hasta aquí
             <br/></br><br/></br></br>
             (and I flew here)
           </div>
@@ -75,7 +76,7 @@
 
         <section>
           <div class="main-text" style="font-size: 1.5em">
-            en mi pterodáctilo mascota
+            en mi mascota pterodáctila
             <br/></br><br/></br></br>
             (on my pet pterodactyl)
           </div>
@@ -89,7 +90,7 @@
         <section>
           <div class="main-text" style="font-size: 7.2em">👨🏽‍🏫</div>
           <div class="main-text" style="font-size: 1.5em">
-            para enseñarles sobre
+            para enseñaros sobre
             <br/></br><br/></br></br>
             (to teach you about)
           </div>
@@ -134,7 +135,7 @@
           <img src="images/settings_icon-icons.com_49925.png" style="background-color: white">
           <span class="slide-caption">Image: https://icon-icons.com/download/49925/PNG/512/</span>
           <aside class="notes">
-            optimization heuristics,
+            optimization meta-heuristics,
           </aside>
         </section>
 
@@ -146,15 +147,15 @@
         </section>
 
         <section>
-          <div style="font-size: 1.9em">
-            <b><big>Optimization Heuristics:</big></b><br/>
-            shortcuts to find<br/>
+          <div style="font-size: 1.6em">
+            <b><big>Optimization Meta-Heuristic:</big></b><br/>
+            type of shortcuts to find<br/>
             "good enough" solutions<br/>
             (ideally the best,<br/>
             but OK if not).
           </div>
           <aside class="notes">
-            . . . shortcuts
+            . . . types of shortcuts
             to find a good solution to a problem,
             ideally the best,
             but we usually have to settle for
@@ -163,7 +164,7 @@
 
             <br/><br/>
 
-            There are many kinds of optimization heuristics,
+            There are many kinds of optimization meta-heuristics,
             but what makes genetic algorithms unique is
             that they are inspired by . . .
           </aside>
@@ -198,7 +199,6 @@
             Nothing much came of that,
             nor of genetic algorithms in general...
             for a few decades.&nbsp;
-            <!-- But then they finally got a bit of traction.&nbsp; -->
             The first genetic algorithm product,
             a mainframe toolkit for . . .
           </aside>
@@ -211,10 +211,7 @@
             . . . industrial processes,
             came out in the late 1980's,
             from General Electric.&nbsp;
-            <!-- In 1989 a genetic algorithm toolkit called Evolver
-              came out for <i>PCs</i>.&nbsp; -->
             These days,
-            <!-- MATLAB has a few genetic algorithm tools built-in, and -->
             many languages have
             genetic algorithm libraries available,
             but the actual <i>uses</i> of genetic algorithms
@@ -254,11 +251,6 @@
             because most human antenna designers
             would never think of such a design."&nbsp;
             That is one of the great advantages of this approach.&nbsp;
-            <!-- These algorithms are much less hampered by
-            expectations of similarity to past solutions.&nbsp;
-            However, today we'll only be looking at
-            much simpler problem domains,
-            for the sake of making understandable demos. -->
 
             <br/><br/>
 
@@ -308,7 +300,6 @@
             . . . done yet?&nbsp;
             This is <i>usually</i> based on the fitness,
             but <i>could</i> be based on other criteria,
-            <!-- and we'll discuss some of those later, -->
             or a combination.&nbsp;
             If we're not done, then next we . . .
           </aside>
@@ -323,20 +314,7 @@
           <span class="cycle-arrow-done">⬇️</span>
           <span class="cycle-stage cycle-stage-select">Select</span>
           <aside class="notes">
-            . . . select some candidates to breed the next generation, <!-- .&nbsp;
-            This is <i>also</i> usually based on the fitness,
-            to simulate <i>survival</i> of the fittest.&nbsp;
-            Remember, evolution is not about survival to a ripe old age,
-            it's only concerned with
-            survival to the point of passing along one's genes.&nbsp;
-            Survival of an elder
-            may contribute to survival of the young,
-            but that's a much more complicated discussion
-            of indirect evolutionary pressures.
-
-            <br/><br/>
-
-            Then we <i>use</i> those candidates we just selected -->
+            . . . select some candidates to breed the next generation,
             and <i>use</i> them . . .
           </aside>
         </section>
@@ -354,18 +332,10 @@
           <aside class="notes">
             . . . to <i>breed</i>
             a new population.&nbsp;
-            <!--
-              Some of the previous population,
-              especially the fittest ones,
-              <i>may</i> be carried over into this new population,
-              but usually not.
-            -->
 
             <br/><br/>
 
-            Next is an
-            <!-- very important but easily forgotten --> unusual step,
-            which is to . . .
+            Next is an unusual step, which is to . . .
           </aside>
         </section>
 
@@ -406,20 +376,16 @@
           <span class="cycle-arrow-mutate">⬅️</span>
           <aside class="notes">
             . . . go back to step 2, assessing their fitness.&nbsp;
-            <!-- (You might want to take a picture of this slide
-            and the next one,
-            because they're the big takeaways about
-            how genetic algorithms work at a high level.)&nbsp; -->
-            This could be represented <!-- at a high level -->
-            with <!-- some rather simple --> code, like so:
+            This could be represented
+            with code, like so . . .
           </aside>
         </section>
 
         <section>
           <img src="images/code/overview.png" class="autofix code">
           <aside class="notes">
-            <!-- (I'll give you a moment to take pictures.)&nbsp; -->
-            Now let's look closer <!-- at what goes on in each step -->,
+            . . . in Ruby.
+            Now let's look closer,
             by working through an example.
           </aside>
         </section>
@@ -444,17 +410,13 @@
             But what is a candidate, and how do we create one?&nbsp;
             These are different solutions to some problem.&nbsp;
             They could be represented by
-            any data structure
-            <!-- objects of the same class,
-            maps with the same keys,
-            arrays where the elements have meanings based on the index,
-            or anything else --> we want,
+            any data structure we want,
             so long as we can
             evaluate their fitness,
-            combine <!-- two (or maybe more!) --> old ones
+            combine old ones
             to make a new one,
             and mutate them.&nbsp;
-            The simplest common type <!-- of candidate --> is . . .
+            The simplest common type is . . .
           </aside>
         </section>
 
@@ -481,9 +443,6 @@
             . . . a simple string of bits.&nbsp;
             This will do fine for candidates that consist of
             a simple series of yes/no decisions,&nbsp;
-            <!-- This may sound simplistic,
-            but there is a huge class of problems that boil down to this,
-            called . . . -->
             such as for . . .
           </aside>
         </section>
@@ -494,49 +453,8 @@
           <span class="slide-caption">Image: https://publicdomainvectors.org/en/free-clipart/Rucksack-vector-image/9910.html</span>
           <br/>Knapsack / Rucksack / Backpack / Whatever!
           <aside class="notes">
-            . . . knapsack problems.
-            <!-- which is a category of
-              constrained resource allocation problems.&nbsp;
-            The canonical example is that you have a knapsack --
-            or rucksack, backpack, or whatever you call it --
-            and many things you want to carry in it,
-                 but they won't all fit,
-            or the total weight is more than you can carry,
-            or some such similar constraint,
-            or <i>combination</i> of constraints.&nbsp;
-            So you want to find the combination of items,
-            that will fit the constraints,
-            and has the maximum value.&nbsp;
-            That could be the literal cash value,
-            as we'll see in a moment,
-            or something more metaphorical,
-            like . . .
-          </aside>
-        </section>
-
-        <section>
-          <img src="images/survival-gear.jpg">
-          <span class="slide-caption">Image: https://www.pexels.com/photo/first-aid-and-surival-kits-5125690/</span>
-          <aside class="notes">
-            . . .
-            when <i>literally</i> putting items in a knapsack,
-            to go on a camping trip,
-            we would probably be much more concerned with each item's
-            usefulness for survival and comfort.&nbsp;
-            If we have only, say, three items,
-            that's only eight combinations,
-            so we can probably brute-force
-            our way through the solution space
-            pretty easily.&nbsp;
-            However, each time we add a possible item,
-            that doubles the number of combinations,
-            just like adding a bit to the width of an integer type,
-            and for exactly the same reason.&nbsp;
-            So if we have just ten items to consider,
-            that's 1024 possible combinations,
-            and not all of them might even fit.&nbsp;
-            -->
-            To look at an <!-- slightly different --> example,
+            . . . knapsack-type problems.
+            To look at an example,
             suppose we know . . .
           </aside>
         </section>
@@ -588,14 +506,6 @@
             ice cream,
             meat,
             and leather.&nbsp;
-            <!-- For the sake of simplicity,
-            we won't differentiate between
-            between price and profit,
-            nor dairy versus meat cows,
-            and it's very unrealistic but
-            we'll assume that
-            he can only take a set amount of each item,
-            and always has that amount on hand.&nbsp; -->
             His truck has <i>room</i> to take everything,
             but it can only carry so much <i>weight</i>,
             so that's our constraint.&nbsp;
@@ -632,7 +542,7 @@
               <tr>
                 <td class="text">Leather</td><td style="color:gray" class="text">hide</td><td style="color:gray">20</td><td>1,100</td><td>$6,000</td><!-- <td>$5.45</td> -->
               <tr>
-                <td class="text" colspan="2">TOTAL WEIGHT</td><td></td><td>8,600</td><td></td><!-- <td></td> -->
+                <td class="text" colspan="2">TOTAL WEIGHT</td><td></td><td><b>8,600</b></td><td></td><!-- <td></td> -->
               </tr>
             </tbody>
           </table>
@@ -642,23 +552,11 @@
             it totals 8,600 pounds.&nbsp;
             But, his truck's suspension
             can only handle
-            two tons, or 4,000 pounds.&nbsp;
-            So,
-            <!-- We <i>could</i> run through all the possible combinations,
-            see which ones total light enough,
-              and see which one of those totals the highest,
-            or use
-            a different very common heuristic
-            of adding the most expensive thing that we can,
-                 over and over until we can't,
-            but  -->
-            let's see what happens if we
-            use a genetic algorithm
+            4,000 pounds.&nbsp;
+            So, let's use a genetic algorithm
             to determine a "good enough" truckload.&nbsp;
             First we need a way to represent each candidate.&nbsp;
-            In code, we could represent them as a class
-            in a language such as Ruby,
-            <!-- and create one randomly, -->
+            In code, we could represent them as a class,
             like so:
           </aside>
         </section>
@@ -723,20 +621,11 @@
             </tbody>
           </table>
           <aside class="notes">
-            How did we get from random numbers to those combinations?&nbsp;
-            Behind the scenes, that translation might look like this:
-          </aside>
-        </section>
-
-        <section>
-          <img src="images/code/class-item.png" class="autofix code">
-          <aside class="notes">
-            We have a list of items we <i>can</i> take,
-            as instances of an inner class describing them.&nbsp;
-            To check what's in our cargo manifest,
-            represented by our Truckload's contents value,
-            we can iterate through the list of possible items,
-            checking whether the corresponding bit is on.
+            For now, I'm going to handwave over
+            how we decode the number
+            into these combinations,
+            but the last slide contains the URL
+            for the Github repo where you can see all the gory details.
 
             <br/><br/>
 
@@ -764,10 +653,8 @@
           <aside class="notes">
             . . . to
             assess how "fit" each of these truckloads is.&nbsp;
-            We do this with what's called a "fitness function"<!-- .&nbsp;
-            Just like how biological creatures might be perfectly fit
-            for one environment but a lousy fit for another,
-            this --> which should reflect how fit a candidate is
+            We do this with what's called a "fitness function",
+            which should reflect how fit a candidate is
             <i>for some particular purpose</i>.&nbsp;
             In this case, we already know we want the total value,
             BUT, any load that's too heavy for the truck, is worthless.&nbsp;
@@ -780,30 +667,19 @@
           <aside class="notes">
             We iterate through the possible items,
             summing up the weights of the ones we want to take.&nbsp;
-            <!--
-            (Writing the bit_on? function is left as an exercise,
-            to keep this code simple.)&nbsp;
-            -->
             If that exceeds the truck's capacity, we return zero,
             else we use the same technique
             to sum up the <i>values</i> of those same items.
 
             <br/><br/>
 
-            Once again,
+            Again,
             we could get as complex as we want in this function,
             and NASA's antenna fitness function
             certainly must have been.&nbsp;
-            For instance, <!-- if we also had the <i>volume</i> of each item,
-            and the truck were smaller,
-            we could also total up the volume,
-            and make sure it all fits.&nbsp; -->
+            For instance,
+            if the truck were smaller,
             we could take into account the <i>volume</i> of each item.&nbsp;
-            <!-- We could even take into account very long or flat shapes,
-            so that for instance
-            a flagpole or a large sheet of plywood might not fit,
-            even though its weight and total volume
-            may be relatively small. -->
 
             <br/><br/>
 
@@ -871,17 +747,10 @@
             what the function should <i>do</i>.&nbsp;
             With a knapsack problem,
             a good solution can be made worthless by
-            adding one item, and exceeding the capacity.&nbsp;
+            adding one item, and exceeding the constraints.&nbsp;
             So, we're going to record the best we've seen,
             and stop if we haven't seen anything better
             within 100 generations.&nbsp;
-            <!--
-            Why 100?&nbsp;
-            Pretty much random.&nbsp;
-            It seems like enough for a good chance for improvement,
-            and since what we're doing is so simple,
-            using lots of generations isn't very slow.&nbsp;
-            -->
             In Ruby, that would look like this:
           </aside>
         </section>
@@ -894,9 +763,6 @@
             and we set how many generations it's been since we saw that,
             as zero,
             both as class-variables.&nbsp;
-            <!--
-              (Remember, this is within the definition of class Truckload.)&nbsp;
-            -->
             When the function is called,
             we increment the number of generations,
             look at the fitness of each member of the current population,
@@ -907,28 +773,23 @@
             if it's been 100 generations since the best one,
             else we return false.&nbsp;
             If there <i>is</i> at least one candidate exceeding our benchmark,
-            we <!-- sort them by fitness, -->
-            take the fittest one,
+            we take the fittest one,
             make that our new benchmark,
             and reset the generation counter.
 
             <br/><br/>
 
             Again, we can get as complex as we want,
-            not only in checking the <!-- maximum --> fitness,
-            but we could look at <!-- the average or minimum fitness,
-            or look for some specific level of maximum fitness,
-            and also with --> other stopping criteria,
+            not only in checking the fitness,
+            but we could look at other stopping criteria,
             like some number of generations in total,
-            or some amount of time
-            <!-- (whether clock time or CPU or whatever) -->,
+            or some amount of time,
             or when the user presses a STOP button,
             or many other ways, or a combination of ways.
 
             <br/><br/>
 
-            Since <!-- now we're done with the check-if-done step,
-            and --> we're <i>not</i> done, the next step is to . . .
+            Since we're <i>not</i> done, the next step is to . . .
           </aside>
         </section>
 
@@ -958,9 +819,6 @@
         <section>
           <img src="images/code/def-truckload-select.png" class="autofix code">
           <aside class="notes">
-            <!-- Take the population,
-            sort them by fitness in descending order,
-            and take the first two.&nbsp; -->
             Out of our current population, we would choose:
           </aside>
         </section>
@@ -1000,19 +858,7 @@
 
             <br/><br/>
 
-            <!--
-            We could also take more than two,
-            whether to breed all pairs in that set
-            or to combine more than two at once.&nbsp;
-            Or we could combine strategies,
-            such as using all trios from a randomly chosen five,
-            with the fitter ones having a better chance to be chosen.
-
-            <br/><br/>
-            -->
-
-            Now that we're done with the Selection step,
-            so we've chosen our breeders, next we actually . . .
+            Now that we've chosen our breeders, next we . . .
           </aside>
         </section>
 
@@ -1058,18 +904,8 @@
             If we haven't yet hit the crossover point,
             we get the decision for that item from the first parent,
             else we get it from the other parent.&nbsp;
-            <!-- This means that it could be all copied
-            from one parent or the other,
-            or it could switch at some point.&nbsp;
-            Doing the bitwise math like that
-            gets us zero if the bit was off,
-            and that bit's positional value if it was on.&nbsp;
-            In other words, if a bit in the 8's place is 0, we get 0,
-            but if it's a 1, we get 8.&nbsp;
-            Then we sum them up.&nbsp; -->
             Doing this once,
-            with a crossover point of 3,
-            <!-- so we take 3 values from the first parent, -->
+            with a random crossover point of 3,
             gets us a result like this:
           </aside>
         </section>
@@ -1147,8 +983,7 @@
             and they all include cheese.&nbsp;
             That's because both of our two breeders were like that.&nbsp;
             If we were to just continue
-            breeding the fittest of each <!-- this --> population,
-            <!-- and the next, and so on, -->
+            breeding the fittest of each generation,
             we wouldn't <i>ever</i> see any loads
             including a cow, butter, leather, or no cheese,
             but we fix that in the next step, which is to . . .
@@ -1186,7 +1021,7 @@
             We iterate through the item numbers,
             and for each one,
             if a random number from zero to three is a zero,
-            we flip that bit<!-- , by x-or-ing it-->.&nbsp;
+            we flip that bit.&nbsp;
             Again, we could get as complex as we want,
             like having some genes more likely to mutate than others,
             or having some minimum or maximum
@@ -1250,7 +1085,7 @@
           </div>
           <aside class="notes">
             . . . Step 2, assessing the fitness of
-            the candidates in this new population.&nbsp;
+            these new candidates.&nbsp;
             If we sort on fitness descending,
             just to make it easy to find the best,
             we get this:
@@ -1287,65 +1122,14 @@
           <aside class="notes">
             Oh noes!&nbsp;
             Our maximum fitness actually went <i>down!</i>&nbsp;
-            As you may recall from the selected breeders,
+            As you may recall,
             our previous best one scored 20,000.&nbsp;
             But don't worry,
             as you may recall from our "are we done yet" function,
             we <i>hang onto</i> the best one,
             and just try to outdo it.
 
-            <!--
-            <br/><br/>
-
-            But that's not really the best approach.&nbsp;
-            Remember how I said that sometimes
-            the fittest members of a population
-            might be carried over into the next one?&nbsp;
-            If I had carried over the fittest one,
-            the maximum fitness would never go down,
-            so the "are we done" function could have been much simpler,
-            and we'd be done much faster.&nbsp;
-            But, I didn't come across that idea
-            until I had already made all the slides for this talk,
-            and I didn't want to redo them.&nbsp;
-            Also, I think this version is still worth exploring.&nbsp;
-            So let's keep going.&nbsp;
-            -->
-
             The next generation might look like this:
-          </aside>
-        </section>
-
-        <section>
-          <table class="centered" style="font-size: 0.8em">
-            <thead>
-              <tr>
-                <th>Cow</th>
-                <th>Milk</th>
-                <th>Cheese</th>
-                <th>Butter</th>
-                <th>Ice Cream</th>
-                <th>Meat</th>
-                <th>Leather</th>
-                <th>Fitness</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">12,000</td></tr>
-              <tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td class="numeric">11,000</td></tr>
-              <tr><td>N</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">10,000</td></tr>
-              <tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td class="numeric">3,000</td></tr>
-              <tr><td>Y</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>Y</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
-              <tr><td>Y</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td class="numeric">0</td></tr>
-            </tbody>
-          </table>
-          <aside class="notes">
-            Still going down!&nbsp;
-            But the one after that might look like this:
           </aside>
         </section>
 
@@ -1413,18 +1197,12 @@
             </tbody>
           </table>
           <aside class="notes">
-            <!-- Actually, that that top line there,
-            with just cheese, meat, and leather,
-            is the best combination
-            I've ever seen this particular system produce. -->
             . . . with our best truckload scoring 26,000,
             made up of cheese, meat, and leather.&nbsp;
             So that's one complete run of a genetic algorithm.&nbsp;
             If we wanted to check whether
             that was the best that this algorithm could produce,
-            we could just run it <!-- again.&nbsp;
-            And again and --> again, as many times as we like,
-            <!-- within reason, -->
+            we could just run it again, as many times as we like,
             since it's so much faster than brute force.&nbsp;
             Okay, maybe writing all this code
             is not so much faster
@@ -1446,8 +1224,6 @@
           <span class="slide-caption">Image: https://image.tmdb.org/t/p/w500/ajbdFQLvJTlNu4LnVWGnNMb4mZ8.jpg (used for edu fair use)</span>
           <aside class="notes">
             . . . something completely different.&nbsp;
-            <!-- (No, not a man with nine legs,
-              and the other guy is Right Out!)&nbsp; -->
             Suppose we want to "evolve" a good set of stats for a
             Dungeons and Dragons fighter character,
             so our candidates are tuples of numbers,
@@ -1489,7 +1265,6 @@
         <section>
           <img src="images/code/class-character.png" class="autofix code">
           <aside class="notes">
-            <!-- (Defining the roll function is left as an exercise.)&nbsp; -->
             So if we create an initial population of ten Characters,
             it might look like this:
           </aside>
@@ -1544,7 +1319,7 @@
             The rest, not so much,
             but we don't want them too low,
             for the sake of occasional saving throws.&nbsp;
-            I toyed with a few different things, such as
+            I tried several different things, such as . . .
           </aside>
         </section>
 
@@ -1638,7 +1413,6 @@
             any candidates get 90% of the way to the maximum score
             of our fitness function.&nbsp;
             I'll spare you the math, but
-            <!-- the maximum is 1,134, so 90% would round to -->
             that would be
             1,021.&nbsp;
             In code, checking that would look like this:
@@ -1692,25 +1466,7 @@
           </div>
           <aside class="notes">
             these two.&nbsp;
-            The abstraction gets more
-            <i>obviously</i> leaky now,
-            because we're ignoring sexes;
-            we have no guarantee that
-            these characters will be a male and a female,
-            as we're not even making that part of the data.&nbsp;
-            We had the same leak last time, with the Truckloads,
-            but then it was not so relevant, so I let it slide.&nbsp;
-            Now that they're living beings
-            (whether humans or elves or whatever),
-            though, we could add such complications,
-            and more.&nbsp;
-            <!-- even add what race they are
-            and bring in considerations of
-            which races <i>can</i> breed together.&nbsp;
-            That could complicate our breeder selection enormously,
-            maybe even make it impossible to find a viable pair
-            in such a small population.&nbsp; -->
-            Anyway, next we actually . . .
+            Then we . . .
           </aside>
         </section>
 
@@ -1797,10 +1553,8 @@
           </table>
           <aside class="notes">
             There are two things to notice here.&nbsp;
-            First, the number of red and green is not always the same.&nbsp;
-            <!-- It's a series of random coin flips, so
-            <i>on average</i> there will be three and three,
-            but it could be anything up to six and zero either way.&nbsp; -->
+            First, the number of red and green is not always the same,
+            in a single candidate or the whole population.&nbsp;
             Second, notice the family resemblance!&nbsp;
             For each stat, there are only two possible values,
             or in Genetic Algorithm terms, "alleles",
@@ -1811,18 +1565,15 @@
 
             <br/><br/>
 
-            <!-- At a glance, these look on average
-            much more suitable as fighters
-            than the previous generation.&nbsp;
-            (We'll figure their actual fitness scores later.) -->
             If we were to just continue
-            breeding the fittest of each population,
-            we wouldn't see any change,
-            let alone improvement,
-            in the possible values of each stat.&nbsp;
+            breeding the fittest of each generation,
+            we wouldn't see any change
+            in the possible values of each stat,
+            in other words,
+            the alleles for each gene.&nbsp;
             For instance, the Wisdom would never be
             anything other than 6 or 11.&nbsp;
-            But again, we fix that in the next step, which is to . . .
+            But the next step is to . . .
           </aside>
         </section>
 
@@ -1856,11 +1607,6 @@
         <section>
           <img src="images/code/def-char-maybe-mutate.png" class="autofix code">
           <aside class="notes">
-            <!-- For each stat,
-            we add a random number from 0 to 2,
-            and subtract one,
-            which is like adding a random number from -1 to 1,
-            but we keep it within the range 3 to 18.&nbsp; -->
             Again, we could get as complex as we want,
             like giving it a higher chance of
             going up or down, maybe by multiple points,
@@ -1868,7 +1614,7 @@
             to simulate the real-world phenomenon of regression to the mean,
             or all kinds of other options.&nbsp;
             If we run this mutation function
-            on <!-- the candidates in --> our new population,
+            on our new population,
             we wind up with something like this:
           </aside>
         </section>
@@ -1918,9 +1664,7 @@
           </div>
           <aside class="notes">
             . . . Step 2, assessing the fitness of
-            these new candidates.&nbsp;
-            If we sort on fitness descending,
-            just to make it easy to find the best,
+            these new candidates, and
             we get this:
           </aside>
         </section>
@@ -1949,8 +1693,7 @@
             The old one ranged from 476 to 760,
             and the new one from 635 to 851.&nbsp;
             It's still nowhere near our stopping criterion of 1021,
-            so fast-forwarding through six more rounds of
-            selection, breeding, mutation, and assessment,
+            so fast-forwarding through six more rounds,
             we finally get one with good enough candidates,
             like . . .
           </aside>
@@ -1984,7 +1727,7 @@
             we could complicate the fitness function further,
             and do things like explicitly demand
             well above average scores
-            in the class's needed stats,
+            in the class's useful stats,
             and forbid it to be so high in the others,
             or at least apply a penalty.
 
@@ -2003,9 +1746,6 @@
             . . . to prioritize intelligence first,
             then wisdom, dexterity, and so on,
             down to strength.&nbsp;
-            <!-- (We could also make it take parameters,
-            and pass in different ones this time,
-            but I'm just going to hardcode it here for simplicity.)&nbsp; -->
             An initial population would look roughly the same,
             since we haven't changed how that is generated, so
             I'll spare you those steps,
@@ -2033,7 +1773,8 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . containing three candidates 90% fit to be wizards.&nbsp;
+            . . . containing <i>three</i> candidates
+            90% fit to be wizards.&nbsp;
             They're mostly pretty good in the other stats,
             but not so much as to be
             obviously better suited for some other class,
@@ -2069,25 +1810,8 @@
           <aside class="notes">
             . . . Evolver!&nbsp;
             That's my actual license plate, by the way.&nbsp;
-            <!--
-            I've had it for several years,
-            since long before I ever
-            tried genetic algorithms,
-            and used that name for this code before
-            I had ever heard of the
-            Evolver PC toolkit
-            that I mentioned near the start.&nbsp;
-            I have it because the tag-line of my
-            little one-man consulting company is,
-            "How can we evolve you today?"
 
-            <br/><br/>
-            -->
-
-            Anyway, with just a little bit of tweaking,
-            <!--
-            and a slight sprinkling of fancy Ruby magic dust,
-            -->
+            With just a little bit of tweaking,
             we can extract a class
             that defines the common parts,
             and takes another class
@@ -2111,11 +1835,9 @@
         <section>
           <img src="images/code/def-evolver-init.png" class="autofix code">
           <aside class="notes">
-            . . an initializer that just stashes that class,
-            <!--
-            using type as a name for class
-            so as not to conflict with a reserved word,
-            -->
+            . . an initializer
+            (or in some languages, a "constructor")
+            that just stashes that class,
             and also an option for how big a population to use.&nbsp;
             How we tell it to "run evolution" can look like this:
           </aside>
@@ -2131,11 +1853,6 @@
             selecting breeders,
             and mutating each candidate,
             over to the passed-in class.&nbsp;
-            <!--
-            We'll do the same with some other things,
-            in the other methods,
-            as we'll see in a moment.&nbsp;
-            -->
             We're also sorting the population on descending fitness.&nbsp;
             Creating the initial population could look like this:
           </aside>
@@ -2176,22 +1893,17 @@
           <aside class="notes">
             . . . [in Pinky voice:]
             what are we going to evolve this time, Brain?&nbsp;
-            <!--
-            [in Brain voice:]
-            No, not something that would take over the world,
-            but something that might make you
-            <i>feel</i> like you <i>could</i>.&nbsp;
-            -->
             In my spare time, I make . . .
           </aside>
         </section>
 
         <section>
           <img src="images/2021-06-12-Meads-Assembled.jpg" height="65%">
-          <div style="font-size: 3em">Mead</div>
+          <div style="font-size: 2.5em">Mead (Hidromiel)</div>
           <span class="slide-caption">Image: my own pic of five batches of plain mead in progress</span>
           <aside class="notes">
             . . . mead,
+            or in Spanish, hidromiel,
             a wine-like drink made by fermenting honey.&nbsp;
             Let's see if we can evolve a good recipe.&nbsp;
             Our recipe will be based on two simple factors:
@@ -2204,16 +1916,6 @@
             the ratio of water to honey,
             and the alcohol tolerance of the yeast we'll use,
             both by volume.&nbsp;
-            <!--
-            The more honey per volume,
-            in other words the lower the ratio of water to honey,
-            the higher the level of alcohol we <i>could</i> get,
-            <i>if</i> the yeast will tolerate that level of alcohol.&nbsp;
-            Any leftover honey,
-            that the yeast doesn't eat and convert into alcohol,
-            is what makes the mead sweet.&nbsp;
-            (There are other ways, but this is the simplest.)&nbsp;
-            -->
             The resulting percent alcohol by volume, or ABV,
             and the sweetness,
             are the criteria on which
@@ -2229,13 +1931,9 @@
           <aside class="notes">
             . . . fitness function.&nbsp;
             This one looks at how far off we are
-            from our desired target values.&nbsp;
-            We square the error in each aspect separately,
-            so that something that's, say, one point off in each,
-            will score higher than something that's spot-on in one
-            but two points off in the other.&nbsp;
-            In other words,
-            we want them both close,
+            from our desired target values,
+            doing a bit of fancy math
+            to keep them <i>both</i> close,
             not just trading off one for the other directly.
 
             <br/><br/>
@@ -2310,15 +2008,7 @@
 
             <br/><br/>
 
-            Everything else<!--, such as
-            creating the initial population,
-            selecting breeders,
-            breeding a new population,
-            the concept of how to check if we're done,
-            though with a different threshold,
-            and the overall structure of
-            how it simulates evolution,
-            are all --> is handled by the Evolver class.&nbsp;
+            Everything else is handled by the Evolver class.&nbsp;
             To actually use them together would look like this:
           </aside>
         </section>
@@ -2329,24 +2019,6 @@
             With our current version of Evolver,
             this would return the current population of Recipes,
             when the Recipe class says that it's done.&nbsp;
-            <!--
-            We could add all sorts of things to
-            report progress along the way,
-            pick a final winner,
-            count generations,
-            and lots more.&nbsp;
-            We could even add some common options in Evolver, such as
-            the "pick the two best" way of picking breeders,
-            some randomized alternatives,
-            the crossover, multi-crossover, and coin-toss
-            ways to combine two breeders,
-            the bit-flipping style of mutation and some alternatives,
-            being done when
-            a certain amount of time or number of generations
-            has passed
-            or the user presses a key,
-            and much more.
-            -->
 
             <br/><br/>
 
@@ -2455,8 +2127,7 @@
 
             Just like with the DnD characters,
             if we want to change what we're after,
-            we just have to tweak the fitness function<!--
-            (or pass in different parameters if we bothered with that) -->.&nbsp;
+            we just have to tweak the fitness function.&nbsp;
             This time, I asked for 7% alcohol and sweetness of 5,
             a low-alcohol dry mead, often called a "session" mead,
             and still demanding a 99.9% fit,
@@ -2486,11 +2157,10 @@
             . . . spot-on in sweetness and just a tiny bit weaker.&nbsp;
             Then I asked for 16% alcohol and a sweetness of 35,
             a strong and sweet mead,
-            historically called sack mead or a great mead<!--,
-            a style very popular in Poland-->.&nbsp;
-            It took 149 generations<!--,
+            historically called a sack mead or great mead.&nbsp;
+            It took 149 generations,
             which was still very fast,
-            because the functions were so simple,-->
+            because the population is so small and the functions so simple,
             to produce this:
           </aside>
         </section>
@@ -2518,72 +2188,57 @@
 
             <br/><br/>
 
-            <!--
-
-            If each of you put your minds to it,
-            I bet you could come up
-            with something in your life,
-            where you're looking for a better solution,
-            that might be amenable to using a genetic algorithm.&nbsp;
-            Mey Beisaron has a talk on genetic algorithms,
-            where she uses it to decide her schedule of college classes.&nbsp;
-            That and many others,
-            including using genetic algorithms to
-            create images and music,
-            are available on YouTube.
+            There are many other ways you can use genetic algorithms.&nbsp;
+            They can create images, music, and even code.&nbsp;
+            So, think about it,
+            and you might be able to use them for something.
 
             <br/><br/>
-
-            -->
 
             To recap what you've learned here today:
           </aside>
         </section>
 
         <section>
-          <div style="font-size: 1.1em; text-align: left">
+          <div style="font-size: 0.9em; text-align: left">
+            <br/>
             <h2>Genetic Algorithms:</h2>
+            <br/>
             <ul>
-              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
             </ul>
           </div>
           <aside class="notes">
-            Genetic Algorithms are optimization heuristics,
-            which is fancy<!---shmancy--> talk for
-            shortcuts to finding good-enough solutions.&nbsp;
+            Genetic Algorithms are optimization meta-heuristics,
+            which is fancy talk for
+            kinds of shortcuts to finding good-enough solutions.&nbsp;
             They're . . .
           </aside>
         </section>
 
         <section>
-          <div style="font-size: 1.1em; text-align: left">
+          <div style="font-size: 0.9em; text-align: left">
+            <br/>
             <h2>Genetic Algorithms:</h2>
+            <br/>
             <ul>
-              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
               <li>are simpler than you probably thought</li>
             </ul>
           </div>
           <aside class="notes">
-            . . . simpler than you probably thought <!-- --
-            all you have to do is
-            create an initial population,
-            and cycle through five simple steps,
-            of assessing their fitness,
-            checking if you're done,
-            picking breeders,
-            breeding them,
-            and mutating the new candidates,
-            over and over
-            until you're done-->.&nbsp;
+            . . . simpler than you probably thought.&nbsp;
             They . . .
           </aside>
         </section>
 
         <section>
-          <div style="font-size: 1.1em; text-align: left">
+          <div style="font-size: 0.9em; text-align: left">
+            <br/>
             <h2>Genetic Algorithms:</h2>
+            <br/>
             <ul>
-              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
             </ul>
@@ -2594,10 +2249,12 @@
         </section>
 
         <section>
-          <div style="font-size: 1.1em; text-align: left">
+          <div style="font-size: 0.9em; text-align: left">
+            <br/>
             <h2>Genetic Algorithms:</h2>
+            <br/>
             <ul>
-              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
               <li>can be tricky to make converge well</li>
@@ -2606,25 +2263,19 @@
           <aside class="notes">
             . . . can be tricky to
             figure out exactly what the functions should do,
-            <!--
-            especially for
-            evaluating fitness
-            and
-            checking if you're done,
-            so as
-            -->
-            to
-            make the solutions converge quickly enough,
-            without ignoring too many <!-- other very good --> solutions.&nbsp;
+            to make the solutions converge quickly enough,
+            without ignoring too many good solutions.&nbsp;
             This approach is also . . .
           </aside>
         </section>
 
         <section>
-          <div style="font-size: 1.1em; text-align: left">
+          <div style="font-size: 0.9em; text-align: left">
+            <br/>
             <h2>Genetic Algorithms:</h2>
+            <br/>
             <ul>
-              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
               <li>can be tricky to make converge well</li>
@@ -2632,17 +2283,18 @@
             </ul>
           </div>
           <aside class="notes">
-            . . . <!-- a --> sufficiently widely applicable <!-- abstraction,-->
-            that it can be used for a huge variety of problems,
+            . . . applicable to a huge variety of problems,
             including ones so complex that . . .
           </aside>
         </section>
 
         <section>
-          <div style="font-size: 1.1em; text-align: left">
+          <div style="font-size: 0.9em; text-align: left">
+            <br/>
             <h2>Genetic Algorithms:</h2>
+            <br/>
             <ul>
-              <li>are <strike>optimization heuristics</strike> shortcuts</li>
+              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
               <li>can be tricky to make converge well</li>
@@ -2651,7 +2303,7 @@
             </ul>
           </div>
           <aside class="notes">
-            . . . it <!-- a semi-random algorithm --> can come up with
+            . . . they can come up with
             excellent solutions that we humans
             would never have thought of.
 
@@ -2667,17 +2319,17 @@
             T.Rex-2023@Codosaur.us<br/>
             twitter.com/DaveAronson<br/>
             linkedin.com/in/DaveAronson<br/><br/>
+            Repo and Slides:
             github.com/CodosaurusLLC/tight-genes<br/>
             Codosaur.us/reds/gen-algs-jotb-23-slides
-            toptal.com/#accept-only-candid-coders<br/>
           </h4>
           <aside class="notes">
             . . . questions, I'll take them now,
             or at the contact info shown up there.&nbsp;
             As for the other URLs,
             the Github one is for the code, and slides in HTML,
-            the next is for the slides as a PDF,
-            and the last is my Toptal referral link.&nbsp;
+            and the other is for the slides as a PDF,
+            with a full script.&nbsp;
             Any questions?
           </aside>
         </section>
@@ -2707,7 +2359,7 @@
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
-      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
+      Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
     </script>
   </body>
 </html>
