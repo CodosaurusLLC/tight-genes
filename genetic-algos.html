@@ -27,10 +27,10 @@
             github.com/CodosaurusLLC/tight-genes
           </h5>
             <!--
-            NOTE TO SELF: current time ~30,
+            NOTE TO SELF: current time ~33,
             speaking semi-fast,
             want 30-35 for JOTB, done SLOW,
-            so CHOP SOME MORE and DON'T AD-LIB!
+            so CHOP SOME MORE and WATCH THE AD-LIBS!
             -->
         </section>
 
@@ -238,7 +238,7 @@
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
             Nothing much came of that,
-            nor of genetic algorithms in general...
+            nor of genetic algorithms...
             for a few decades.&nbsp;
             The first genetic algorithm product,
             a mainframe toolkit for . . .
@@ -329,10 +329,7 @@
           <aside class="notes">
             . . . assess the "fitness" of each candidate,
             according to some criteria.&nbsp;
-            We do it <i>here</i> mainly because
-            it supplies the data
-            <i>usually</i> used in the next step,
-            which is to ask, are we . . .
+            Then we ask, are we . . .
           </aside>
         </section>
 
@@ -345,6 +342,7 @@
           <aside class="notes">
             . . . done yet?&nbsp;
             This is <i>usually</i> based on the fitness,
+            which is why we just figured that out,
             but <i>could</i> be based on other criteria,
             or a combination.&nbsp;
             If we're not done, then next we . . .
@@ -517,7 +515,7 @@
           <aside class="notes">
             . . . a farmer,
             with a smallish truck,
-            and he needs to decide what to take to market.&nbsp;
+            and he needs to decide what to take to market each week.&nbsp;
             And on this farm he has . . .
           </aside>
         </section>
@@ -615,10 +613,9 @@
             <img src="images/code/class-truckload.png" class="code">
           </div>
           <aside class="notes">
-            Whoa, that looks like we're just making a random number!&nbsp;
-            That's right, we're making a random number
+            We're making a random number,
             <i>with seven bits</i>,
-            meaning that we have a random 1 or 0
+            so we have a random 1 or 0
             for each of our seven possible items.&nbsp;
             We could get as complex as we want in this function,
             like dictating a minimum or maximum number of items,
@@ -682,8 +679,7 @@
 
             <br/><br/>
 
-            So now we're done with the Initialization step.&nbsp;
-            The next step is . . .
+            Now that we're done with Initialization, we . . .
           </aside>
         </section>
 
@@ -704,10 +700,9 @@
             <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
-            . . . to
-            assess how "fit" each of these truckloads is.&nbsp;
+            . . . assess how "fit" each of these truckloads is.&nbsp;
             We do this with what's called a "fitness function",
-            which should reflect how fit a candidate is
+            which reflects how fit a candidate is
             <i>for some particular purpose</i>.&nbsp;
             In this case, we already know we want the total value,
             BUT, any load that's too heavy for the truck, is worthless.&nbsp;
@@ -733,7 +728,7 @@
             and NASA's antenna fitness function
             certainly must have been.&nbsp;
             For instance,
-            if the truck were smaller,
+            if the truck were even smaller,
             we could take into account the <i>volume</i> of each item.&nbsp;
 
             <br/><br/>
@@ -773,8 +768,7 @@
             </table>
           </div>
           <aside class="notes">
-            So now we're done with the Assessment step.&nbsp;
-            The next step is to see if . . .
+            So now that we've assessed their fitness, we . . .
           </aside>
         </section>
 
@@ -795,7 +789,7 @@
             <span class="center cycle-ptr cycle-ptr-done">↑</span>
           </div>
           <aside class="notes">
-            . . . we're done.&nbsp;
+            . . . check if we're done.&nbsp;
             So what are our criteria?&nbsp;
             The function can be simple,
             but it can take some thinking to figure out
@@ -818,19 +812,17 @@
             When the code is initially parsed,
             we set the initial best combo as empty,
             and we set how many generations it's been since we saw that,
-            as zero,
-            both as class-variables.&nbsp;
+            as zero.&nbsp;
             When the function is called,
             we increment the number of generations,
-            look at the fitness of each member of the current population,
+            look at the fitness of each candidate,
             and select only the ones with a better fitness than
             the best one so far.&nbsp;
             If there are none,
             then we return true
             if it's been 100 generations since the best one,
             else we return false.&nbsp;
-            If there <i>is</i> at least one candidate exceeding our benchmark,
-            we take the fittest one,
+            Else we take the fittest one,
             make that our new benchmark,
             and reset the generation counter.
 
@@ -839,9 +831,9 @@
             Again, we can get as complex as we want,
             not only in checking the fitness,
             but we could look at other stopping criteria,
-            like some number of generations in total,
-            or some amount of time,
-            or when the user presses a STOP button,
+            like some maximum number of generations,
+            or amount of time,
+            or a STOP button,
             or many other ways, or a combination of ways.
 
             <br/><br/>
@@ -965,9 +957,8 @@
             If we haven't yet hit the crossover point,
             we get the decision for that item from the first parent,
             else we get it from the other parent.&nbsp;
-            Doing this once,
-            with a random crossover point of 3,
-            gets us a result like this:
+            With a random crossover point of 3,
+            this would get us a result like this:
           </aside>
         </section>
 
@@ -985,13 +976,13 @@
                   <th>Leather</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="font-weight: bold">
                 <tr><td colspan="7"><br/></td></tr>
-                <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
+                <tr style="color: #0f0"><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
                 <tr><td colspan="7" style="text-align: center">+</td></tr>
-                <tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+                <tr style="color: #f33"><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
                 <tr><td colspan="7" style="text-align: center">=</td></tr>
-                <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+                <tr><td style="color: #0f0">N</td><td style="color: #0f0">N</td><td style="color: #0f0">Y</td><td style="color: #f33">N</td><td style="color: #f33">Y</td><td style="color: #f33">N</td><td style="color: #f33">N</td></tr>
               </tbody>
             </table>
           </div>
@@ -1009,7 +1000,7 @@
             This is just like how we created the initial population,
             except that instead of each candidate being
             made from scratch,
-            they're the product of breeding our chosen breeders.&nbsp;
+            they're the product of breeding our breeders.&nbsp;
             The whole list might look like this:
           </aside>
         </section>
@@ -1044,7 +1035,7 @@
             Lots of family resemblance there, eh?&nbsp;
             None of these loads include a cow, butter, or leather,
             and they all include cheese.&nbsp;
-            That's because both of our two breeders were like that.&nbsp;
+            That's because both of breeders were like that.&nbsp;
             If we were to just continue
             breeding the fittest of each generation,
             we wouldn't <i>ever</i> see any loads
@@ -1125,7 +1116,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            I've colored the ones that changed, in green.&nbsp;
+            . . . where green means that it changed.&nbsp;
             You can see that we now DO have some truckloads that
             include a cow, butter, or leather, or no cheese.&nbsp;
             Now we go back to . . .
@@ -1149,7 +1140,7 @@
             <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
-            . . . Step 2, assessing the fitness of
+            . . . assessing the fitness of
             these new candidates.&nbsp;
             If we sort on fitness descending,
             just to make it easy to find the best,
@@ -1187,12 +1178,10 @@
           <aside class="notes">
             Oh noes!&nbsp;
             Our maximum fitness actually went <i>down!</i>&nbsp;
-            As you may recall,
-            our previous best one scored 20,000.&nbsp;
             But don't worry,
-            as you may recall from our "are we done yet" function,
             we <i>hang onto</i> the best one,
-            and just try to outdo it.
+            and just try to outdo it,
+            so we haven't lost it.
 
             The next generation might look like this:
           </aside>
@@ -1227,8 +1216,8 @@
           </table>
           <aside class="notes">
             . . . a small improvement over our prior best!&nbsp;
-            So, we set that top one as our new best solution,
-            and reset the counter of generations since we saw it.&nbsp;
+            So, we set that top one as our benchmark,
+            and reset the generation counter.&nbsp;
             If we let this run to completion,
             we might wind up with something like this:
           </aside>
@@ -1292,9 +1281,7 @@
           <aside class="notes">
             . . . something completely different.&nbsp;
             Suppose we want to "evolve" a good set of stats for a
-            Dungeons and Dragons fighter character,
-            so our candidates are tuples of numbers,
-            rather than strings of bits.&nbsp;
+            Dungeons and Dragons fighter character.&nbsp;
             D&amp;D character stats are . . .
           </aside>
         </section>
@@ -1460,8 +1447,9 @@
             </tbody>
           </table>
           <aside class="notes">
-            So that's the Assess step taken care of.&nbsp;
-            But are we . . .
+            Now that we've assessed their fitness,
+            we can ask,
+            are we . . .
           </aside>
         </section>
 
@@ -1692,9 +1680,8 @@
             like giving it a higher chance of
             going up or down, maybe by multiple points,
             if it's very low or very high,
-            to simulate the real-world phenomenon of regression to the mean,
-            or all kinds of other options.&nbsp;
-            If we run this mutation function
+            or many other options.&nbsp;
+            If we run this
             on our new population,
             we wind up with something like this:
           </aside>
@@ -1719,11 +1706,10 @@
             </tbody>
           </table>
           <aside class="notes">
-            I've colored the stats that went up in green,
-            and down, in red.&nbsp;
+            where green means it went up, and red means down.&nbsp;
             Looking at the values in each column,
             you can see it's now much more diverse.&nbsp;
-            Now we go back to . . .
+            Now we . . .
           </aside>
         </section>
 
@@ -1744,7 +1730,7 @@
             <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
-            . . . Step 2, assessing the fitness of
+            . . . assess the fitness of
             these new candidates, and
             we get this:
           </aside>
@@ -1769,14 +1755,13 @@
             </tbody>
           </table>
           <aside class="notes">
-            Now we can see that
+            You can see that
             this generation is much improved from the prior one.&nbsp;
             The old one ranged from 476 to 760,
             and the new one from 635 to 851.&nbsp;
             It's still nowhere near our stopping criterion of 1021,
             so fast-forwarding through six more rounds,
-            we finally get one with good enough candidates,
-            like . . .
+            we finally get . . .
           </aside>
         </section>
 
@@ -1799,8 +1784,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . this,
-            with one suitable character
+            . . . one suitable character
             having 18 Strength and Constitution,
             acceptable though sub-par Dexterity,
             and surprisingly high Intelligence.&nbsp;
@@ -1814,7 +1798,7 @@
 
             <br/><br/>
 
-            So now we've finished evolving a set of Fighter stats.&nbsp;
+            So we've evolved a set of Fighter stats.&nbsp;
             Let's suppose we don't need any more Fighters in the party . . .
             but now we need a Wizard.&nbsp;
             All we need to do is tweak our fitness function, like so:
@@ -1832,8 +1816,8 @@
             An initial population would look roughly the same,
             since we haven't changed how that is generated, so
             I'll spare you those steps,
-            but after 11 more generations
-            I got this:
+            but after 11 generations
+            I got . . .
           </aside>
         </section>
 
@@ -1856,19 +1840,12 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . containing <i>three</i> candidates
+            . . . <i>three</i> candidates
             90% fit to be wizards.&nbsp;
             They're mostly pretty good in the other stats,
             but not so much as to be
             obviously better suited for some other class,
             except that that top one looks like a bard to me.
-
-            <br/><br/>
-
-            Remember though that this is all very random.&nbsp;
-            It may converge on a good solution faster, or more slowly,
-            and the fitness function may be good or poor at
-            getting just the right mix of alleles.
 
             <br/><br/>
 
@@ -1921,13 +1898,11 @@
 
         <section>
           <div class="all vctring">
-            <img src="images/code/def-evolver-init.png" class="code">
+            <img src="images/code/def-evolver-init.jpg" class="code">
           </div>
           <aside class="notes">
-            . . an initializer
-            (or in some languages, a "constructor")
-            that just stashes that class,
-            and also an option for how big a population to use.&nbsp;
+            . . a constructor
+            that just stashes that class.&nbsp;
             How we tell it to "run evolution" can look like this:
           </aside>
         </section>
@@ -2050,10 +2025,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . of zero to about 80 for anything reasonable
-            as a finished product.&nbsp;
-            Explaining this chart
-            is beyond the scope of this talk,
+            . . . which is beyond the scope of this talk,
             but if you really want to know,
             see me later and
             I'll talk your ears off
@@ -2068,9 +2040,8 @@
 
             We'll stick with the breeder selection function
             of just taking the top two most fit,
-            but we'll also need a combiner function,
-            to combine two parents into one,
-            which could look like this:
+            but we'll need a combiner function,
+            like this:
           </aside>
         </section>
 
@@ -2081,8 +2052,7 @@
           <aside class="notes">
             . . . sticking with the tactic of flipping a coin
             to see which parent contributes each gene.&nbsp;
-            Once each candidate combination is created,
-            we need a method to mutate it, such as . . .
+            We also need a mutator method, like . . .
           </aside>
         </section>
 
@@ -2091,13 +2061,9 @@
             <img src="images/code/def-recipe-mutate.png" class="code">
           </div>
           <aside class="notes">
-            . . . this one.&nbsp;
-            What we do here is
-            to multiply by somewhere between 81% and 119%,
-            so it's got very little chance of staying the same,
-            and the difference will usually be rather small,
-            since we're using multiple dice so we have a bell curve,
-            but could go up to 19% in either direction,
+            . . . this.&nbsp;
+            What we do here is to
+            let each figure go up to 19% either up or down,
             but we clamp it within a reasonable range.
 
             <br/><br/>
@@ -2256,7 +2222,6 @@
             historically called a sack mead or great mead.&nbsp;
             It took 149 generations,
             which was still very fast,
-            because the population is so small and the functions so simple,
             to produce this:
           </aside>
         </section>
@@ -2296,45 +2261,38 @@
         </section>
 
         <section>
-          <div style="font-size: 0.9em; text-align: left">
-            <br/>
+          <div style="text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <br/>
-            <ul>
-              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
+            <ul style="font-size: 1.1em">
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
             </ul>
           </div>
           <aside class="notes">
-            Genetic Algorithms are optimization meta-heuristics,
+            Genetic Algorithms are optimization heuristics,
             which is fancy talk for
-            kinds of shortcuts to finding good-enough solutions.&nbsp;
+            shortcuts to finding good-enough solutions.&nbsp;
             They're . . .
           </aside>
         </section>
 
         <section>
-          <div style="font-size: 0.9em; text-align: left">
-            <br/>
+          <div style="text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <br/>
-            <ul>
-              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
+            <ul style="font-size: 1.1em">
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
             </ul>
           </div>
           <aside class="notes">
-            . . . simpler than you probably thought.&nbsp;
-            They . . .
+            . . . simpler than you probably thought, and . . .
           </aside>
         </section>
 
         <section>
-          <div style="font-size: 0.9em; text-align: left">
-            <br/>
+          <div style="text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <br/>
-            <ul>
-              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
+            <ul style="font-size: 1.1em">
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
             </ul>
@@ -2345,37 +2303,31 @@
         </section>
 
         <section>
-          <div style="font-size: 0.9em; text-align: left">
-            <br/>
+          <div style="text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <br/>
-            <ul>
-              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
+            <ul style="font-size: 1.1em">
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to make converge well</li>
+              <li>can be tricky to figure out good rules</li>
             </ul>
           </div>
           <aside class="notes">
             . . . can be tricky to
-            figure out exactly what the functions should do,
-            to make the solutions converge quickly enough,
-            without ignoring too many good solutions.&nbsp;
-            This approach is also . . .
+            figure out exactly what the functions should do.&nbsp;
+            They are . . .
           </aside>
         </section>
 
         <section>
-          <div style="font-size: 0.9em; text-align: left">
-            <br/>
+          <div style="text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <br/>
-            <ul>
-              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
+            <ul style="font-size: 1.1em">
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to make converge well</li>
-              <li>are a widely applicable abstraction</li>
+              <li>can be tricky to figure out good rules</li>
+              <li>applicable to a wide variety of problems</li>
             </ul>
           </div>
           <aside class="notes">
@@ -2385,16 +2337,14 @@
         </section>
 
         <section>
-          <div style="font-size: 0.9em; text-align: left">
-            <br/>
+          <div style="text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <br/>
-            <ul>
-              <li>are <strike>optimization meta-heuristics</strike> kinds of shortcuts</li>
+            <ul style="font-size: 1.1em">
+              <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to make converge well</li>
-              <li>are a widely applicable abstraction</li>
+              <li>can be tricky to figure out good rules</li>
+              <li>applicable to a wide variety of problems</li>
               <li>can create solutions humans would not</li>
             </ul>
           </div>
