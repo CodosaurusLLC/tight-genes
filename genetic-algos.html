@@ -259,7 +259,7 @@
             came out in the late 1980's,
             from General Electric.&nbsp;
             These days,
-            many languages have
+            many programming languages have
             genetic algorithm libraries available,
             but the actual <i>uses</i> of genetic algorithms
             remain mostly obscure,
@@ -492,7 +492,7 @@
           <aside class="notes">
             . . . a simple string of bits.&nbsp;
             This will do fine for candidates that consist of
-            a simple series of yes/no decisions,&nbsp;
+            a simple series of yes/no decisions,
             such as for . . .
           </aside>
         </section>
@@ -706,7 +706,8 @@
           <aside class="notes">
             . . . assess how "fit" each of these truckloads is.&nbsp;
             We do this with what's called a "fitness function",
-            which reflects how fit a candidate is
+            which reflects
+            how fit a candidate is
             <i>for some particular purpose</i>.&nbsp;
             In this case, we already know we want the total value,
             BUT, any load that's too heavy for the truck, is worthless.&nbsp;
@@ -733,7 +734,7 @@
             certainly must have been.&nbsp;
             For instance,
             if the truck were even smaller,
-            we could take into account the <i>volume</i> of each item.&nbsp;
+            we could take into account the <i>volume</i> of each item.
 
             <br/><br/>
 
@@ -826,7 +827,8 @@
             then we return true
             if it's been 100 generations since the best one,
             else we return false.&nbsp;
-            Else we take the fittest one,
+            Else,
+            we take the fittest one,
             make that our new benchmark,
             and reset the generation counter.
 
@@ -962,7 +964,7 @@
             we get the decision for that item from the first parent,
             else we get it from the other parent.&nbsp;
             With a random crossover point of 3,
-            this would get us a result like this:
+            that would get us a result like this:
           </aside>
         </section>
 
@@ -1004,7 +1006,7 @@
             This is just like how we created the initial population,
             except that instead of each candidate being
             made from scratch,
-            they're the product of breeding our breeders.&nbsp;
+            they're the product of breeding our chosen breeders.&nbsp;
             The whole list might look like this:
           </aside>
         </section>
@@ -1039,7 +1041,7 @@
             Lots of family resemblance there, eh?&nbsp;
             None of these loads include a cow, butter, or leather,
             and they all include cheese.&nbsp;
-            That's because both of breeders were like that.&nbsp;
+            That's because both of our breeders were like that.&nbsp;
             If we were to just continue
             breeding the fittest of each generation,
             we wouldn't <i>ever</i> see any loads
@@ -1088,7 +1090,7 @@
             number of mutations per candidate,
             or all kinds of other options.&nbsp;
             If we run this mutation function
-            on the candidates in our new population,
+            on these new candidates,
             we might wind up with something like this:
           </aside>
         </section>
@@ -1624,8 +1626,7 @@
           </table>
           <aside class="notes">
             There are two things to notice here.&nbsp;
-            First, the number of red and green is not always the same,
-            in a single candidate or the whole population.&nbsp;
+            First, the number of red and green is not always the same.&nbsp;
             Second, notice the family resemblance!&nbsp;
             For each stat, there are only two possible values,
             or in Genetic Algorithm terms, "alleles",
@@ -1710,7 +1711,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            where green means it went up, and red means down.&nbsp;
+            . . . where green means it went up, and red means down.&nbsp;
             Looking at the values in each column,
             you can see it's now much more diverse.&nbsp;
             Now we . . .
@@ -1759,7 +1760,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            You can see that
+            We can see that
             this generation is much improved from the prior one.&nbsp;
             The old one ranged from 476 to 760,
             and the new one from 635 to 851.&nbsp;
@@ -1907,8 +1908,7 @@
             <img src="images/code/def-evolver-init.jpg" class="code">
           </div>
           <aside class="notes">
-            . . a constructor
-            that just stashes that class.&nbsp;
+            . . a constructor that just stashes that class.&nbsp;
             How we tell it to "run evolution" can look like this:
           </aside>
         </section>
