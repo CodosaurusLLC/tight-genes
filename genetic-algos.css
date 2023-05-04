@@ -192,19 +192,18 @@ section.present::after {
   height: 100%;
 }
 
-.reveal pre {
-  margin: 0;
+/* for debugging */
+.reveal .bordered { border: 1px solid red }
+
+.reveal .vctring {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.reveal .autofix {
-  margin: 0;
-  max-height: var(--main-height);
-  max-width: 100%;
-  position: absolute;
-  top: calc(var(--main-height) / 2);
-  left: 50%;
-  transform: translate(-50%,-50%);  /* of the image size! */
-}
+.reveal .all { height: var(--main-height); }
+.reveal .half { height: 50%; }
+.reveal .qtr { height: 25%; }
 
 .reveal img {
   border-radius: 1em;
