@@ -340,7 +340,7 @@
             "Its unusual shape is expected
             because most human antenna designers
             would never think of such a design."&nbsp;
-            That is one of the great advantages of this approach.&nbsp;
+            And that is one of the great advantages of this approach.&nbsp;
             These algorithms are much less hampered by
             expectations of similarity to past solutions.&nbsp;
             However, today we'll only be looking at
@@ -581,6 +581,7 @@
         <section>
           <br/>
           <img src="images/backpack.png" height="65%">
+          <br/>Knapsack / Rucksack / Backpack / Whatever!
           <span class="slide-caption">Image: https://publicdomainvectors.org/en/free-clipart/Rucksack-vector-image/9910.html</span>
           <aside class="notes">
             . . . knapsack problems,
@@ -613,7 +614,7 @@
           <aside class="notes">
             . . . a farmer,
             with a smallish truck,
-            and he needs to decide what to take to market.&nbsp;
+            and he needs to decide what to take to market each week.&nbsp;
             And on this farm he has . . .
           </aside>
         </section>
@@ -624,7 +625,8 @@
           </div>
           <span class="slide-caption">Images: standard emoji</span>
           <aside class="notes">
-            . . . some cows, EIEIO!&nbsp;
+            . . . some cows.&nbsp;
+            (EIEIO!)&nbsp;
             So among the things he can take to market are:
           </aside>
         </section>
@@ -638,7 +640,7 @@
             🧈
             🍨
             🥩
-            <span style="background-image: url(images/leather.png)">&nbsp;&nbsp;&nbsp;<span>
+            <span style="background-image: url(images/leather.png)">&nbsp;&nbsp;&nbsp;</span>
           </div>
           <span class="slide-caption">Images: standard emoji plus https://www.rawpixel.com/image/6130389/</span>
           <aside class="notes">
@@ -715,22 +717,23 @@
               over and over until we can't,
             -->
             Let's see what happens if we use a genetic algorithm
-            to find a "good enough" truckload.&nbsp;
+            to determine a "good enough" truckload.&nbsp;
             First we need a way to represent each candidate.&nbsp;
-            In code, we could represent them as a class
-            in a language such as Ruby,
+            In code, we could represent them as a class,
             and create one randomly,
             like so:
           </aside>
         </section>
 
         <section>
-          <img src="images/code/class-truckload.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/class-truckload.png" class="code">
+          </div>
           <aside class="notes">
             Whoa, that looks like we're just making a random number!&nbsp;
             That's right, we're making a random number
             <i>with seven bits</i>,
-            meaning that we have a random 1 or 0
+            so we have a random 1 or 0
             for each of our seven possible items.&nbsp;
             We could get as complex as we want in this function,
             like dictating a minimum or maximum number of items,
@@ -745,7 +748,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-init-pop-1.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-init-pop-1.png" class="code">
+          </div>
           <aside class="notes">
             . . . like so.&nbsp;
             (This could actually be done in much more idiomatic Ruby,
@@ -784,14 +789,17 @@
             </tbody>
           </table>
           <aside class="notes">
-            <!--
             Why ten?&nbsp;
             Because that's what fits on the screen
-            in a decently readable font.&nbsp;
+            in a decently readable size.&nbsp;
             If I were doing this for real,
             with a much more complex domain,
-            I might use a hundred or a thousand.&nbsp;
-            -->
+            I might use a hundred,
+            or a thousand,
+            or even more.
+
+            <br/><br/>
+
             But how did we get from random numbers to those combinations?&nbsp;
             Behind the scenes, that translation might look like this:
           </aside>
@@ -806,8 +814,10 @@
             represented by our Truckload's contents value,
             we can iterate through the list of possible items,
             checking whether the corresponding bit is on.&nbsp;
-            So now we're done with the Initialization step.&nbsp;
-            The next step is . . .
+
+            <br/><br/>
+
+            Now that we're done with Initialization, we . . .
           </aside>
         </section>
 
@@ -828,12 +838,12 @@
             <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
-            . . . to
-            assess how "fit" each of these truckloads is.&nbsp;
+            . . . assess how "fit" each of these truckloads is.&nbsp;
             We do this with what's called a "fitness function".&nbsp;
             Just like how biological creatures might be perfectly fit
             for one environment but a lousy fit for another,
-            this should reflect how fit a candidate is
+            this should reflect
+            how fit a candidate is
             <i>for some particular purpose</i>.&nbsp;
             In this case, we already know we want the total value,
             BUT, any load that's too heavy for the truck, is worthless.&nbsp;
@@ -842,7 +852,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-truckload-fitness.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-truckload-fitness.png" class="code">
+          </div>
           <aside class="notes">
             We iterate through the possible items,
             summing up the weights of the ones we want to take.&nbsp;
@@ -854,12 +866,13 @@
 
             <br/><br/>
 
-            Once again,
+            Again,
             we could get as complex as we want in this function,
             and NASA's antenna fitness function
             certainly must have been.&nbsp;
-            For instance, if we also had the <i>volume</i> of each item,
-            and the truck were smaller,
+            For instance,
+            if the truck were even smaller,
+            and we had the <i>volume</i> of each item,
             we could also total up the volume,
             and make sure it all fits.&nbsp;
             <!-- We could even take into account very long or flat shapes,
@@ -905,8 +918,7 @@
             </table>
           </div>
           <aside class="notes">
-            So now we're done with the Assessment step.&nbsp;
-            The next step is to see if . . .
+            So now that we've assessed their fitness, we . . .
           </aside>
         </section>
 
@@ -927,40 +939,44 @@
             <span class="center cycle-ptr cycle-ptr-done">↑</span>
           </div>
           <aside class="notes">
-            . . . we're done.&nbsp;
+            . . . check if we're done.&nbsp;
             So what are our criteria?&nbsp;
             The function can be simple,
             but it can take some thinking to figure out
             what the function should <i>do</i>.&nbsp;
             With a knapsack problem,
             a good solution can be made totally worthless by
-            adding just one more item, and exceeding the capacity.&nbsp;
+            adding just one more item,
+            and thereby exceeding the constraints.&nbsp;
             So, we're going to record the best we've seen,
             and stop if we haven't seen anything better
             within 100 generations.&nbsp;
-            <!--
-              Why 100?&nbsp;
-              Pretty much random.&nbsp;
-              It seems like enough for a good chance for improvement,
-              and since what we're doing is so simple,
-              using lots of generations isn't very slow.&nbsp;
-            -->
+
+            <br/><br/>
+
+            Why 100?&nbsp;
+            Pretty much random.&nbsp;
+            It seems like enough for a good chance for improvement,
+            and since what we're doing is so simple,
+            and our population is so small,
+            using lots of generations isn't very slow.&nbsp;
             In Ruby, that would look like this:
           </aside>
         </section>
 
         <section>
-          <img src="images/code/def-truckload-done.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-truckload-done.png" class="code">
+          </div>
           <aside class="notes">
             When the code is initially parsed,
             we set the initial best combo as empty,
             and we set how many generations it's been since we saw that,
-            as zero,
-            both as class-variables.&nbsp;
-            (Remember, this is within the definition of class Truckload.)&nbsp;
+            as zero.&nbsp;
             When the function is called,
             we increment the number of generations,
-            look at the fitness of each member of the current population,
+            look at the fitness of each candidate
+            in the current population,
             and select only the ones with a better fitness than
             the best one so far.&nbsp;
             If there are any,
