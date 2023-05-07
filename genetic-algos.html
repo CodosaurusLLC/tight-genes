@@ -806,7 +806,9 @@
         </section>
 
         <section>
-          <img src="images/code/class-item.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/class-item.png" class="code">
+          </div>
           <aside class="notes">
             We have a list of items we <i>can</i> take,
             as instances of an inner class describing them.&nbsp;
@@ -979,32 +981,33 @@
             in the current population,
             and select only the ones with a better fitness than
             the best one so far.&nbsp;
-            If there are any,
-            we sort them by fitness,
+            If there are none,
+            then we return true
+            if it's been 100 generations since the best one,
+            else we return false.&nbsp;
+            If there <i>is</i> at least one
+            candidate exceeding our benchmark, we
+            sort them by fitness,
             take the fittest one,
             make that our new benchmark,
             and reset the generation counter.
-            Otherwise,
-            we return true
-            if it's been 100 generations since the best one,
-            else we return false.&nbsp;
 
             <br/><br/>
 
             Again, we can get as complex as we want,
             not only in checking the maximum fitness,
-            but also looking at the average or minimum fitness,
+            but we could look at other stopping criteria,
+            like the average or minimum fitness,
             or achieving some specific level of maximum fitness,
-            and also with other stopping criteria,
-            like some number of generations in total,
-            or some amount of time (whether clock time or CPU or whatever),
-            or when the user presses a STOP button,
+            like some maximum number of generations,
+            or amount of time,
+            (whether clock time or CPU or whatever),
+            or a STOP button,
             or many other ways, or a combination of ways.
 
             <br/><br/>
 
-            Since now we're done with the check-if-done step,
-            and we're <i>not</i> done, the next step is to . . .
+            Since we're <i>not</i> done, the next step is to . . .
           </aside>
         </section>
 
@@ -1025,16 +1028,18 @@
             <span class="center cycle-ptr cycle-ptr-select">↑</span>
           </div>
           <aside class="notes">
-            . . . select some candidates to use in
-            breeding the next generation.&nbsp;
+            . . . select some candidates to
+            breed the next generation.&nbsp;
             The obvious way is to take the top two most fit, like so:
           </aside>
         </section>
 
         <section>
-          <img src="images/code/def-truckload-select.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-truckload-select.png" class="code">
+          </div>
           <aside class="notes">
-            Take the population,
+            We take the population,
             sort them by fitness in descending order,
             and take the first two.&nbsp;
             Out of our current population, we would choose:
@@ -1058,9 +1063,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td><br/></td></tr>
+                <tr><td colspan="8"><br/></td></tr>
                 <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">20,000<br/></td></tr>
-                <tr><td><br/></td></tr>
+                <tr><td colspan="8"><br/></td></tr>
                 <tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td class="numeric">14,800</td></tr>
               </tbody>
             </table>
@@ -1072,6 +1077,7 @@
             like selecting two randomly
             with each candidate having a <i>chance</i> to be selected,
             proportional to their fitness,
+            called "Roulette Wheel" selection,
             and lots of other ways.&nbsp;
 
             <br/><br/>
@@ -1085,8 +1091,7 @@
 
             <br/><br/>
 
-            Now that we're done with the Selection step,
-            next we actually . . .
+            Now that we've chosen our breeders, next we . . .
           </aside>
         </section>
 
@@ -1120,7 +1125,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-truckload-combine.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-truckload-combine.png" class="code">
+          </div>
           <aside class="notes">
             We establish the crossover point
             for each new candidate,
@@ -1132,19 +1139,12 @@
             If we haven't yet hit the crossover point,
             we get the decision for that item from the first parent,
             else we get it from the other parent.&nbsp;
-            <!-- This means that it could be all copied
+            This means that it could be all copied
             from one parent or the other,
             or it could switch at some point.&nbsp;
-            Doing the bitwise math like that
-            gets us zero if the bit was off,
-            and that bit's positional value if it was on.&nbsp;
-            In other words, if a bit in the 8's place is 0, we get 0,
-            but if it's a 1, we get 8.&nbsp;
-            Then we sum them up.&nbsp; -->
-            Doing this once,
-            with a crossover point of 3,
-            <!-- so we take 3 values from the first parent, -->
-            gets us a result like this:
+            If we do this once, with a crossover point of 3,
+            so we take 3 values from the first parent,
+            that would get us a result like this:
           </aside>
         </section>
 
@@ -1162,13 +1162,13 @@
                   <th>Leather</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr><td><br/></td></tr>
-                <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
+              <tbody style="font-weight: bold">
+                <tr><td colspan="7"><br/></td></tr>
+                <tr style="color: #0f0"><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
                 <tr><td colspan="7" style="text-align: center">+</td></tr>
-                <tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+                <tr style="color: #f33"><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
                 <tr><td colspan="7" style="text-align: center">=</td></tr>
-                <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td></tr>
+                <tr><td style="color: #0f0">N</td><td style="color: #0f0">N</td><td style="color: #0f0">Y</td><td style="color: #f33">N</td><td style="color: #f33">Y</td><td style="color: #f33">N</td><td style="color: #f33">N</td></tr>
               </tbody>
             </table>
           </div>
@@ -1179,7 +1179,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-truckload-new-pop.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-truckload-new-pop.png" class="code">
+          </div>
           <aside class="notes">
             This is just like how we created the initial population,
             except that instead of each candidate being
@@ -1254,7 +1256,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-truckload-maybe-mutate.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-truckload-maybe-mutate.png" class="code">
+          </div>
           <aside class="notes">
             We iterate through the item numbers,
             and for each one,
@@ -1266,7 +1270,7 @@
             number of mutations per candidate,
             or all kinds of other options.&nbsp;
             If we run this mutation function
-            on the candidates in our new population,
+            on these new candidates,
             we might wind up with something like this:
           </aside>
         </section>
@@ -1298,7 +1302,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            I've colored the ones that changed, in green.&nbsp;
+            . . . where green means that it changed.&nbsp;
             You can see that we now DO have some truckloads that
             include a cow, butter, or leather, or no cheese.&nbsp;
             Now we go back to . . .
@@ -1322,7 +1326,7 @@
             <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
-            . . . Step 2, assessing the fitness of
+            . . . assessing the fitness of
             these new candidates.&nbsp;
             If we sort on fitness descending,
             just to make it easy to find the best,
@@ -1365,11 +1369,12 @@
             But don't worry,
             as you may recall from our "are we done yet" function,
             we <i>hang onto</i> the best one,
-            and just try to outdo it.
-
-            <br/><br/>
+            and just try to outdo it,
+            so we haven't lost it.
 
             <!--
+            <br/><br/>
+
             But that's not really the best approach.&nbsp;
             Remember how I said that sometimes
             the fittest members of a population
@@ -1383,42 +1388,12 @@
             and I didn't want to redo them.&nbsp;
             Also, I think this version is still worth exploring.&nbsp;
             So let's keep going.&nbsp;
+
+            <br/><br/>
+
             -->
 
             The next generation might look like this:
-          </aside>
-        </section>
-
-        <section>
-          <table class="centered" style="font-size: 0.8em">
-            <thead>
-              <tr>
-                <th>Cow</th>
-                <th>Milk</th>
-                <th>Cheese</th>
-                <th>Butter</th>
-                <th>Ice Cream</th>
-                <th>Meat</th>
-                <th>Leather</th>
-                <th>Fitness</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">12,000</td></tr>
-              <tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td class="numeric">11,000</td></tr>
-              <tr><td>N</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">10,000</td></tr>
-              <tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td class="numeric">3,000</td></tr>
-              <tr><td>Y</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>Y</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
-              <tr><td>Y</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td class="numeric">0</td></tr>
-            </tbody>
-          </table>
-          <aside class="notes">
-            Still going down!&nbsp;
-            But the one after that might look like this:
           </aside>
         </section>
 
@@ -1451,7 +1426,7 @@
           </table>
           <aside class="notes">
             . . . a small improvement over our prior best!&nbsp;
-            So, we set that as our new best solution,
+            So, we set that top one as our benchmark,
             and reset the counter of generations since we saw it.&nbsp;
             If we let this run to completion,
             we might wind up with something like this:
@@ -1482,7 +1457,7 @@
               <tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">8,00</td></tr>
               <tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">8,00</td></tr>
               <tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td class="numeric">0</td></tr>
-              <tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td>
+              <tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
             </tbody>
           </table>
           <aside class="notes">
@@ -1514,7 +1489,9 @@
         </section>
 
         <section>
-          <img src="images/something-completely-different.jpg" class="autofix">
+          <div class="all vctring">
+            <img src="images/something-completely-different.jpg">
+          </div>
           <span class="slide-caption">Image: https://image.tmdb.org/t/p/w500/ajbdFQLvJTlNu4LnVWGnNMb4mZ8.jpg (used for edu fair use)</span>
           <aside class="notes">
             . . . something completely different.&nbsp;
@@ -1557,11 +1534,13 @@
         </section>
 
         <section>
-          <img src="images/code/class-character.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/class-character.png" class="code">
+          </div>
           <aside class="notes">
             (Defining the roll function is left as an exercise.)&nbsp;
             So if we create an initial population of ten Characters,
-            we might wind up with a list like this:
+            it might look like this:
           </aside>
         </section>
 
@@ -1607,19 +1586,21 @@
           </div>
 
           <aside class="notes">
-            . . . to assess how "fit" each of these characters is.&nbsp;
+            . . . to assess how "fit" each one of these characters is.&nbsp;
             We're trying to evolve a good set of <i>Fighter</i> stats,
             so it should be based mainly on strength and constitution.&nbsp;
             Dexterity is also helpful.&nbsp;
             Intelligence, wisdom, and charisma, not so much,
             but we don't want them too low,
             for the sake of occasional saving throws.&nbsp;
-            I toyed with a few different things, such as
+            I tried several different things, such as . . .
           </aside>
         </section>
 
         <section>
-          <img src="images/code/def-char-fitness-1.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-char-fitness-1.png" class="code">
+          </div>
           <aside class="notes">
             totaling up double the strength,
             the constitution,
@@ -1631,7 +1612,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-char-fitness-2.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-char-fitness-2.png" class="code">
+          </div>
           <aside class="notes">
             prioritizing them linearly,
             adding up six times the strength, five times the constitution,
@@ -1643,7 +1626,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-char-fitness-3.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-char-fitness-3.png" class="code">
+          </div>
           <aside class="notes">
             . . . prioritizing the stats
             again but much more strongly,
@@ -1680,8 +1665,9 @@
             </tbody>
           </table>
           <aside class="notes">
-            So that's the Assess step taken care of.&nbsp;
-            But are we . . .
+            Now that we've assessed their fitness,
+            we can ask,
+            are we . . .
           </aside>
         </section>
 
@@ -1716,7 +1702,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-char-done.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-char-done.png" class="code">
+          </div>
           <aside class="notes">
             Very simple.&nbsp;
             None of our current candidates score
@@ -1741,8 +1729,7 @@
             <span class="center cycle-ptr cycle-ptr-select">↑</span>
           </div>
           <aside class="notes">
-            . . . select some candidates to use in
-            breeding the next generation.&nbsp;
+            . . . select some candidates to breed the next generation.&nbsp;
             Taking the top two scorers again we get:
           </aside>
         </section>
@@ -1764,7 +1751,7 @@
           </div>
           <aside class="notes">
             these two.&nbsp;
-            Of course the abstraction gets a bit more
+            The abstraction gets a bit more
             <i>obviously</i> leaky now,
             because we're ignoring sexes;
             we have no guarantee that
@@ -1774,7 +1761,7 @@
             but then it was not so relevant, so I let it slide.&nbsp;
             Now that they're living beings
             (whether humans or elves or whatever),
-            though, we could add sexes,
+            though, we could add such complications,
             and many other such factors.&nbsp;
             <!--
             and even add what race they are
@@ -1813,7 +1800,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-char-breed.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-char-breed.png" class="code">
+          </div>
           <aside class="notes">
             We go through the stats one by one,
             flip a coin (or "roll a d2"),
@@ -1831,13 +1820,13 @@
             </thead>
             <tbody>
               <tr><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td></tr>
-              <tr><td></td></tr>
+              <tr><td colspan="6"></td></tr>
               <tr><td colspan="6" style="text-align: center">+</td></tr>
-              <tr><td></td></tr>
+              <tr><td colspan="6"></td></tr>
               <tr><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td></tr>
-              <tr><td></td></tr>
+              <tr><td colspan="6"></td></tr>
               <tr><td colspan="6" style="text-align: center">=</td></tr>
-              <tr><td></td></tr>
+              <tr><td colspan="6"></td></tr>
               <tr><td style="color:#0f0">13</td><td style="color:#f33">15</td><td style="color:#f33">10</td><td style="color:#0f0">13</td><td style="color:#f33">6</td><td style="color:#0f0">10</td></tr>
             </tbody>
           </table>
@@ -1871,7 +1860,8 @@
           </table>
           <aside class="notes">
             There are two things to notice here.&nbsp;
-            First, the number of red and green is not always the same.&nbsp;
+            First, the number of red and green is not always the same,
+            neither in a single candidate nor the whole population.&nbsp;
             It's a series of random coin flips, so
             <i>on average</i> there will be three and three,
             but it could be anything up to six and zero either way.&nbsp;
@@ -1885,15 +1875,17 @@
 
             <br/><br/>
 
-            <!-- At a glance, these look on average
+            At a glance, these look on average
             much more suitable as fighters
             than the previous generation.&nbsp;
-            (We'll figure their actual fitness scores later.) -->
+            (We'll figure their actual fitness scores later.)&nbsp;
             If we were to just continue
             breeding the fittest of each generation,
             we wouldn't see any change,
             let alone improvement,
-            in the possible values of each stat.&nbsp;
+            in the possible values of each stat,
+            in other words,
+            the alleles for each gene.&nbsp;
             For instance, the Wisdom would never be
             anything other than 6 or 11.&nbsp;
             But again, we fix that in the next step, which is to . . .
@@ -1928,7 +1920,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-char-maybe-mutate.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-char-maybe-mutate.png" class="code">
+          </div>
           <aside class="notes">
             For each stat,
             we add a random number from 0 to 2,
@@ -1940,9 +1934,9 @@
             going up or down, maybe by multiple points,
             if it's very low or very high,
             to simulate the real-world phenomenon of regression to the mean,
-            or all kinds of other options.&nbsp;
-            If we run this mutation function
-            on the candidates in our new population,
+            or many other options.&nbsp;
+            If we run this
+            on our new population,
             we wind up with something like this:
           </aside>
         </section>
@@ -1966,8 +1960,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            I've colored the stats that went up in green,
-            and down, in red.&nbsp;
+            . . . where green means it went up, and red means down.&nbsp;
             Looking at the values in each column,
             you can see it's now much more diverse.&nbsp;
             Now we go back to . . .
@@ -1991,7 +1984,8 @@
             <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
-            . . . Step 2, assessing the fitness of
+            . . . Step 2, and
+            assess the fitness of
             these new candidates.&nbsp;
             If we sort on fitness descending,
             just to make it easy to find the best,
@@ -2018,14 +2012,13 @@
             </tbody>
           </table>
           <aside class="notes">
-            Now we can see that
+            We can see that
             this generation is much improved from the prior one.&nbsp;
             The old one ranged from 476 to 760,
             and the new one from 635 to 851.&nbsp;
             It's still nowhere near our stopping criterion of 1021,
             so fast-forwarding through six more rounds,
-            we finally get one with good enough candidates,
-            like . . .
+            we finally get . . .
           </aside>
         </section>
 
@@ -2048,9 +2041,8 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . this,
-            with one suitable character
-            having 18 Strength and Constitution,
+            . . . one suitable character,
+            with 18 Strength and Constitution,
             acceptable though sub-par Dexterity,
             and surprisingly high Intelligence.&nbsp;
             That's not a problem, just a bit of a waste.&nbsp;
@@ -2064,7 +2056,7 @@
 
             <br/><br/>
 
-            So now we've finished evolving a set of Fighter stats.&nbsp;
+            So we've evolved a set of Fighter stats.&nbsp;
             Let's suppose we don't need any more Fighters in the party . . .
             but now we need a Wizard.&nbsp;
             All we need to do is tweak our fitness function, like so:
@@ -2072,7 +2064,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-char-fitness-4.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-char-fitness-4.png" class="code">
+          </div>
           <aside class="notes">
             . . . to prioritize intelligence first,
             then wisdom, dexterity, and so on,
@@ -2085,8 +2079,8 @@
             An initial population would look roughly the same,
             since we haven't changed how that is generated, so
             I'll spare you those steps,
-            but after 11 more generations
-            I got this:
+            but after 11 generations
+            I got . . .
           </aside>
         </section>
 
@@ -2109,7 +2103,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . containing <i>three</i> candidates
+            . . . <i>three</i> candidates
             90% fit to be wizards.&nbsp;
             They're mostly pretty good in the other stats,
             but not so much as to be
@@ -2132,7 +2126,9 @@
         </section>
 
         <section>
-          <img src="images/tooth-extraction.png" class="autofix">
+          <div class="all vctring">
+            <img src="images/tooth-extraction.png">
+          </div>
           <span class="slide-caption">Image: from https://www.authoritydental.org/tooth-extraction-recovery</span>
           <aside class="notes">
             . . . extract the common parts into something they all can use,
@@ -2141,7 +2137,9 @@
         </section>
 
         <section>
-          <img src="images/evolver-license-plate.png" class="autofix">
+          <div class="all vctring">
+            <img src="images/evolver-license-plate.png">
+          </div>
           <span class="slide-caption">Image: my picture, of my actual license plate!</span>
           <aside class="notes">
             . . . Evolver!&nbsp;
@@ -2161,7 +2159,8 @@
 
             <br/><br/>
 
-            Anyway, with just a little bit of tweaking,
+            Anyway,
+            with just a little bit of tweaking,
             and a slight sprinkling of fancy Ruby magic dust,
             we can extract a class
             that defines the common parts,
@@ -2173,7 +2172,9 @@
         </section>
 
         <section>
-          <img src="images/code/class-evolver.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/class-evolver.png" class="code">
+          </div>
           <aside class="notes">
             That's a lot of code to look at at once,
             so let's go through it piece by piece.&nbsp;
@@ -2184,20 +2185,24 @@
         </section>
 
         <section>
-          <img src="images/code/def-evolver-init.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-evolver-init.jpg" class="code">
+          </div>
           <aside class="notes">
-            . . an initializer that just grabs that class,
+            . . a constructor that just stashes that class.&nbsp;
             <!--
             using type as a name for class
             so as not to conflict with a reserved word,
             -->
-            and also an option for how big a population to use.&nbsp;
+            (And also an option for how big a population to use.)&nbsp;
             How we tell it to "run evolution" can look like this:
           </aside>
         </section>
 
         <section>
-          <img src="images/code/def-evolver-evolve.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-evolver-evolve.png" class="code">
+          </div>
           <aside class="notes">
             . . . just a slight variation on
             our original high-level code.&nbsp;
@@ -2212,7 +2217,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-evolver-init-pop.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-evolver-init-pop.png" class="code">
+          </div>
           <aside class="notes">
             . . . nearly identical to our original code,
             but, again, passing the creation responsibility
@@ -2222,7 +2229,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-evolver-breed.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-evolver-breed.png" class="code">
+          </div>
           <aside class="notes">
             . . . again nearly identical to our original code,
             but passing the responsibility for
@@ -2236,27 +2245,15 @@
             that we had in both the Truckload and Character classes.&nbsp;
             We can demonstrate that by evolving something else,
             and supplying only the parts that vary.&nbsp;
-            So . . .
-          </aside>
-        </section>
-
-        <section>
-          <img src="images/pinky-and-brain.jpg">
-          <span class="slide-caption">Image: https://www.flickr.com/photos/jdhancock/3725688716</span>
-          <aside class="notes">
-            . . . [in Pinky voice:]
-            what are we going to evolve this time, Brain?&nbsp;
-            [in Brain voice:]
-            No, not something that would take over the world,
-            but something that might make you
-            <i>feel</i> like you <i>could</i>.&nbsp;
+            So what now?&nbsp;
             In my spare time, I make . . .
           </aside>
         </section>
 
         <section>
+          <br/>
           <img src="images/2021-06-12-Meads-Assembled.jpg" height="65%">
-          <div style="font-size: 3em">Mead</div>
+          <div style="font-size: 3em">Mead (Mjød)</div>
           <span class="slide-caption">Image: my own pic of five batches of plain mead in progress</span>
           <aside class="notes">
             . . . mead,
@@ -2267,7 +2264,9 @@
         </section>
 
         <section>
-          <img src="images/code/class-recipe.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/class-recipe.png" class="code">
+          </div>
           <aside class="notes">
             the ratio of water to honey,
             and the alcohol tolerance of the yeast we'll use,
@@ -2283,7 +2282,9 @@
         </section>
 
         <section>
-          <img src="images/code/def-recipe-fitness.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-recipe-fitness.png" class="code">
+          </div>
           <aside class="notes">
             . . . fitness function.&nbsp;
             This one looks at how far off we are
@@ -2316,7 +2317,6 @@
               <tr><td>Sweet</td><td class="numeric">20</td><td class="numeric">29</td></tr>
               <tr><td>Dessert</td><td class="numeric">30</td><td class="numeric">39</td></tr>
               <tr><td>Too Sweet</td><td class="numeric">40</td><td class="numeric"></td></tr>
-              </tr>
             </tbody>
           </table>
           <aside class="notes">
@@ -2338,14 +2338,16 @@
 
             We'll stick with the breeder selection function
             of just taking the top two most fit,
-            but we'll also need a combiner function,
+            but we'll need a combiner function,
             to combine two parents into one,
             which could look like this:
           </aside>
         </section>
 
         <section>
-          <img src="images/code/def-recipe-combine.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-recipe-combine.png" class="code">
+          </div>
           <aside class="notes">
             . . . sticking with the tactic of flipping a coin
             to see which parent contributes each gene.&nbsp;
@@ -2355,16 +2357,21 @@
         </section>
 
         <section>
-          <img src="images/code/def-recipe-mutate.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/def-recipe-mutate.png" class="code">
+          </div>
           <aside class="notes">
-            . . . this one.&nbsp;
-            What we do here is
-            to multiply by somewhere between 81% and 119%,
+            . . . this.&nbsp;
+            What we do here is to
+            <!--
+            multiply by somewhere between 81% and 119%,
             so it's got very little chance of staying the same,
             and the difference will usually be rather small,
             since we're using multiple dice so we have a bell curve,
             but could go up to 19% in either direction,
-            but we clamp it within a reasonable range.
+            -->
+            let each figure go up to 19% either up or down,
+            but clamp it within a reasonable range.
 
             <br/><br/>
 
@@ -2377,12 +2384,14 @@
             and the overall structure of
             how it simulates evolution,
             are all handled by the Evolver class.&nbsp;
-            To actually use them together could look like this:
+            To actually use them together would look like this:
           </aside>
         </section>
 
         <section>
-          <img src="images/code/evolver-recipe-call.png" class="autofix code">
+          <div class="all vctring">
+            <img src="images/code/evolver-recipe-call.png" class="code">
+          </div>
           <aside class="notes">
             With our current version of Evolver,
             this would return the current population of Recipes,
@@ -2432,8 +2441,8 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . which shows that we can have negative fitness,
-            and the next generation like this:
+            . . . showing that we can have <i>negative</i> fitness,
+            and the next generation might look like this:
           </aside>
         </section>
 
@@ -2597,7 +2606,7 @@
           </div>
           <aside class="notes">
             Genetic Algorithms are optimization heuristics,
-            which is fancy-shmancy talk for
+            which is fancy-talk for
             shortcuts to finding good-enough solutions.&nbsp;
             They're . . .
           </aside>
@@ -2616,13 +2625,11 @@
             all you have to do is
             create an initial population,
             and cycle through five simple steps,
-            <!--
             of assessing their fitness,
             checking if you're done,
             picking breeders,
             breeding them,
             and mutating the new candidates,
-            -->
             over and over
             until you're done.&nbsp;
             They . . .
@@ -2650,7 +2657,7 @@
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to make converge well</li>
+              <li>can be tricky to figure out good rules</li>
             </ul>
           </div>
           <aside class="notes">
@@ -2674,13 +2681,12 @@
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to make converge well</li>
-              <li>are a widely applicable abstraction</li>
+              <li>can be tricky to figure out good rules</li>
+              <li>applicable to a wide variety of problems</li>
             </ul>
           </div>
           <aside class="notes">
-            . . . sufficiently widely applicable
-            that they can be used for a huge variety of problems,
+            . . . applicable to a huge variety of problems,
             including ones so complex that . . .
           </aside>
         </section>
@@ -2692,19 +2698,20 @@
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to make converge well</li>
-              <li>are a widely applicable abstraction</li>
+              <li>can be tricky to figure out good rules</li>
+              <li>applicable to a wide variety of problems</li>
               <li>can create solutions humans would not</li>
             </ul>
           </div>
           <aside class="notes">
-            . . . a semi-random algorithm can come up with
+            . . . a semi-random algorithm
+            can come up with
             excellent solutions that we humans
             would never have thought of.
 
             <br/><br/>
 
-            And now, it's . . .
+            Now, if you have any . . .
 
           </aside>
         </section>
@@ -2714,27 +2721,21 @@
           <h4>
             T.Rex-2023@Codosaur.us<br/>
             twitter.com/DaveAronson<br/>
-            linkedin.com/in/DaveAronson<br/>
-          </h4>
-          <h5>
-            <span style="font-size: 0.1em"><br/></span>
-            See also:<br/>
+            linkedin.com/in/DaveAronson<br/><br/>
+            Repo and Slides:<br/>
             github.com/CodosaurusLLC/tight-genes<br/>
-            <!-- toptal.com/#accept-only-candid-coders<br/> -->
-            Codosaur.us/reds/gen-algs-that-tx-23-slides
-          </h5>
+            Codosaur.us/reds/gen-algs-ndc-oslo-23-slides
+          </h4>
           <aside class="notes">
-            . . . your turn.&nbsp;
-            If you have any questions, I'll take them now,
+            . . . questions, I'll take them now,
             or at the contact info shown up there.&nbsp;
             As for the other URLs,
             the Github one is for the code,
-            plus the HTML, CSS, and images for the slides,
-            and the other one,
-            as you may have guessed,
-            is for the slides,
-            as a PDF,
-            complete with script.&nbsp;
+            and slides in HTML,
+            and the other one
+            (as you may have guessed)
+            is for the slides as a PDF,
+            complete with a full script.&nbsp;
             Any questions?
           </aside>
         </section>
