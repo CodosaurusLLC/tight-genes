@@ -854,8 +854,7 @@
             what the function should <i>do</i>.&nbsp;
             With a knapsack problem,
             a good solution can be made worthless by
-            adding one item,
-            and exceeding the constraints.&nbsp;
+            adding one item, and exceeding the constraints.&nbsp;
             So, we're going to record the best we've seen,
             and stop if we haven't seen anything better
             within 100 generations.&nbsp;
@@ -889,8 +888,9 @@
             then we return true
             if it's been 100 generations since the best one,
             else we return false.&nbsp;
-            If there <i>is</i> at least one candidate exceeding our benchmark,
-            we take the fittest one,
+            If there <i>is</i> at least one
+            candidate exceeding our benchmark, we
+            take the fittest one,
             make that our new benchmark,
             and reset the generation counter.
 
@@ -1117,7 +1117,7 @@
             Lots of family resemblance there, eh?&nbsp;
             None of these loads include a cow, butter, or leather,
             and they all include cheese.&nbsp;
-            That's because both of our breeders were like that.&nbsp;
+            That's because both of our two breeders were like that.&nbsp;
             If we were to just continue
             breeding the fittest of each generation,
             we wouldn't <i>ever</i> see any loads
@@ -1284,6 +1284,9 @@
             and I didn't want to redo them.&nbsp;
             Also, I think this version is still worth exploring.&nbsp;
             So let's keep going.&nbsp;
+
+            <br/><br/>
+
             -->
 
             The next generation might look like this:
@@ -1648,7 +1651,7 @@
             Now that they're living beings
             (whether humans or elves or whatever),
             though, we could add such complications,
-            and more.&nbsp;
+            and many other such factors.&nbsp;
             Anyway, next we actually . . .
           </aside>
         </section>
@@ -1739,7 +1742,7 @@
           <aside class="notes">
             There are two things to notice here.&nbsp;
             First, the number of red and green is not always the same,
-            in a single candidate nor the whole population.&nbsp;
+            neither in a single candidate nor the whole population.&nbsp;
             Second, notice the family resemblance!&nbsp;
             For each stat, there are only two possible values,
             or in Genetic Algorithm terms, "alleles",
@@ -1753,7 +1756,7 @@
             At a glance, these look on average
             much more suitable as fighters
             than the previous generation.&nbsp;
-            (We'll figure their actual fitness scores later.)
+            (We'll figure their actual fitness scores later.)&nbsp;
             If we were to just continue
             breeding the fittest of each generation,
             we wouldn't see any change,
@@ -1854,7 +1857,8 @@
             <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
-            . . . assess the fitness of
+            . . .
+            assess the fitness of
             these new candidates.&nbsp;
             If we sort on fitness descending,
             just to make it easy to find the best,
@@ -1910,8 +1914,8 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . one suitable character
-            having 18 Strength and Constitution,
+            . . . one suitable character,
+            with 18 Strength and Constitution,
             acceptable though sub-par Dexterity,
             and surprisingly high Intelligence.&nbsp;
             If we really wanted it more specialized,
@@ -2100,7 +2104,7 @@
 
             With this Evolver class handling most of the infrastructure,
             we don't need to repeat most of the boilerplate
-            that we had in the Truckload and Character classes.&nbsp;
+            that we had in both the Truckload and Character classes.&nbsp;
             We can demonstrate that by evolving something else,
             and supplying only the parts that vary.&nbsp;
             So what now?&nbsp;
@@ -2191,7 +2195,7 @@
             of just taking the top two most fit,
             but we'll need a combiner function,
             to combine two parents into one,
-            like this:
+            which could look like this:
           </aside>
         </section>
 
@@ -2202,7 +2206,7 @@
           <aside class="notes">
             . . . sticking with the tactic of flipping a coin
             to see which parent contributes each gene.&nbsp;
-            We also need a mutator method, like . . .
+            We also need a method to mutate it, such as . . .
           </aside>
         </section>
 
@@ -2214,7 +2218,7 @@
             . . . this.&nbsp;
             What we do here is to
             let each figure go up to 19% either up or down,
-            but we clamp it within a reasonable range.
+            but clamp it within a reasonable range.
 
             <br/><br/>
 
@@ -2266,7 +2270,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . showing that it is possible to have <i>negative</i> fitness,
+            . . . showing that we can have <i>negative</i> fitness,
             and the next generation might look like this:
           </aside>
         </section>
@@ -2290,7 +2294,8 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . with a slight improvement and narrower range,
+            . . . with slightly improved fitness
+            and a narrower range,
             and after just 7 generations, finally this:
           </aside>
         </section>
@@ -2419,9 +2424,9 @@
         </section>
 
         <section>
-          <div style="text-align: left">
+          <div style="font-size: 1.1em; text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <ul style="font-size: 1.1em">
+            <ul>
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
             </ul>
           </div>
@@ -2434,9 +2439,9 @@
         </section>
 
         <section>
-          <div style="text-align: left">
+          <div style="font-size: 1.1em; text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <ul style="font-size: 1.1em">
+            <ul>
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
             </ul>
@@ -2453,9 +2458,9 @@
         </section>
 
         <section>
-          <div style="text-align: left">
+          <div style="font-size: 1.1em; text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <ul style="font-size: 1.1em">
+            <ul>
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
@@ -2467,9 +2472,9 @@
         </section>
 
         <section>
-          <div style="text-align: left">
+          <div style="font-size: 1.1em; text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <ul style="font-size: 1.1em">
+            <ul>
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
@@ -2488,9 +2493,9 @@
         </section>
 
         <section>
-          <div style="text-align: left">
+          <div style="font-size: 1.1em; text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <ul style="font-size: 1.1em">
+            <ul>
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
@@ -2505,9 +2510,9 @@
         </section>
 
         <section>
-          <div style="text-align: left">
+          <div style="font-size: 1.1em; text-align: left">
             <h2>Genetic Algorithms:</h2>
-            <ul style="font-size: 1.1em">
+            <ul>
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
@@ -2517,7 +2522,8 @@
             </ul>
           </div>
           <aside class="notes">
-            . . . they can come up with
+            . . . they
+            can come up with
             excellent solutions that we humans
             would never have thought of.
 
@@ -2541,9 +2547,11 @@
             . . . questions, I'll take them now,
             or at the contact info shown up there.&nbsp;
             As for the other URLs,
-            the Github one is for the code, and slides in HTML,
-            and the other is for the slides as a PDF,
-            with a full script.&nbsp;
+            the Github one is for the code,
+            and slides in HTML,
+            and the other one
+            is for the slides as a PDF,
+            complete with a full script.&nbsp;
             Any questions?
           </aside>
         </section>
