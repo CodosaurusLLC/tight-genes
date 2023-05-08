@@ -224,6 +224,7 @@ section.present::after {
   height: auto;
 }
 
+/* TODO: CHOP OUT THE TRANSFORM, IT'S WHAT SCREWS UP PRINTING! */
 .reveal section.present div.main-text {
   max-height: var(--main-height);
   max-width: 100%;
