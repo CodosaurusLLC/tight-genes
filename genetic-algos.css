@@ -144,13 +144,13 @@
   /* display: none; */
 }
 
-.reveal table thead {
-  border-bottom: 2px solid white;
-}
-
 .reveal table th, .reveal table td {
   border: 0;
   padding: 0 .25em;
+}
+
+.reveal table th {
+  border-bottom: 2px solid white;
 }
 
 .reveal table th.numeric, .reveal table td.numeric {
@@ -201,9 +201,10 @@ section.present::after {
   align-items: center;
 }
 
-.reveal .all { height: var(--main-height); }
-.reveal .half { height: 50%; }
-.reveal .qtr { height: 25%; }
+.reveal .all  { height:      var(--main-height); }
+.reveal .most { height: calc(var(--main-height) * 0.75); }
+.reveal .half { height: calc(var(--main-height) * 0.50); }
+.reveal .qtr  { height: calc(var(--main-height) * 0.25); }
 
 .reveal img {
   border-radius: 1em;
