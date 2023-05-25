@@ -211,7 +211,7 @@
           </div>
           <span class="slide-caption">Image: https://icon-icons.com/download/49925/PNG/512/</span>
           <aside class="notes">
-            optimization meta-heuristics,
+            an optimization meta-heuristic,
           </aside>
         </section>
 
@@ -230,7 +230,7 @@
             (ideally the best,<br/>
             but OK if not).</h2>
           <aside class="notes">
-            . . . types of shortcuts
+            . . . a type of shortcut
             to find a good solution to a problem,
             ideally the best,
             but we usually have to settle for
@@ -253,7 +253,9 @@
             . . . real-world biological evolution,
             mainly the principles of
             survival of the fittest,
-            random combination of different sets of genes into one new set,
+            random combination of different old sets of genes
+            (no, not like the ones I'm wearing)
+            into one new set,
             and random mutation.
 
             <br/><br/>
@@ -273,10 +275,10 @@
             proposed a "learning machine"
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
-            Nothing much came of that,
-            nor of genetic algorithms in general...
-            for a few decades.&nbsp;
-            But then they finally got a bit of traction.&nbsp;
+            Nothing much ever came of that approach to machine learning,
+            and it took a few decades for
+            genetic algorithms in general
+            to finally get some good traction.&nbsp;
             The first commercial product based on genetic algorithms,
             a mainframe toolkit for . . .
           </aside>
@@ -291,7 +293,7 @@
             . . . industrial processes,
             came out in the late 1980's,
             from General Electric.&nbsp;
-            In 1989 a genetic algorithm toolkit called Evolver
+            In 1989, a genetic algorithm toolkit called Evolver
             came out for <i>PCs</i>.&nbsp;
             These days,
             MATLAB has a few genetic algorithm tools built-in, and
@@ -334,8 +336,7 @@
             launched in 2006.&nbsp;
             (No, that's not just a paperclip
             that got all bent up by someone
-            sitting bored and fidgeting,
-            in a meeting.)&nbsp;
+            fidgeting in a boring meeting.)&nbsp;
             The NASA Jet Propulsion Laboratory website says:
             "Its unusual shape is expected
             because most human antenna designers
@@ -350,7 +351,11 @@
             <br/><br/>
 
             So how do genetic algorithms work?&nbsp;
-            They consist of a simple series of steps:
+            Most people,
+            upon first hearing of them,
+            think they must be very complicated.&nbsp;
+            But, not really!&nbsp;
+            They consist of a series of simple steps:
           </aside>
         </section>
 
@@ -453,7 +458,8 @@
 
             <br/><br/>
 
-            Next is a very important but easily forgotten step,
+            Next is a very important
+            but unusual and easily forgotten step,
             which is to . . .
           </aside>
         </section>
@@ -509,7 +515,9 @@
             <img src="images/code/overview.png" class="code">
           </div>
           <aside class="notes">
-            . . . in Ruby.
+            . . . in Ruby,
+            which I chose because it reads so close to plain English,
+            making it fairly understandable to those who don't know Ruby.&nbsp;
             <!-- (I'll give you a moment to take pictures.)&nbsp; -->
             Now let's take a closer look
             at what goes on in each step,
@@ -569,9 +577,9 @@
             </b>
           </div>
           <aside class="notes">
-            . . . a simple string of bits.&nbsp;
+            . . . a string of bits.&nbsp;
             This will do fine for candidates that consist of
-            a simple series of yes/no decisions.&nbsp;
+            a series of yes/no decisions.&nbsp;
             This may sound simplistic,
             but there is a huge class of problems that boil down to this,
             called . . .
@@ -942,8 +950,8 @@
           </div>
           <aside class="notes">
             . . . check if we're done.&nbsp;
-            So what are our criteria?&nbsp;
-            The function can be simple,
+            But what are our criteria?&nbsp;
+            This function can be simple,
             but it can take some thinking to figure out
             what the function should <i>do</i>.&nbsp;
             With a knapsack problem,
@@ -999,7 +1007,7 @@
             but we could look at other stopping criteria,
             like the average or minimum fitness,
             or achieving some specific level of maximum fitness,
-            like some maximum number of generations,
+            or some maximum number of generations,
             or amount of time,
             (whether clock time or CPU or whatever),
             or a STOP button,
@@ -1074,20 +1082,21 @@
             these two.&nbsp;
 
             As usual, we also could get more complicated,
-            like selecting two randomly
+            like "Roulette Wheel" selection,
+            which consists of
+            selecting two <i>randomly</i>
             with each candidate having a <i>chance</i> to be selected,
-            proportional to their fitness,
-            called "Roulette Wheel" selection,
-            and lots of other ways.&nbsp;
+            proportional to their fitness.&nbsp;
+            There are lots of other ways.&nbsp;
 
             <br/><br/>
 
             We could also take more than two,
             whether to breed all pairs in that set
             or to combine more than two at once.&nbsp;
-            Or we could combine strategies,
-            such as using all trios from a randomly chosen five,
-            with the fitter ones having a better chance to be chosen.
+            Or we could combine those,
+            such as using all trios from a set of four,
+            chosen roulette-style.
 
             <br/><br/>
 
@@ -1120,6 +1129,7 @@
             up to some randomly chosen crossover point,
             then switching to the other parent.&nbsp;
             This can be extended with multiple crossover points,
+            especially if using more than two parents,
             but we're just going to use one, like so:
           </aside>
         </section>
@@ -1142,7 +1152,8 @@
             This means that it could be all copied
             from one parent or the other,
             or it could switch at some point.&nbsp;
-            If we do this once, with a crossover point of 3,
+            If we do this once,
+            with a randomly chosen crossover point of 3,
             so we take 3 values from the first parent,
             that would get us a result like this:
           </aside>
@@ -1173,6 +1184,9 @@
             </table>
           </div>
           <aside class="notes">
+            I've colored the ones from the first parent in green,
+            and the second in red,
+            to show the mixing.&nbsp;
             But this is just one of ten results,
             because we're making a whole new population, like so:
           </aside>
@@ -1221,7 +1235,7 @@
             Lots of family resemblance there, eh?&nbsp;
             None of these loads include a cow, butter, or leather,
             and they all include cheese.&nbsp;
-            That's because both of our two breeders were like that.&nbsp;
+            That's because both of our breeders were like that.&nbsp;
             If we were to just continue
             breeding the fittest of each generation,
             we wouldn't <i>ever</i> see any loads
@@ -1302,7 +1316,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . where green means that it changed.&nbsp;
+            . . . where the green color means that it changed.&nbsp;
             You can see that we now DO have some truckloads that
             include a cow, butter, or leather, or no cheese.&nbsp;
             Now we go back to . . .
@@ -1328,6 +1342,8 @@
           <aside class="notes">
             . . . assessing the fitness of
             these new candidates.&nbsp;
+            We couldn't do that until after the mutating,
+            because the mutating would change the fitness.&nbsp;
             If we sort on fitness descending,
             just to make it easy to find the best,
             we get this:
@@ -1476,11 +1492,13 @@
             Okay, maybe writing all this code
             is not so much faster
             when we've only got seven items,
+            one truckload a week,
             and such simple criteria,
             but if we had to choose among many more items,
             with more complex criteria,
             for many truckloads a day,
-            this might be more worthwhile.
+            writing a genetic algorithm
+            might be more worthwhile.
 
             <br/><br/>
 
@@ -1497,7 +1515,9 @@
             . . . something completely different.&nbsp;
             Suppose we want to "evolve" a good set of stats for a
             Dungeons and Dragons fighter character,
-            so our candidates are tuples of numbers,
+            so our candidates are
+            too-ples (or if you prefer, tup-ples)
+            of numbers,
             rather than strings of bits.&nbsp;
             D&amp;D character stats are . . .
           </aside>
@@ -1805,7 +1825,7 @@
           </div>
           <aside class="notes">
             We go through the stats one by one,
-            flip a coin (or "roll a d2"),
+            flip a coin (or a d2),
             and if it comes up 1,
             we get that stat from the first parent,
             else we get it from the other parent.&nbsp;
@@ -1819,11 +1839,11 @@
               <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th></tr>
             </thead>
             <tbody>
-              <tr><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td></tr>
+              <tr style="color:#0f0"><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td></tr>
               <tr><td colspan="6"></td></tr>
               <tr><td colspan="6" style="text-align: center">+</td></tr>
               <tr><td colspan="6"></td></tr>
-              <tr><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td></tr>
+              <tr style="color:#f33"><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td></tr>
               <tr><td colspan="6"></td></tr>
               <tr><td colspan="6" style="text-align: center">=</td></tr>
               <tr><td colspan="6"></td></tr>
@@ -1831,9 +1851,6 @@
             </tbody>
           </table>
           <aside class="notes">
-            I've colored the ones from the first parent in green,
-            and the second in red,
-            to show the mixing.&nbsp;
             But again, this is just one of ten results,
             because we're making a whole new population,
             which might look something like this:
@@ -1865,13 +1882,17 @@
             It's a series of random coin flips, so
             <i>on average</i> there will be three and three,
             but it could be anything up to six and zero either way.&nbsp;
-            Second, notice the family resemblance!&nbsp;
+            Second, notice the family resemblance again!&nbsp;
             For each stat, there are only two possible values,
             or in Genetic Algorithm terms, "alleles",
             for a total of 64 possible combinations.&nbsp;
             There would be only <i>one</i> possible value,
             and therefore half as many possible combinations,
-            if any stats were the same between the parents.
+            if any stats were the same between the parents.&nbsp;
+            This was true with the Truckloads as well,
+            but since there were only two
+            <i>possible</i> alleles for each gene,
+            I let it slide for the moment.
 
             <br/><br/>
 
@@ -1883,9 +1904,7 @@
             breeding the fittest of each generation,
             we wouldn't see any change,
             let alone improvement,
-            in the possible values of each stat,
-            in other words,
-            the alleles for each gene.&nbsp;
+            in the possible alleles for each gene.&nbsp;
             For instance, the Wisdom would never be
             anything other than 6 or 11.&nbsp;
             But again, we fix that in the next step, which is to . . .
@@ -2211,7 +2230,8 @@
             selecting breeders,
             and mutating each candidate,
             over to the passed-in class.&nbsp;
-            We're also sorting the population on descending fitness.&nbsp;
+            We're also sorting the population on descending fitness,
+            just for convenience.&nbsp;
             Creating the initial population could look like this:
           </aside>
         </section>
@@ -2251,7 +2271,6 @@
         </section>
 
         <section>
-          <br/>
           <img src="images/2021-06-12-Meads-Assembled.jpg" height="65%">
           <div style="font-size: 3em">Mead (Mjød)</div>
           <span class="slide-caption">Image: my own pic of five batches of plain mead in progress</span>
@@ -2259,7 +2278,7 @@
             . . . mead,
             a wine-like drink made by fermenting honey.&nbsp;
             Let's see if we can evolve a good recipe.&nbsp;
-            Our recipe will be based on two simple factors:
+            Our recipes will be based on two simple factors:
           </aside>
         </section>
 
@@ -2269,7 +2288,7 @@
           </div>
           <aside class="notes">
             the ratio of water to honey,
-            and the alcohol tolerance of the yeast we'll use,
+            and the alcohol tolerance level of the yeast we'll use,
             both by volume.&nbsp;
             The resulting percent alcohol by volume, or ABV,
             and the sweetness,
@@ -2277,6 +2296,10 @@
             we'll <i>evaluate</i> the recipes,
             but I'll spare you the details of how we figure them out
             from the inputs.&nbsp;
+            If you really want to know,
+            catch me in the hallway track and
+            I'll talk your ears off
+            about mead-making.&nbsp;
             Beyond simple creation, we'll need a . . .
           </aside>
         </section>
@@ -2289,7 +2312,7 @@
             . . . fitness function.&nbsp;
             This one looks at how far off we are
             from our desired target values.&nbsp;
-            We square the error in each aspect separately,
+            We do a little bit of fancy math,
             so that something that's, say, one point off in each,
             will score higher than something that's spot-on in one
             but two points off in the other.&nbsp;
@@ -2323,11 +2346,8 @@
             . . . of zero to about 80 for anything reasonable
             as a finished product.&nbsp;
             Explaining this chart
-            is beyond the scope of this talk,
-            but if you really want to know,
-            see me later and
-            I'll talk your ears off
-            about mead-making.&nbsp;
+            is again beyond the scope of this talk,
+            but I can explain it later if you want.&nbsp;
             Anyway,
             this means that
             we're going for
@@ -2493,6 +2513,7 @@
             with one candidate weaker and sweeter than we want,
             but within our 90%-fit criterion.&nbsp;
             If we get really picky and demand a 99.9% fit,
+            or as SREs would say, going from one nine to three,
             my first run like that took 45 generations,
             and yielded this:
           </aside>
@@ -2558,7 +2579,7 @@
             a style very popular in Poland.&nbsp;
             It took 149 generations,
             which was still very fast,
-            because the functions were so simple,
+            because the functions were so simple and our population so small,
             to produce this:
           </aside>
         </section>
@@ -2607,7 +2628,8 @@
           <aside class="notes">
             Genetic Algorithms are optimization heuristics,
             which is fancy-talk for
-            shortcuts to finding good-enough solutions.&nbsp;
+            shortcuts to finding good-enough
+            solutions to some problem.&nbsp;
             They're . . .
           </aside>
         </section>
@@ -2625,12 +2647,14 @@
             all you have to do is
             create an initial population,
             and cycle through five simple steps,
+            <!--
             of assessing their fitness,
             checking if you're done,
             picking breeders,
             breeding them,
             and mutating the new candidates,
             over and over
+            -->
             until you're done.&nbsp;
             They . . .
           </aside>
@@ -2670,7 +2694,7 @@
             so as to
             make the solutions converge quickly enough,
             and not ignore too many other very good solutions.&nbsp;
-            This approach is also . . .
+            This approach is . . .
           </aside>
         </section>
 
@@ -2731,11 +2755,15 @@
             or at the contact info shown up there.&nbsp;
             As for the other URLs,
             the Github one is for the code,
-            and slides in HTML,
+            and the slides,
+            in HTML, CSS, and JavaScript
+            because I'm using RevealJS,
             and the other one
             (as you may have guessed)
-            is for the slides as a PDF,
-            complete with a full script.&nbsp;
+            is for the slides,
+            but in PDF,
+            complete with a full script,
+            which I've <i>more or less</i> stuck to.&nbsp;
             Any questions?
           </aside>
         </section>
