@@ -27,9 +27,11 @@
             github.com/CodosaurusLLC/tight-genes
           </h5>
           <!--
-          NOTE TO SELF: current time ~35,
-          speaking fast but w/ some ad-libs;
-          want ~35-40 for Teqnation, so slow down a bit.
+          NOTE TO SELF: current time ~36,
+          but speaking fast,
+          want ~35-40 for Teqnation,
+          so slow down a bit,
+          but WATCH THE AD-LIBS!
           -->
         </section>
 
@@ -99,7 +101,7 @@
           </div>
           <span class="slide-caption">Image: standard emoji</span>
           <aside class="notes">
-            en ik ben heerhay gheflogheh
+            en ik ben Heerhay gheflogheh
           </aside>
         </section>
 
@@ -138,7 +140,7 @@
           </div>
           <span class="slide-caption">Image: standard emoji</span>
           <aside class="notes">
-            ohm Yully eets over
+            ohm Yully eets ofer
           </aside>
         </section>
 
@@ -211,7 +213,7 @@
           </div>
           <span class="slide-caption">Image: https://icon-icons.com/download/49925/PNG/512/</span>
           <aside class="notes">
-            optimization meta-heuristics,
+            an optimization meta-heuristic,
           </aside>
         </section>
 
@@ -230,7 +232,7 @@
           (ideally the best,<br/>
           but OK if not).</h2>
           <aside class="notes">
-            . . . types of shortcuts
+            . . . a category of shortcuts
             to find a good solution to a problem,
             ideally the best,
             but we usually have to settle for
@@ -263,12 +265,25 @@
 
         <section>
           <br/>
-          <img src="images/turing.png" height="65%">
+          <div style="float: left; width: 33%">&nbsp;</div>
+          <div style="float: right; width: 33%; border: 5px dotted yellow">
+            <div style="font-size: 1.2em; margin: auto">
+              AS SEEN<br/>
+              <span style="font-size: 0.7em">(well, mentioned)</span><br/>
+              IN TODAY'S<br/>
+              OPENING<br/>
+              KEYNOTE!
+            </div>
+          </div>
+          <img src="images/turing.png" height="65%" style="margin: auto">
           <div style="font-size: 2em">Alan Turing</div>
           <span class="slide-caption">Image: https://cdn.britannica.com/81/191581-050-8C0A8CD3/Alan-Turing.jpg</span>
           <aside class="notes">
             . . . Alan Turing,
-            as in Turing Test, Turing Machine, and so on,
+            as in
+            Turing Machine,
+            Turing Completeness,
+            and the Turing Test mentioned in this morning's keynote,
             proposed a "learning machine"
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
@@ -295,12 +310,13 @@
             but the actual <i>uses</i> of genetic algorithms
             remain mostly obscure,
             used by companies in their internal
-            industrial processes, logistics, and so on.
+            industrial processes, scheduling, logistics, and so on.
 
             <br/><br/>
 
             But sometimes, they get used for
-            something more interesting.&nbsp;
+            something more interesting,
+            and more publicly visible.&nbsp;
             Most famously,
             in 2005 . . .
           </aside>
@@ -336,7 +352,10 @@
             <br/><br/>
 
             So how do genetic algorithms work?&nbsp;
-            They consist of a simple series of steps:
+            Most developers hear the name and think
+            genetic algorithms must be complex.&nbsp;
+            But, they're much simpler than their reputation implies.&nbsp;
+            They consist of a series of steps:
           </aside>
         </section>
 
@@ -344,7 +363,7 @@
           <span class="center cycle-stage cycle-stage-init">Initialize</span>
           <aside class="notes">
             First, we create an initial population of candidates.&nbsp;
-            In Genetic Algorithm lingo, these are called "chromosomes",
+            In Genetic Algorithm terms, these are called "chromosomes",
             but since most living beings contain
             <i>many</i> chromosomes in every cell,
             I don't like that term,
@@ -379,7 +398,6 @@
             This is <i>usually</i> based on the fitness,
             which is why we just figured that out,
             but <i>could</i> be based on other criteria,
-            and we'll discuss some of those later,
             or a combination.&nbsp;
             If we're not done, then next we . . .
           </aside>
@@ -413,15 +431,11 @@
           <span class="cycle-stage cycle-stage-breed">Breed</span>
           <aside class="notes">
             . . . to <i>breed</i>
-            a new population.&nbsp;
-            Some of the previous population,
-            especially the fittest ones,
-            <i>may</i> be carried over into this new population,
-            but usually not.
+            a new population.
 
             <br/><br/>
 
-            Next is a very important but easily forgotten step,
+            Next is a very important and unusual step,
             which is to . . .
           </aside>
         </section>
@@ -462,7 +476,8 @@
           <span class="cycle-stage cycle-stage-mutate">Mutate</span>
           <span class="cycle-arrow-mutate">⬅️</span>
           <aside class="notes">
-            . . . go back to step 2, assessing their fitness.&nbsp;
+            . . . go back to assessing their fitness,
+            and begin a new cycle.&nbsp;
             This could be represented at a high level
             with some rather simple code, like so:
           </aside>
@@ -644,7 +659,8 @@
             can only handle
             4,000 pounds.&nbsp;
             So, let's use a genetic algorithm
-            to determine a "good enough" truckload.&nbsp;
+            to determine a "good enough" truckload,
+            within this constraint.&nbsp;
             First we need a way to represent each candidate.&nbsp;
             In code, we could represent them as a class,
             like so:
@@ -715,6 +731,7 @@
             </tbody>
           </table>
           <aside class="notes">
+            <!--
             Why ten?&nbsp;
             Because that's what fits on the screen
             in a decently readable size.&nbsp;
@@ -726,6 +743,7 @@
             <br/><br/>
 
             Anyway,
+            -->
             For now, I'm going to handwave over
             how we decode the number
             into these combinations,
@@ -859,6 +877,7 @@
             and stop if we haven't seen anything better
             within 100 generations.&nbsp;
 
+            <!--
             <br/><br/>
 
             Why 100?&nbsp;
@@ -866,6 +885,7 @@
             It seems like enough for a good chance for improvement,
             and since what we're doing is so simple,
             using lots of generations isn't very slow.&nbsp;
+            -->
             In Ruby, that would look like this:
           </aside>
         </section>
@@ -875,7 +895,7 @@
             <img src="images/code/def-truckload-done.png" class="code">
           </div>
           <aside class="notes">
-            When the code is initially parsed,
+            <!-- When the code is initially parsed, --> First,
             we set the initial best combo as empty,
             and we set how many generations it's been since we saw that,
             as zero.&nbsp;
@@ -900,7 +920,7 @@
             not only in checking the fitness,
             but we could look at other stopping criteria,
             like some maximum number of generations,
-            or amount of time,
+            or amount of time
             (whether clock time or CPU or whatever),
             or a STOP button,
             or many other ways, or a combination of ways.
@@ -977,6 +997,7 @@
             called "Roulette Wheel" selection,
             and lots of other ways.&nbsp;
 
+            <!--
             <br/><br/>
 
             We could also take more than two,
@@ -985,6 +1006,7 @@
             Or we could combine strategies,
             such as using all trios from a randomly chosen five,
             with the fitter ones having a better chance to be chosen.
+            -->
 
             <br/><br/>
 
@@ -1012,7 +1034,7 @@
             . . . breed them.&nbsp;
             The usual way is called crossover.&nbsp;
             This consists of taking the data points,
-            or in Genetic Algorithm lingo, the "genes",
+            or in Genetic Algorithm terms, the "genes",
             from one parent,
             up to some randomly chosen crossover point,
             then switching to the other parent.&nbsp;
@@ -1036,9 +1058,11 @@
             If we haven't yet hit the crossover point,
             we get the decision for that item from the first parent,
             else we get it from the other parent.&nbsp;
+            <!--
             This means that it could be all copied
             from one parent or the other,
             or it could switch at some point.&nbsp;
+            -->
             With a random crossover point of 3,
             that would get us a result like this:
           </aside>
@@ -1117,7 +1141,7 @@
             Lots of family resemblance there, eh?&nbsp;
             None of these loads include a cow, butter, or leather,
             and they all include cheese.&nbsp;
-            That's because both of our two breeders were like that.&nbsp;
+            That's because both of our breeders were like that.&nbsp;
             If we were to just continue
             breeding the fittest of each generation,
             we wouldn't <i>ever</i> see any loads
@@ -1199,8 +1223,8 @@
           </table>
           <aside class="notes">
             . . . where green means that it changed.&nbsp;
-            You can see that we now DO have some truckloads that
-            include a cow, butter, or leather, or no cheese.&nbsp;
+            We can see that we now DO have some truckloads that
+            include a cow, butter, leather, or no cheese.&nbsp;
             Now we go back to . . .
           </aside>
         </section>
@@ -1259,9 +1283,8 @@
           </table>
           <aside class="notes">
             Oh noes!&nbsp;
-            Our maximum fitness actually went <i>down!</i>&nbsp;
-            As you may recall,
-            our previous best one scored 20,000.&nbsp;
+            Our maximum fitness actually went <i>down</i>,
+            from 20,000 to 15,000.&nbsp;
             But don't worry,
             as you may recall from our "are we done yet" function,
             we <i>hang onto</i> the best one,
@@ -1372,7 +1395,7 @@
             but if we had to choose among many more items,
             with more complex criteria,
             for many truckloads a day,
-            this might be more worthwhile.
+            this might well be worthwhile.
 
             <br/><br/>
 
@@ -1420,8 +1443,8 @@
             each determined by rolling three six-sided dice,
             or 3d6 for short.&nbsp;
             (I'm going to gloss over
-            how you can sometimes have extra strength.)&nbsp;
-            In Ruby that might look like this:
+            how we can sometimes have extra strength.)&nbsp;
+            In Ruby, that might look like this:
           </aside>
         </section>
 
@@ -1640,6 +1663,7 @@
           </div>
           <aside class="notes">
             these two.&nbsp;
+            <!--
             The abstraction gets more
             <i>obviously</i> leaky now,
             because we're ignoring sexes;
@@ -1653,6 +1677,8 @@
             though, we could add such complications,
             and many other such factors.&nbsp;
             Anyway, next we actually . . .
+            -->
+            Then we . . .
           </aside>
         </section>
 
@@ -1700,11 +1726,11 @@
               <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th></tr>
             </thead>
             <tbody>
-              <tr><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td></tr>
+              <tr style="color:#0f0"><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td></tr>
               <tr><td colspan="6"></td></tr>
               <tr><td colspan="6" style="text-align: center">+</td></tr>
               <tr><td colspan="6"></td></tr>
-              <tr><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td></tr>
+              <tr style="color:#f33"><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td></tr>
               <tr><td colspan="6"></td></tr>
               <tr><td colspan="6" style="text-align: center">=</td></tr>
               <tr><td colspan="6"></td></tr>
@@ -1712,9 +1738,6 @@
             </tbody>
           </table>
           <aside class="notes">
-            I've colored the ones from the first parent in green,
-            and the second in red,
-            to show the mixing.&nbsp;
             But again, this is just one of ten results,
             because we're making a whole new population,
             which might look something like this:
@@ -1741,9 +1764,9 @@
           </table>
           <aside class="notes">
             There are two things to notice here.&nbsp;
-            First, the number of red and green is not always the same,
+            First, the count of red and green are not always the same,
             neither in a single candidate nor the whole population.&nbsp;
-            Second, notice the family resemblance!&nbsp;
+            Second, notice the family resemblance again!&nbsp;
             For each stat, there are only two possible values,
             or in Genetic Algorithm terms, "alleles",
             for a total of 64 possible combinations.&nbsp;
@@ -1833,9 +1856,11 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . where green means it went up, and red means down.&nbsp;
+            . . . where green means it went up,
+            red means down,
+            and white means no change.&nbsp;
             Looking at the values in each column,
-            you can see it's now much more diverse.&nbsp;
+            we can see it's now much more diverse.&nbsp;
             Now we . . .
           </aside>
         </section>
@@ -1857,8 +1882,7 @@
             <span class="center cycle-ptr cycle-ptr-assess">↑</span>
           </div>
           <aside class="notes">
-            . . .
-            assess the fitness of
+            . . . assess the fitness of
             these new candidates.&nbsp;
             If we sort on fitness descending,
             just to make it easy to find the best,
@@ -1917,20 +1941,24 @@
             . . . one suitable character,
             with 18 Strength and Constitution,
             acceptable though sub-par Dexterity,
-            and surprisingly high Intelligence.&nbsp;
+            surprisingly high Intelligence,
+            and shockingly low Wisdom.&nbsp;
             If we really wanted it more specialized,
             we could complicate the fitness function further,
             and do things like explicitly demand
             well above average scores
             in the class's useful stats,
             and forbid it to be so high in the others,
-            or at least apply a penalty.
+            or at least apply a penalty.&nbsp;
+            We could also modify either
+            the fitness function or the mutation function,
+            to prevent the Wisdom (or any stat) from being so low.
 
             <br/><br/>
 
             So we've evolved a set of Fighter stats.&nbsp;
-            Let's suppose we don't need any more Fighters in the party . . .
-            but now we need a Wizard.&nbsp;
+            Let's suppose that
+            now our party needs a Wizard!&nbsp;
             All we need to do is tweak our fitness function, like so:
           </aside>
         </section>
@@ -1943,11 +1971,10 @@
             . . . to prioritize intelligence first,
             then wisdom, dexterity, and so on,
             down to strength.&nbsp;
-            An initial population would look roughly the same,
-            since we haven't changed how that is generated, so
-            I'll spare you those steps,
-            but after 11 generations
-            I got . . .
+            Evolving it would follow the same process as before,
+            so I'll spare you the steps,
+            but after 11 rounds
+            I got a generation with . . .
           </aside>
         </section>
 
@@ -1979,12 +2006,14 @@
 
             <br/><br/>
 
+            <!--
             Remember though that this is all very random.&nbsp;
             It may converge on a good solution faster, or more slowly,
             and the fitness function may be good or poor at
             getting just the right mix of alleles.
 
             <br/><br/>
+            -->
 
             Now, suppose we want to evolve yet another type of thing.&nbsp;
             By the Rule of Three,
@@ -2121,7 +2150,7 @@
             . . . mead,
             a wine-like drink made by fermenting honey.&nbsp;
             Let's see if we can evolve a good recipe.&nbsp;
-            Our recipe will be based on two simple factors:
+            Our recipes will be based on two simple factors:
           </aside>
         </section>
 
@@ -2270,7 +2299,7 @@
             </tbody>
           </table>
           <aside class="notes">
-            . . . showing that we can have <i>negative</i> fitness,
+            . . . showing that it is possible to have <i>negative</i> fitness,
             and the next generation might look like this:
           </aside>
         </section>
@@ -2412,7 +2441,7 @@
 
             <br/><br/>
 
-            There are many other ways you can use genetic algorithms.&nbsp;
+            There are many other ways we can use genetic algorithms.&nbsp;
             They can create images, music, and even code.&nbsp;
             So, think about it,
             and you might be able to use them for something.            
@@ -2447,12 +2476,12 @@
             </ul>
           </div>
           <aside class="notes">
-            . . . simpler than you probably thought --
+            . . . simpler than you probably thought<!-- --
             all you have to do is
             create an initial population,
             and cycle through five simple steps,
             over and over
-            until you're done.&nbsp;
+            until you're done-->.&nbsp;
             They . . .
           </aside>
         </section>
@@ -2487,8 +2516,8 @@
             especially for
             evaluating fitness
             and
-            checking if you're done.&nbsp;
-            This approach is also . . .
+            checking if we're done.&nbsp;
+            They are . . .
           </aside>
         </section>
 
