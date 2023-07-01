@@ -2835,7 +2835,6 @@
             Any questions?
           </aside>
         </section>
-
       </div>
     </div>
 
@@ -2843,7 +2842,7 @@
     <script src="reveal/plugin/notes/notes.js"></script>
     <script src="reveal/plugin/markdown/markdown.js"></script>
     <script src="reveal/plugin/highlight/highlight.js"></script>
-    <script src="../../genver/genver.js"></script>
+    <script src="../../genaver/genaver.js"></script>
     <script>
       // More info about initialization & config:
       // - https://revealjs.com/initialization/
@@ -2863,19 +2862,19 @@
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
       // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
-      generate_version({
+      generate_version([
         // currently available:
         // human-lang: spanish,   var-city: Málaga,  var-conf: jotb
         // human-lang: dutch,     var-city: Utrecht, var-conf: teqnation
         // human-lang: norwegian, var-city: Oslo,    var-conf: ndc-oslo
-        'human-lang': {op: '=',  val: 'spanish'},
+        'human-lang =  spanish',
         // NOT YET MARKED UP
-        'min-time':   {op: '<=', val: '30'},
+        'min-time   <= 30',
         // NOT YET MARKED UP
-        'max-time':   {op: '>',  val: '30'},
-        'var-city':   {op: '=',  val: 'Málaga'},
-        'var-conf':   {op: '=',  val: 'jotb'},
-      });
+        'max-time   >  30',
+        'var-city   =  Málaga',
+        'var-conf   =  jotb',
+      ]);
     </script>
   </body>
 </html>
