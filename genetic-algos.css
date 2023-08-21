@@ -196,9 +196,10 @@ section.present::after {
 .reveal .bordered { border: 1px solid red }
 
 .reveal .vctring {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
 }
 
 .reveal .all  { height:      var(--main-height); }
@@ -225,16 +226,7 @@ section.present::after {
   height: auto;
 }
 
-.reveal section.present div.main-text {
-  max-height: var(--main-height);
-  max-width: 100%;
-  position: absolute;
-  top: calc(var(--main-height) / 2);
-  left: 50%;
-  transform: translate(-50%,-50%);  /* of the div size! */
-  font-size: 1.5em;
-  width: 100%;
-}
+.reveal section.present pre { width: 100% }  /* override theme stupidity! */
 
 table.all-right td, table.all-right th {
   padding: 0 .4em;

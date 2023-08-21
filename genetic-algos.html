@@ -266,7 +266,7 @@
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 8em">WAT?!</div>
+          <div class="vctring" style="font-size: 8em">WAT?!</div>
           <aside class="notes">
             which is fancy-talk for . . .
           </aside>
@@ -345,8 +345,10 @@
             . . . industrial processes,
             came out in the late 1980's,
             from General Electric.&nbsp;
-            In 1989 a genetic algorithm toolkit called Evolver
-            came out for <i>PCs</i>.&nbsp;
+            <span data-min-time="45">
+              In 1989 a genetic algorithm toolkit called Evolver
+              came out for <i>PCs</i>.&nbsp;
+            </span>
             These days,
             MATLAB has a few genetic algorithm tools built-in, and
             many programming languages have
@@ -561,8 +563,20 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/overview.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.9em">
+how_many = 10  # or however big we want
+pop = initial_pop(how_many)
+evaluate(pop)
+while not done?(pop)
+  breeders = select_breeders(pop)
+  pop = breed(breeders, how_many)
+  mutate(pop)
+  evaluate(pop)
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             . . . in Ruby.
@@ -679,7 +693,7 @@
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 4em">
+          <div class="vctring" style="font-size: 4em">
             🐄 🐄 🐄 🐄
           </div>
           <span class="slide-caption">Images: standard emoji</span>
@@ -788,8 +802,16 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/class-truckload.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 1.4em">
+class Truckload
+  def initialize()
+    @contents = rand(128)
+  end
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             Whoa, that looks like we're just making a random number!&nbsp;
@@ -810,8 +832,18 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-init-pop-1.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 1em">
+def self.initial_population(how_many)
+  population = []
+  for i in 1..how_many
+    population.append(self.new)
+  end
+  return population
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             . . . like so.&nbsp;
@@ -864,28 +896,59 @@
 
             <br/><br/>
 
-            But how did we get from random numbers to those combinations?&nbsp;
-            Behind the scenes, that translation might look like this:
+            <div data-time-max="44">
+              In the interests of time,
+              I'm going to handwave over
+              how we get from random numbers to those combinations.&nbsp;
+              Now that we're done with Initialization, we . . .
+            </div>
+            <div data-time-min="45">
+              But how did we get from random numbers to those combinations?&nbsp;
+              Behind the scenes, that translation might look like this:
+            </div>
           </aside>
         </section>
 
-        <section>
-          <div class="all vctring">
-            <img src="images/code/class-item.png" class="code">
-          </div>
-          <aside class="notes">
-            We have a list of items we <i>can</i> take,
-            as instances of an inner class describing them.&nbsp;
-            To check what's in our cargo manifest,
-            represented by our Truckload's contents value,
-            we can iterate through the list of possible items,
-            checking whether the corresponding bit is on.&nbsp;
+        <div data-time-min="45">
+          <section>
+            <div class="vctring">
+              <div>
+                <pre>
+class Truckload
+  class Item
+    attr_reader :name, :weight, :value
+    def initialize(name, weight, value)
+      @name   = name
+      @weight = weight
+      @value  = value
+    end
+  end
+  ITEMS = [
+    Item.new("Cow",       1500,  2000),
+    Item.new("Milk",      1720,   800),
+    Item.new("Cheese",    1000, 12000),
+    Item.new("Butter",    1000,  3000),
+    Item.new("Ice Cream", 1000,  2000),
+    Item.new("Meat",      1280,  8000),
+    Item.new("Leather",   1100,  6000)
+  ]
+                </pre>
+              </div>
+            </div>
+            <aside class="notes">
+              We have a list of items we <i>can</i> take,
+              as instances of an inner class describing them.&nbsp;
+              To check what's in our cargo manifest,
+              represented by our Truckload's contents value,
+              we can iterate through the list of possible items,
+              checking whether the corresponding bit is on.&nbsp;
 
-            <br/><br/>
+              <br/><br/>
 
-            Now that we're done with Initialization, we . . .
-          </aside>
-        </section>
+              Now that we're done with Initialization, we . . .
+            </aside>
+          </section>
+        </div>
 
         <section>
           <div class="cycling-steps">
@@ -918,8 +981,21 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-truckload-fitness.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.7em">
+def fitness()
+  items = 
+    ITEMS.
+    with_index.
+    select { |_item, idx| bit_on?(idx, @contents) }.
+    map { |item, _idx| itm }
+  weight = items.map { |item| itm.weight }.sum 
+  return 0 if weight > 4000
+  return items.map { |item| itm.value }.sum
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             We iterate through the possible items,
@@ -1031,8 +1107,24 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-truckload-done.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: .7em">
+@@best_combo = self.new(0)
+@@generations = 0
+
+def self.done?(population)
+  @@generations += 1
+  candidates =
+    population.
+    select { |c| c.fitness > @@best_combo.fitness }
+  return @@generations >= 100 if candidates.none?
+  @@best_combo = candidates.sort_by(&:fitness).last
+  @@generations = 0
+  return false
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             When the code is initially parsed,
@@ -1099,8 +1191,17 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-truckload-select.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 1em">
+def self.select_breeders(population)
+  return population.
+    sort_by(&:fitness).
+    reverse.
+    take(2)
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             We take the population,
@@ -1188,8 +1289,22 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-truckload-combine.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: .8em">
+def self.combine(p1, p2)
+  cross_point = rand(ITEMS.count + 1)
+  list =
+    (0..ITEMS.count).
+    map { |index|
+      parent = index &lt; cross_point ? p1 : p2
+      parent.contents & (1 &lt;&lt; index)
+    }.
+    sum
+    return self.new(list)
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             We establish the crossover point
@@ -1242,8 +1357,18 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-truckload-new-pop.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.9em">
+def self.new_population(p1, p2, how_many)
+  population = []
+  for i in 1..how_many
+    population.append(self.breed(p1, p2))
+  end
+  return population
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             This is just like how we created the initial population,
@@ -1321,8 +1446,18 @@
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-truckload-maybe-mutate.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 1em">
+def maybe_mutate()
+  (0..ITEMS.count).each do |index|
+    if rand(4) == 0
+      @contents ^= (1 &lt;&lt; index)
+    end
+  end
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             We iterate through the item numbers,
@@ -2886,10 +3021,9 @@
       // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
         // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
-           'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time-min <= 30'
+           'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30'
         // 'human-lang = spanish',   'var-city-en = Málaga',  'var-conf = jotb'
         // 'human-lang = norwegian', 'var-city-en = Oslo',    'var-conf = ndc-oslo',
-        // NOT YET MARKED UP: 'min-time   <= 30', 'max-time   >  30',
       ]);
     </script>
   </body>
