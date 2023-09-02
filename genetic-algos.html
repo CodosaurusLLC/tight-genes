@@ -29,6 +29,23 @@
         </section>
 
         <section>
+          <h1>Tight Genes:</h1>
+          <h2>Intro to Genetic Algorithms</h2>
+          <h4>by Dave Aronson</h4>
+          <h5>
+            T.Rex-2023@Codosaur.us<br/>
+            twitter.com/DaveAronson<br/>
+            linkedin.com/in/DaveAronson<br/>
+            github.com/CodosaurusLLC/tight-genes
+          </h5>
+          <aside class="notes">
+            Current time: ~31:30<br>
+            Want 30 (timeslot is 35, incl 1 min intro & 4 Q&A)<br>
+            Don't speed up for foreign audiences, but skip stuff
+          </aside>
+        </section>
+
+        <section>
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">&#161;Hola, Málaga!</span>
@@ -187,7 +204,7 @@
           <span class="slide-caption">Image: https://pixabay.com/vectors/genetic-testing-gene-panel-genetics-2316642</span>
           <aside class="notes">
             <span data-human-lang="dutch">GheNEHtische AlghoRITmeh te lereh.</span>
-            <span data-human-lang="greek">yenetiKOHSSE alGOrithmohsse.</span>
+            <span data-human-lang="greek">yenetiKOHSS alGOrithmohss.</span>
             <span data-human-lang="norwegian">GeNEtiskEH AlgoREETmer?</span>
           </aside>
         </section>
@@ -1742,9 +1759,23 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/class-character.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.9em">
+class Character
+  def initialize()
+    @str = roll(3, 6)
+    @int = roll(3, 6)
+    @dex = roll(3, 6)
+    @con = roll(3, 6)
+    @wis = roll(3, 6)
+    @cha = roll(3, 6)
+  end
+end
+              </pre>
+            </div>
           </div>
+
           <aside class="notes">
             (Defining the roll function is left as an exercise.)&nbsp;
             So if we create an initial population of ten Characters,
@@ -1808,8 +1839,14 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-char-fitness-1.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 1.4em">
+def fitness()
+  str * 2 + con + dex / 2
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             totaling up double the strength,
@@ -1822,8 +1859,17 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-char-fitness-2.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.9em">
+def fitness()
+  stats = [str, con, dex, int, wis, cha]
+  (0..5).
+    map { |idx| stats[idx] * (6 - idx) }.
+    sum
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             prioritizing them linearly,
@@ -1836,8 +1882,17 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-char-fitness-3.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.9em">
+def fitness()
+  stats = [str, con, dex, int, wis, cha]
+  (0..5).
+    map { |idx| stats[idx] * 2 ** (5 - idx) }.
+    sum
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             . . . prioritizing the stats
@@ -1914,8 +1969,16 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-char-done.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 1.1em">
+def Character.done?(population)
+  population.any? { |cand|
+    cand.fitness >= 2021
+  }
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             Very simple.&nbsp;
@@ -2011,8 +2074,20 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-char-breed.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.8em">
+def Character.breed(p1, p2)
+  char = Character.new
+  char.str = rand(2) == 1 ? p1.str : p2.str
+  char.int = rand(2) == 1 ? p1.int : p2.str
+  char.dex = rand(2) == 1 ? p1.dex : p2.str
+  char.con = rand(2) == 1 ? p1.con : p2.str
+  char.wis = rand(2) == 1 ? p1.wis : p2.str
+  char.cha = rand(2) == 1 ? p1.cha : p2.str
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             We go through the stats one by one,
@@ -2135,8 +2210,23 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-char-maybe-mutate.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.8em">
+def maybe_mutate()
+  @str = maybe_mutate_stat(@str)
+  @int = maybe_mutate_stat(@int)
+  @dex = maybe_mutate_stat(@dex)
+  @con = maybe_mutate_stat(@con)
+  @wis = maybe_mutate_stat(@wis)
+  @cha = maybe_mutate_stat(@cha)
+end
+
+def maybe_mutate_stat(stat)
+  (stat + rand(3) - 1).clamp(3, 18)
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             For each stat,
@@ -2285,8 +2375,18 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/code/def-char-fitness-4.png" class="code">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.8em">
+def fitness()
+  # below is the only line that changed!
+  stats = [int, wis, dex, con, cha, str]
+  (0..5).
+    map { |idx| stats[idx] * 2 ** (5 - idx) }.
+    sum
+end
+              </pre>
+            </div>
           </div>
           <aside class="notes">
             . . . to prioritize intelligence first,
@@ -2847,8 +2947,7 @@ end
             To recap what you've learned here today:
           </aside>
         </section>
-
-        </div>
+        </div data-notes="data-time-min=45">
 
         <section>
           <div style="text-align: left">
