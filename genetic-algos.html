@@ -55,7 +55,7 @@
             </div>
             <div class="half vctring" style="font-size: 6em">👋</div>
             <div class="qtr vctring" style="font-size: 1.5em">
-              (Hello,&nbsp;<span data-gv-var="city-en"></span>!)
+              <div>(Hello,&nbsp;<span data-gv-var="city-en"></span>!)</div>
             </div>
           </div>
           <span class="slide-caption">Image: standard emoji</span>
@@ -69,11 +69,13 @@
         <section>
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
-              <span data-human-lang="spanish">Me llamo</span>
-              <span data-human-lang="dutch">Ik ben</span>
-              <span data-human-lang="greek" lang="el">&Epsilon;&#943;&mu;&alpha;&iota; &omicron;</span>
-              <span data-human-lang="norwegian">Jeg er</span>
-              &nbsp;Dave Aronson,
+              <div>
+                <span data-human-lang="spanish">Me llamo</span>
+                <span data-human-lang="dutch">Ik ben</span>
+                <span data-human-lang="greek" lang="el">&Epsilon;&#943;&mu;&alpha;&iota; &omicron;</span>
+                <span data-human-lang="norwegian">Jeg er</span>
+                &nbsp;Dave Aronson,
+              </div>
             </div>
             <div class="half vctring">
               <img src="images/Dave-Aronson-Speaking-at-JSConf-Hawaii-1kx1k.jpg" height="100%">
@@ -212,11 +214,13 @@
         <section>
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
-              <span data-human-lang="spanish">Pero</span>
-              <span data-human-lang="dutch">Maar</span>
-              <span data-human-lang="greek" lang="el">&Alpha;&lambda;&lambda;&#940;</span>
-              <span data-human-lang="norwegian">Men</span>
-              . . .
+              <div>
+                <span data-human-lang="spanish">Pero</span>
+                <span data-human-lang="dutch">Maar</span>
+                <span data-human-lang="greek" lang="el">&Alpha;&lambda;&lambda;&#940;</span>
+                <span data-human-lang="norwegian">Men</span>
+                . . .
+              </div>
             </div>
             <div class="half vctring" style="font-size: 6em">
               ☝️
@@ -262,7 +266,6 @@
             <span data-human-lang="dutch">Dutch</span>
             <span data-human-lang="greek">Greek</span>
             <span data-human-lang="norwegian">Norwegian</span>
-            
             I speak.
 
             <br/><br/>
@@ -311,7 +314,9 @@
 
             There are many kinds of optimization heuristics,
             but what makes genetic algorithms unique is that
-            (as you may have guessed from the name)
+            <span data-time-min="45">
+              (as you may have guessed from the name)
+            </span>
             they are inspired by . . .
           </aside>
         </section>
@@ -334,13 +339,15 @@
 
         <section>
           <div class="all vctring">
-            <img src="images/turing.png" style="float: left; height: 100%">
-            <div style="float: right; font-size: 3em; width: 100%">Alan<br>Turing</div>
+            <img src="images/turing.png" style="height: 100%">
+            <div style="font-size: 3em; font-weight: bold">Alan<br>Turing</div>
           </div>
           <span class="slide-caption">Image: https://cdn.britannica.com/81/191581-050-8C0A8CD3/Alan-Turing.jpg</span>
           <aside class="notes">
-            . . . Alan Turing,
-            as in Turing Test, Turing Machine, Turing Completeness, and so on,
+            . . . Alan Turing, as in Turing Test,
+            <span data-time-min="30">Turing Machine,</span>
+            <span data-time-min="40">Turing Completeness,</span>
+            and so on,
             proposed a "learning machine"
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
@@ -396,10 +403,11 @@
 
         <section>
           <div class="all vctring">
-            <img src="images/st5-antenna.jpg" style="float: left; height: 100%">
-            <div style="float: right; font-size: 1.5em; width: 100%">
+            <img src="images/st5-antenna.jpg" height="100%">
+            <div style="font-size: 1.8em; font-weight: bold">
               ST5 antenna,<br/>
-              and US quarter<br/>
+              and<br/>
+              US quarter<br/>
               for scale
             </div>
           </div>
@@ -667,10 +675,9 @@ end
 
         <section>
           <div class="all vctring">
-              <img src="images/backpack.png" style="float: left; width: 40%">
-              <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-              <div style="float: right; font-size: 1.5em; width: 50%">
-                Knapsack /<br/> Rucksack /<br/> Backpack /<br/> Whatever!
+            <img src="images/backpack.png" height="100%">
+            <div style="font-size: 1.8em; font-weight: bold">
+              Knapsack /<br/>Rucksack /<br/>Backpack /<br/>Whatever!
             </div>
           </div>
           <span class="slide-caption">Image: https://publicdomainvectors.org/en/free-clipart/Rucksack-vector-image/9910.html</span>
@@ -762,33 +769,33 @@ end
             <table class="all-right" style="font-size: 0.9em">
               <thead>
                 <tr>
-                  <th class="text">What</th><th style="color:gray" class="text">Unit</th><th style="color:gray">Qty</th><th>Pounds</th><th>Value</th><!--<th>$/lb</th>-->
+                  <th class="text">What</th><th class="fade text">Unit</th><th class="fade">Qty</th><th>Pounds</th><th>Value</th><!--<th>$/lb</th>-->
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="text">Cow</td><td style="color:gray" class="text">cow</td><td style="color:gray">1</td><td>1,500</td><td>$2,000</td><!-- <td>$1.33</td> -->
+                  <td class="text">Cow</td><td class="fade text">cow</td><td style="color:gray">1</td><td>1,500</td><td>$2,000</td><!-- <td>$1.33</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Milk</td><td style="color:gray" class="text">1-gal jug</td><td style="color:gray">200</td><td>1,720</td><td>$800</td><!-- <td>$0.47</td> -->
+                  <td class="text">Milk</td><td class="fade text">1-gal jug</td><td style="color:gray">200</td><td>1,720</td><td>$800</td><!-- <td>$0.47</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Cheese</td><td style="color:gray" class="text">5-lb wheel</td><td style="color:gray">200</td><td>1,000</td><td>$12,000</td><!-- <td>$12.00</td> -->
+                  <td class="text">Cheese</td><td class="fade text">5-lb wheel</td><td style="color:gray">200</td><td>1,000</td><td>$12,000</td><!-- <td>$12.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Butter</td><td style="color:gray" class="text">1-lb block</td><td style="color:gray">1,000</td><td>1,000</td><td>$3,000</td><!-- <td>$3.00</td> -->
+                  <td class="text">Butter</td><td class="fade text">1-lb block</td><td style="color:gray">1,000</td><td>1,000</td><td>$3,000</td><!-- <td>$3.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Ice Cream</td><td style="color:gray" class="text">1-gal tubs</td><td style="color:gray">200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
+                  <td class="text">Ice Cream</td><td class="fade text">1-gal tubs</td><td style="color:gray">200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Meat</td><td style="color:gray" class="text">side</td><td style="color:gray">4</td><td>1,280</td><td>$8,000</td><!-- <td>$6.25</td> -->
+                  <td class="text">Meat</td><td class="fade text">side</td><td style="color:gray">4</td><td>1,280</td><td>$8,000</td><!-- <td>$6.25</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Leather</td><td style="color:gray" class="text">hide</td><td style="color:gray">20</td><td>1,100</td><td>$6,000</td><!-- <td>$5.45</td> -->
+                  <td class="text">Leather</td><td class="fade text">hide</td><td style="color:gray">20</td><td>1,100</td><td>$6,000</td><!-- <td>$5.45</td> -->
                 </tr>
-                <tr>
-                  <td class="text" colspan="2">TOTAL WEIGHT</td><td></td><td><b>8,600</b></td><td></td><!-- <td></td> -->
+                <tr><td colspan="5"><hr></td></tr><tr>
+                  <td class="text" colspan="2">TOTAL WEIGHT:</td><td></td><td>8,600</td><td></td><!-- <td></td> -->
                 </tr>
               </tbody>
             </table>
@@ -875,7 +882,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="centered" style="font-size: 0.7em">
+            <table class="centered" style="font-size: 0.8em">
               <thead>
                 <tr>
                   <th>Cow</th>
@@ -1002,12 +1009,12 @@ class Truckload
             <div>
               <pre style="font-size: 0.7em">
 def fitness()
-  items = 
+  items =
     ITEMS.
     with_index.
     select { |_item, idx| bit_on?(idx, @contents) }.
     map { |item, _idx| itm }
-  weight = items.map { |item| itm.weight }.sum 
+  weight = items.map { |item| itm.weight }.sum
   return 0 if weight > 4000
   return items.map { |item| itm.value }.sum
 end
@@ -1048,7 +1055,7 @@ end
         </section>
 
         <section>
-          <div class="all vctring" style="font-size: 0.7em">
+          <div class="all vctring" style="font-size: 0.8em">
             <table class="centered">
               <thead>
                 <tr>
@@ -1230,7 +1237,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="centered" style="font-size: 0.7em">
+            <table class="centered" style="font-size: 0.8em">
               <thead>
                 <tr>
                   <th>Cow</th>
@@ -1345,7 +1352,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="centered" style="font-size: 0.7em">
+            <table class="centered" style="font-size: 0.9em">
               <thead>
                 <tr>
                   <th>Cow</th>
@@ -1357,7 +1364,7 @@ end
                   <th>Leather</th>
                 </tr>
               </thead>
-              <tbody style="font-weight: bold">
+              <tbody>
                 <tr><td colspan="7"><br/></td></tr>
                 <tr style="color: #0f0"><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td></tr>
                 <tr><td colspan="7" style="text-align: center">+</td></tr>
@@ -1398,7 +1405,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="centered" style="font-size: 0.7em">
+            <table class="centered" style="font-size: 0.8em">
               <thead>
                 <tr>
                   <th>Cow</th>
@@ -1494,7 +1501,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="centered" style="font-size: 0.7em">
+            <table class="centered" style="font-size: 0.8em">
               <thead>
                 <tr>
                   <th>Cow</th>
@@ -1555,7 +1562,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="centered" style="font-size: 0.7em">
+            <table class="centered" style="font-size: 0.8em">
               <thead>
                 <tr>
                   <th>Cow</th>
@@ -1620,7 +1627,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="centered" style="font-size: 0.7em">
+            <table class="centered" style="font-size: 0.8em">
               <thead>
                 <tr>
                   <th>Cow</th>
@@ -1658,7 +1665,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="centered" style="font-size: 0.7em">
+            <table class="centered" style="font-size: 0.8em">
               <thead>
                 <tr>
                   <th>Cow</th>
@@ -1884,7 +1891,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em">
+              <pre style="font-size: 0.8em">
 def fitness()
   stats = [str, con, dex, int, wis, cha]
   (0..5).
@@ -2010,7 +2017,7 @@ end
         </section>
 
         <section>
-          <div class="all vctring" style="font-size: 1.1em">
+          <div class="all vctring" style="font-size: 1.3em">
             <table class="all-right">
               <thead>
                 <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>Fit</th></tr>
@@ -2101,16 +2108,16 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="all-right" style="font-size: 1.2em">
+            <table class="all-right" style="font-size: 1.5em">
               <thead>
                 <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th></tr>
               </thead>
               <tbody>
-                <tr><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td></tr>
+                <tr style="color:#0f0"><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td></tr>
                 <tr><td colspan="6"></td></tr>
                 <tr><td colspan="6" style="text-align: center">+</td></tr>
                 <tr><td colspan="6"></td></tr>
-                <tr><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td></tr>
+                <tr style="color:#f33"><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td></tr>
                 <tr><td colspan="6"></td></tr>
                 <tr><td colspan="6" style="text-align: center">=</td></tr>
                 <tr><td colspan="6"></td></tr>
@@ -2119,9 +2126,7 @@ end
             </table>
           </div>
           <aside class="notes">
-            I've colored the ones from the first parent in green,
-            and the second in red,
-            to show the mixing.&nbsp;
+            I've used some color here to show the mixing.&nbsp;
             But again, this is just one of ten results,
             because we're making a whole new population,
             which might look something like this:
@@ -2448,6 +2453,13 @@ end
               it's about time we . . .
             </div>
             <div data-time-max="44">
+              There are many other ways we can use genetic algorithms.&nbsp;
+              They can create images, music, and even code.&nbsp;
+              So, think about it,
+              and you might be able to use them for something.
+
+              <br/><br/>
+
               To recap what you've learned here today:
             </div>
           </aside>
