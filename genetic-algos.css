@@ -144,9 +144,10 @@
   /* display: none; */
 }
 
+.reveal table { font-weight: bold; }
+
 .reveal table th, .reveal table td {
   border: 0;
-  font-weight: bold;
   padding: 0 .25em;
 }
 
@@ -207,6 +208,8 @@ section.present::after {
 .reveal .most { height: calc(var(--main-height) * 0.75); }
 .reveal .half { height: calc(var(--main-height) * 0.50); }
 .reveal .qtr  { height: calc(var(--main-height) * 0.25); }
+
+.reveal .bold { font-weight: bold }
 
 .reveal .fade {
   color: gray;

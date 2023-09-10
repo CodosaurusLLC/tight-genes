@@ -352,9 +352,9 @@
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
             Nothing much came of that,
-            nor of genetic algorithms in general...
-            for a few decades.&nbsp;
-            But then they finally got a bit of traction.&nbsp;
+            and it took a few decades for
+            genetic algorithms in general
+            to get some traction.&nbsp;
             The first commercial product based on genetic algorithms,
             a mainframe toolkit for . . .
           </aside>
@@ -369,23 +369,25 @@
             . . . industrial processes,
             came out in the late 1980's,
             from General Electric.&nbsp;
-            <span data-min-time="45">
+            <span data-time-min="45">
               In 1989 a genetic algorithm toolkit called Evolver
               came out for <i>PCs</i>.&nbsp;
             </span>
             These days,
-            MATLAB has a few genetic algorithm tools built-in, and
+            MATLAB and such tools
+            have some genetic algorithm tools built-in, and
             many programming languages have
             genetic algorithm libraries available.&nbsp;
             However, the actual <i>uses</i> of genetic algorithms
-            remain mostly obscure,
+            remain mostly boring and obscure,
             used by companies in their internal
             industrial processes, logistics, scheduling, and so on.
 
             <br/><br/>
 
             But once in a while, they get used for
-            something more interesting.&nbsp;
+            something more interesting,
+            and more publicly known.&nbsp;
             Most famously,
             in 2005 . . .
           </aside>
@@ -417,18 +419,19 @@
             launched in 2006.&nbsp;
             (No, that's not just a paperclip
             that got all bent up by someone
-            sitting bored and fidgeting,
-            in a meeting.)&nbsp;
+            fidgeting in a boring meeting.)&nbsp;
             The NASA Jet Propulsion Laboratory website says:
             "Its unusual shape is expected
             because most human antenna designers
             would never think of such a design."&nbsp;
             And that is one of the great advantages of this approach.&nbsp;
+            <span data-time-min="40">
             These algorithms are much less hampered by
             expectations of similarity to past solutions.&nbsp;
+            </span>
             However, today we'll only be looking at
-            much simpler problem domains,
-            for the sake of making understandable demos.
+            much simpler problem domains<span data-time-min="40">,
+              for the sake of making understandable demos</span>.
 
             <br/><br/>
 
@@ -448,10 +451,14 @@
             I think it leads to confusion,
             so I'm just going to say "candidates".&nbsp;
             I've also heard them called individuals, solutions,
-            or <i>phenotypes</i>,
-            to use an actual genetic term,
-            but most people don't know that word,
-            so I'll skip that one too.
+            <span data-time-min="40">
+              or
+              <i>phenotypes</i>,
+              to use an actual genetic term,
+              but most people don't know that word,
+              so I'll skip that one too.
+            </span>
+            <span data-time-max="39">and various other names.</span>
 
             <br/><br/>
 
@@ -483,7 +490,9 @@
             . . . done yet?&nbsp;
             This is <i>usually</i> based on the fitness,
             but <i>could</i> be based on other criteria,
-            and we'll discuss some of those later,
+            <span data-time-min="40">
+              and we'll discuss some of those later,
+            </span>
             or a combination.&nbsp;
             If we're not done, then next we . . .
           </aside>
@@ -511,7 +520,8 @@
 
             <br/><br/>
 
-            After that, as you may have guessed,
+            After that,
+            <span data-time-min="40">as you may have guessed,<span>
             we <i>use</i> those candidates we just selected . . .
           </aside>
         </section>
@@ -529,10 +539,12 @@
           <aside class="notes">
             . . . to <i>breed</i>
             a new population.&nbsp;
-            Some of the previous population,
-            especially the fittest ones,
-            <i>may</i> be carried over into this new population,
-            but usually not.
+            <span data-time-min="40">
+              Some of the previous population,
+              especially the fittest ones,
+              <i>may</i> be carried over into this new population,
+              but usually not.
+            </span>
 
             <br/><br/>
 
@@ -555,7 +567,7 @@
           <span class="cycle-stage cycle-stage-mutate">Mutate</span>
           <aside class="notes">
             . . . <i>mutate</i> those new candidates,
-            so that we get some more diversity in the gene pool.
+            so we get some more diversity in the gene pool.
 
             <br/><br/>
 
@@ -604,7 +616,7 @@ end
             </div>
           </div>
           <aside class="notes">
-            . . . in Ruby.
+            . . . in Ruby.&nbsp;
             <!-- (I'll give you a moment to take pictures.)&nbsp; -->
             Now let's take a closer look
             at what goes on in each step,
@@ -682,11 +694,11 @@ end
           </div>
           <span class="slide-caption">Image: https://publicdomainvectors.org/en/free-clipart/Rucksack-vector-image/9910.html</span>
           <aside class="notes">
-            . . . knapsack problems,
+            . . . knapsack problems<span data-time-min="40">,
             which is a category of
-            constrained resource allocation problems.&nbsp;
-            The canonical example is that you have a knapsack --
-            or rucksack, backpack, or whatever you call it --
+            constrained resource allocation problems</span>.&nbsp;
+            The canonical example is that you have a knapsack<span data-time-min="40">
+              (or rucksack, backpack, or whatever you call it)</span>,
             and many things you want to carry in it,
             but they won't all fit,
             or the total weight is more than you can carry,
@@ -696,7 +708,7 @@ end
             that will fit the constraints,
             and has the maximum value.&nbsp;
             That could be the literal cash value,
-            as we'll see in a moment,
+            <span data-time-min="40">as we'll see in a moment,</span>
             or something more metaphorical.&nbsp;
             To look at a concrete example, suppose we know . . .
           </aside>
@@ -723,7 +735,7 @@ end
           <span class="slide-caption">Images: standard emoji</span>
           <aside class="notes">
             . . . some cows.&nbsp;
-            (EIEIO!)&nbsp;
+            (E-I-E-I-O!)&nbsp;
             So among the things he can take to market are:
           </aside>
         </section>
@@ -749,14 +761,16 @@ end
             ice cream,
             meat,
             and leather.&nbsp;
-            For the sake of simplicity,
-            we won't differentiate between
-            between price and profit,
-            nor dairy versus meat cows,
-            and <!-- it's very unrealistic but
-            we'll assume that -->
-            he can only take a set amount of each item,
-            and always has that amount on hand.&nbsp;
+            <span data-time-min="40">
+              For the sake of simplicity,
+              we won't differentiate between
+              between price and profit,
+              nor dairy versus meat cows,
+              and <!-- it's very unrealistic but
+              we'll assume that -->
+              he can only take a set amount of each item,
+              and always has that amount on hand.&nbsp;
+            </span>
             His truck has <i>room</i> to take all the items,
             but it can only carry so much <i>weight</i>,
             so that's our constraint.&nbsp;
@@ -774,25 +788,25 @@ end
               </thead>
               <tbody>
                 <tr>
-                  <td class="text">Cow</td><td class="fade text">cow</td><td style="color:gray">1</td><td>1,500</td><td>$2,000</td><!-- <td>$1.33</td> -->
+                  <td class="text">Cow</td><td class="fade text">cow</td><td class="fade">1</td><td>1,500</td><td>$2,000</td><!-- <td>$1.33</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Milk</td><td class="fade text">1-gal jug</td><td style="color:gray">200</td><td>1,720</td><td>$800</td><!-- <td>$0.47</td> -->
+                  <td class="text">Milk</td><td class="fade text">1-gal jug</td><td class="fade">200</td><td>1,720</td><td>$800</td><!-- <td>$0.47</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Cheese</td><td class="fade text">5-lb wheel</td><td style="color:gray">200</td><td>1,000</td><td>$12,000</td><!-- <td>$12.00</td> -->
+                  <td class="text">Cheese</td><td class="fade text">5-lb wheel</td><td class="fade">200</td><td>1,000</td><td>$12,000</td><!-- <td>$12.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Butter</td><td class="fade text">1-lb block</td><td style="color:gray">1,000</td><td>1,000</td><td>$3,000</td><!-- <td>$3.00</td> -->
+                  <td class="text">Butter</td><td class="fade text">1-lb block</td><td class="fade">1,000</td><td>1,000</td><td>$3,000</td><!-- <td>$3.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Ice Cream</td><td class="fade text">1-gal tubs</td><td style="color:gray">200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
+                  <td class="text">Ice Cream</td><td class="fade text">1-gal tubs</td><td class="fade">200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Meat</td><td class="fade text">side</td><td style="color:gray">4</td><td>1,280</td><td>$8,000</td><!-- <td>$6.25</td> -->
+                  <td class="text">Meat</td><td class="fade text">side</td><td class="fade">4</td><td>1,280</td><td>$8,000</td><!-- <td>$6.25</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Leather</td><td class="fade text">hide</td><td style="color:gray">20</td><td>1,100</td><td>$6,000</td><!-- <td>$5.45</td> -->
+                  <td class="text">Leather</td><td class="fade text">hide</td><td class="fade">20</td><td>1,100</td><td>$6,000</td><!-- <td>$5.45</td> -->
                 </tr>
                 <tr><td colspan="5"><hr></td></tr><tr>
                   <td class="text" colspan="2">TOTAL WEIGHT:</td><td></td><td>8,600</td><td></td><!-- <td></td> -->
@@ -807,6 +821,9 @@ end
             But, his truck's suspension
             can only handle
             two tons, or 4,000 pounds.&nbsp;
+            <span data-time-min="40">
+              (Don't get me started on our stupid American units of measure!)&nbsp;
+            </span>
             <!--
               We <i>could</i> run through all the
               light enough combinations,
@@ -909,17 +926,6 @@ end
             </table>
           </div>
           <aside class="notes">
-            Why ten?&nbsp;
-            Because that's what fits on the screen
-            in a decently readable size.&nbsp;
-            If I were doing this for real,
-            with a much more complex domain,
-            I might use a hundred,
-            or a thousand,
-            or even more.
-
-            <br/><br/>
-
             <div data-time-max="44">
               In the interests of time,
               I'm going to handwave over
@@ -927,6 +933,17 @@ end
               Now that we're done with Initialization, we . . .
             </div>
             <div data-time-min="45">
+              Why ten?&nbsp;
+              Because that's what fits on the screen
+              in a decently readable size.&nbsp;
+              If I were doing this for real,
+              with a much more complex domain,
+              I might use a hundred,
+              or a thousand,
+              or even more.
+
+              <br/><br/>
+
               But how did we get from random numbers to those combinations?&nbsp;
               Behind the scenes, that translation might look like this:
             </div>
@@ -1035,21 +1052,24 @@ end
             Again,
             we could get as complex as we want in this function,
             and NASA's antenna fitness function
-            certainly must have been.&nbsp;
-            For instance,
+            certainly must have been.
+            <span data-time-min="40">
+            &nbsp;For instance,
             if the truck were even smaller,
             and we had the <i>volume</i> of each item,
             we could also total up the volume,
             and make sure it all fits.&nbsp;
-            <!-- We could even take into account very long or flat shapes,
+            We could even take into account very long or flat shapes,
             so that for instance
             a flagpole or a large sheet of plywood might not fit,
             even though its weight and total volume
-            may be relatively small. -->
+            may be relatively small.
+            </span>
 
             <br/><br/>
 
             Anyway, if we run this fitness function on our population,
+            and sort on fitness descending, to make it easy to find the best,
             we get this:
           </aside>
         </section>
@@ -1070,16 +1090,16 @@ end
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-                <tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td class="numeric">5,000</td></tr>
-                <tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">8,800</td></tr>
+                <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">20,000</td></tr>
                 <tr><td>N</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td class="numeric">14,800</td></tr>
+                <tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td class="numeric">13,000</td></tr>
+                <tr><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">8,800</td></tr>
+                <tr><td>N</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td class="numeric">5,000</td></tr>
+                <tr><td>Y</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">2,800</td></tr>
+                <tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
                 <tr><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td><td>N</td><td class="numeric">0</td></tr>
                 <tr><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>N</td><td class="numeric">0</td></tr>
-                <tr><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td>Y</td><td>N</td><td class="numeric">13,000</td></tr>
-                <tr><td>Y</td><td>Y</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td><td class="numeric">2,800</td></tr>
                 <tr><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td class="numeric">0</td></tr>
-                <tr><td>N</td><td>N</td><td>Y</td><td>N</td><td>N</td><td>Y</td><td>N</td><td class="numeric">20,000</td></tr>
               </tbody>
             </table>
           </div>
@@ -1112,20 +1132,33 @@ end
             what the function should <i>do</i>.&nbsp;
             With a knapsack problem,
             a good solution can be made totally worthless by
-            adding just one more item,
+            adding just one more . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="all vctring">
+            <img src="images/mr-creosote.png">
+          <span class="slide-caption">Image: https://images.squarespace-cdn.com/content/v1/5dace41dae7efb0296d47681/1617070720932-SD9B9QT535LA555Q2U19/python.png (used for edu fair use)</span>
+          </div>
+          <aside class="notes">
+            . . . waffer-theen item,
             and thereby exceeding the constraints.&nbsp;
             So, we're going to record the best we've seen,
             and stop if we haven't seen anything better
-            within 100 generations.&nbsp;
+            within 100 generations.
 
             <br/><br/>
 
-            Why 100?&nbsp;
-            Pretty much random.&nbsp;
-            It seems like enough for a good chance for improvement,
-            and since what we're doing is so simple,
-            and our population is so small,
-            using lots of generations isn't very slow.&nbsp;
+            <span data-time-min="40">
+              Why 100?&nbsp;
+              Pretty much random.&nbsp;
+              It seems like enough for a good chance for improvement,
+              and since what we're doing is so simple,
+              and our population is so small,
+              using lots of generations isn't very slow.&nbsp;
+            </span>
+
             In Ruby, that would look like this:
           </aside>
         </section>
@@ -1151,7 +1184,7 @@ end
             </div>
           </div>
           <aside class="notes">
-            When the code is initially parsed,
+            When this code is initially parsed,
             we set the initial best combo as empty,
             and we set how many generations it's been since we saw that,
             as zero.&nbsp;
@@ -1181,9 +1214,12 @@ end
             or achieving some specific level of maximum fitness,
             like some maximum number of generations,
             or amount of time,
-            (whether clock time or CPU or whatever),
-            or a STOP button,
-            or many other ways, or a combination of ways.
+            <span data-time-min="40">
+              (whether clock time or CPU or whatever),
+            </span>
+            or let the user click a STOP button,
+            or many other ways,
+            or a combination of ways.
 
             <br/><br/>
 
@@ -1262,20 +1298,23 @@ end
             these two.&nbsp;
 
             As usual, we also could get more complicated,
-            like selecting two randomly
-            with each candidate having a <i>chance</i> to be selected,
-            proportional to their fitness,
-            called "Roulette Wheel" selection,
-            and lots of other ways.&nbsp;
+            and there are some common more complex alternatives.&nbsp;
+            For instance,
+            with "Roulette Wheel" selection,
+            we would select the candidates <i>randomly</i>,
+            but each one has a <i>chance</i> to be selected,
+            <i>proportional</i> to their fitness.&nbsp;
 
-            <br/><br/>
+            <span data-time-min="40">
+              <br/><br/>
 
-            We could also take more than two,
-            whether to breed all pairs in that set
-            or to combine more than two at once.&nbsp;
-            Or we could combine strategies,
-            such as using all trios from a randomly chosen five,
-            with the fitter ones having a better chance to be chosen.
+              We could also take more than two,
+              whether to breed all pairs in that set
+              or to combine more than two at once.&nbsp;
+              Or we could combine strategies,
+              such as using all trios from a randomly chosen five,
+              with the fitter ones having a better chance to be chosen.
+            </span>
 
             <br/><br/>
 
@@ -1306,9 +1345,9 @@ end
             or in Genetic Algorithm lingo, the "genes",
             from one parent,
             up to some randomly chosen crossover point,
-            then switching to the other parent.&nbsp;
+            then switching to the other parent<span data-time-min="40">.&nbsp;
             This can be extended with multiple crossover points,
-            but we're just going to use one, like so:
+            but we're just going to use one</span>, like so:
           </aside>
         </section>
 
@@ -1344,6 +1383,11 @@ end
             This means that it could be all copied
             from one parent or the other,
             or it could switch at some point.&nbsp;
+            <span data-time-min="40">
+              As usual, we could get as complex as we want,
+              like making some crossover points
+              more likely, or forbidden.&nbsp;
+            </span>
             If we do this once, with a crossover point of 3,
             so we take 3 values from the first parent,
             that would get us a result like this:
@@ -1553,10 +1597,8 @@ end
           </div>
           <aside class="notes">
             . . . assessing the fitness of
-            these new candidates.&nbsp;
-            If we sort on fitness descending,
-            just to make it easy to find the best,
-            we get this:
+            these new candidates,
+            and we get this:
           </aside>
         </section>
 
@@ -1736,14 +1778,14 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
+          <div class="all bold vctring">
             <div style="display: inline-block; text-align: left">
-              STR<span style="color: gray">ength</span><br/>
-              INT<span style="color: gray">elligence</span><br/>
-              DEX<span style="color: gray">terity</span><br/>
-              CON<span style="color: gray">stitution</span><br/>
-              WIS<span style="color: gray">dom</span><br/>
-              CHA<span style="color: gray">risma</span><br/>
+              STR<span class="fade">ength</span><br/>
+              INT<span class="fade">elligence</span><br/>
+              DEX<span class="fade">terity</span><br/>
+              CON<span class="fade">stitution</span><br/>
+              WIS<span class="fade">dom</span><br/>
+              CHA<span class="fade">risma</span><br/>
               <br/>
               3d6 each<br/>
               ignoring STR 18/xx
@@ -1914,7 +1956,7 @@ end
 
             <br/><br/>
 
-            If we run this on our population, we get this:
+            If we run this on our population, and sort them, we get this:
           </aside>
         </section>
 
@@ -1925,16 +1967,17 @@ end
                 <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>Fit</th></tr>
               </thead>
               <tbody>
-                <tr><td>11</td><td>9</td><td>9</td><td>10</td><td>7</td><td>15</td><td>649</td></tr>
-                <tr><td>4</td><td>14</td><td>8</td><td>12</td><td>13</td><td>10</td><td>476</td></tr>
-                <tr><td>9</td><td>14</td><td>15</td><td>11</td><td>9</td><td>16</td><td>674</td></tr>
-                <tr><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td><td>726</td></tr>
                 <tr><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td><td>760</td></tr>
-                <tr><td>12</td><td>12</td><td>10</td><td>9</td><td>5</td><td>16</td><td>682</td></tr>
-                <tr><td>11</td><td>12</td><td>9</td><td>13</td><td>6</td><td>12</td><td>703</td></tr>
-                <tr><td>10</td><td>14</td><td>12</td><td>8</td><td>8</td><td>16</td><td>632</td></tr>
-                <tr><td>14</td><td>7</td><td>8</td><td>9</td><td>8</td><td>8</td><td>708</td></tr>
+                <tr><td>14</td><td>15</td><td>10</td><td>7</td><td>6</td><td>14</td><td>726</td></tr>
                 <tr><td>14</td><td>12</td><td>13</td><td>5</td><td>13</td><td>13</td><td>719</td></tr>
+                <tr><td>14</td><td>7</td><td>8</td><td>9</td><td>8</td><td>8</td><td>708</td></tr>
+                <tr><td>11</td><td>12</td><td>9</td><td>13</td><td>6</td><td>12</td><td>703</td></tr>
+
+                <tr><td>12</td><td>12</td><td>10</td><td>9</td><td>5</td><td>16</td><td>682</td></tr>
+                <tr><td>9</td><td>14</td><td>15</td><td>11</td><td>9</td><td>16</td><td>674</td></tr>
+                <tr><td>11</td><td>9</td><td>9</td><td>10</td><td>7</td><td>15</td><td>649</td></tr>
+                <tr><td>10</td><td>14</td><td>12</td><td>8</td><td>8</td><td>16</td><td>632</td></tr>
+                <tr><td>4</td><td>14</td><td>8</td><td>12</td><td>13</td><td>10</td><td>476</td></tr>
               </tbody>
             </table>
           </div>
@@ -2032,27 +2075,31 @@ end
           </div>
           <aside class="notes">
             these two.&nbsp;
-            The abstraction gets a bit more
-            <i>obviously</i> leaky now,
-            because we're ignoring sexes;
-            we have no guarantee that
-            these characters will be a male and a female,
-            as we're not even making that part of the data.&nbsp;
-            We had the same leak last time, with the Truckloads,
-            but then it was not so relevant, so I let it slide.&nbsp;
-            Now that they're living beings
-            (whether humans or elves or whatever),
-            though, we could add such complications,
-            and many other such factors.&nbsp;
-            <!--
-            and even add what race they are
-            and bring in considerations of
-            which races <i>can</i> breed together.&nbsp;
-            -->
-            That would complicate our breeder selection enormously,
-            maybe even make it impossible to <i>find</i> a viable pair
-            in such a small population.&nbsp;
-            Anyway, next we actually . . .
+            <span data-time-min="40">
+              The abstraction gets a bit more
+              <i>obviously</i> leaky now,
+              because we're ignoring sexes;
+              we have no guarantee that
+              these characters will be a male and a female,
+              as we're not even making that part of the data.&nbsp;
+              We had the same leak last time, with the Truckloads,
+              but then it was not so relevant, so I let it slide.&nbsp;
+              Now that they're living beings
+              (whether humans or elves or whatever),
+              though, we could add such complications,
+              and many other such factors.&nbsp;
+              <!--
+                and even add what race they are
+                and bring in considerations of
+                which races <i>can</i> breed together.&nbsp;
+              -->
+              That would complicate our breeder selection enormously,
+              maybe even make it impossible to <i>find</i> a viable pair
+              in such a small population.&nbsp;
+              Anyway, next
+            </span>
+            <span data-time-max="39">And then of course</span>
+            we actually . . .
           </aside>
         </section>
 
@@ -2126,7 +2173,6 @@ end
             </table>
           </div>
           <aside class="notes">
-            I've used some color here to show the mixing.&nbsp;
             But again, this is just one of ten results,
             because we're making a whole new population,
             which might look something like this:
@@ -2160,8 +2206,9 @@ end
             It's a series of random coin flips, so
             <i>on average</i> there will be three and three,
             but it could be anything up to six and zero either way.&nbsp;
-            Second, notice the family resemblance!&nbsp;
-            For each stat, there are only two possible values,
+            Second, notice the family resemblance again!&nbsp;
+            Even though we're no longer using yes/no decisions,
+            for <i>each</i> stat, there are only <i>two</i> possible values,
             or in Genetic Algorithm terms, "alleles",
             for a total of 64 possible combinations.&nbsp;
             There would be only <i>one</i> possible value,
@@ -2174,7 +2221,7 @@ end
             much more suitable as fighters
             than the previous generation.&nbsp;
             (We'll figure their actual fitness scores later.)&nbsp;
-            If we were to just continue
+            Just like before, if we were to simply continue
             breeding the fittest of each generation,
             we wouldn't see any change,
             let alone improvement,
@@ -2210,7 +2257,7 @@ end
             a 1/3 chance of staying the same,
             going up a point, or going down a point,
             within the valid range.&nbsp;
-            In code, that looks like this:
+            In code, that could look like this:
           </aside>
         </section>
 
@@ -2298,10 +2345,8 @@ end
           <aside class="notes">
             . . . Step 2, and
             assess the fitness of
-            these new candidates.&nbsp;
-            If we sort on fitness descending,
-            just to make it easy to find the best,
-            we get this:
+            these new candidates,
+            which are like so:
           </aside>
         </section>
 
@@ -2344,15 +2389,15 @@ end
               </thead>
               <tbody>
                 <tr><td>18</td><td>18</td><td>9</td><td>18</td><td>4</td><td>13</td><td>1029</td></tr>
-                <tr style="color:gray"><td>18</td><td>17</td><td>7</td><td>18</td><td>6</td><td>14</td><td>1014</td></tr>
-                <tr style="color:gray"><td>18</td><td>16</td><td>8</td><td>18</td><td>3</td><td>13</td><td>1011</td></tr>
-                <tr style="color:gray"><td>18</td><td>15</td><td>7</td><td>18</td><td>3</td><td>13</td><td>999</td></tr>
-                <tr style="color:gray"><td>18</td><td>16</td><td>8</td><td>17</td><td>4</td><td>13</td><td>997</td></tr>
-                <tr style="color:gray"><td>18</td><td>16</td><td>6</td><td>18</td><td>3</td><td>15</td><td>997</td></tr>
-                <tr style="color:gray"><td>17</td><td>18</td><td>8</td><td>18</td><td>6</td><td>13</td><td>993</td></tr>
-                <tr style="color:gray"><td>17</td><td>16</td><td>9</td><td>18</td><td>3</td><td>14</td><td>988</td></tr>
-                <tr style="color:gray"><td>18</td><td>16</td><td>6</td><td>17</td><td>3</td><td>13</td><td>979</td></tr>
-                <tr style="color:gray"><td>17</td><td>16</td><td>8</td><td>17</td><td>4</td><td>12</td><td>964</td></tr>
+                <tr class="fade"><td>18</td><td>17</td><td>7</td><td>18</td><td>6</td><td>14</td><td>1014</td></tr>
+                <tr class="fade"><td>18</td><td>16</td><td>8</td><td>18</td><td>3</td><td>13</td><td>1011</td></tr>
+                <tr class="fade"><td>18</td><td>15</td><td>7</td><td>18</td><td>3</td><td>13</td><td>999</td></tr>
+                <tr class="fade"><td>18</td><td>16</td><td>8</td><td>17</td><td>4</td><td>13</td><td>997</td></tr>
+                <tr class="fade"><td>18</td><td>16</td><td>6</td><td>18</td><td>3</td><td>15</td><td>997</td></tr>
+                <tr class="fade"><td>17</td><td>18</td><td>8</td><td>18</td><td>6</td><td>13</td><td>993</td></tr>
+                <tr class="fade"><td>17</td><td>16</td><td>9</td><td>18</td><td>3</td><td>14</td><td>988</td></tr>
+                <tr class="fade"><td>18</td><td>16</td><td>6</td><td>17</td><td>3</td><td>13</td><td>979</td></tr>
+                <tr class="fade"><td>17</td><td>16</td><td>8</td><td>17</td><td>4</td><td>12</td><td>964</td></tr>
               </tbody>
             </table>
           </div>
@@ -2420,13 +2465,13 @@ end
                 <tr><td>12</td><td>18</td><td>17</td><td>12</td><td>15</td><td>18</td><td>1048</td></tr>
                 <tr><td>14</td><td>18</td><td>16</td><td>9</td><td>15</td><td>16</td><td>1026</td></tr>
                 <tr><td>15</td><td>18</td><td>15</td><td>10</td><td>15</td><td>16</td><td>1023</td></tr>
-                <tr style="color:gray"><td>13</td><td>18</td><td>17</td><td>11</td><td>13</td><td>18</td><td>1013</td></tr>
-                <tr style="color:gray"><td>14</td><td>18</td><td>17</td><td>10</td><td>13</td><td>18</td><td>1010</td></tr>
-                <tr style="color:gray"><td>13</td><td>18</td><td>16</td><td>8</td><td>14</td><td>18</td><td>1009</td></tr>
-                <tr style="color:gray"><td>12</td><td>17</td><td>16</td><td>11</td><td>15</td><td>17</td><td>1002</td></tr>
-                <tr style="color:gray"><td>12</td><td>18</td><td>15</td><td>9</td><td>14</td><td>16</td><td>1000</td></tr>
-                <tr style="color:gray"><td>14</td><td>17</td><td>16</td><td>10</td><td>15</td><td>16</td><td>998</td></tr>
-                <tr style="color:gray"><td>14</td><td>17</td><td>17</td><td>11</td><td>13</td><td>18</td><td>982</td></tr>
+                <tr class="fade"><td>13</td><td>18</td><td>17</td><td>11</td><td>13</td><td>18</td><td>1013</td></tr>
+                <tr class="fade"><td>14</td><td>18</td><td>17</td><td>10</td><td>13</td><td>18</td><td>1010</td></tr>
+                <tr class="fade"><td>13</td><td>18</td><td>16</td><td>8</td><td>14</td><td>18</td><td>1009</td></tr>
+                <tr class="fade"><td>12</td><td>17</td><td>16</td><td>11</td><td>15</td><td>17</td><td>1002</td></tr>
+                <tr class="fade"><td>12</td><td>18</td><td>15</td><td>9</td><td>14</td><td>16</td><td>1000</td></tr>
+                <tr class="fade"><td>14</td><td>17</td><td>16</td><td>10</td><td>15</td><td>16</td><td>998</td></tr>
+                <tr class="fade"><td>14</td><td>17</td><td>17</td><td>11</td><td>13</td><td>18</td><td>982</td></tr>
               </tbody>
             </table>
           </div>
@@ -2465,8 +2510,7 @@ end
           </aside>
         </section>
 
-        <div data-time-min="45">
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/tooth-extraction.png">
           </div>
@@ -2477,7 +2521,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/evolver-license-plate.png">
           </div>
@@ -2512,7 +2556,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/class-evolver.png" class="code">
           </div>
@@ -2525,7 +2569,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/def-evolver-init.jpg" class="code">
           </div>
@@ -2540,7 +2584,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/def-evolver-evolve.png" class="code">
           </div>
@@ -2557,7 +2601,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/def-evolver-init-pop.png" class="code">
           </div>
@@ -2569,7 +2613,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/def-evolver-breed.png" class="code">
           </div>
@@ -2591,7 +2635,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <div class="all">
               <img src="images/2021-06-12-Meads-Assembled.jpg" class="most">
@@ -2612,7 +2656,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/class-recipe.png" class="code">
           </div>
@@ -2630,7 +2674,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/def-recipe-fitness.png" class="code">
           </div>
@@ -2655,7 +2699,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <table style="font-size: 1.5em">
               <thead>
@@ -2695,7 +2739,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/def-recipe-combine.png" class="code">
           </div>
@@ -2707,7 +2751,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/def-recipe-mutate.png" class="code">
           </div>
@@ -2739,7 +2783,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <img src="images/code/evolver-recipe-call.png" class="code">
           </div>
@@ -2773,7 +2817,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -2799,7 +2843,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -2826,7 +2870,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -2834,15 +2878,15 @@ end
               </thead>
               <tbody>
                 <tr><td>3.46</td><td>10.4</td><td>10.4</td><td>16.4</td><td>95.2</td></tr>
-                <tr style="color:gray"><td>3.59</td><td>9.9</td><td>9.9</td><td>17.4</td><td>89.5</td></tr>
-                <tr style="color:gray"><td>3.85</td><td>8.9</td><td>8.9</td><td>20.1</td><td>64.6</td></tr>
-                <tr style="color:gray"><td>3.42</td><td>9.7</td><td>9.7</td><td>22.5</td><td>38.1</td></tr>
-                <tr style="color:gray"><td>4.53</td><td>9.2</td><td>9.2</td><td>6.7</td><td>24.0</td></tr>
-                <tr style="color:gray"><td>3.50</td><td>9.2</td><td>9.2</td><td>24.4</td><td>4.6</td></tr>
-                <tr style="color:gray"><td>4.33</td><td>9.8</td><td>9.8</td><td>5.3</td><td>1.8</td></tr>
-                <tr style="color:gray"><td>3.94</td><td>7.7</td><td>7.7</td><td>27.1</td><td>-64.1</td></tr>
-                <tr style="color:gray"><td>4.33</td><td>11.0</td><td>10.5</td><td>0.0</td><td>-127.4</td></tr>
-                <tr style="color:gray"><td>3.53</td><td>8.3</td><td>8.3</td><td>30.6</td><td>-156.7</td></tr>
+                <tr class="fade"><td>3.59</td><td>9.9</td><td>9.9</td><td>17.4</td><td>89.5</td></tr>
+                <tr class="fade"><td>3.85</td><td>8.9</td><td>8.9</td><td>20.1</td><td>64.6</td></tr>
+                <tr class="fade"><td>3.42</td><td>9.7</td><td>9.7</td><td>22.5</td><td>38.1</td></tr>
+                <tr class="fade"><td>4.53</td><td>9.2</td><td>9.2</td><td>6.7</td><td>24.0</td></tr>
+                <tr class="fade"><td>3.50</td><td>9.2</td><td>9.2</td><td>24.4</td><td>4.6</td></tr>
+                <tr class="fade"><td>4.33</td><td>9.8</td><td>9.8</td><td>5.3</td><td>1.8</td></tr>
+                <tr class="fade"><td>3.94</td><td>7.7</td><td>7.7</td><td>27.1</td><td>-64.1</td></tr>
+                <tr class="fade"><td>4.33</td><td>11.0</td><td>10.5</td><td>0.0</td><td>-127.4</td></tr>
+                <tr class="fade"><td>3.53</td><td>8.3</td><td>8.3</td><td>30.6</td><td>-156.7</td></tr>
               </tbody>
             </table>
           </div>
@@ -2855,7 +2899,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -2863,15 +2907,15 @@ end
               </thead>
               <tbody>
                 <tr><td>3.05</td><td>11.8</td><td>11.8</td><td>15.2</td><td>99.9</td></tr>
-                <tr style="color:gray"><td>3.21</td><td>10.9</td><td>10.9</td><td>18.2</td><td>88.7</td></tr>
-                <tr style="color:gray"><td>3.34</td><td>11.4</td><td>11.4</td><td>10.8</td><td>81.7</td></tr>
-                <tr style="color:gray"><td>3.28</td><td>10.5</td><td>10.5</td><td>19.2</td><td>79.8</td></tr>
-                <tr style="color:gray"><td>3.35</td><td>11.7</td><td>11.7</td><td>8.9</td><td>62.9</td></tr>
-                <tr style="color:gray"><td>3.31</td><td>11.8</td><td>11.8</td><td>8.8</td><td>61.4</td></tr>
-                <tr style="color:gray"><td>3.48</td><td>9.7</td><td>9.7</td><td>21.0</td><td>58.9</td></tr>
-                <tr style="color:gray"><td>3.05</td><td>13.1</td><td>13.1</td><td>4.9</td><td>-2.9</td></tr>
-                <tr style="color:gray"><td>3.60</td><td>11.8</td><td>11.8</td><td>2.6</td><td>-53.9</td></tr>
-                <tr style="color:gray"><td>3.68</td><td>12.2</td><td>11.9</td><td>0.0</td><td>-125.0</td></tr>
+                <tr class="fade"><td>3.21</td><td>10.9</td><td>10.9</td><td>18.2</td><td>88.7</td></tr>
+                <tr class="fade"><td>3.34</td><td>11.4</td><td>11.4</td><td>10.8</td><td>81.7</td></tr>
+                <tr class="fade"><td>3.28</td><td>10.5</td><td>10.5</td><td>19.2</td><td>79.8</td></tr>
+                <tr class="fade"><td>3.35</td><td>11.7</td><td>11.7</td><td>8.9</td><td>62.9</td></tr>
+                <tr class="fade"><td>3.31</td><td>11.8</td><td>11.8</td><td>8.8</td><td>61.4</td></tr>
+                <tr class="fade"><td>3.48</td><td>9.7</td><td>9.7</td><td>21.0</td><td>58.9</td></tr>
+                <tr class="fade"><td>3.05</td><td>13.1</td><td>13.1</td><td>4.9</td><td>-2.9</td></tr>
+                <tr class="fade"><td>3.60</td><td>11.8</td><td>11.8</td><td>2.6</td><td>-53.9</td></tr>
+                <tr class="fade"><td>3.68</td><td>12.2</td><td>11.9</td><td>0.0</td><td>-125.0</td></tr>
               </tbody>
             </table>
           </div>
@@ -2891,7 +2935,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -2899,15 +2943,15 @@ end
               </thead>
               <tbody>
                 <tr><td>6.38</td><td>6.9</td><td>6.9</td><td>5.0</td><td>100.0</td></tr>
-                <tr style="color:gray"><td>5.73</td><td>7.6</td><td>7.6</td><td>5.4</td><td>99.5</td></tr>
-                <tr style="color:gray"><td>5.32</td><td>8.2</td><td>8.2</td><td>4.9</td><td>98.6</td></tr>
-                <tr style="color:gray"><td>5.61</td><td>7.6</td><td>7.6</td><td>6.5</td><td>97.3</td></tr>
-                <tr style="color:gray"><td>6.25</td><td>6.7</td><td>6.7</td><td>7.8</td><td>92.2</td></tr>
-                <tr style="color:gray"><td>5.34</td><td>7.7</td><td>7.7</td><td>8.8</td><td>85.5</td></tr>
-                <tr style="color:gray"><td>5.23</td><td>8.8</td><td>8.8</td><td>1.0</td><td>80.7</td></tr>
-                <tr style="color:gray"><td>6.25</td><td>8.2</td><td>7.7</td><td>0.0</td><td>74.5</td></tr>
-                <tr style="color:gray"><td>6.02</td><td>8.3</td><td>7.9</td><td>0.0</td><td>74.1</td></tr>
-                <tr style="color:gray"><td>5.61</td><td>6.8</td><td>6.8</td><td>12.3</td><td>46.5</td></tr>
+                <tr class="fade"><td>5.73</td><td>7.6</td><td>7.6</td><td>5.4</td><td>99.5</td></tr>
+                <tr class="fade"><td>5.32</td><td>8.2</td><td>8.2</td><td>4.9</td><td>98.6</td></tr>
+                <tr class="fade"><td>5.61</td><td>7.6</td><td>7.6</td><td>6.5</td><td>97.3</td></tr>
+                <tr class="fade"><td>6.25</td><td>6.7</td><td>6.7</td><td>7.8</td><td>92.2</td></tr>
+                <tr class="fade"><td>5.34</td><td>7.7</td><td>7.7</td><td>8.8</td><td>85.5</td></tr>
+                <tr class="fade"><td>5.23</td><td>8.8</td><td>8.8</td><td>1.0</td><td>80.7</td></tr>
+                <tr class="fade"><td>6.25</td><td>8.2</td><td>7.7</td><td>0.0</td><td>74.5</td></tr>
+                <tr class="fade"><td>6.02</td><td>8.3</td><td>7.9</td><td>0.0</td><td>74.1</td></tr>
+                <tr class="fade"><td>5.61</td><td>6.8</td><td>6.8</td><td>12.3</td><td>46.5</td></tr>
               </tbody>
             </table>
           </div>
@@ -2924,7 +2968,7 @@ end
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="45">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -2932,15 +2976,15 @@ end
               </thead>
               <tbody>
                 <tr><td>1.69</td><td>16.1</td><td>16.1</td><td>34.9</td><td>100.0</td></tr>
-                <tr style="color:gray"><td>1.70</td><td>15.8</td><td>15.8</td><td>36.9</td><td>96.4</td></tr>
-                <tr style="color:gray"><td>2.06</td><td>13.6</td><td>13.6</td><td>35.2</td><td>94.3</td></tr>
-                <tr style="color:gray"><td>1.96</td><td>14.0</td><td>14.0</td><td>36.5</td><td>94.0</td></tr>
-                <tr style="color:gray"><td>1.94</td><td>15.4</td><td>15.4</td><td>27.3</td><td>39.9</td></tr>
-                <tr style="color:gray"><td>1.75</td><td>14.6</td><td>14.6</td><td>43.0</td><td>33.8</td></tr>
-                <tr style="color:gray"><td>1.92</td><td>13.3</td><td>13.3</td><td>43.8</td><td>16.1</td></tr>
-                <tr style="color:gray"><td>1.68</td><td>14.2</td><td>14.2</td><td>50.6</td><td>-146.3</td></tr>
-                <tr style="color:gray"><td>1.93</td><td>17.6</td><td>17.6</td><td>10.6</td><td>-497.1</td></tr>
-                <tr style="color:gray"><td>1.70</td><td>11.8</td><td>11.8</td><td>67.8</td><td>-992.7</td></tr>
+                <tr class="fade"><td>1.70</td><td>15.8</td><td>15.8</td><td>36.9</td><td>96.4</td></tr>
+                <tr class="fade"><td>2.06</td><td>13.6</td><td>13.6</td><td>35.2</td><td>94.3</td></tr>
+                <tr class="fade"><td>1.96</td><td>14.0</td><td>14.0</td><td>36.5</td><td>94.0</td></tr>
+                <tr class="fade"><td>1.94</td><td>15.4</td><td>15.4</td><td>27.3</td><td>39.9</td></tr>
+                <tr class="fade"><td>1.75</td><td>14.6</td><td>14.6</td><td>43.0</td><td>33.8</td></tr>
+                <tr class="fade"><td>1.92</td><td>13.3</td><td>13.3</td><td>43.8</td><td>16.1</td></tr>
+                <tr class="fade"><td>1.68</td><td>14.2</td><td>14.2</td><td>50.6</td><td>-146.3</td></tr>
+                <tr class="fade"><td>1.93</td><td>17.6</td><td>17.6</td><td>10.6</td><td>-497.1</td></tr>
+                <tr class="fade"><td>1.70</td><td>11.8</td><td>11.8</td><td>67.8</td><td>-992.7</td></tr>
               </tbody>
             </table>
           </div>
@@ -2959,7 +3003,6 @@ end
             To recap what you've learned here today:
           </aside>
         </section>
-        </div data-notes="data-time-min=45">
 
         <section>
           <div style="text-align: left">
@@ -2989,11 +3032,13 @@ end
             all you have to do is
             create an initial population,
             and cycle through five simple steps,
-            of assessing their fitness,
-            checking if you're done,
-            picking breeders,
-            breeding them,
-            and mutating the new candidates,
+            <span data-time-min="40">
+              of assessing their fitness,
+              checking if you're done,
+              picking breeders,
+              breeding them,
+              and mutating the new candidates,
+            </span>
             over and over
             until you're done.&nbsp;
             They . . .
