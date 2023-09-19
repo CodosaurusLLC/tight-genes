@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="reveal/dist/reveal.css">
     <link rel="stylesheet" href="reveal/dist/theme/black.css" id="theme">
     <link rel="stylesheet" href="genetic-algos.css">
+    <link rel="stylesheet" href="reveal/plugin/highlight/monokai.css">
 
   </head>
   <body>
@@ -521,7 +522,7 @@
             <br/><br/>
 
             After that,
-            <span data-time-min="40">as you may have guessed,<span>
+            <span data-time-min="40">as you may have guessed,</span>
             we <i>use</i> those candidates we just selected . . .
           </aside>
         </section>
@@ -602,7 +603,7 @@
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em">
+              <pre style="font-size: 0.9em"><code data-trim data-noescape>
 how_many = 10  # or however big we want
 pop = initial_pop(how_many)
 evaluate(pop)
@@ -612,7 +613,7 @@ while not done?(pop)
   mutate(pop)
   evaluate(pop)
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -845,13 +846,13 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1.4em">
+              <pre style="font-size: 1.4em"><code data-trim data-noescape>
 class Truckload
   def initialize()
     @contents = rand(128)
   end
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -875,7 +876,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1em">
+              <pre style="font-size: 0.9em"><code data-trim data-noescape>
 def self.initial_population(how_many)
   population = []
   for i in 1..how_many
@@ -883,7 +884,7 @@ def self.initial_population(how_many)
   end
   return population
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -954,7 +955,7 @@ end
           <section>
             <div class="vctring">
               <div>
-                <pre>
+                <pre><code data-trim data-noescape>
 class Truckload
   class Item
     attr_reader :name, :weight, :value
@@ -973,7 +974,7 @@ class Truckload
     Item.new("Meat",      1280,  8000),
     Item.new("Leather",   1100,  6000)
   ]
-                </pre>
+                </code></pre>
               </div>
             </div>
             <aside class="notes">
@@ -1024,7 +1025,7 @@ class Truckload
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.7em">
+              <pre style="font-size: 0.6em"><code data-trim data-noescape>
 def fitness()
   items =
     ITEMS.
@@ -1035,7 +1036,7 @@ def fitness()
   return 0 if weight > 4000
   return items.map { |item| itm.value }.sum
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1166,7 +1167,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: .7em">
+              <pre style="font-size: .6em"><code data-trim data-noescape>
 @@best_combo = self.new(0)
 @@generations = 0
 
@@ -1180,7 +1181,7 @@ def self.done?(population)
   @@generations = 0
   return false
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1253,14 +1254,14 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1em">
+              <pre style="font-size: 0.9em"><code data-trim data-noescape>
 def self.select_breeders(population)
   return population.
     sort_by(&:fitness).
     reverse.
     take(2)
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1354,7 +1355,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: .8em">
+              <pre style="font-size: .7em"><code data-trim data-noescape>
 def self.combine(p1, p2)
   cross_point = rand(ITEMS.count + 1)
   list =
@@ -1364,9 +1365,9 @@ def self.combine(p1, p2)
       parent.contents & (1 &lt;&lt; index)
     }.
     sum
-    return self.new(list)
+  return self.new(list)
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1427,7 +1428,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em">
+              <pre style="font-size: 0.8em"><code data-trim data-noescape>
 def self.new_population(p1, p2, how_many)
   population = []
   for i in 1..how_many
@@ -1435,7 +1436,7 @@ def self.new_population(p1, p2, how_many)
   end
   return population
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1516,7 +1517,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1em">
+              <pre style="font-size: 1em"><code data-trim data-noescape>
 def maybe_mutate()
   (0..ITEMS.count).each do |index|
     if rand(4) == 0
@@ -1524,7 +1525,7 @@ def maybe_mutate()
     end
   end
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1810,7 +1811,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em">
+              <pre style="font-size: 0.9em"><code data-trim data-noescape>
 class Character
   def initialize()
     @str = roll(3, 6)
@@ -1821,7 +1822,7 @@ class Character
     @cha = roll(3, 6)
   end
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
 
@@ -1890,11 +1891,11 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1.4em">
+              <pre style="font-size: 1.3em"><code data-trim data-noescape>
 def fitness()
   str * 2 + con + dex / 2
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1910,14 +1911,16 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em">
+              <pre style="font-size: 0.8em"><code data-trim data-noescape>
 def fitness()
   stats = [str, con, dex, int, wis, cha]
   (0..5).
-    map { |idx| stats[idx] * (6 - idx) }.
+    map { |idx|
+      stats[idx] * (6 - idx)
+    }.
     sum
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1933,14 +1936,16 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em">
+              <pre style="font-size: 0.8em"><code data-trim data-noescape>
 def fitness()
   stats = [str, con, dex, int, wis, cha]
   (0..5).
-    map { |idx| stats[idx] * 2 ** (5 - idx) }.
+    map { |idx|
+      stats[idx] * 2 ** (5 - idx)
+    }.
     sum
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -2021,13 +2026,13 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1.1em">
+              <pre style="font-size: 1em"><code data-trim data-noescape>
 def Character.done?(population)
   population.any? { |cand|
     cand.fitness >= 2021
   }
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -2130,7 +2135,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em">
+              <pre style="font-size: 0.7em"><code data-trim data-noescape>
 def Character.breed(p1, p2)
   char = Character.new
   char.str = rand(2) == 1 ? p1.str : p2.str
@@ -2140,7 +2145,7 @@ def Character.breed(p1, p2)
   char.wis = rand(2) == 1 ? p1.wis : p2.str
   char.cha = rand(2) == 1 ? p1.cha : p2.str
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -2264,7 +2269,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em">
+              <pre style="font-size: 0.6em"><code data-trim data-noescape>
 def maybe_mutate()
   @str = maybe_mutate_stat(@str)
   @int = maybe_mutate_stat(@int)
@@ -2277,7 +2282,7 @@ end
 def maybe_mutate_stat(stat)
   (stat + rand(3) - 1).clamp(3, 18)
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -2346,7 +2351,7 @@ end
             . . . Step 2, and
             assess the fitness of
             these new candidates,
-            which are like so:
+            which yields this result:
           </aside>
         </section>
 
@@ -2427,7 +2432,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em">
+              <pre style="font-size: 0.7em"><code data-trim data-noescape>
 def fitness()
   # below is the only line that changed!
   stats = [int, wis, dex, con, cha, str]
@@ -2435,7 +2440,7 @@ def fitness()
     map { |idx| stats[idx] * 2 ** (5 - idx) }.
     sum
 end
-              </pre>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">

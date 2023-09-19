@@ -24,6 +24,8 @@
   transform: translateX(-50%);
 }
 
+.reveal code { background: #112; }
+
 .reveal span.cycle-ptr {
   color:    white;
   position: absolute;
