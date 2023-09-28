@@ -603,7 +603,7 @@
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em"><code data-trim data-noescape>
+              <pre style="font-size: 0.9em"><code data-trim>
 how_many = 10  # or however big we want
 pop = initial_pop(how_many)
 evaluate(pop)
@@ -846,7 +846,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1.4em"><code data-trim data-noescape>
+              <pre style="font-size: 1.4em"><code data-trim>
 class Truckload
   def initialize()
     @contents = rand(128)
@@ -876,7 +876,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em"><code data-trim data-noescape>
+              <pre style="font-size: 0.9em"><code data-trim>
 def self.initial_population(how_many)
   population = []
   for i in 1..how_many
@@ -955,7 +955,7 @@ end
           <section>
             <div class="vctring">
               <div>
-                <pre><code data-trim data-noescape>
+                <pre><code data-trim>
 class Truckload
   class Item
     attr_reader :name, :weight, :value
@@ -1025,7 +1025,7 @@ class Truckload
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.6em"><code data-trim data-noescape>
+              <pre style="font-size: 0.6em"><code data-trim>
 def fitness()
   items =
     ITEMS.
@@ -1167,7 +1167,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: .6em"><code data-trim data-noescape>
+              <pre style="font-size: .6em"><code data-trim>
 @@best_combo = self.new(0)
 @@generations = 0
 
@@ -1254,7 +1254,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em"><code data-trim data-noescape>
+              <pre style="font-size: 0.9em"><code data-trim>
 def self.select_breeders(population)
   return population.
     sort_by(&:fitness).
@@ -1355,7 +1355,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: .7em"><code data-trim data-noescape>
+              <pre style="font-size: .7em"><code data-trim>
 def self.combine(p1, p2)
   cross_point = rand(ITEMS.count + 1)
   list =
@@ -1428,7 +1428,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em"><code data-trim data-noescape>
+              <pre style="font-size: 0.8em"><code data-trim>
 def self.new_population(p1, p2, how_many)
   population = []
   for i in 1..how_many
@@ -1517,7 +1517,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1em"><code data-trim data-noescape>
+              <pre style="font-size: 1em"><code data-trim>
 def maybe_mutate()
   (0..ITEMS.count).each do |index|
     if rand(4) == 0
@@ -1811,7 +1811,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em"><code data-trim data-noescape>
+              <pre style="font-size: 0.9em"><code data-trim>
 class Character
   def initialize()
     @str = roll(3, 6)
@@ -1891,7 +1891,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1.3em"><code data-trim data-noescape>
+              <pre style="font-size: 1.3em"><code data-trim>
 def fitness()
   str * 2 + con + dex / 2
 end
@@ -1911,7 +1911,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em"><code data-trim data-noescape>
+              <pre style="font-size: 0.8em"><code data-trim>
 def fitness()
   stats = [str, con, dex, int, wis, cha]
   (0..5).
@@ -1936,7 +1936,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em"><code data-trim data-noescape>
+              <pre style="font-size: 0.8em"><code data-trim>
 def fitness()
   stats = [str, con, dex, int, wis, cha]
   (0..5).
@@ -2026,7 +2026,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1em"><code data-trim data-noescape>
+              <pre style="font-size: 1em"><code data-trim>
 def Character.done?(population)
   population.any? { |cand|
     cand.fitness >= 2021
@@ -2135,7 +2135,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.7em"><code data-trim data-noescape>
+              <pre style="font-size: 0.7em"><code data-trim>
 def Character.breed(p1, p2)
   char = Character.new
   char.str = rand(2) == 1 ? p1.str : p2.str
@@ -2269,7 +2269,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.6em"><code data-trim data-noescape>
+              <pre style="font-size: 0.6em"><code data-trim>
 def maybe_mutate()
   @str = maybe_mutate_stat(@str)
   @int = maybe_mutate_stat(@int)
@@ -2432,7 +2432,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.7em"><code data-trim data-noescape>
+              <pre style="font-size: 0.7em"><code data-trim>
 def fitness()
   # below is the only line that changed!
   stats = [int, wis, dex, con, cha, str]
