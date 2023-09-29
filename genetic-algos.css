@@ -24,6 +24,8 @@
   transform: translateX(-50%);
 }
 
+.reveal div.progress { height: 4px }
+
 .reveal code { background: #112; }
 
 .reveal span.cycle-ptr {
