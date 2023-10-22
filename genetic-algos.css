@@ -26,7 +26,7 @@
 
 .reveal div.progress { height: 4px }
 
-.reveal code { background: #112; }
+.reveal code { background: #112; }  /* until I can find a theme with this! */
 
 .reveal span.cycle-ptr {
   color:    white;
