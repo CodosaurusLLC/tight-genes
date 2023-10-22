@@ -42,7 +42,7 @@
           <aside class="notes">
             Current time: ~31:30<br>
             Want 30 (timeslot is 35, incl 1 min intro & 4 Q&A)<br>
-            Don't speed up for foreign audiences, but skip stuff
+            Don't speed up for foreign audiences, but skip more stuff
           </aside>
         </section>
 
@@ -161,7 +161,7 @@
           <span class="slide-caption">Images: https://pixabay.com/vectors/dinosaur-tyrannosaurus-t-rex-6273164/<br/>and https://pixabay.com/vectors/bird-flying-wings-dinosaur-ancient-44859/</span>
           <aside class="notes">
             <span data-human-lang="dutch">oap main pteroDACteeluss</span>
-            <span data-human-lang="greek">meh to katiKIdio moh pteroDAKtilo</span>
+            <span data-human-lang="greek">meh to katoiKIdio moh pteroDAKtilo</span>
             <span data-human-lang="norwegian">po KYELihDEEReh mit PeroduckTEEL</span>
           </aside>
         </section>
@@ -267,11 +267,11 @@
             <span data-human-lang="dutch">Dutch</span>
             <span data-human-lang="greek">Greek</span>
             <span data-human-lang="norwegian">Norwegian</span>
-            I speak.
+            I speak!
 
             <br/><br/>
 
-            So what are genetic algorithms anyway?&nbsp;
+            So what are genetic algorithms?&nbsp;
             They are . . .
           </aside>
         </section>
@@ -282,7 +282,7 @@
           </div>
           <span class="slide-caption">Image: https://icon-icons.com/download/49925/PNG/512/</span>
           <aside class="notes">
-            optimization meta-heuristics,
+            optimization heuristics,
           </aside>
         </section>
 
@@ -296,16 +296,16 @@
         <section>
           <div class="all vctring">
             <div style="font-size: 1.6em">
-              <b>Optimization Meta-Heuristic:</b><br/>
-              category of shortcuts to find<br/>
+              <b>Optimization Heuristic:</b><br/>
+              shortcut to find<br/>
               "good enough" solutions<br/>
               (ideally the best,<br/>
               but OK if not).
             </div>
           </div>
           <aside class="notes">
-            . . . types of shortcuts
-            to find a good solution to a problem,
+            . . . shortcuts
+            to find solutions to a problem,
             ideally the best,
             but we usually have to settle for
             something "good enough",
@@ -314,11 +314,11 @@
             <br/><br/>
 
             There are many kinds of optimization heuristics,
-            but what makes genetic algorithms unique is that
+            but genetic algorithms are
             <span data-time-min="45">
               (as you may have guessed from the name)
             </span>
-            they are inspired by . . .
+            uniquely inspired by . . .
           </aside>
         </section>
 
@@ -329,7 +329,9 @@
             . . . real-world biological evolution,
             mainly the principles of
             survival of the fittest,
-            random combination of different sets of genes into one new set,
+            random combination of different sets of genes
+            <span data-time-min="30">(no, not like I'm wearing)</span>
+            into one new set,
             and random mutation.
 
             <br/><br/>
@@ -445,21 +447,20 @@
           <span class="center cycle-stage cycle-stage-init">Initialize</span>
           <aside class="notes">
             First, we create an initial population of candidates.&nbsp;
-            In Genetic Algorithm lingo, these are called "chromosomes",
+            In Genetic Algorithm terms, these are called "chromosomes",
             but since most living beings contain
             <i>many</i> chromosomes in each and every cell,
             I don't like that term,
             I think it leads to confusion,
             so I'm just going to say "candidates".&nbsp;
-            I've also heard them called individuals, solutions,
             <span data-time-min="40">
+              I've also heard them called individuals, solutions,
               or
               <i>phenotypes</i>,
               to use an actual genetic term,
               but most people don't know that word,
               so I'll skip that one too.
             </span>
-            <span data-time-max="39">and various other names.</span>
 
             <br/><br/>
 
@@ -549,8 +550,13 @@
 
             <br/><br/>
 
-            Next is a very important but easily forgotten step,
-            which is to . . .
+            Next
+            <span data-time-min="40">
+              is a very important but easily forgotten step,
+              which is to
+            </span>
+            <span data-time-max="39">we</span>
+            . . .
           </aside>
         </section>
 
@@ -568,7 +574,7 @@
           <span class="cycle-stage cycle-stage-mutate">Mutate</span>
           <aside class="notes">
             . . . <i>mutate</i> those new candidates,
-            so we get some more diversity in the gene pool.
+            for more <i>diversity</i> in the gene pool.
 
             <br/><br/>
 
@@ -619,8 +625,9 @@ end
           <aside class="notes">
             . . . in Ruby.&nbsp;
             <!-- (I'll give you a moment to take pictures.)&nbsp; -->
-            Now let's take a closer look
-            at what goes on in each step,
+            Now let's take a closer look at
+            <span data-time-min="40">what goes on in</span>
+            each step,
             by working through an example.
           </aside>
         </section>
@@ -646,13 +653,15 @@ end
             These are different solutions to some problem,
             usually represented as
             different instances of the same data structure.&nbsp;
-            They could be
-            any data structure we want,
-            so long as we can
-            evaluate their fitness,
-            combine <!-- two (or maybe more!) --> old ones
-            to make a new one,
-            and mutate them.&nbsp;
+            <span data-time-min="40">
+              They could be
+              any data structure we want,
+              so long as we can
+              evaluate their fitness,
+              combine <!-- two (or maybe more!) --> old ones
+              to make a new one,
+              and mutate them.&nbsp;
+            </span>
             The simplest common type of candidate is . . .
           </aside>
         </section>
@@ -702,15 +711,21 @@ end
               (or rucksack, backpack, or whatever you call it)</span>,
             and many things you want to carry in it,
             but they won't all fit,
+            <span data-time-max="40">so</span>
+            <span data-time-min="40">
             or the total weight is more than you can carry,
             or some such similar constraint,
             or <i>combination</i> of constraints.&nbsp;
-            So you want to find the combination of items,
-            that will fit the constraints,
+            So
+            </span>
+            you want to find the combination of items,
+            that will fit<span data-time-min="40"> the constraints</span>,
             and has the maximum value.&nbsp;
-            That could be the literal cash value,
-            <span data-time-min="40">as we'll see in a moment,</span>
-            or something more metaphorical.&nbsp;
+            <span data-time-min="40">
+              That could be the literal cash value,
+              <span data-time-min="40">as we'll see in a moment,</span>
+              or something more metaphorical.&nbsp;
+            </span>
             To look at a concrete example, suppose we know . . .
           </aside>
         </section>
@@ -928,9 +943,10 @@ end
           </div>
           <aside class="notes">
             <div data-time-max="44">
-              In the interests of time,
-              I'm going to handwave over
-              how we get from random numbers to those combinations.&nbsp;
+              We can get from random numbers to those combinations,
+              by iterating over the bits and seeing which are turned on,
+              but in the interests of time,
+              I'll handwave over further details.&nbsp;
               Now that we're done with Initialization, we . . .
             </div>
             <div data-time-min="45">
@@ -1011,11 +1027,14 @@ class Truckload
           <aside class="notes">
             . . . assess how "fit" each of these truckloads is.&nbsp;
             We do this with what's called a "fitness function".&nbsp;
-            Just like how biological creatures might be perfectly fit
-            for one environment but a lousy fit for another,
-            this should reflect
-            how fit a candidate is
-            <i>for some particular purpose</i>.&nbsp;
+            (Surprise!)&nbsp;
+            <span data-time-min="40">
+              Just like how biological creatures might be perfectly fit
+              for one environment but a lousy fit for another,
+              this should reflect
+              how fit a candidate is
+              <i>for some particular purpose</i>.&nbsp;
+            </span>
             In this case, we already know we want the total value,
             BUT, any load that's too heavy for the truck, is worthless.&nbsp;
             In Ruby, that would look like this:
@@ -1025,12 +1044,12 @@ class Truckload
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.6em"><code data-trim class="language-ruby">
+              <pre style="font-size: 0.7em"><code data-trim class="language-ruby">
 def fitness()
   items =
     ITEMS.
     with_index.
-    select { |_item, idx| bit_on?(idx, @contents) }.
+    select { |_itm, idx| bit_on?(idx, @contents) }.
     map { |item, _idx| itm }
   weight = items.map { |item| itm.weight }.sum
   return 0 if weight > 4000
@@ -1040,13 +1059,14 @@ end
             </div>
           </div>
           <aside class="notes">
-            We iterate through the possible items,
-            summing up the weights of the ones we want to take.&nbsp;
-            (Writing the bit_on? function is left as an exercise,
-            to keep this code simple.)&nbsp;
+            We decode which items we want to take,
+            then sum up their weights.&nbsp;
+            <span data-time-min="40">
+              (Writing the bit_on? function is left as an exercise,
+              to keep this code simple.)&nbsp;
+            </span>
             If that exceeds the truck's capacity, we return zero,
-            else we use the same technique
-            to sum up the <i>values</i> of those same items.
+            else we sum up their <i>values</i>.
 
             <br/><br/>
 
@@ -1070,7 +1090,8 @@ end
             <br/><br/>
 
             Anyway, if we run this fitness function on our population,
-            and sort on fitness descending, to make it easy to find the best,
+            and sort on fitness descending,
+            <span data-time-min="40">to make it easy to find the best,</span>
             we get this:
           </aside>
         </section>
@@ -1185,26 +1206,24 @@ end
             </div>
           </div>
           <aside class="notes">
-            When this code is initially parsed,
+            When this code is initially <i>parsed</i>,
             we set the initial best combo as empty,
             and we set how many generations it's been since we saw that,
             as zero.&nbsp;
-            When the function is called,
+            When the function is <i>called</i>,
             we increment the number of generations,
             look at the fitness of each candidate
             in the current population,
             and select only the ones with a better fitness than
             the best one so far.&nbsp;
-            If there are none,
-            then we return true
-            if it's been 100 generations since the best one,
-            else we return false.&nbsp;
             If there <i>is</i> at least one
-            candidate exceeding our benchmark, we
-            sort them by fitness,
-            take the fittest one,
-            make that our new benchmark,
-            and reset the generation counter.
+            candidate exceeding our benchmark,
+            we make the fittest one our new benchmark,
+            reset the generation counter,
+            and return false.&nbsp;
+            Else if it's been 100 generations since the best one,
+            we return true,
+            else we return false.&nbsp;
 
             <br/><br/>
 
@@ -1343,7 +1362,7 @@ end
             . . . breed them.&nbsp;
             The usual way is called crossover.&nbsp;
             This consists of taking the data points,
-            or in Genetic Algorithm lingo, the "genes",
+            or in Genetic Algorithm terms, the "genes",
             from one parent,
             up to some randomly chosen crossover point,
             then switching to the other parent<span data-time-min="40">.&nbsp;
@@ -1381,9 +1400,11 @@ end
             If we haven't yet hit the crossover point,
             we get the decision for that item from the first parent,
             else we get it from the other parent.&nbsp;
-            This means that it could be all copied
-            from one parent or the other,
-            or it could switch at some point.&nbsp;
+            <span data-time-min="40">
+              This means that it could be all copied
+              from one parent or the other,
+              or it could switch at some point.&nbsp;
+            </span>
             <span data-time-min="40">
               As usual, we could get as complex as we want,
               like making some crossover points
@@ -1827,7 +1848,9 @@ end
           </div>
 
           <aside class="notes">
-            (Defining the roll function is left as an exercise.)&nbsp;
+            <span data-time-min="40">
+              (Defining the roll function is left as an exercise.)&nbsp;
+            </span>
             So if we create an initial population of ten Characters,
             it might look like this:
           </aside>
@@ -1854,7 +1877,9 @@ end
             </table>
           </div>
           <aside class="notes">
-            So that's the Initialize step.&nbsp;
+            <span data-time-min="40">
+              So that's the Initialize step.&nbsp;
+            </span>
             The next step is . . .
           </aside>
         </section>
@@ -2160,7 +2185,7 @@ end
 
         <section>
           <div class="all vctring">
-            <table class="all-right" style="font-size: 1.5em">
+            <table class="all-right" style="font-size: 1.4em">
               <thead>
                 <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th></tr>
               </thead>
@@ -2230,9 +2255,9 @@ end
             breeding the fittest of each generation,
             we wouldn't see any change,
             let alone improvement,
-            in the possible values of each stat,
+            in the possible values of each stat<span data-time-min="40">,
             in other words,
-            the alleles for each gene.&nbsp;
+            the alleles for each gene</span>.&nbsp;
             For instance, the Wisdom would never be
             anything other than 6 or 11.&nbsp;
             But again, we fix that in the next step, which is to . . .
@@ -2269,7 +2294,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.6em"><code data-trim class="language-ruby">
+              <pre style="font-size: 0.65em"><code data-trim class="language-ruby">
 def maybe_mutate()
   @str = maybe_mutate_stat(@str)
   @int = maybe_mutate_stat(@int)
@@ -2295,7 +2320,9 @@ end
             like giving it a higher chance of
             going up or down, maybe by multiple points,
             if it's very low or very high,
-            to simulate the real-world phenomenon of regression to the mean,
+            <span data-time-min="40">
+              to simulate the real-world phenomenon of regression to the mean,
+            </span>
             or many other options.&nbsp;
             If we run this
             on our new population,
@@ -2488,12 +2515,15 @@ end
             obviously better suited for some other class,
             except that that top one looks like a bard to me.
 
-            <br/><br/>
+            <span data-time-min="40">
+              <br/><br/>
 
-            Remember though that this is all very random.&nbsp;
-            It may converge on a good solution faster, or more slowly,
-            and the fitness function may be good or poor at
-            getting just the right mix of alleles.
+              Remember though that this is all very random.&nbsp;
+              It may converge on a good solution faster, or more slowly,
+              and the fitness function may be good or poor at
+              getting just the right mix of alleles.
+
+            </span>
 
             <br/><br/>
 
@@ -2504,7 +2534,9 @@ end
             </div>
             <div data-time-max="44">
               There are many other ways we can use genetic algorithms.&nbsp;
-              They can create images, music, and even code.&nbsp;
+              They can create images, music, even code,
+              and I'm now working on a system to
+              schedule conference talks.&nbsp;
               So, think about it,
               and you might be able to use them for something.
 
@@ -2999,7 +3031,9 @@ end
             <br/><br/>
 
             There are many other ways you can use genetic algorithms.&nbsp;
-            They can create images, music, and even code.&nbsp;
+            They can create images, music, even code,
+            and I'm now working on a system to
+            schedule conference talks.&nbsp;
             So, think about it,
             and you might be able to use them for something.
 
@@ -3033,19 +3067,23 @@ end
             </ul>
           </div>
           <aside class="notes">
-            . . . simpler than you probably thought --
-            all you have to do is
-            create an initial population,
-            and cycle through five simple steps,
+            . . . simpler than you probably
+            <span data-time-max="39">thought.&nbsp;</span>
             <span data-time-min="40">
-              of assessing their fitness,
-              checking if you're done,
-              picking breeders,
-              breeding them,
-              and mutating the new candidates,
+              thought --
+              all you have to do is
+              create an initial population,
+              and cycle through five simple steps,
+              <span data-time-min="45">
+                of assessing their fitness,
+                checking if you're done,
+                picking breeders,
+                breeding them,
+                and mutating the new candidates,
+              </span>
+              over and over
+              until you're done.&nbsp;
             </span>
-            over and over
-            until you're done.&nbsp;
             They . . .
           </aside>
         </section>
@@ -3071,19 +3109,19 @@ end
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to figure out good rules</li>
+              <li>can be tricky to figure out good functions</li>
             </ul>
           </div>
           <aside class="notes">
             . . . can be tricky to
-            figure out exactly what the functions should do,
-            especially for
-            evaluating fitness
-            and
-            checking if you're done,
-            so as to
-            make the solutions converge quickly enough,
-            and not ignore too many other very good solutions.&nbsp;
+            figure out exactly what the functions should do<span data-time-min="40">,
+              especially for
+              evaluating fitness
+              and
+              checking if you're done,
+              so as to
+              make the solutions converge quickly enough,
+              and not ignore too many other very good solutions</span>.&nbsp;
             This approach is also . . .
           </aside>
         </section>
@@ -3095,7 +3133,7 @@ end
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to figure out good rules</li>
+              <li>can be tricky to figure out good functions</li>
               <li>applicable to a wide variety of problems</li>
             </ul>
           </div>
@@ -3112,7 +3150,7 @@ end
               <li>are <strike>optimization heuristics</strike> shortcuts</li>
               <li>are simpler than you probably thought</li>
               <li>can use very simple functions</li>
-              <li>can be tricky to figure out good rules</li>
+              <li>can be tricky to figure out good functions</li>
               <li>applicable to a wide variety of problems</li>
               <li>can create solutions humans would not</li>
             </ul>
@@ -3147,7 +3185,7 @@ end
             the Github one is for the code,
             and slides in HTML,
             and the other one
-            (as you may have guessed)
+            <span data-time-min="40">(as you may have guessed)</span>
             is for the slides as a PDF,
             complete with a full script.&nbsp;
             Any questions?
@@ -3190,4 +3228,3 @@ end
     </script>
   </body>
 </html>
-
