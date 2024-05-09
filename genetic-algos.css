@@ -26,7 +26,10 @@
 
 .reveal div.progress { height: 4px }
 
-.reveal code { background: #112; }  /* until I can find a theme with this! */
+.reveal pre code {
+  background: #112;  /* until I can find a theme with this! */
+  max-height: 100%;  / fix black.css stupidity! */
+}
 
 .reveal span.cycle-ptr {
   color:    white;
@@ -229,16 +232,6 @@ section.present::after {
   border-radius: 0;
 }
 
-.reveal img.expand-tall {
-  height: var(--main-height);
-  width: auto;
-}
-
-.reveal img.expand-wide {
-  width: 100%;
-  height: auto;
-}
-
 .reveal section.present pre { width: 100% }  /* override theme stupidity! */
 
 table.all-right td, table.all-right th {
@@ -254,6 +247,21 @@ table.all-right td.text, table.all-right th.text {
   text-align: left;
 }
 
-td.changed {
+.changed {
   color: #0f0;
+}
+
+.down {
+  color: #f33;
+}
+
+.up {
+  color: #0f0;
+}
+
+.recap {
+  left: 6%;
+  position: absolute;
+  text-align: left;
+  top: 10%;
 }
