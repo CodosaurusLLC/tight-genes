@@ -26,7 +26,7 @@
           linkedin.com/in/DaveAronson<br/>
           github.com/CodosaurusLLC/tight-genes
           <aside class="notes">
-            Current time: ~32 mins, medium speed, w/ a few ad-libs.<br>
+            Current time: ~36 mins, medium speed, w/ a few ad-libs.<br>
             Want 40-45 (timeslot is 50, incl 5-10 Q&A).<br>
             Slow down, maybe add some stuff.
           </aside>
@@ -362,7 +362,7 @@
           <aside class="notes">
             . . . Alan Turing, as in Turing Test,
             <span data-time-min="30">Turing Machine,</span>
-            <span data-time-min="40">Turing Completeness,</span>
+            <span data-time-min="40">Turing Completeness, Turing Award</span>
             and so on,
             proposed a "learning machine"
             in which the mechanism of learning
@@ -610,10 +610,13 @@
           <span class="cycle-arrow-mutate">⬅️</span>
           <aside class="notes">
             . . . go back to step 2, assessing their fitness.&nbsp;
-            <!-- (You might want to take a picture of this slide
-            and the next one,
-            because they're the big takeaways about
-            how genetic algorithms work at a high level.)&nbsp; -->
+            <span data-time-min="40">
+              (You might want to take a picture of this slide
+              and the next one,
+              because they're the big takeaways about
+              how genetic algorithms work at a high level.&nbsp;
+              I'll give you a moment to get out your phones.)&nbsp;
+            </span>
             This sequence could be represented at a high level
             with some rather simple code, like so:
           </aside>
@@ -803,8 +806,10 @@ end
               we won't differentiate between
               between price and profit,
               nor dairy versus meat cows,
-              and <!-- it's very unrealistic but
-              we'll assume that -->
+              and
+              <span data-time-min="40">
+                it's very unrealistic but we'll assume that
+              </span>
               he can only take a set amount of each item,
               and always has that amount on hand.&nbsp;
             </span>
@@ -861,16 +866,23 @@ end
             <span data-time-min="40">
               (Don't get me started on our stupid American units of measure!)&nbsp;
             </span>
-            <!--
-              We <i>could</i> run through all the
-              light enough combinations,
-              and see which one of those totals the highest,
-              or use another kind of heuristic,
-              a different very common heuristic
+
+            <br>
+            <br>
+
+            <span data-time-min="40">
+              We <i>could</i> brute-force the problem
+              by running through all the combinations,
+              and see which of
+              the light-enough ones
+              totals the highest.&nbsp;
+              Or we could use a very common heuristic for knapsack problems,
               of adding the most expensive thing that we can,
-              over and over until we can't,
-            -->
-            Let's see what happens if we use a genetic algorithm
+              over and over, until we can't add anything.&nbsp;
+              But let's
+            </span> 
+            <span data-time-max="39">Let's</span>
+            see what happens if we use a genetic algorithm
             to determine a "good enough" truckload.&nbsp;
             First we need a way to represent each candidate.&nbsp;
             In code, we could represent them as a class,
@@ -978,31 +990,24 @@ end
 
             <br/><br/>
 
-            <div data-time-max="44">
+            <div data-time-min="40">
+              But how did we get from random numbers to those combinations?&nbsp;
+              Behind the scenes, that translation might look like this:
+            </div>
+            <div data-time-max="39">
               We can get from random numbers to those combinations,
               by iterating over the bits and seeing which are turned on,
               but in the interests of time,
               I'll handwave over those details.&nbsp;
-              <span data-time-min="40">
-                Now that we're done with Initialization,
-              </span>
-              <span data-time-max="39">
-                Next,
-              </span>
-              we . . .
-            </div>
-            <div data-time-min="45">
-              But how did we get from random numbers to those combinations?&nbsp;
-              Behind the scenes, that translation might look like this:
+              Next, we . . .
             </div>
           </aside>
         </section>
 
-        <div data-time-min="45">
-          <section>
-            <div class="vctring">
-              <div>
-                <pre><code data-trim class="language-ruby">
+        <section data-time-min="40">
+          <div class="vctring">
+            <div>
+              <pre><code data-trim class="language-ruby">
 class Truckload
   class Item
     attr_reader :name, :weight, :value
@@ -1021,23 +1026,27 @@ class Truckload
     Item.new("Meat",      1280,  8000),
     Item.new("Leather",   1100,  6000)
   ]
-                </code></pre>
-              </div>
+              </code></pre>
             </div>
-            <aside class="notes">
-              We have a list of items we <i>can</i> take,
-              as instances of an inner class describing them.&nbsp;
-              To check what's in our cargo manifest,
-              represented by our Truckload's contents value,
-              we can iterate through the list of possible items,
-              checking whether the corresponding bit is on.&nbsp;
+          </div>
+          <aside class="notes">
+            We have a list of items we <i>can</i> take,
+            as instances of <i>another</i> class describing them,
+            with name, weight, and value attributes.&nbsp;
+            (In this example it's an inner class,
+            but it doesn't <i>have</i> to be.)&nbsp;
+            To check what's in our cargo manifest,
+            represented by our Truckload's contents value,
+            we can iterate through the list of possible items,
+            checking whether the corresponding bit is on.&nbsp;
+            In the interests of time,
+            I'll handwave over those details.&nbsp;
 
-              <br/><br/>
+            <br/><br/>
 
-              Now that we're done with Initialization, we . . .
-            </aside>
-          </section>
-        </div>
+            Now that we're done with Initialization, we . . .
+          </aside>
+        </section>
 
         <section>
           <div class="cycling-steps">
@@ -1702,26 +1711,27 @@ end
             and just try to outdo it,
             so we haven't lost it.
 
-            <!--
-            <br/><br/>
+            <span data-time-min="40">
+              <br/><br/>
 
-            But that's not really the best approach.&nbsp;
-            Remember how I said that sometimes
-            the fittest members of a population
-            might be carried over into the next one?&nbsp;
-            If I had carried over the fittest one,
-            the maximum fitness would never go down,
-            so the "are we done" function could have been much simpler,
-            and we'd be done much faster.&nbsp;
-            But, I didn't come across that idea
-            until I had already made all the slides for this talk,
-            and I didn't want to redo them.&nbsp;
-            Also, I think this version is still worth exploring.&nbsp;
-            So let's keep going.&nbsp;
+              But that's not really the best approach.&nbsp;
+              Remember how I said that sometimes
+              the fittest members of a population
+              might be carried over into the next one?&nbsp;
+              If I had carried over the fittest one,
+              the maximum fitness would never go down,
+              so the "are we done" function could have been much simpler,
+              and we'd be done much faster.&nbsp;
+              But, I didn't come across that idea
+              until I had already made all the slides for this talk,
+              and I didn't want to redo them.&nbsp;
+              Also, I think this version is still worth exploring,
+              to make the point that
+              the fitness can go down and then come back up.&nbsp;
+              So let's keep going.&nbsp;
 
-            <br/><br/>
-
-            -->
+              <br/><br/>
+            </span> 
 
             The next generation might look like this:
           </aside>
@@ -2080,9 +2090,13 @@ end
             Let's say we're done if
             any candidates get 90% of the way to the maximum score
             of our fitness function.&nbsp;
-            I'll spare you the math, but
-            <!-- the maximum is 1,134, so 90% would round to -->
-            that would be
+            <span data-time-min="40">
+              I'll spare you most of the math, but
+              the maximum is 1,134, so 90% would round to
+            </span>
+            <span data-time-min="40">
+              I'll spare you the math, but that would be
+            </span>
             1,021.&nbsp;
             In code, checking that would look like this:
           </aside>
@@ -2094,7 +2108,7 @@ end
               <pre style="font-size: 1em"><code data-trim class="language-ruby">
 def Character.done?(population)
   population.any? { |cand|
-    cand.fitness >= 1021
+    cand.fitness &gt;= 1021
   }
 end
               </code></pre>
@@ -2515,11 +2529,11 @@ end
             . . . to prioritize intelligence first,
             then wisdom, dexterity, and so on,
             down to strength.&nbsp;
-            <!--
-            (We could also make it take parameters,
-            and pass in different ones this time,
-            but I'm just going to hardcode it here for simplicity.)&nbsp;
-            -->
+            <span data-time-min="40">
+              (We could also make it take parameters,
+              and pass in different ones this time,
+              but I'm just going to hardcode it here for simplicity.)&nbsp;
+            </span>
             An initial population would look roughly the same,
             since we haven't changed how that is generated, so
             I'll spare you those steps,
@@ -2576,8 +2590,10 @@ end
             <div data-time-max="44">
               There are many other ways we can use genetic algorithms.&nbsp;
               They can create images, music, even code,
-              and I'm now working on a system to
+              and I'm now working on a system to use them to
               schedule the talks for a conference.&nbsp;
+              Mey Beisaron has a talk on using one to
+              schedule her college classes.&nbsp;
               So, think about it,
               and you might be able to use them for something.
 
@@ -3004,8 +3020,8 @@ end
 
             Just like with the DnD characters,
             if we want to change what we're after,
-            we just have to tweak the fitness function<!--
-            (or pass in different parameters if we bothered with that)-->.&nbsp;
+            we just have to tweak the fitness function<span data-time-min="40">
+            (or pass in different parameters if we bothered with that)</span>.&nbsp;
             This time, I asked for 7% alcohol and sweetness of 5,
             a low-alcohol dry mead, often called a "session" mead,
             and still demanding a 99.9% fit,
@@ -3071,10 +3087,12 @@ end
 
             <br/><br/>
 
-            There are many other ways you can use genetic algorithms.&nbsp;
+            There are many other ways we can use genetic algorithms.&nbsp;
             They can create images, music, even code,
-            and I'm now working on a system to
-            schedule conference talks.&nbsp;
+            and I'm now working on a system to use them to
+            schedule the talks for a conference.&nbsp;
+            Mey Beisaron has a talk on using one to
+            schedule her college classes.&nbsp;
             So, think about it,
             and you might be able to use them for something.
 
