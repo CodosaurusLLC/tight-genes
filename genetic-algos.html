@@ -26,9 +26,9 @@
           linkedin.com/in/DaveAronson<br/>
           github.com/CodosaurusLLC/tight-genes
           <aside class="notes">
-            Current time: ~36 mins, medium speed, w/ a few ad-libs.<br>
+            Current time: ~39 mins, medium speed, w/ a few ad-libs.<br>
             Want 40-45 (timeslot is 50, incl 5-10 Q&A).<br>
-            Slow down, maybe add some stuff.
+            Slow down, maybe add some more stuff.
           </aside>
         </section>
 
@@ -367,7 +367,7 @@
             proposed a "learning machine"
             in which the mechanism of learning
             would be similar to evolution.&nbsp;
-            Nothing much came of that,
+            Nothing much ever came of that,
             and it took a few decades for
             genetic algorithms in general
             to get some traction.&nbsp;
@@ -386,7 +386,8 @@
             came out in the late 1980's,
             from General Electric.&nbsp;
             <span data-time-min="40">
-              In 1989 a more general genetic algorithm toolkit called Evolver
+              In 1989 a more general genetic algorithm toolkit,
+              called Evolver,
               came out for <i>PCs</i>.&nbsp;
             </span>
             These days,
@@ -395,13 +396,14 @@
             many programming languages have
             genetic algorithm libraries available.&nbsp;
             However, the actual <i>uses</i> of genetic algorithms
-            remain mostly boring and obscure,
+            remain mostly hidden,
+            and frankly rather boring to most of us,
             used by companies in their internal
             industrial processes, logistics, scheduling, and so on.
 
             <br/><br/>
 
-            But once in a while, they get used for
+            But once in a while, they do get used for
             something more interesting,
             and more publicly known.&nbsp;
             Most famously,
@@ -415,7 +417,10 @@
           </div>
           <span class="slide-caption">Image: https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png</span>
           <aside class="notes">
-            . . . NASA used a genetic algorithm to design an . . .
+            . . . NASA<span data-time-min="40">,
+              the United States' National Aeronautics and Space Administration,
+            </span>
+            used a genetic algorithm to design an . . .
           </aside>
         </section>
 
@@ -444,6 +449,9 @@
             <span data-time-min="40">
               These algorithms are much less hampered by
               expectations of similarity to past solutions.&nbsp;
+              They can come up with things that
+              a human might dismiss at first glance as unrealistic,
+              but the numbers work out just fine.&nbsp;
               However, today we'll only be looking at
               much simpler problem domains,
               for the sake of making understandable demos.
@@ -640,12 +648,13 @@ end
           </div>
           <aside class="notes">
             IF CONF IS NOT RUBY OR AGNOSTIC:
-            I know this conference is mainly focused on Java and JavaScript, but
-            This is in Ruby,
-            which I chose because
-            it reads so close to plain English,
+            I know this conference is mainly focused on Java and JavaScript,
+            but this is in Ruby.&nbsp;
+            I chose that to reduce boilerplate overhead,
+            and because it reads so close to plain English,
             so even if you don't know Ruby,
-            I'm confident you'll understand the ideas.
+            I'm confident you'll understand the ideas,
+            and maybe even the actual code.
 
             <br><br>
 
@@ -749,8 +758,34 @@ end
               That could be the literal cash value,
               <span data-time-min="40">as we'll see in a moment,</span>
               or something more metaphorical.&nbsp;
+              <span data-time-min="40">
+                In the canonical example,
+                you might be taking the knapsack on a camping trip,
+                so you want to pack whatever supplies you might need,
+                for your survival or at least comfort.&nbsp;
+                Different items will have different levels of importance
+                for those purposes.&nbsp;
+                For instance, common . . .
+              </span>
             </span>
-            To look at a concrete example, suppose we know . . .
+            <span data-time-max="39">
+              To look at a concrete example, suppose we know . . .
+            </span>
+          </aside>
+        </section>
+
+        <section data-time-min="40">
+          <div class="all vcntring">
+            <img src="images/camping-supplies.jpg">
+          </div>
+          <span class="slide-caption">Image: standard emoji</span>
+          <aside class="notes">
+            . . . camping supplies would be more valuable in this context than,
+            say, an accordion.
+
+            <br><br>
+            
+            To look at a concrete example, suppose we know . . .            
           </aside>
         </section>
 
@@ -802,6 +837,7 @@ end
             meat,
             and leather.&nbsp;
             <span data-time-min="40">
+              (My apologies to any vegetarian out there.)&nbsp;
               For the sake of simplicity,
               we won't differentiate between
               between price and profit,
@@ -1319,7 +1355,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.9em"><code data-trim class="language-ruby">
+              <pre style="font-size: 1.0em"><code data-trim class="language-ruby">
 def self.select_breeders(population)
   return population.
     sort_by(&:fitness).
@@ -1722,7 +1758,7 @@ end
               the maximum fitness would never go down,
               so the "are we done" function could have been much simpler,
               and we'd be done much faster.&nbsp;
-              But, I didn't come across that idea
+              But, I didn't think of it
               until I had already made all the slides for this talk,
               and I didn't want to redo them.&nbsp;
               Also, I think this version is still worth exploring,
@@ -1985,7 +2021,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
+              <pre style="font-size: 0.9em"><code data-trim class="language-ruby">
 def fitness()
   stats = [str, con, dex, int, wis, cha]
   (0..5).
@@ -2010,7 +2046,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
+              <pre style="font-size: 0.9em"><code data-trim class="language-ruby">
 def fitness()
   stats = [str, con, dex, int, wis, cha]
   (0..5).
@@ -2044,7 +2080,7 @@ end
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
-                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>Fit</th></tr>
+                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>&nbsp;Fit</th></tr>
               </thead>
               <tbody>
                 <tr><td>13</td><td>12</td><td>7</td><td>13</td><td>11</td><td>10</td><td>760</td></tr>
@@ -2090,13 +2126,12 @@ end
             Let's say we're done if
             any candidates get 90% of the way to the maximum score
             of our fitness function.&nbsp;
+            I'll spare you 
             <span data-time-min="40">
-              I'll spare you most of the math, but
+              most of the math, but
               the maximum is 1,134, so 90% would round to
             </span>
-            <span data-time-min="40">
-              I'll spare you the math, but that would be
-            </span>
+            <span data-time-max="39">the math, but that would be</span>
             1,021.&nbsp;
             In code, checking that would look like this:
           </aside>
@@ -2105,7 +2140,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 1em"><code data-trim class="language-ruby">
+              <pre style="font-size: 1.1em"><code data-trim class="language-ruby">
 def Character.done?(population)
   population.any? { |cand|
     cand.fitness &gt;= 1021
@@ -2147,7 +2182,7 @@ end
           <div class="all vctring" style="font-size: 1.3em">
             <table class="all-right">
               <thead>
-                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>Fit</th></tr>
+                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>&nbsp;Fit</th></tr>
               </thead>
               <tbody>
                 <tr><td><br/></td></tr>
@@ -2204,8 +2239,8 @@ end
             <span class="center cycle-ptr cycle-ptr-breed">↑</span>
           </div>
           <aside class="notes">
-            . . . breed our chosen pair,
-            this time using another common strategy,
+            . . . breed our chosen pair.&nbsp;
+            This time we'll be using another common strategy,
             of essentially flipping a coin for each gene,
             like so:
           </aside>
@@ -2214,7 +2249,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.7em"><code data-trim class="language-ruby">
+              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
 def Character.breed(p1, p2)
   char = Character.new
   char.str = rand(2) == 1 ? p1.str : p2.str
@@ -2349,7 +2384,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.65em"><code data-trim class="language-ruby">
+              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
 def maybe_mutate()
   @str = maybe_mutate_stat(@str)
   @int = maybe_mutate_stat(@int)
@@ -2441,7 +2476,7 @@ end
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
-                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>Fit</th></tr>
+                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>&nbsp;Fit</th></tr>
               </thead>
               <tbody>
                 <tr><td>15</td><td>16</td><td>7</td><td>14</td><td>6</td><td>15</td><td>851</td></tr>
@@ -2472,7 +2507,7 @@ end
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
-                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>Fit</th></tr>
+                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>&nbsp;Fit</th></tr>
               </thead>
               <tbody>
                 <tr><td>18</td><td>18</td><td>9</td><td>18</td><td>4</td><td>13</td><td>1029</td></tr>
@@ -2514,7 +2549,7 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.7em"><code data-trim class="language-ruby">
+              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
 def fitness()
   # below is the only line that changed!
   stats = [int, wis, dex, con, cha, str]
@@ -2546,7 +2581,7 @@ end
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
-                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>Fit</th></tr>
+                <tr><th>Str</th><th>Int</th><th>Dex</th><th>Con</th><th>Wis</th><th>Cha</th><th>&nbsp;Fit</th></tr>
               </thead>
               <tbody>
                 <tr><td>12</td><td>18</td><td>17</td><td>12</td><td>15</td><td>18</td><td>1048</td></tr>
