@@ -2253,11 +2253,11 @@ end
 def Character.breed(p1, p2)
   char = Character.new
   char.str = rand(2) == 1 ? p1.str : p2.str
-  char.int = rand(2) == 1 ? p1.int : p2.str
-  char.dex = rand(2) == 1 ? p1.dex : p2.str
-  char.con = rand(2) == 1 ? p1.con : p2.str
-  char.wis = rand(2) == 1 ? p1.wis : p2.str
-  char.cha = rand(2) == 1 ? p1.cha : p2.str
+  char.int = rand(2) == 1 ? p1.int : p2.int
+  char.dex = rand(2) == 1 ? p1.dex : p2.dex
+  char.con = rand(2) == 1 ? p1.con : p2.con
+  char.wis = rand(2) == 1 ? p1.wis : p2.wis
+  char.cha = rand(2) == 1 ? p1.cha : p2.cha
 end
               </code></pre>
             </div>
