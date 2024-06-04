@@ -1124,11 +1124,11 @@ class Truckload
 def fitness()
   items = ITEMS.
     with_index.
-    select { |_itm, idx| bit_on?(idx, @contents) }.
-    map { |item, _idx| itm }
-  weight = items.map { |item| itm.weight }.sum
+    select { |_item, idx| bit_on?(idx, @contents) }.
+    map { |item, _idx| item }
+  weight = items.map { |item| item.weight }.sum
   return 0 if weight > 4000
-  return items.map { |item| itm.value }.sum
+  return items.map { |item| item.value }.sum
 end
               </code></pre>
             </div>
