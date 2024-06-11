@@ -26,13 +26,19 @@
           linkedin.com/in/DaveAronson<br/>
           github.com/CodosaurusLLC/tight-genes
           <aside class="notes">
-            Current time: ~39 mins, medium speed, w/ a few ad-libs.<br>
-            Want 40-45 (timeslot is 50, incl 5-10 Q&A).<br>
-            Slow down, maybe add some more stuff.
+            Current time: ~?? mins, medium speed, w/ a few ad-libs.<br>
+            Want ~30
+            <div data-human-lang="english"><br>
+              Hello,&nbsp;<span data-gv-var="city-en"></span>!&nbsp;
+              I'm Dave Aronson, the T. Rex of Codosaurus,
+              and I flew here on my pet pterodactyl
+              to teach you about Genetic Algorithms.<br><br>
+              So . . .
+            </div>
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">&#161;Hola, Málaga!</span>
@@ -54,7 +60,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <div>
@@ -82,7 +88,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">el T. Rex de Codosaurus,</span>
@@ -106,7 +112,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">y vol&eacute; hasta aqu&iacute;</span>
@@ -130,7 +136,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">en mi mascota pterod&aacute;ctila</span>
@@ -157,7 +163,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">para ense&ntilde;aros sobre</span>
@@ -181,7 +187,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">Algoritmos Gen&eacute;ticos.</span>
@@ -205,7 +211,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <div>
@@ -233,7 +239,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-not-if-human-lang="english">
           <div class="all">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">lo har&eacute; en ingl&eacute;s.</span>
@@ -257,17 +263,16 @@
 
             <br/><br/>
 
-            SKIP IF IN A LANGUAGE I SPEAK:
-            Mainly because you’ve just heard almost all the
-            <span data-human-lang="spanish">Spanish</span>
-            <span data-human-lang="dutch">Dutch</span>
-            <span data-human-lang="greek">Greek</span>
-            <span data-human-lang="norwegian">Norwegian</span>
-            I speak!
-            <!--
-              TODO: figure out how to make Genaver skip
-              this if in English OR French OR Portuguese
-            -->
+            <div data-not-if-human-lang="portuguese">
+              <div data-not-if-human-lang="french">
+                Mainly because you’ve just heard almost all the
+                <span data-human-lang="spanish">Spanish</span>
+                <span data-human-lang="dutch">Dutch</span>
+                <span data-human-lang="greek">Greek</span>
+                <span data-human-lang="norwegian">Norwegian</span>
+                I speak!
+              </div>
+            </div>
 
             <br><br>
 
@@ -283,7 +288,11 @@
           <span class="slide-caption">Image: https://www.pexels.com/photo/pensive-girl-with-school-notebook-thinking-16117755/</span>
           <aside class="notes">
             . . . what are genetic algorithms in the first place?&nbsp;
-            They are . . .
+            <span data-time-min=40">
+              The entire concept is an
+            </span>
+            <span data-time-max=39">They are</span>
+            . . .
           </aside>
         </section>
 
@@ -293,6 +302,11 @@
           </div>
           <span class="slide-caption">Image: https://icon-icons.com/download/49925/PNG/512/</span>
           <aside class="notes">
+            ...
+            <span data-time-min=40">
+              optimization meta-heuristic,
+              so that <i>individual</i> genetic algorithms are
+            </span>
             optimization heuristics,
           </aside>
         </section>
@@ -315,12 +329,21 @@
             </div>
           </div>
           <aside class="notes">
-            . . . shortcuts
-            to find solutions to a problem,
-            ideally the best,
-            but we usually have to settle for
+            . . .
+            <span data-time-min=40">
+              the idea that
+              genetic algorithms are
+              a category of
+            </span>
+            shortcuts to find solutions to a problem.&nbsp;
+            Ideally they'll find the best solution,
+            but in reality we usually have to settle for
             something "good enough",
             due to constraints like time or money.
+            <span data-time-min=40">
+              &nbsp;After all, that's why we're
+              using a shortcut in the first place.
+            </span>
 
             <br/><br/>
 
@@ -365,7 +388,8 @@
             <span data-time-min="40">Turing Completeness, Turing Award</span>
             and so on,
             proposed a "learning machine"
-            in which the mechanism of learning
+            in which he thought that
+            the mechanism of learning
             would be similar to evolution.&nbsp;
             Nothing much ever came of that,
             and it took a few decades for
@@ -3311,8 +3335,9 @@ end
       // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
         // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
+           'human-lang = english',   'var-city-en = Singapore', 'var-conf = RedDotRuby', 'time @ 30' // not sure if they want 30 including or w/o Q&A
         // 'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30'
-           'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40' // slot is 50, leave 5-10 for Q&A, so talk is 40-45
+        // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40' // slot is 50, leave 5-10 for Q&A, so talk is 40-45
         // 'human-lang = spanish',   'var-city-en = Málaga',  'var-conf = jotb'
         // 'human-lang = norwegian', 'var-city-en = Oslo',    'var-conf = ndc-oslo',
       ]);
