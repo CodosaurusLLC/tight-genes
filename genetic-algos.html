@@ -26,8 +26,8 @@
           linkedin.com/in/DaveAronson<br/>
           github.com/CodosaurusLLC/tight-genes
           <aside class="notes">
-            Current time: ~?? mins, medium speed, w/ a few ad-libs.<br>
-            Want ~30
+            Current time: ~28:15, speaking a bit fast, w/ a few ad-libs.<br>
+            Want 30 MAX, so WATCH THE AD-LIBS!
             <div data-human-lang="english"><br>
               Hello,&nbsp;<span data-gv-var="city-en"></span>!&nbsp;
               I'm Dave Aronson, the T. Rex of Codosaurus,
@@ -418,7 +418,8 @@
             MATLAB and such tools
             have some genetic algorithm facilities built-in, and
             many programming languages have
-            genetic algorithm libraries available.&nbsp;
+            genetic algorithm libraries available<span data-prog-lang="ruby">,
+            including over 30 Ruby gems</span>.&nbsp;
             However, the actual <i>uses</i> of genetic algorithms
             remain mostly hidden,
             and frankly rather boring to most of us,
@@ -671,6 +672,7 @@ end
             </div>
           </div>
           <aside class="notes">
+            <!--
             IF CONF IS NOT RUBY OR AGNOSTIC:
             I know this conference is mainly focused on Java and JavaScript,
             but this is in Ruby.&nbsp;
@@ -681,6 +683,7 @@ end
             and maybe even the actual code.
 
             <br><br>
+            -->
 
             Now let's take a closer look at
             <span data-time-min="40">what goes on in</span>
@@ -830,6 +833,7 @@ end
         <section>
           <div class="vctring" style="font-size: 4em">
             🐄 🐄 🐄 🐄
+             🐄 🐄 🐄
           </div>
           <span class="slide-caption">Images: standard emoji</span>
           <aside class="notes">
@@ -1148,7 +1152,7 @@ class Truckload
 def fitness()
   items = ITEMS.
     with_index.
-    select { |_item, idx| bit_on?(idx, @contents) }.
+    select { |_item, idx| contains?(idx) }.
     map { |item, _idx| item }
   weight = items.map { |item| item.weight }.sum
   return 0 if weight > 4000
@@ -1158,7 +1162,8 @@ end
             </div>
           </div>
           <aside class="notes">
-            We decode which items we want to take,
+            We decode which items we want to take
+            (abstracting away the actual bit-checking here for simplicity),
             then sum up their weights.&nbsp;
             <span data-time-min="40">
               (Writing the bit_on? function is left as an exercise,
@@ -1171,8 +1176,10 @@ end
 
             Again,
             we could get as complex as we want in this function,
-            and NASA's antenna fitness function
-            certainly must have been.
+            and NASA's <i>antenna</i> fitness function
+            certainly must have been.&nbsp;
+            For instance, we could take into account
+            the costs of <i>refrigerating</i> items that need it.
             <span data-time-min="40">
               &nbsp;For instance,
               if the truck were even smaller,
@@ -3332,10 +3339,10 @@ end
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
-      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
+      Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
         // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
-           'human-lang = english',   'var-city-en = Singapore', 'var-conf = RedDotRuby', 'time @ 30' // not sure if they want 30 including or w/o Q&A
+           'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'prog-lang = ruby'
         // 'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30'
         // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40' // slot is 50, leave 5-10 for Q&A, so talk is 40-45
         // 'human-lang = spanish',   'var-city-en = Málaga',  'var-conf = jotb'
