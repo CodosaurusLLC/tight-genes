@@ -420,6 +420,8 @@
             many programming languages have
             genetic algorithm libraries available<span data-prog-lang="ruby">,
             including over 30 Ruby gems</span>.&nbsp;
+            (Plus, the basic idea is simple enough that
+            any decent programmer can implement it from scratch.)&nbsp;
             However, the actual <i>uses</i> of genetic algorithms
             remain mostly hidden,
             and frankly rather boring to most of us,
@@ -808,7 +810,7 @@ end
           <span class="slide-caption">Image: standard emoji</span>
           <aside class="notes">
             . . . camping supplies would be more valuable in this context than,
-            say, an accordion.
+            say, an accordion, especially per cubic inch.
 
             <br><br>
             
@@ -865,10 +867,10 @@ end
             meat,
             and leather.&nbsp;
             <span data-time-min="40">
-              (My apologies to any vegetarian out there.)&nbsp;
+              (My apologies to any vegetarians out there.)&nbsp;
               For the sake of simplicity,
               we won't differentiate between
-              between price and profit,
+              price and profit,
               nor dairy versus meat cows,
               and
               <span data-time-min="40">
@@ -906,7 +908,7 @@ end
                   <td class="text">Butter</td><td class="fade text">1-lb block</td><td class="fade">1,000</td><td>1,000</td><td>$3,000</td><!-- <td>$3.00</td> -->
                 </tr>
                 <tr>
-                  <td class="text">Ice Cream</td><td class="fade text">1-gal tubs</td><td class="fade">200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
+                  <td class="text">Ice Cream</td><td class="fade text">1-gal tub</td><td class="fade">200</td><td>1,000</td><td>$2,000</td><!-- <td>$2.00</td> -->
                 </tr>
                 <tr>
                   <td class="text">Meat</td><td class="fade text">side</td><td class="fade">4</td><td>1,280</td><td>$8,000</td><!-- <td>$6.25</td> -->
@@ -1150,13 +1152,16 @@ class Truckload
             <div>
               <pre style="font-size: 0.7em"><code data-trim class="language-ruby">
 def fitness()
-  items = ITEMS.
-    with_index.
-    select { |_item, idx| contains?(idx) }.
-    map { |item, _idx| item }
-  weight = items.map { |item| item.weight }.sum
-  return 0 if weight > 4000
-  return items.map { |item| item.value }.sum
+  items = (0...ITEMS.count).
+    select { |idx| bit_on?(idx) }.
+    map { |idx| ITEMS[idx] }
+  weight = items.map(&:weight).sum
+  if weight > 4000
+    return 0
+  else
+    return items.map(&:value).sum
+  end
+
 end
               </code></pre>
             </div>
@@ -3343,7 +3348,7 @@ end
       // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
         // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
-           'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'prog-lang = ruby'
+           'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 90', 'prog-lang = ruby'
         // 'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30'
         // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40' // slot is 50, leave 5-10 for Q&A, so talk is 40-45
         // 'human-lang = spanish',   'var-city-en = Málaga',  'var-conf = jotb'
