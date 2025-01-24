@@ -813,8 +813,8 @@ end
             say, an accordion, especially per cubic inch.
 
             <br><br>
-            
-            To look at a concrete example, suppose we know . . .            
+
+            To look at a concrete example, suppose we know . . .
           </aside>
         </section>
 
@@ -946,7 +946,7 @@ end
               of adding the most expensive thing that we can,
               over and over, until we can't add anything.&nbsp;
               But let's
-            </span> 
+            </span>
             <span data-time-max="39">Let's</span>
             see what happens if we use a genetic algorithm
             to determine a "good enough" truckload.&nbsp;
@@ -962,6 +962,7 @@ end
             <div>
               <pre style="font-size: 1.4em"><code data-trim class="language-ruby">
 class Truckload
+  attr_reader :contents
   def initialize()
     @contents = rand(128)
   end
@@ -1161,7 +1162,6 @@ def fitness()
   else
     return items.map(&:value).sum
   end
-
 end
               </code></pre>
             </div>
@@ -1803,7 +1803,7 @@ end
               So let's keep going.&nbsp;
 
               <br/><br/>
-            </span> 
+            </span>
 
             The next generation might look like this:
           </aside>
@@ -1901,7 +1901,8 @@ end
 
             <br/><br/>
 
-            Now, suppose we want to evolve . . .
+            Now, suppose we want to evolve
+            . . .
           </aside>
         </section>
 
@@ -1915,7 +1916,8 @@ end
             Suppose we want to "evolve" a good set of stats for a
             Dungeons and Dragons fighter character,
             so our candidates are tuples of numbers,
-            rather than strings of bits.&nbsp;
+            rather than strings of bits<span data-time-min="75">,
+            or an ordering of something</span>.&nbsp;
             D&amp;D character stats are . . .
           </aside>
         </section>
@@ -1955,6 +1957,7 @@ end
             <div>
               <pre style="font-size: 0.9em"><code data-trim class="language-ruby">
 class Character
+  attr_reader %i(str int dex con wis cha)
   def initialize()
     @str = roll(3, 6)
     @int = roll(3, 6)
@@ -1970,8 +1973,16 @@ end
 
           <aside class="notes">
             <span data-time-min="40">
-              (Defining the roll function is left as an exercise.)&nbsp;
+              (Defining the roll function is left as an exercise,
+              and yes there's a great heuristic for D&D character creation,
+              just assign 18s across the board and 00 for the extra strength,
+              but . . . that's cheating!&nbsp; Let's be realistic.)&nbsp;
             </span>
+            And we could complicate this by having
+            a minimum, maximum, or specific
+            total number of points,
+            or minimum and maybe maximum score in each stat,
+            but as usual we'll just keep it simple.&nbsp;
             So if we create an initial population of ten Characters,
             it might look like this:
           </aside>
@@ -2162,7 +2173,7 @@ end
             Let's say we're done if
             any candidates get 90% of the way to the maximum score
             of our fitness function.&nbsp;
-            I'll spare you 
+            I'll spare you
             <span data-time-min="40">
               most of the math, but
               the maximum is 1,134, so 90% would round to
@@ -2653,29 +2664,694 @@ end
 
             <br/><br/>
 
-            <div data-time-min="45">
+            <div data-time-max="74">There are . . .</div>
+            <div data-time-min="75" data-time-max="998">Now suppose we want to evolve . . .</div>
+
+            <div data-time-min="999">
               Now, suppose we want to evolve yet another type of thing.&nbsp;
               By the Rule of Three,
               it's about time we . . .
             </div>
-            <div data-time-max="44">
-              There are many other ways we can use genetic algorithms.&nbsp;
-              They can create images, music, even code,
-              and I'm now working on a system to use them to
-              schedule the talks for a conference.&nbsp;
-              Mey Beisaron has a talk on using one to
-              schedule her college classes.&nbsp;
-              So, think about it,
-              and you might be able to use them for something.
-
-              <br/><br/>
-
-              To recap what you've learned here today:
-            </div>
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="75">
+          <div class="all vctring">
+            <img src="images/traveling-salesman-xkcd.png" width="100%">
+          </div>
+          <span class="slide-caption">Image: https://xkcd.com/399/</span>
+          <aside class="notes">
+            <span data-time-min="75">
+              solutions to a different huge class:
+            </span>
+            . . . Traveling Salesman problems.&nbsp;
+            The canonical example is that
+            you're literally a traveling salesman,
+            though these days we'd probably say sales<i>person</i>,
+            and you want to find the shortest route
+            to visit a list of cities.&nbsp;
+            Realistically, we may want to include other factors, such as
+            the time or money it takes to get there,
+            which may not be proportional to the distance,
+            and the expected profit in each city.&nbsp;
+            But to keep this example simple,
+            we'll just look at the distance.
+
+            <br><br>
+
+            As you see here in this XKCD comic strip,
+            the size of the solution space grows as
+            the <i>factorial</i> of the number of cities,
+            but there are rather advanced approaches that bring it down to
+            n-squared times two-to-the-n,
+            which is <i>still</i> quite a lot.&nbsp;
+            There is also a common heuristic,
+            of just constantly going to the nearest unvisited city,
+            which of course is much faster to come up with a plan,
+            but this yields on average a route 25% longer than the best.&nbsp;
+            But again, we're going to explore what happens if we
+            use a genetic algorithm.
+
+            Our list of cities will be
+            the capitals of mainland Europe, west of Germany.&nbsp;
+            In alphabetical order, that's:
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <img src="images/western-europe.png">
+          </div>
+          <span class="slide-caption">Image: modified from https://www.mapchart.net/europe.html</span>
+          <aside class="notes">
+            Amsterdam, Andorra la Vella, Brussels, Lisbon, Luxembourg, Madrid,
+            Monte Carlo (the <i>unofficial</i> capital of Monaco),
+            and Paris.&nbsp;
+            We have the . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table class="distances">
+              <tr>
+                <th>
+                  <span style="float: right">To</span>
+                  <br>
+                  <span style="float: left">From</span>
+                </th>
+                <th class="numeric">AND</th>
+                <th class="numeric">BRU</th>
+                <th class="numeric">LIS</th>
+                <th class="numeric">LUX</th>
+                <th class="numeric">MAD</th>
+                <th class="numeric">MTC</th>
+                <th class="numeric">PAR</th>
+              </tr>
+              <tr>
+                <td>AMS</td>
+                <td class="numeric">1357</td>
+                <td class="numeric">210</td>
+                <td class="numeric">2233</td>
+                <td class="numeric">417</td>
+                <td class="numeric">1773</td>
+                <td class="numeric">1421</td>
+                <td class="numeric">502</td>
+              </tr>
+              <tr>
+                <td>AND</td>
+                <td class="numeric">-</td>
+                <td class="numeric">1162</td>
+                <td class="numeric">1232</td>
+                <td class="numeric">1178</td>
+                <td class="numeric">613</td>
+                <td class="numeric">653</td>
+                <td class="numeric">862</td>
+              </tr>
+              <tr>
+                <td>BRU</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">2038</td>
+                <td class="numeric">213</td>
+                <td class="numeric">1577</td>
+                <td class="numeric">1200</td>
+                <td class="numeric">307</td>
+              </tr>
+              <tr>
+                <td>LIS</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">2153</td>
+                <td class="numeric">625</td>
+                <td class="numeric">1838</td>
+                <td class="numeric">1739</td>
+              </tr>
+              <tr>
+                <td>LUX</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">1691</td>
+                <td class="numeric">1041</td>
+                <td class="numeric">386</td>
+              </tr>
+              <tr>
+                <td>MAD</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">1288</td>
+                <td class="numeric">1278</td>
+              </tr>
+              <tr>
+                <td>MTC</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">-</td>
+                <td class="numeric">956</td>
+              </tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . distances between them, as shown here in kilometers,
+            which is the minimum driving distance according to Google Maps,
+            and to keep things simple we'll assume
+            it's the same in either direction.
+
+            <br><br>
+
+            So let's dive back into our cycle.&nbsp;
+            That starts with creating an initial population,
+            which is based on creating <i>one</i> candidate.&nbsp;
+            So how do we create one route?&nbsp;
+            It could be done quite easily, like this:
+          </aside>
+        </section>
+
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <div>
+              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
+class Route
+  CITIES = %w(AMS AND BRU LIS LUX MAD MTC PAR)
+
+  attr_accessor :stops
+  def initialize(stops=nil)
+    @stops = stops || CITIES.shuffle
+  end
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            Again we're going to make a class, this time called Route,
+            and we'll give it the city abbreviations as a constant array.&nbsp;
+            Ruby makes the creation of one random route very easy,
+            with a method to shuffle an array.&nbsp;
+            If we create ten of these and put them in an array,
+            it might look like this:
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table style="font-size: 0.8em">
+              <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th></tr>
+              <tr><td>AND</td><td>MAD</td><td>AMS</td><td>LUX</td><td>PAR</td><td>BRU</td><td>MTC</td><td>LIS</td></tr>
+              <tr><td>MTC</td><td>PAR</td><td>LUX</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>BRU</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td></tr>
+              <tr><td>AND</td><td>PAR</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>MAD</td><td>MTC</td></tr>
+              <tr><td>LIS</td><td>LUX</td><td>MTC</td><td>AMS</td><td>AND</td><td>BRU</td><td>PAR</td><td>MAD</td></tr>
+              <tr><td>BRU</td><td>LUX</td><td>LIS</td><td>PAR</td><td>AND</td><td>MAD</td><td>MTC</td><td>AMS</td></tr>
+              <tr><td>AND</td><td>LUX</td><td>PAR</td><td>MTC</td><td>BRU</td><td>MAD</td><td>AMS</td><td>LIS</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>AND</td><td>AMS</td><td>MTC</td><td>PAR</td><td>LIS</td><td>BRU</td><td>LUX</td><td>MAD</td></tr>
+              <tr><td>PAR</td><td>MAD</td><td>AMS</td><td>BRU</td><td>AND</td><td>MTC</td><td>LIS</td><td>LUX</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            So now we have to determine how fit each route is.&nbsp;
+            The measure we have, is worse when larger,
+            but that's easy to take care of.&nbsp;
+            We can subtract it from a constant,
+            divide a constant by it,
+            or all kinds of other solutions.&nbsp;
+            To keep things simple, I'm just going to negate it,
+            and yes it is perfectly legitimate to have a negative fitness.&nbsp;
+            To do that is fairly straightforward:
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <div>
+              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
+def fitness = -total_distance
+
+def total_distance
+  stops.
+    each_cons(2).
+    to_a.
+    map { |src, dst| distance(src, dst) }.
+    sum +
+    distance(stops.first, stops.last)
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . . if you know Ruby.&nbsp;
+            If you don't, what's going on here is,
+            we take the stops,
+            extract each consecutive pair,
+            but that gets us an Enumerator so
+            we have to convert that to an actual array,
+            then we map each pair to its distance
+            by calling a function
+            which I'm going to handwave over for the moment,
+            add them all up,
+            then add the distance back to the starting point.&nbsp;
+            I'm making the simplifying assumption that
+            the route could start anywhere,
+            but we could say that
+            we have to start and end at some other city.&nbsp;
+            There are many variations on the Traveling Salesman Problem,
+            and another one is that we <i>don't</i> have to
+            get back to the starting point.
+
+            <br><br>
+
+            Now that you all grok that, let's take a brief look at
+            how that handwavy-stuff might work:
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <div>
+              <pre style="font-size: 0.4em"><code data-trim class="language-ruby">
+DISTANCES = {
+  "AMS" => {
+    "AND" => 1357, "BRU" =>  210, "LIS" => 2233, "LUX" =>  417,
+    "MAD" => 1773, "MTC" => 1421, "PAR" =>  502
+  },
+  "AND" => {
+    "BRU" => 1162, "LIS" => 1232, "LUX" => 1178,
+    "MAD" =>  613, "MTC" =>  653, "PAR" =>  862
+  },
+  "BRU" => {
+    "LIS" => 2038, "LUX" =>  213, "MAD" => 1577,
+    "MTC" => 1200, "PAR" =>  307
+  },
+  "LIS" => { "LUX" => 2153, "MAD" =>  625, "MTC" => 1838, "PAR" => 1739 },
+  "LUX" => { "MAD" => 1691, "MTC" => 1041, "PAR" =>  386 },
+  "MAD" => { "MTC" => 1288, "PAR" => 1278 },
+  "MTC" => { "PAR" =>  956 },
+}
+
+def distance(src, dst)
+  src, dst = dst, src if src > dst
+  DISTANCES[src][dst]
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            Conceptually, it's pretty simple.&nbsp;
+            First we declare a constant hash of hashes,
+            from each city other than the last,
+            to each city alphabetically later than it.&nbsp;
+            Then we declare a function, that takes two cities,
+            makes sure we've got them in the right order,
+            then looks up the distance in the hash of hashes.&nbsp;
+            This could probably be done in a more Ruby-ish way
+            with some mechanism like hash defaults,
+            and we could have saved RAM by using symbols instead of strings,
+            but I'm trying to keep this understandable
+            for people who don't know Ruby.
+
+            <br><br>
+
+            Now, if we finally run that fitness function on
+            our current population, and sort on fitness descending, we get:
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table style="font-size: 0.8em">
+              <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th class="numeric">Fit</th></tr>
+              <tr><td>AND</td><td>PAR</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>MAD</td><td>MTC</td><td class="numeric">-6470</td></tr>
+              <tr><td>MTC</td><td>PAR</td><td>LUX</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>BRU</td><td class="numeric">-7401</td></tr>
+              <tr><td>AND</td><td>MAD</td><td>AMS</td><td>LUX</td><td>PAR</td><td>BRU</td><td>MTC</td><td>LIS</td><td class="numeric">-7766</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td><td class="numeric">-8466</td></tr>
+              <tr><td>BRU</td><td>LUX</td><td>LIS</td><td>PAR</td><td>AND</td><td>MAD</td><td>MTC</td><td>AMS</td><td class="numeric">-8499</td></tr>
+              <tr><td>LIS</td><td>LUX</td><td>MTC</td><td>AMS</td><td>AND</td><td>BRU</td><td>PAR</td><td>MAD</td><td class="numeric">-9344</td></tr>
+              <tr><td>PAR</td><td>MAD</td><td>AMS</td><td>BRU</td><td>AND</td><td>MTC</td><td>LIS</td><td>LUX</td><td class="numeric">-9453</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-9700</td></tr>
+              <tr><td>AND</td><td>AMS</td><td>MTC</td><td>PAR</td><td>LIS</td><td>BRU</td><td>LUX</td><td>MAD</td><td class="numeric">-10028</td></tr>
+              <tr><td>AND</td><td>LUX</td><td>PAR</td><td>MTC</td><td>BRU</td><td>MAD</td><td>AMS</td><td>LIS</td><td class="numeric">-10535</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . this.&nbsp;
+            So are we done?&nbsp;
+            What are our criteria?&nbsp;
+            For now I'm going to stick with the idea of
+            declaring a winner if it hasn't been outdone in 100 generations,
+            so of course we're not done on the first pass.&nbsp;
+            But the code . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: .6em"><code data-trim class="language-ruby">
+@@best_route = nil
+@@best_fitness = -100_000
+@@generations = 0
+
+def self.done?(population)
+  @@generations += 1
+  better = population.
+    select { |r| r.fitness > @@best_fitness }
+  if better.any?
+    @@best_route = better.sort_by(&:fitness).last
+    @@best_fitness = @@best_route.fitness
+    @@generations = 0
+    return false
+  else
+    return @@generations >= 100
+  end
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . . is a little bit different from last time.&nbsp;
+            Since it's not so trivial to construct the worst route,
+            as opposed to the worst truckload,
+            I've split out the best <i>fitness</i>
+            from the best <i>route</i>,
+            so we can just start with a very bad fitness.&nbsp;
+            Other than that, the logic is the same.
+
+            <br><br>
+
+            Since we're <i>not</i> done, the next step is to
+            pick some breeders, and this time
+            we're going to delve into Roulette Wheel selection.&nbsp;
+            The . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: .6em"><code data-trim class="language-ruby">
+def self.select_breeders(pop)
+  total = -pop.map(&:fitness).sum
+  # set p2 = p1 so until-loop will start
+  p2 = p1 = pick_winner(pop, rand(total))
+  p2 = pick_winner(pop, rand(total)) until p2 != p1
+  [p1, p2]
+end
+
+def self.pick_winner(pop, num)
+  total = 0
+  pop.each do |p|
+    total -= p.fitness
+    return p if total &gt; num
+  end
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . . code for that is of course more complex than last time,
+            when we simply chose the top two.&nbsp;
+            Basically what we're doing is
+            summing up all the fitnesses,
+            negating the sum just because a positive number
+            is easier to deal with.&nbsp;
+            Then we generate a random number from 0 to the sum minus 1,
+            and figure out which route's range that falls in.&nbsp;
+            To do that, we iterate over the routes,
+            summing the negated fitnesses again,
+            until we exceed the random number.&nbsp;
+            When that happens, it means that
+            the one whose fitness we just added
+            is the lucky winner.&nbsp;
+            Then we do that again,
+            repeating if needed in order to
+            actually get a second breeder
+            (since we might happen to pick the first one again).&nbsp;
+            It's clear at a glance that this is much more complex than
+            just picking the two most fit,
+            but as usual we <i>could</i> make it even <i>more</i> complex,
+            such as by applying some function to the actual fitness,
+            such as amplifying the fitter routes' chances by squaring it
+            or diminishing them by taking the square root.
+
+            <br><br>
+
+            If we run this on our current population,
+            we just might randomly wind up with . . .
+
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table>
+              <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th class="numeric">Fit</th></tr>
+              <tr><td colspan="9"><br></td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td><td class="numeric">-8466</td></tr>
+              <tr><td colspan="9"><br></td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-9700</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . these two.&nbsp;
+            So now it's time to breed them together.&nbsp;
+            Breeding Traveling Salesman routes is
+            much more complex than breeding Knapsack contents.&nbsp;
+            It's actually still an area of ongoing research.&nbsp;
+            But the <i>simplest</i> way to breed Traveling Salesman routes is
+            very similar to ordinary crossover: we . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: .6em"><code data-trim class="language-ruby">
+def self.breed(p1, p2)
+  xover = rand(CITIES.length + 1)
+  cities = []
+  cities[0 .. (xover - 1)] =
+    p1.stops.slice(0, xover)
+  cities[xover .. (CITIES.length - 1)] =
+    p2.stops.reject { |city| cities.member?(city) }
+  return Route.new(cities)
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . . take a random number,
+            between 0 and the number of cities, inclusive,
+            copy that many from the first parent,
+            and fill the rest (if any) from the second parent,
+            not by matching the indices like with regular crossover,
+            but by using the missing cities,
+            in the order they appear in the second parent,
+            no matter exactly <i>where</i> they appeared.&nbsp;
+            So, supposing we have a crossover point of 3,
+            the result would look like . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table>
+              <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th></tr>
+              <tr class="up"><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td></tr>
+              <tr><td colspan="8"><center>+</center></td></tr>
+              <tr class="down"><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td colspan="8"><center>=</center></td></tr>
+              <tr><td class="up">MAD</td><td class="up">LUX</td><td class="up">BRU</td><td class="down">AND</td><td class="down">PAR</td><td class="down">LIS</td><td class="down">AMS</td><td class="down">MTC</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . this.&nbsp;
+            But as you may recall, this is just one of ten results,
+            as we're making a whole new population.&nbsp;
+            The way we would do that would be exactly the same as before,
+            so I won't bore you with the code,
+            but one possible result might be . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table style="font-size: 0.8em">
+              <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>AND</td><td>PAR</td><td>LIS</td><td>MTC</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . this.&nbsp;
+            We have not only strong family resemblance,
+            but a fair bit of duplication too.&nbsp;
+            If you want to continue the biological analogy,
+            you could call them twins, triplets, and so on.&nbsp;
+            But we get some more variety in the next step, mutation.&nbsp;
+            So how do we mutate a Traveling Salesman route?&nbsp;
+            It's actually pretty easy:
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: .7em"><code data-trim class="language-ruby">
+def mutate()
+  i1 = rand(CITIES.length)
+  i2 = rand(CITIES.length)
+  stops[i1], stops[i2] = [stops[i2], stops[i1]]
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            we just pick two different numbers,
+            from 0 to the number of cities minus one, inclusive,
+            and if they're different, swap the cities at those indices.&nbsp;
+            If we wanted more complexity,
+            we could make some cities or indices more or less likely to swap,
+            or have a probability of multiple mutations,
+            but we're going to keep it simple and just do one swap each,
+            relying on the chance of the two numbers being the same
+            to give us a chance of not mutating.&nbsp;
+            If we apply this to our current routes, we might wind up with . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table style="font-size: 0.8em">
+              <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th></tr>
+              <tr><td>BRU</td><td>LUX</td><td>MAD</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>MTC</td><td>PAR</td><td>LIS</td><td>AMS</td><td>AND</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>AND</td><td>PAR</td><td>LIS</td><td>MTC</td></tr>
+              <tr><td>LIS</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>MAD</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>AMS</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>MAD</td><td>MTC</td></tr>
+              <tr><td>PAR</td><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>MTC</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>AND</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>MAD</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . this.&nbsp;
+            Now that they're in their final forms,
+            we can ask how fit they are, and we get . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table style="font-size: 0.8em">
+              <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th class="numeric">Fit</th></tr>
+              <tr><td>PAR</td><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-7609</td></tr>
+              <tr><td>AMS</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>MAD</td><td>MTC</td><td class="numeric">-7727</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>MAD</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-8835</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>AND</td><td>PAR</td><td>LIS</td><td>MTC</td><td class="numeric">-9198</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-9700</td></tr>
+              <tr><td>BRU</td><td>LUX</td><td>MAD</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-9972</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>MTC</td><td>PAR</td><td>LIS</td><td>AMS</td><td>AND</td><td class="numeric">-10002</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>MTC</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>AND</td><td class="numeric">-10486</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-10609</td></tr>
+              <tr><td>LIS</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>MAD</td><td>AMS</td><td>MTC</td><td class="numeric">-10700</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . this, after sorting by fitness.&nbsp;
+            Just as before, our best fitness went down, from -6470 to -7609,
+            in other words, our best route in this generation is
+            1039 km longer than the best of the prior generation.&nbsp;
+            But just like before, we haven't lost that best one,
+            it's recorded in that best_route class variable.&nbsp;
+            So, the effect is that that initial best route
+            has "survived" one generation,
+            and now we go through at least 99 more to figure out if
+            it's the best we can produce on this run.&nbsp;
+            It may be <i>more</i> than 99 if we ever produce
+            a better route, so we have to go 100 from <i>that</i> point,
+            and in fact we do so several times, producing . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all vctring">
+            <table style="font-size: 0.8em">
+              <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th class="numeric">Fit</th><th class="numeric">Gens</th></tr>
+<tr><td>LIS</td><td>AND</td><td>MTC</td><td>LUX</td><td>PAR</td><td>BRU</td><td>AMS</td><td>MAD</td><td>-6227</td><td class="numeric">22</td></tr>
+<tr><td>LUX</td><td>BRU</td><td>PAR</td><td>MTC</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>-6017</td><td class="numeric">18</td></tr>
+<tr><td>LIS</td><td>MAD</td><td>PAR</td><td>AMS</td><td>BRU</td><td>LUX</td><td>MTC</td><td>AND</td><td>-5754</td><td class="numeric">26</td></tr>
+<tr><td>AMS</td><td>BRU</td><td>PAR</td><td>LIS</td><td>MAD</td><td>AND</td><td>MTC</td><td>LUX</td><td>-5605</td><td class="numeric">100</td></tr>
+            </table>
+          </div>
+          <aside class="notes">
+            . . . these additional best routes, with those fitnesses,
+            that stay as the best for that many generations.&nbsp;
+            On a map, the final best one,
+            that reigned for a hundred generations,
+            would look like . . .
+          </aside>
+        </section>
+
+        <section data-time-min="75">
+          <div class="all">
+            <img src="images/western-europe-with-route.png">
+          </div>
+          <span class="slide-caption">Image: whatever</span>
+          <aside class="notes">
+            . . . this, and we can see it really makes sense,
+            it's roughly what we would have thought of
+            just by eyeballing it.
+
+            <br><br>
+
+            This sequence of cities would have the same fitness
+            if we started in any of them, and went in either direction first,
+            so there are in fact sixteen equivalent routes.&nbsp;
+            As I mentioned before,
+            we <i>could</i> have dictated a starting city,
+            whether one on this list or not,
+            and the cost might not really be the same in either direction,
+            plus there may be further complications such as
+            how long we need to stay in each city,
+            which could affect the best route to the next one and the
+            time of arrival at the next one,
+            which could how affect many hotel nights we need,
+            which of course contributes to the total cost.&nbsp;
+            So, realistically, it could almost certainly be narrowed down to
+            one, or at least far fewer than sixteen, but at the cost of
+            a far more complicated fitness function.
+
+            <span data-time-max="998"><br><br>There are . . . </span>
+            <span data-time-min="999">
+              <br><br>
+
+              Now let's suppose we want to evolve . . .
+            </span>
+
+          </aside>
+        </section>
+
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/tooth-extraction.png">
           </div>
@@ -2686,7 +3362,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/evolver-license-plate.png">
           </div>
@@ -2721,7 +3397,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/class-evolver.png" class="code">
           </div>
@@ -2734,7 +3410,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/def-evolver-init.jpg" class="code">
           </div>
@@ -2749,7 +3425,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/def-evolver-evolve.png" class="code">
           </div>
@@ -2766,7 +3442,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/def-evolver-init-pop.png" class="code">
           </div>
@@ -2778,7 +3454,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/def-evolver-breed.png" class="code">
           </div>
@@ -2800,7 +3476,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <div class="all">
               <img src="images/2021-06-12-Meads-Assembled.jpg" class="most">
@@ -2821,7 +3497,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/class-recipe.png" class="code">
           </div>
@@ -2839,7 +3515,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/def-recipe-fitness.png" class="code">
           </div>
@@ -2864,7 +3540,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <table style="font-size: 1.5em">
               <thead>
@@ -2904,7 +3580,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/def-recipe-combine.png" class="code">
           </div>
@@ -2916,7 +3592,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/def-recipe-mutate.png" class="code">
           </div>
@@ -2948,7 +3624,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <img src="images/code/evolver-recipe-call.png" class="code">
           </div>
@@ -2982,7 +3658,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -3008,7 +3684,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -3035,7 +3711,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -3064,7 +3740,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -3100,7 +3776,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -3133,7 +3809,7 @@ end
           </aside>
         </section>
 
-        <section data-time-min="45">
+        <section data-time-min="999">
           <div class="all vctring">
             <table class="all-right" style="font-size: 0.8em">
               <thead>
@@ -3158,14 +3834,31 @@ end
 
             <br/><br/>
 
-            There are many other ways we can use genetic algorithms.&nbsp;
-            They can create images, music, even code,
+            There are . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="all vctring">
+            <img src="images/many-ways.png">
+          </div>
+          <span class="slide-caption">Image: https://commons.wikimedia.org/wiki/File:Noun_76041_-_Different_Ways.svg</span>
+          <aside class="notes">
+            . . . many other ways we can use genetic algorithms.&nbsp;
+            They can create images,
+            music (though the fitness function would be rather difficult),
+            even code
+            (maybe with a fitness function consisting of passing tests),
             and I'm now working on a system to use them to
             schedule the talks for a conference.&nbsp;
             Mey Beisaron has a talk on using one to
             schedule her college classes.&nbsp;
             So, think about it,
-            and you might be able to use them for something.
+            and you might be able to use them for something.&nbsp;
+            If not, keep the idea in your toolchest,
+            and maybe eventually you'll be called upon to
+            code up something to solve problems that
+            might be computationally intractable by normal means.
 
             <br/><br/>
 
@@ -3302,7 +3995,7 @@ end
             linkedin.com/in/DaveAronson<br/><br/>
             Repo and Slides:<br/>
             github.com/CodosaurusLLC/tight-genes<br/>
-            Codosaur.us/reds/gen-algs-<span data-gv-var="conf"></span>-24-slides
+            Codosaur.us/reds/gen-algs-<span data-gv-var="conf"></span>-<span data-gv-var="year"></span>-slides
           </h4>
           <aside class="notes">
             . . . questions, I'll take them now,
@@ -3348,7 +4041,8 @@ end
       // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
         // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
-           'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 90', 'prog-lang = ruby'
+        // 'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'prog-lang = ruby'
+           'human-lang = english',   'var-city-en = London', 'var-conf = sdd', 'var-year = 25', 'time @ 60',
         // 'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30'
         // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40' // slot is 50, leave 5-10 for Q&A, so talk is 40-45
         // 'human-lang = spanish',   'var-city-en = Málaga',  'var-conf = jotb'

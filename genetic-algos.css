@@ -141,7 +141,6 @@
   top:      56%;
 }
 
-
 .reveal span.slide-caption {
   bottom: 0;
   font-size: 0.2em;
@@ -164,6 +163,14 @@
 
 .reveal table th.numeric, .reveal table td.numeric {
   text-align: right;
+}
+
+.reveal table.distances {
+  font-size: 0.8em;
+  th, td {
+    border: 1px solid white !important;
+    padding: 0 0.4em;
+  }
 }
 
 .reveal div.cycling-steps span.cycle-stage {
