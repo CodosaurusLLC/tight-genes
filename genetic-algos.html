@@ -3139,9 +3139,9 @@ end
 
         <section>
           <div class="all vctring">
-            <img src="images/???">
+            <img src="images/tournament.jpg">
           </div>
-          <span class="slide-caption">Image: ???</span>
+          <span class="slide-caption">Image: https://www.deviantart.com/roysovitch/art/The-Inaugural-Earth-27-Tournament-Bracket-FINAL-606182766</span>
           <aside class="notes">
             . . . tournament selection.&nbsp;
             This is somewhat like Roulette Wheel selection,
@@ -3152,10 +3152,22 @@ end
         </section>
 
         <section>
-          <div class="all vctring">
-            <img src="images/???">
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 1em">
+[X] Alice
+[ ] Bob
+[X] Charlie
+[ ] Darlene
+[X] Edwina
+[ ] Felicity
+[ ] Georgette
+[X] Harry
+[ ] Ian
+[ ] Jackie
+</pre>
+            </div>
           </div>
-          <span class="slide-caption">Image: ???</span>
           <aside class="notes">
             . . . selecting some number of candidates at random,
             choosing the . . .
@@ -3164,9 +3176,9 @@ end
 
         <section>
           <div class="all vctring">
-            <img src="images/???">
+            <img src="images/fit.jpg">
           </div>
-          <span class="slide-caption">Image: ???</span>
+          <span class="slide-caption">Image: https://garystockbridge617.getarchive.net/amp/media/fitness-muscles-exercise-sports-6d9b94</span>
           <aside class="notes">
             . . . fittest of those as a breeder
             (this is why they call it "Tournament" selection),
@@ -3176,9 +3188,9 @@ end
 
         <section>
           <div class="all vctring">
-            <img src="images/???">
+            <img src="images/repeat.png">
           </div>
-          <span class="slide-caption">Image: ???</span>
+          <span class="slide-caption">Image: https://www.streamlinehq.com/icons/download/refresh-circle--29591 w/ colors inverted</span>
           <aside class="notes">
             . . . repeating that as needed
             to get as many breeders as we want.&nbsp;
@@ -3191,23 +3203,9 @@ end
         <section>
           <div class="vctring">
             <div>
-              <pre style="font-size: 0.6em"><code data-trim class="language-ruby">
-
+              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
   # in our main loop
   breeders = self.select_breeders(pop, 4, 2)
-...
-
-def self.select_breeders(pop, tourney_size, num_breeders)
-  breeders = []
-  while breeders.count < num_breeders
-    breeders.append(run_tourney(pop - breeders, tourney_size))
-  end
-  return breeders
-end
-
-def self.run_tourney(left, tourney_size)
-  return left.sample(tourney_size).sort(&:fitness).last
-end
               </code></pre>
             </div>
           </div>
@@ -3218,13 +3216,51 @@ end
             and how many breeders we want.&nbsp;
             (Or of course we could make those things class constants,
             or even hardcode them in these functions, whatever.)&nbsp;
-            In the actual breeder selection function,
-            we start with an empty array of breeders,
+            In the actual breeder selection function, we . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.7em"><code data-trim class="language-ruby">
+def self.select_breeders(pop,
+                         tourney_size,
+                         num_breeders)
+  breeders = []
+  while breeders.count < num_breeders
+    breeders.append(run_tourney(pop - breeders,
+                                tourney_size))
+  end
+  return breeders
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . . start with an empty array of breeders,
             and so long as we don't have enough, we append one more,
             chosen from among the ones that haven't yet been chosen.&nbsp;
-            And <i>how</i> they're chosen is that first we
-            get a sample of the appropriate size,
-            sort them by fitness, and take the last.&nbsp;
+            And <i>how</i> they're chosen is . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="vctring">
+            <div>
+              <pre style="font-size: 0.9em"><code data-trim class="language-ruby">
+def self.run_tourney(left, tourney_size)
+  return left.
+    sample(tourney_size).
+    sort(&:fitness).
+    last
+end
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . . simply to get a sample of the appropriate size,
+            sort them by fitness, and take the last.
 
             <br><br>
 
@@ -3279,12 +3315,15 @@ end
             However, this time, the array of candidates
             that it passes to run_tourney
             isn't the whole population,
-            but only the ones that haven't yet been chosen.&nbsp;
+            but only the ones that haven't yet been chosen,
+            so this time that's everybody <i>except</i>
+            that last one there.&nbsp;
             Let's assume (despite what Benny Hill taught me happens then)
             that this time, run_tourney picks a set of four
             that includes the most fit one, so it returns that,
             select_breeders puts it in the array,
-            which is now large enough, so it gets returned to our main loop,
+            which now has our desired size of two,
+            so it gets returned to our main loop,
             and we wind up with . . .
           </aside>
         </section>
