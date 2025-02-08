@@ -799,7 +799,6 @@ end
             and has the maximum value.&nbsp;
             <span data-time-min="35">
               That could be the literal cash value,
-              <span data-time-min="40">as we'll see in a moment,</span>
               or something more metaphorical.&nbsp;
               <span data-time-min="40">
                 In the canonical example,
@@ -821,15 +820,60 @@ end
           <div class="all vcntring">
             <img src="images/camping-supplies.jpg">
           </div>
-          <span class="slide-caption">Image: standard emoji</span>
+          <span class="slide-caption">Image: forgot source, it's all over the web</span>
           <aside class="notes">
             . . . camping supplies would be
-            much more valuable in this context than,
-            say, an accordion, especially per kilogram or cubic centimeter.
+            much more valuable in this context than, say,
+            an accordion, especially per kilogram or cubic centimeter.
+            <span data-time-min="60">
+              &nbsp;In fact, if other people are camping there,
+              an accordion might even have <i>negative</i> value!
+            </span>
 
             <br><br>
 
-            To look at a concrete example, suppose we know . . .
+            There is a standard heuristic for knapsack problems,
+            of simply adding the most valuable item that will fit,
+            until we can't fit anything more.&nbsp;
+            However, it's easy to envision times when that would not
+            get us the best solution.&nbsp;
+            <span data-time-min="60">
+              For instance, suppose . . .
+            </span>
+            <span data-time-max="59">
+            <br><br>
+
+              To look at a concrete example, suppose we know . . .
+            </span>
+          </aside>
+        </section>
+
+        <section data-time-min="60">
+          <div class="all vcntring">
+            <img src="images/desert.jpg">
+          </div>
+          <span class="slide-caption">Image: https://www.pexels.com/photo/person-in-white-shirt-walking-on-desert-4253829/</span>
+          <aside class="notes">
+
+            . . . you're lost in the desert,
+            with a smallish knapsack, with a ten-liter capacity,
+            and you stumble across four jugs of water.&nbsp;
+            Ignoring the volume of the jug material,
+            and their exact shapes,
+            they hold two, three, four, and five liters.&nbsp;
+            That totals fourteen liters, so you can't take them all.&nbsp;
+            The standard heuristic would have us take the five,
+            and then the four, and then we can't fit anything more.&nbsp;
+            But if you think about it a moment, it's fairly clear that
+            we should leave the four and take the rest.&nbsp;
+            That is, take the five, three, and two, totaling ten,
+            which is the exact capacity of our knapsack,
+            so we definitely can't do any better.
+
+            <br><br>
+
+            To look at a more complex and complete example,
+            suppose we know . . .
           </aside>
         </section>
 
@@ -951,19 +995,17 @@ end
             <br>
             <br>
 
+            <span data-time-max="39">So</span>
             <span data-time-min="40">
               We <i>could</i> brute-force the problem
               by running through all the combinations,
               and see which of
               the light-enough ones
               totals the highest.&nbsp;
-              Or we could use a very common heuristic for knapsack problems,
-              of adding the most expensive thing that we can,
-              over and over, until we can't add anything.&nbsp;
-              But let's
+              Or we could use the standard heuristic.&nbsp;
+              But
             </span>
-            <span data-time-max="39">Let's</span>
-            see what happens if we use a genetic algorithm
+            let's see what happens if we use a genetic algorithm
             to determine a "good enough" truckload.&nbsp;
             First we need a way to represent each candidate.&nbsp;
             In code, we could represent them as a class,
@@ -995,14 +1037,13 @@ end
               weird bits of Ruby syntax.&nbsp;
               For instance, the attr_reader bit means that
               objects made from this class have
-              a data member called "contents" that
-              is <i>readable</i> by other kinds of objects.&nbsp;
-              That data member is set when we use "@contents =".&nbsp;
+              a readable data member called "contents".&nbsp;
+              That is set when we use "@contents =".&nbsp;
               As for what it's setting that to:
             </span>
             <span data-time-min="40">
               Whoa, that looks like we're just making a random number!&nbsp;
-              That's right!
+              That's right!&nbsp;
             </span>
             We're making a random number
             <i>with seven bits</i>,
@@ -1047,7 +1088,8 @@ end
               as opposed to an <i>instance</i> method,
               so it doesn't refer to the particulars of an instance.&nbsp;
               The two dots make a range, inclusive on both ends,
-              and self.new means "take this class and make a new instance".&nbsp;
+              and self.new means "take this class and make a new instance",
+              with no arguments being passed in to the creation.&nbsp;
             </span>
             So if we create a population of ten Truckloads,
             we might wind up with a list like this:
@@ -1144,7 +1186,7 @@ class Truckload
             In the interests of time,
             I'll handwave over those details.&nbsp;
             Alternately, it could be implemented
-            as an array of booleans, rather than a bitfield,
+            as an array of booleans, or even a hash, rather than a bitfield,
             but I wanted to illustrate the "string of bits" type of chromosome.
 
             <br/><br/>
@@ -1207,6 +1249,11 @@ end
           <aside class="notes">
             We decode which items we want to take
             (abstracting away the actual bit-checking again for simplicity),
+            <span data-time-min="60">
+              by iterating over the item numbers,
+              from zero up to the number of items <i>minus one</i>
+              (that's what the <i>three</i> dots means),
+            </span>
             then sum up their weights.&nbsp;
             <span data-time-min="60">
               That ampersand-colon syntax means to
@@ -1233,7 +1280,8 @@ end
               and make sure it all fits.&nbsp;
               We could even take into account very long or flat shapes,
               so that for instance
-              a flagpole or a very large sheet of plywood might not fit,
+              a flagpole or a very large sheet of particleboard
+              might not fit,
               even though its weight and total volume
               may be relatively small.
             </span>
@@ -1519,22 +1567,15 @@ end
           <aside class="notes">
             . . . breed them.&nbsp;
             The usual way is called crossover.&nbsp;
-            This consists of taking the data points,
-            or in Genetic Algorithm terms, the "genes" (hence the name),
-            from one parent,
+            This consists of taking the data points from one parent,
             up to some randomly chosen crossover point,
-            then switching to the other parent<span data-time-min="40">.&nbsp;
-              <span data-time-min="60">
-                Some approaches also automatically include
-                the solution that would be generated by
-                using the breeders in the opposite order,
-                in other words,
-                starting with the alleles of the <i>second</i> parent
-                and crossing over to the <i>first</i>.&nbsp;
-                (But we're not going to do that here,
-                just for simplicity.)&nbsp;
-                Either way,
-              </span>
+            then switching to the other parent.&nbsp;
+            In Genetic Algorithm terms,
+            each <i>place</i> in the list
+            is called a "gene" (that's where the name comes from),
+            and the yes/no actual <i>decision</i> there
+            is called an <i>allele</i>.&nbsp;
+            <span data-time-min="40">
               This can be extended with multiple crossover points,
               but we're just going to use one</span>,
             like so:
@@ -1545,7 +1586,7 @@ end
           <div class="vctring">
             <div>
               <pre style="font-size: .8em"><code data-trim class="language-ruby">
-def self.combine(p1, p2)
+def self.breed(p1, p2)
   cross_point = rand(ITEMS.count + 1)
   list = (0..ITEMS.count).
     map { |index|
@@ -1575,13 +1616,27 @@ end
               or it could switch at some point.&nbsp;
             </span>
             <span data-time-min="40">
+              <br><br>
+
               As usual, we could get as complex as we want,
               like making some crossover points
-              more or less likely, or even forbidden.&nbsp;
+              more likely, or less likely, or even
+              mandatory or forbidden.&nbsp;
+              <span data-time-min="60">
+                Some approaches also automatically include
+                the solution that would be generated by
+                using the breeders in the opposite order,
+                in other words,
+                starting with the alleles of the <i>second</i> parent
+                and crossing over to the <i>first</i>.&nbsp;
+              </span>
+              But we're going to keep it simple.
+              <br><br>
             </span>
-            If we do this once, with a crossover point of 3,
+            If we use this function once, with a crossover point of 3,
             <span data-time-min="40">
               so we take 3 values from the first parent,
+              and the rest from the other,
             </span>
             that would get us a result like this:
           </aside>
@@ -1729,6 +1784,7 @@ end
             we flip that bit.&nbsp;
             Again, we could get as complex as we want,
             like having some genes more or less likely to mutate than others,
+            <span data-time-min="60">maybe even mandatory or forbidden,</span>
             or having some minimum or maximum
             number of mutations per candidate,
             or all kinds of other options.&nbsp;
@@ -1897,9 +1953,11 @@ end
             So, we set that top one as our benchmark,
             and reset the counter of generations since we saw it.&nbsp;
             If we let this run to completion,
-            with probably several more occasions of a
-            new best combo being found
-            (but I forgot to keep track of that while making these slides),
+            with a few more occasions of a
+            new best combo being found,
+            <!--
+              (but I forgot to keep track of that while making these slides),
+            -->
             we might wind up with something like this:
           </aside>
         </section>
@@ -1990,15 +2048,18 @@ end
             As you see here in this XKCD comic strip,
             the size of the solution space grows as
             the <i>factorial</i> of the number of cities,
-            but there are rather advanced approaches that bring it down to
+            but there are rather advanced approaches that
+            bring the search time down to
             n-squared times two-to-the-n,
             which is <i>still</i> quite a lot.&nbsp;
             There is also a common heuristic,
             of just constantly going to the nearest unvisited city,
             which of course is much faster to come up with a plan,
             but this yields on average a route 25% longer than the best.&nbsp;
-            But again, we're going to explore what happens if we
+            But of course, we're going to explore what happens if we
             use a genetic algorithm.
+
+            <br><br>
 
             Our list of cities will be
             the capitals of mainland Europe, west of Germany.&nbsp;
@@ -2013,7 +2074,11 @@ end
           <span class="slide-caption">Image: modified from https://www.mapchart.net/europe.html</span>
           <aside class="notes">
             Amsterdam, Andorra la Vella, Brussels, Lisbon, Luxembourg, Madrid,
-            Monte Carlo (the <i>unofficial</i> capital of Monaco),
+            Monte Carlo<span data-time-min="60">,
+              (the <i>unofficial</i> capital of Monaco,
+              which doesn't have an official capital
+              but all the government buildings are in
+              the <i>neighborhood</i> called Monte Carlo)<span>,
             and Paris.&nbsp;
             We have the . . .
           </aside>
@@ -2171,7 +2236,8 @@ end
               whitespace-separated words".&nbsp;
               The "stops=CITIES.shuffle" part means that
               we <i>can</i> pass in an array of stops but don't have to,
-              it defaults to a shuffled copy of CITIES if we don't.&nbsp;
+              and if we dont, then
+              it defaults to a shuffled copy of CITIES.&nbsp;
               (And yes, it does reshuffle it each time,
               not just once for the function definition.)&nbsp;
               We won't be passing in an array of stops quite yet,
@@ -2261,8 +2327,7 @@ end
             but that gets us an Enumerator so
             we have to convert that to an actual array,
             then we map each pair to its distance
-            by calling a function
-            which I'm going to handwave over for the moment,
+            by calling a function which I'll save for the next slide,
             add them all up,
             then add the distance back to the starting point.&nbsp;
             I'm making the simplifying assumption that
@@ -2276,7 +2341,7 @@ end
             <br><br>
 
             Now that you all grok that, let's take a brief look at
-            how that handwavy-stuff might work:
+            how that distance function might work:
           </aside>
         </section>
 
@@ -2314,15 +2379,16 @@ end
             Conceptually, it's pretty simple.&nbsp;
             First we declare a constant hash of hashes,
             (or whatever your preferred language calls an associative array),
-            from each city other than the last,
+            from each city <i>other than the last</i>,
             to each city alphabetically later than it.&nbsp;
             Then we declare a function, that takes two cities,
             makes sure we've got them in the right order,
             then looks up the distance in the hash of hashes.&nbsp;
             This could probably be done in a more Ruby-ish way
             with some mechanism like hash defaults,
-            and we could have saved RAM by using symbols instead of strings,
-            but I'm trying to keep this understandable
+            and we could have saved some memory by
+            using symbols instead of strings,
+            but once again, I'm trying to keep this understandable
             for people who don't know Ruby.
 
             <br><br>
@@ -2439,8 +2505,19 @@ end
           </div>
           <aside class="notes">
             . . . pick some breeders, and this time
-            we're going to delve into Roulette Wheel selection.&nbsp;
-            The . . .
+            we're going to delve into <i>Roulette Wheel</i> selection.&nbsp;
+            The concept there is that every candidate has
+            a <i>chance</i> to be selected,
+            <i>but</i> the <i>size</i> of the chance is
+            based on the candidate's <i>fitness</i>.&nbsp;
+            The simplest version is that it's simply equal,
+            or at least directly proportional,
+            to the fitness.&nbsp;
+            (So I think this is actually a misnomer;
+            one would <i>hope</i> that an actual roulette wheel
+            has an <i>equal</i> chance for <i>all</i> the numbers!&nbsp;
+            But, they didn't ask my opinion when naming this.)&nbsp;
+            Anyway, the . . .
           </aside>
         </section>
 
@@ -2485,13 +2562,21 @@ end
             repeating if needed in order to
             actually get a second breeder
             (since we might happen to pick the first one again).&nbsp;
+
+            <br><br>
+
             As usual we <i>could</i> make it even <i>more</i> complex,
-            such as by applying some function to the actual fitness,
-            such as amplifying the fitter routes' chances by squaring it,
-            or diminishing them by taking the square root.&nbsp;
-            We could also bias it further towards the best ones by
-            generating the random number differently,
-            with an uneven distribution.
+            such as by applying some function to the actual fitness.&nbsp;
+            We might amplify the fitter routes' chances
+            by squaring the fitness,
+            or diminish them by taking the square root,
+            or a logarithm or whatever,
+            or we could make those things
+            part of the definition of the fitness in the first place.&nbsp;
+            We could also bias it by
+            generating that random number differently,
+            with an uneven distribution,
+            whether favoring the best or the middle or whatever.
 
             <br><br>
 
@@ -2543,7 +2628,7 @@ end
             much more complex than breeding Knapsack contents.&nbsp;
             It's actually still an area of ongoing research!&nbsp;
             But the <i>simplest</i> way to breed Traveling Salesman routes is
-            very similar to ordinary crossover: we . . .
+            fairly similar to ordinary crossover: we . . .
           </aside>
         </section>
 
@@ -2567,8 +2652,9 @@ end
             . . . take a random number,
             between 0 and the number of cities, inclusive,
             copy that many from the first parent,
-            and fill the rest (if any) from the second parent,
-            not by matching the indices like with regular crossover,
+            and fill the rest (if any) from the second parent.&nbsp;
+            However, we don't do it by
+            matching the indices like with regular crossover,
             but by using the missing cities,
             in the order they appear in the second parent,
             no matter exactly <i>where</i> they appeared.&nbsp;
@@ -2973,6 +3059,15 @@ end
             and half the dexterity.&nbsp;
             But, the other stats tended to get too low,
             and even the dexterity.&nbsp;
+            <span data-time-min="60">
+              This seemed to be a simulation of how
+              genetically based features with little or no benefit
+              tend to wither away over generations,
+              like a human's appendix,
+              the leg bones that some snakes still have, or
+              the eyes and coloration of
+              many creatures that live deep underground.&nbsp;
+            </span>
             So I tried . . .
           </aside>
         </section>
@@ -2993,7 +3088,7 @@ end
             </div>
           </div>
           <aside class="notes">
-            prioritizing them linearly,
+            prioritizing <i>all</i> of them, linearly,
             adding up six times the strength, five times the constitution,
             and so on down to one times the charisma.&nbsp;
             But then the other stats got too high,
