@@ -26,13 +26,8 @@
           linkedin.com/in/DaveAronson<br/>
           github.com/CodosaurusLLC/tight-genes
           <aside class="notes">
-            Current time: ~59, before adding Tournament selection,
-            speaking medium, w/ a few ad-libs.<br>
-            SDD wants 80-85, I say 75-80, okay at 70?
-            Either way, NEED MORE CONTENT!!!  At least 10 mins, pref 25.
-            Not sure if Tournament is enough.
-            Add Evolver framework to D&D example?
-            Might still not be enough!
+            Current time: ~80, speaking medium, w/ a few ad-libs and water breaks.<br>
+            SDD wants 80-85, so leave as-is.
           </aside>
         </section>
 
@@ -500,7 +495,25 @@
 
             <br/><br/>
 
-            So how do genetic algorithms work?&nbsp;
+            Before we delve into the technical details,
+            I'd like to set the . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="vctring" style="font-size: 10em">? ? ?</div>
+          <aside class="notes">
+            question policy.&nbsp;
+            If you have a question that absolutely must be answered now,
+            in order for you to understand some important point,
+            raise a hand, and I'll try to notice and call on you.&nbsp;
+            If you have a less urgent question,
+            please save it for the end,
+            and save comments for after all questions.
+
+            <br/><br/>
+
+            So, how do genetic algorithms work?&nbsp;
             They consist of a simple series of steps:
           </aside>
         </section>
@@ -688,18 +701,18 @@ end
             </div>
           </div>
           <aside class="notes">
-            <!--
             IF CONF IS NOT RUBY OR AGNOSTIC:
-            I know this conference is mainly focused on Java and JavaScript,
-            but this is in Ruby.&nbsp;
+            I know this conference is mainly focused on $WHATEVER,
+            but this code is in Ruby.&nbsp;
             I chose that to reduce boilerplate overhead,
             and because it reads so close to plain English,
             so even if you don't know Ruby,
             I'm confident you'll understand the ideas,
             and maybe even the actual code.
+            I'll try to remember to explain any
+            weird bits of Ruby syntax.
 
             <br><br>
-            -->
 
             Now let's take a closer look at
             <span data-time-min="40">what goes on in</span>
@@ -948,7 +961,11 @@ end
               nor dairy versus meat cows,
               and
               <span data-time-min="40">
-                it's very unrealistic but we'll assume that
+                I know it's very unrealistic but we'll assume
+                <span data-time-min="60">
+                  (despite what Benny Hill taught me happens then)
+                </span>
+                that
               </span>
               he can only take a set amount of each item,
               and always has that amount on hand.&nbsp;
@@ -1002,9 +1019,9 @@ end
             it totals 8,600 pounds.&nbsp;
             But, his truck's suspension
             can only handle
-            two tons, or 4,000 pounds.&nbsp;
+            two tons, in other words, 4,000 pounds.&nbsp;
             <span data-time-min="40">
-              (Don't get me started on our stupid American units of measure!)&nbsp;
+              (Don't get me started on stupid American units of measure!)&nbsp;
             </span>
 
             <br>
@@ -1016,7 +1033,7 @@ end
               by running through all the combinations,
               and see which of
               the light-enough ones
-              totals the highest.&nbsp;
+              totals the highest value.&nbsp;
               Or we could use the standard heuristic.&nbsp;
               But
             </span>
@@ -1043,14 +1060,8 @@ end
             </div>
           </div>
           <aside class="notes">
-            This code is in Ruby, which I chose because
-            it's very understandable, so
-            even those of you who don't know Ruby
-            will probably get the idea.&nbsp;
             <span data-time-min="60">
-              I'll try to remember to explain any
-              weird bits of Ruby syntax.&nbsp;
-              For instance, the attr_reader bit means that
+              To explain the Ruby, the attr_reader bit means that
               objects made from this class have
               a readable data member called "contents".&nbsp;
               That is set when we use "@contents =".&nbsp;
@@ -3428,8 +3439,7 @@ end
             but only the ones that haven't yet been chosen,
             so this time that's everybody <i>except</i>
             that last one there.&nbsp;
-            Let's assume (despite what Benny Hill taught me happens then)
-            that this time, run_tourney picks a set of four
+            Let's assume that this time, run_tourney picks a set of four
             that includes the most fit one, so it returns that,
             select_breeders puts it in the array,
             which now has our desired size of two,
