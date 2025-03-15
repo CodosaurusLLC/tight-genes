@@ -24,11 +24,21 @@
   transform: translateX(-50%);
 }
 
+.reveal img.expand-tall {
+  height: var(--main-height);
+  width: auto;
+}
+
+.reveal img.expand-wide {
+  width: 100%;
+  height: auto;
+}
+
 .reveal div.progress { height: 4px }
 
 .reveal pre code {
   background: #112;  /* until I can find a theme with this! */
-  max-height: 100%;  / fix black.css stupidity! */
+  max-height: 100%;  /* fix black.css stupidity! */
 }
 
 .reveal span.cycle-ptr {
