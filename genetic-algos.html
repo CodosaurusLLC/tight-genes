@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!--
+      Need to look at WHY this doesn't render to PDF properly with
+      the version of Reveal.JS from 2023-04, but is fine with 2020-11!
+    -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -33,16 +37,18 @@
 
         <section>
           <div class="all">
-            <div class="qtr vctring" style="font-size: 1.5em">
-              <span data-human-lang="spanish">&#161;Hola, M&aacute;laga!</span>
-              <span data-human-lang="dutch">Hallo, Utrecht!</span>
-              <span data-human-lang="greek" lang="el">&Gamma;&epsilon;&iota;&alpha; &sigma;&alpha;&sigmaf;, &Alpha;&theta;&#942;&nu;&alpha;!</span>
-              <span data-human-lang="norwegian">Hei, Oslo!</span>
-              <span data-human-lang="portuguese">Ol&aacute;, Coimbra!</span>
-            </div>
-            <div class="half vctring" style="font-size: 6em">👋</div>
-            <div class="qtr vctring" style="font-size: 1.5em" data-not-if-human-lang="english">
-              <div>(Hello,&nbsp;<span data-gv-var="city-en"></span>!)</div>
+            <div>
+              <div class="qtr vctring" style="font-size: 1.5em" data-not-if-human-lang="english">
+                <span data-human-lang="spanish">&#161;Hola, M&aacute;laga!</span>
+                <span data-human-lang="dutch">Hallo, Utrecht!</span>
+                <span data-human-lang="greek" lang="el">&Gamma;&epsilon;&iota;&alpha; &sigma;&alpha;&sigmaf;, &Alpha;&theta;&#942;&nu;&alpha;!</span>
+                <span data-human-lang="norwegian">Hei, Oslo!</span>
+                <span data-human-lang="portuguese">Ol&aacute;, Coimbra!</span>
+              </div>
+              <div class="vctring" style="font-size: 6em">👋</div>
+              <div class="qtr vctring" style="font-size: 1.5em" data-not-if-human-lang="english">
+                <div>(Hello,&nbsp;<span data-gv-var="city-en"></span>!)</div>
+              </div>
             </div>
           </div>
           <span class="slide-caption">Image: standard emoji</span>
@@ -64,7 +70,7 @@
 
         <section>
           <div class="all">
-            <div class="qtr vctring" style="font-size: 1.5em">
+            <div class="qtr vctring" style="font-size: 1.5em" data-not-if-human-lang="english">
               <div>
                 <span data-human-lang="spanish">Me llamo</span>
                 <span data-human-lang="dutch">Ik ben</span>
@@ -73,8 +79,8 @@
                 <span data-human-lang="portuguese">Eu sou</span>
               </div>
             </div>
-            <div class="half vctring">
-              <img src="images/Dave-Aronson-Speaking-at-JSConf-Hawaii-1kx1k.jpg" class="expand-tall">
+            <div class="vctring">
+              <img src="images/Dave-Aronson-Speaking-at-JSConf-Hawaii-1kx1k.jpg" height="100%">
             </div>
             <div class="qtr vctring" style="font-size: 1.5em" data-not-if-human-lang="english">
               (I'm Dave Aronson,)
@@ -91,7 +97,10 @@
         </section>
 
         <section>
-          <div class="all">
+          <div class="all vctring" data-human-lang="english">
+            <img src="images/CodoLogo-from-EPS.png" height="80%">
+          </div>
+          <div class="all" data-not-if-human-lang="english">
             <div class="qtr vctring" style="font-size: 1.5em">
               <span data-human-lang="spanish">el T. Rex de Codosaurus,</span>
               <span data-human-lang="dutch">de T. Rex van Codosaurus,</span>
@@ -170,14 +179,14 @@
 
         <section>
           <div class="all">
-            <div class="qtr vctring" style="font-size: 1.5em">
+            <div class="qtr vctring" style="font-size: 1.5em" data-not-if-human-lang="english">
               <span data-human-lang="spanish">para ense&ntilde;aros sobre</span>
               <span data-human-lang="dutch">om jullie iets over</span>
               <span data-human-lang="greek" lang="el">&gamma;&iota;&alpha; &nu;&alpha; &sigma;&alpha;&sigmaf; &mu;&#940;&theta;&omega; &tau;&omicron;&upsilon;&sigmaf;</span>
               <span data-human-lang="norwegian">for å lære deg om</span>
               <span data-human-lang="portuguese">para vos ensinar sobre</span>
             </div>
-            <div class="half vctring" style="font-size: 7em">
+            <div class="vctring" style="font-size: 7em">
               👨🏽‍🏫
             </div>
             <div class="qtr vctring" style="font-size: 1.5em" data-not-if-human-lang="english">
@@ -195,18 +204,16 @@
 
         <section>
           <div class="all">
-            <div class="qtr vctring" style="font-size: 1.5em">
+            <div class="qtr vctring" data-not-if-human-lang="english" style="font-size: 1.5em">
               <span data-human-lang="spanish">Algoritmos Gen&eacute;ticos.</span>
               <span data-human-lang="dutch">Genetische Algoritmen te leren.</span>
               <span data-human-lang="greek" lang="el">&Gamma;&epsilon;&nu;&epsilon;&tau;&iota;&kappa;&omicron;&#973;&sigmaf; &Alpha;&lambda;&gamma;&#972;&rho;&iota;&theta;&mu;&omicron;&upsilon;&sigmaf;.</span>
               <span data-human-lang="norwegian">Genetiske Algoritmer.</span>
               <span data-human-lang="portuguese">Algoritmos Gen&eacute;ticos.</span>
             </div>
-            <div class="half vctring">
-              <img src="images/genetic-testing.png" class="expand-tall">
-            </div>
+            <div class="vctring"><img src="images/genetic-testing.png"></div>
             <div class="qtr vctring" style="font-size: 1.5em" data-not-if-human-lang="english">
-            (Genetic Algorithms.)
+              (Genetic Algorithms.)
             </div>
           </div>
           <span class="slide-caption">Image: https://pixabay.com/vectors/genetic-testing-gene-panel-genetics-2316642</span>
@@ -286,7 +293,6 @@
             So . . .
           </aside>
         </section>
-
 
         <section>
           <div class="all vctring">
@@ -4623,7 +4629,7 @@ end
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
       // Uncomment next line ONLY WHEN FORMATTING TO PRINT, w/ ?print-pdf
-      Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
+      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
         // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
         // 'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'prog-lang = ruby'
