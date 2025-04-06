@@ -30,8 +30,15 @@
           linkedin.com/in/DaveAronson<br>
           github.com/CodosaurusLLC/tight-genes
           <aside class="notes">
-            Current time: ~80, speaking medium, w/ a few ad-libs and water breaks.<br>
-            SDD wants 80-85, so leave as-is.
+            <span data-human-lang="english">
+              Current time: ~80, speaking medium, w/ a few ad-libs and water breaks.<br>
+              SDD wants 80-85, so leave as-is.
+            </span>
+            <span data-human-lang="lithuanian">
+              Current time: ~30, with some stuff put back in.<br>
+              DDEU wants 45, leave ~5-10 for Q&A, so net 35-40,
+              so put some more stuff back in, maybe the D&D example!
+            </span>
           </aside>
         </section>
 
@@ -213,8 +220,8 @@
 
         <section>
           <div class="all">
-            <div class="qtr vctring">
-              <span data-human-lang="lithuanian">Genetiniai algoritmai.</span>
+            <div class="qtr vctring" style="font-size: 1.5em">
+              <span data-human-lang="lithuanian">Genetiniai Algoritmai.</span>
               <span data-human-lang="spanish">Algoritmos Gen&eacute;ticos.</span>
               <span data-human-lang="dutch">Genetische Algoritmen te leren.</span>
               <span data-human-lang="greek" lang="el">&Gamma;&epsilon;&nu;&epsilon;&tau;&iota;&kappa;&omicron;&#973;&sigmaf; &Alpha;&lambda;&gamma;&#972;&rho;&iota;&theta;&mu;&omicron;&upsilon;&sigmaf;.</span>
@@ -294,17 +301,18 @@
 
             <div data-not-if-human-lang="portuguese">
               <div data-not-if-human-lang="french">
-                Mainly because you’ve just heard almost all the
-                <span data-human-lang="lithuanian">Lithuanian</span>
-                <span data-human-lang="spanish">Spanish</span>
-                <span data-human-lang="dutch">Dutch</span>
-                <span data-human-lang="greek">Greek</span>
-                <span data-human-lang="norwegian">Norwegian</span>
-                I speak!
+                <span data-time-min="40">
+                  Mainly because you’ve just heard almost all the
+                  <span data-human-lang="lithuanian">Lithuanian</span>
+                  <span data-human-lang="spanish">Spanish</span>
+                  <span data-human-lang="dutch">Dutch</span>
+                  <span data-human-lang="greek">Greek</span>
+                  <span data-human-lang="norwegian">Norwegian</span>
+                  I speak!
+                </span>
+                <br>
               </div>
             </div>
-
-            <br><br>
 
             So . . .
           </aside>
@@ -365,9 +373,11 @@
               a category of
             </span>
             shortcuts to find solutions to a problem.&nbsp;
-            Generally these apply to problems that
-            would be computationally intractable
-            to attack by normal means.&nbsp;
+            <span data-time-min="40">
+              Generally these apply to problems that
+              would be computationally intractable
+              to attack by normal means.&nbsp;
+            </span>
             Ideally they'll find the best solution,
             but in reality we usually have to settle for
             something "good enough",
@@ -453,13 +463,17 @@
             MATLAB and such tools
             have some genetic algorithm facilities built-in, and
             most major programming languages have
-            genetic algorithm libraries available<span data-prog-lang="ruby">,
+            genetic algorithm libraries available<span data-conf-prog-lang="ruby">,
             including over 30 Ruby gems</span>.&nbsp;
+          <span data-time-min="50">
             (Plus, the basic idea is simple enough that
             any decent programmer can implement it from scratch.)&nbsp;
+          </span>
             However, the actual <i>uses</i> of genetic algorithms
             remain mostly hidden,
-            and in my opinion frankly rather boring to most of us,
+            and in my opinion frankly rather boring<span data-time-min="50">
+              to most of us
+            </span>,
             used by companies in their internal
             industrial processes, logistics, scheduling, and so on.
 
@@ -468,12 +482,14 @@
             But once in a while, they do get used for
             something more interesting,
             and more publicly known.&nbsp;
-            These days, with AI becoming much more common,
+            <span data-time-min="50">
+              These days, with AI becoming much more common,
             they're often used for things like
             selecting features sets of machine learning models and
             optimizing hyperparameters of neural networks, and even
             denoising, reconstructing, and extracting features from images.&nbsp;
-            Most famously, though, in 2005 . . .
+            </span>
+            Most famously, <span data-time-min="50">though,</span> in 2005 . . .
           </aside>
         </section>
 
@@ -483,7 +499,7 @@
           </div>
           <span class="slide-caption">Image: https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png</span>
           <aside class="notes">
-            . . . NASA<span data-time-min="40">,
+            . . . NASA<span data-time-min="50">,
               the United States' National Aeronautics and Space Administration,
             </span>
             used a genetic algorithm to design an . . .
@@ -502,7 +518,7 @@
           </div>
           <span class="slide-caption">Image: https://www.jpl.nasa.gov/nmp/st5/IMAGES/st5-antenna.jpg</span>
           <aside class="notes">
-            . . . antenna for the ST5 series of satellites<span data-time-min="40">,
+            . . . antenna for the ST5 series of satellites<span data-time-min="35">,
               launched in 2006</span>.&nbsp;
             (No, that's not just a paperclip
             bent up by someone
@@ -512,7 +528,7 @@
             because most human antenna designers
             would never think of such a design."&nbsp;
             And that is one of the great advantages of this approach.&nbsp;
-            <span data-time-min="40">
+            <span data-time-min="50">
               These algorithms are much less hampered by
               expectations of similarity to past solutions.&nbsp;
               They can come up with things that
@@ -525,12 +541,18 @@
 
             <br><br>
 
-            Before we delve into the technical details,
-            I'd like to set the . . .
+            <span data-time-min="50">
+              Before we delve into the technical details,
+              I'd like to set the . . .
+            </span>
+            <span data-time-max="49">
+              So, how do genetic algorithms work?&nbsp;
+              They consist of a simple series of steps:
+            </span>
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="50">
           <div class="vctring" style="font-size: 10em">? ? ?</div>
           <aside class="notes">
             question policy.&nbsp;
@@ -558,7 +580,7 @@
             I don't like that term,
             I think it leads to confusion,
             so I'm just going to say "candidates".&nbsp;
-            <span data-time-min="40">
+            <span data-time-min="35">
               I've also heard them called individuals, solutions,
               or
               <i>phenotypes</i>,
@@ -628,7 +650,7 @@
             <br><br>
 
             After that,
-            <span data-time-min="40">as you may have guessed,</span>
+            <span data-time-min="35">as you may have guessed,</span>
             we <i>use</i> those candidates we just selected . . .
           </aside>
         </section>
@@ -646,7 +668,7 @@
           <aside class="notes">
             . . . to <i>breed</i>
             a new population.&nbsp;
-            <span data-time-min="40">
+            <span data-time-min="35">
               Some of the previous population,
               especially the fittest ones,
               <i>may</i> be carried over into this new population,
@@ -656,7 +678,7 @@
             <br><br>
 
             Next
-            <span data-time-min="40">
+            <span data-time-min="35">
               is a very important but easily forgotten step,
               which is to
             </span>
@@ -731,25 +753,27 @@ end
             </div>
           </div>
           <aside class="notes">
-            <span data-not-if-prog-lang="ruby">
-              <span data-not-if-prog-lang="n/a">
+            <span data-not-if-conf-prog-lang="ruby">
+              <span data-not-if-conf-prog-lang="n/a">
                 I know this conference is mainly focused on $WHATEVER,
-                but
+                but this
+              </span>
+              this code is in Ruby.&nbsp;
+              I chose that to reduce boilerplate overhead,
+              and because it reads so close to plain English,
+              so even if you don't know Ruby,
+              I'm confident you'll understand the ideas,
+              and maybe even the actual code.
+              <span data-time-min="40">
+                I'll try to remember to explain any
+                weird bits of Ruby syntax.
               </span>
             </span>
-            this code is in Ruby.&nbsp;
-            I chose that to reduce boilerplate overhead,
-            and because it reads so close to plain English,
-            so even if you don't know Ruby,
-            I'm confident you'll understand the ideas,
-            and maybe even the actual code.
-            I'll try to remember to explain any
-            weird bits of Ruby syntax.
 
             <br><br>
 
             Now let's take a closer look at
-            <span data-time-min="40">what goes on in</span>
+            <span data-time-min="35">what goes on in</span>
             each step,
             by working through an example.
           </aside>
@@ -776,7 +800,7 @@ end
             These are different solutions to some problem,
             usually represented as
             different instances of the same data structure.&nbsp;
-            <span data-time-min="40">
+            <span data-time-min="35">
               They could be
               any data structure we want,
               so long as we can
@@ -830,19 +854,19 @@ end
             . . . knapsack problems<span data-time-min="40">,
             which is a category of
             constrained resource allocation problems</span>.&nbsp;
-            The canonical example is that you have a knapsack<span data-time-min="40">
+            The canonical example is that you have a knapsack<span data-time-min="35">
               (or rucksack, backpack, or whatever you call it)</span>,
             and many things you want to carry in it,
             but they won't all fit,
             <span data-time-max="39">so</span>
-            <span data-time-min="40">
+            <span data-time-min="35">
             or the total weight is more than you can carry,
             or some such similar constraint,
             or <i>combination</i> of constraints.&nbsp;
             So
             </span>
             you want to find the combination of items,
-            that will fit<span data-time-min="40"> the constraints</span>,
+            that will fit<span data-time-min="35"> the constraints</span>,
             and has the maximum value.&nbsp;
             <span data-time-min="35">
               That could be the literal cash value,
@@ -989,20 +1013,21 @@ end
             and leather.&nbsp;
             <span data-time-min="40">
               (My apologies to any vegetarians out there.)&nbsp;
-              For the sake of simplicity,
-              we won't differentiate between
-              price and profit,
-              nor dairy versus meat cows,
-              and
-              <span data-time-min="40">
-                I know it's very unrealistic but we'll assume
-                <span data-time-min="60">
-                  (despite what Benny Hill taught me happens then)
-                </span>
-                that
+            </span>
+            For the sake of simplicity,
+            we won't differentiate between
+            price and profit,
+            nor dairy versus meat cows,
+            and
+            <span data-time-min="40">
+              I know it's very unrealistic but we'll assume
+              <span data-time-min="60">
+                (despite what Benny Hill taught me happens then)
               </span>
-              he can only take a set amount of each item,
-              and always has that amount on hand.&nbsp;
+              that
+            </span>
+            he can only take a set amount of each item,
+            and always has that amount on hand.&nbsp;
             </span>
             His truck has <i>room</i> to take all the items,
             but it can only carry so much <i>weight</i>,
@@ -1101,13 +1126,13 @@ end
               That is set when we use "@contents =".&nbsp;
               As for what it's setting that to:
             </span>
-            <span data-time-min="40">
+            <span data-time-min="35">
               Whoa, that looks like we're just making a random number!&nbsp;
               That's right!&nbsp;
             </span>
-            We're making a random number
-            <i>with seven bits</i>,
-            so we have a random 1 or 0
+            Making a random number
+            <i>from 0 to 2^7-1</i>,
+            gives us a random 1 or 0
             for each of our seven possible items.&nbsp;
             We could get as complex as we want in this function,
             like dictating a minimum or maximum number of items,
@@ -1187,9 +1212,10 @@ end
           <aside class="notes">
             Why ten?&nbsp;
             Because that's what fits on the screen
-            in a decently readable size, even all the way in the back.&nbsp;
+            in a decently readable size<span data-time-min="40">,
+              even all the way in the back</span>.&nbsp;
             If I were doing this for real,
-            with a much more complex domain,
+            <span data-time-min="40">with a much more complex domain,</span>
             I might use a hundred, a thousand, a million, or even more.
 
             <br><br>
@@ -1275,7 +1301,7 @@ class Truckload
             . . . assess how "fit" each of these truckloads is.&nbsp;
             We do this with something called a "fitness function".&nbsp;
             (Surprise!)&nbsp;
-            <span data-time-min="40">
+            <span data-time-min="35">
               Just like how biological creatures might be perfectly fit
               for one environment but a lousy fit for another,
               this should reflect
@@ -1333,7 +1359,7 @@ end
             For instance, we could take into account
             the costs of <i>refrigerating</i> or <i>freezing</i>
             any items that need it.
-            <span data-time-min="40">
+            <span data-time-min="50">
               &nbsp;And if the truck were even smaller,
               and we had the <i>volume</i> of each item,
               we could also total up the volume,
@@ -1350,7 +1376,7 @@ end
 
             If we run this fitness function on our population,
             and sort on fitness descending,
-            <span data-time-min="40">to make it easy to find the best,</span>
+            <span data-time-min="35">to make it easy to find the best,</span>
             we get this:
           </aside>
         </section>
@@ -1437,7 +1463,7 @@ end
 
             <br><br>
 
-            <span data-time-min="40">
+            <span data-time-min="35">
               Why 100?&nbsp;
               Pretty much random.&nbsp;
               It seems like enough for a good chance for improvement,
@@ -1477,9 +1503,8 @@ end
             to <i>define</i> the function,
             we set the initial best combo as empty,
             and we set how many generations it's been since we saw that,
-            as zero,
-            both as class variables;
-            that's what the double at-signs means.&nbsp;
+            as zero, both as class variables<span data-time-min="40">;
+            that's what the double at-signs means</span>.&nbsp;
             When the function is <i>called</i>,
             we increment the number of generations,
             look at the fitness of the current candidates,
@@ -1498,13 +1523,13 @@ end
             Again, we can get as complex as we want,
             not only in checking the maximum fitness,
             but we could look at other stopping criteria, like
-            <span data-time-min="40">
+            <span data-time-min="35">
               the average or minimum fitness, or
             </span>
             achieving some specific level of maximum fitness,
             some maximum number of generations,
             or amount of time,
-            <span data-time-min="40">
+            <span data-time-min="35">
               (whether clock time or CPU or whatever),
             </span>
             or let the user click a STOP button,
@@ -1591,15 +1616,16 @@ end
             and there are some more complex common alternatives,
             that we will look into later.
 
-            <span data-time-min="40">
+            <span data-time-min="35">
               <br><br>
 
               We could also take more than two,
               whether to combine more than two at once
               or to breed all pairs in that set,
-              or some set of larger subsets,
-              such as all trios out of a set of five breeders,
-              or even randomly choose those subsets.
+              or larger subsets,
+              such as all trios out of
+              a set of five breeders<span data-time-min="40">,
+                or even randomly choose those subsets</span>.
             </span>
 
             <br><br>
@@ -1643,6 +1669,7 @@ end
             </span>
             <span data-time-min="40">
               This can be extended with multiple crossover points,
+              especially in the case of multiple parents being combined,
               but we're just going to use one, like so:</span>
           </aside>
         </section>
@@ -1675,17 +1702,17 @@ end
             If we haven't yet hit the crossover point,
             we get the decision for that item from the first parent,
             else we get it from the other parent.&nbsp;
-            <span data-time-min="40">
+            <span data-time-min="35">
               This means that it could be all copied
               from one parent or the other,
               or it could switch at some point.&nbsp;
             </span>
-            <span data-time-min="40">
+            <span data-time-min="35">
               <br><br>
 
               As usual, we could get as complex as we want,
               like making some crossover points
-              more likely, or less likely, or even
+              more or less likely, or even
               mandatory or forbidden.&nbsp;
               <span data-time-min="60">
                 Some approaches also automatically include
@@ -1699,7 +1726,7 @@ end
               <br><br>
             </span>
             If we use this function once, with a crossover point of 3,
-            <span data-time-min="40">
+            <span data-time-min="35">
               so we take 3 values from the first parent,
               and the rest from the other,
             </span>
@@ -1958,7 +1985,7 @@ end
             and just try to outdo it,
             so we haven't lost it.
 
-            <span data-time-min="40">
+            <span data-time-min="35">
               <br><br>
 
               But that's not really the best approach.&nbsp;
@@ -1975,7 +2002,7 @@ end
               Also, I think this version is still worth exploring,
               to make the point that
               the fitness can go down and then come back up.&nbsp;
-              So let's keep going.&nbsp;
+              So let's keep going.
 
               <br><br>
             </span>
@@ -2018,8 +2045,9 @@ end
             So, we set that top one as our benchmark,
             and reset the counter of generations since we saw it.&nbsp;
             If we let this run to completion,
-            with a few more occasions of a
-            new best combo being found,
+            <span data-time-min="40">
+              with a few more occasions of a new best combo being found,
+            </span>
             <!--
               (but I forgot to keep track of that while making these slides),
             -->
@@ -2062,7 +2090,10 @@ end
             is the best combination
             I've ever seen this particular system produce. -->
             . . . with our best truckload scoring 26,000,
-            made up of cheese, meat, and leather.&nbsp;
+            made up of cheese, meat, and leather.
+
+            <br><br>
+
             So that's one complete run of a genetic algorithm.&nbsp;
             If we wanted to check whether
             that was the best that this algorithm could produce,
@@ -2110,21 +2141,23 @@ end
 
             <br><br>
 
-            As you see here in this XKCD comic strip,
-            the size of the solution space grows as
-            the <i>factorial</i> of the number of cities,
-            but there are rather advanced approaches that
-            bring the search time down to
-            n-squared times two-to-the-n,
-            which is <i>still</i> quite a lot.&nbsp;
-            There is also a common heuristic,
-            of just constantly going to the nearest unvisited city,
-            which of course is much faster to come up with a plan,
-            but this yields on average a route 25% longer than the best.&nbsp;
-            But of course, we're going to explore what happens if we
-            use a genetic algorithm.
+            <span data-time-min="50">
+              As you see here in this XKCD comic strip,
+              the size of the solution space grows as
+              the <i>factorial</i> of the number of cities,
+              but there are rather advanced approaches that
+              bring the search time down to
+              n-squared times two-to-the-n,
+              which is <i>still</i> quite a lot.&nbsp;
+              There is also a common heuristic,
+              of just constantly going to the nearest unvisited city,
+              which of course is much faster to come up with a plan,
+              but this yields on average a route 25% longer than the best.&nbsp;
+              But of course, we're going to explore what happens if we
+              use a genetic algorithm.
 
-            <br><br>
+              <br><br>
+            </span>
 
             Our list of cities will be
             the capitals of mainland Europe, west of Germany.&nbsp;
@@ -2267,9 +2300,9 @@ end
             <span class="cycle-arrow-mutate">⬅️</span>
           </div>
           <aside class="notes">
-            . . . creating an initial population,
+            . . . creating an initial population<span data-time-min="40">,
             which would be done the same way as before,
-            except that we're creating routes instead of truckloads.&nbsp;
+            except that we're creating routes instead of truckloads</span>.&nbsp;
             So how do we create a route?&nbsp;
             It could be done quite easily, like this:
           </aside>
@@ -2385,32 +2418,50 @@ end
             </div>
           </div>
           <aside class="notes">
-            . . . if you know Ruby.&nbsp;
-            If you don't, what's going on here is,
+            . . .
+            <span data-time-min="40">
+              if you know Ruby.&nbsp;
+              If you don't, what's going on here is,</span>
             we take the stops,
             extract each consecutive pair,
-            but that gets us an Enumerator so
-            we have to convert that to an actual array,
+            <span data-time-min="40">
+              but that gets us an Enumerator so
+              we have to convert that to an actual array,
+            </span>
             then we map each pair to its distance
-            by calling a function which I'll save for the next slide,
+            by calling a function
+            <span data-time-min="40">which I'll save for the next slide,</span>
+            <span data-time-max="39">
+              that looks up the distance in that table
+              (but in the interests of time I'll hand-wave over that code),
+            </span>
             add them all up,
             then add the distance back to the starting point.&nbsp;
-            I'm making the simplifying assumption that
-            the route could start anywhere,
-            but we could say that
-            we have to start and end at some other city.&nbsp;
-            There are many variations on the Traveling Salesman Problem,
-            and another one is that we <i>don't</i> have to
-            get back to the starting point.
+            <span data-time-min="40">
+              I'm making the simplifying assumption that
+              the route could start anywhere,
+              but we could say that
+              we have to start and end at some other city.&nbsp;
+              There are many variations on the Traveling Salesman Problem,
+              and another one is that we <i>don't</i> have to
+              get back to the starting point.
+            </span>
 
             <br><br>
 
-            Now that you all grok that, let's take a brief look at
-            how that distance function might work:
+            <span data-time-min="40">
+              Now that you all grok that,
+              let's take a brief look at
+              how that distance function might work:
+            </span>
+            <span data-time-max="39">
+              If we run this on our current population,
+              and sort on fitness descending, we get:
+            </span>
           </aside>
         </section>
 
-        <section>
+        <section data-time-min="40">
           <div class="all vctring">
             <div>
               <pre style="font-size: 0.4em"><code data-trim class="language-ruby">
@@ -2537,8 +2588,8 @@ end
           </div>
           <aside class="notes">
             . . . is a little bit different from last time.&nbsp;
-            Since it's not so trivial to construct the worst route,
-            as opposed to the worst truckload,
+            Since it's not so trivial to construct the worst Route,
+            as opposed to the worst Truckload,
             I've split out the best <i>fitness</i>
             from the best <i>route</i>,
             so we can just start with a very bad fitness,
@@ -2575,7 +2626,7 @@ end
             a <i>chance</i> to be selected,
             <i>but</i> the <i>size</i> of the chance is
             based on the candidate's <i>fitness</i>.&nbsp;
-            The simplest version is that it's simply equal,
+            The simplest version is that it's just equal,
             or at least directly proportional,
             to the fitness.&nbsp;
             (So I think this is actually a misnomer;
@@ -2666,7 +2717,7 @@ end
             These weren't the top two, in fact they were #4 and #8,
             which is fairly poor, averaging out to #6 out of 10.&nbsp;
             But just like in real life, sometimes losers get lucky.&nbsp;
-            Even I managed to land a wife!&nbsp;
+            <span data-time-min="35">Even I managed to land a wife!&nbsp;</span>
             So now it's time to . . .
           </aside>
         </section>
@@ -2733,9 +2784,9 @@ end
             <table>
               <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th></tr>
               <tr class="up"><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td></tr>
-              <tr><td colspan="8"><span style="text-align: center">+</span></td></tr>
+              <tr><td colspan="8" style="text-align: center">+</td></tr>
               <tr class="down"><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td></tr>
-              <tr><td colspan="8"><span style="text-align: center">=</span></td></tr>
+              <tr><td colspan="8" style="text-align: center">=</td></tr>
               <tr><td class="up">MAD</td><td class="up">LUX</td><td class="up">BRU</td><td class="down">AND</td><td class="down">PAR</td><td class="down">LIS</td><td class="down">AMS</td><td class="down">MTC</td></tr>
             </table>
           </div>
@@ -2743,9 +2794,11 @@ end
             . . . this.&nbsp;
             But as you may recall, this is just one of ten results,
             as we're making a whole new population.&nbsp;
+            <span data-time-min="40">
             The way we would do that would be exactly the same as before,
-            so I won't bore you with the code,
-            but one possible result might be . . .
+            so I won't bore you with the code, but
+            </span>
+            One possible result might be . . .
           </aside>
         </section>
 
@@ -2770,7 +2823,8 @@ end
             We have not only strong family resemblance,
             but a fair bit of duplication too.&nbsp;
             If you want to continue the biological analogy,
-            you could call them twins, triplets, and so on.&nbsp;
+            you could call them twins<span data-time-min="40">,
+              triplets, and so on</span>.&nbsp;
             But we get some more variety in the next step:
           </aside>
         </section>
@@ -2811,9 +2865,8 @@ end
             </div>
           </div>
           <aside class="notes">
-            we just pick two different numbers,
-            from 0 to the number of cities minus one, inclusive,
-            and swap the cities at those indices.&nbsp;
+            we just pick two indices in the array,
+            and swap the cities there.&nbsp;
             If we wanted to make the code more complex,
             we could make some cities or indices more or less likely to swap,
             or require that they be consecutive, or not consecutive,
@@ -2846,13 +2899,16 @@ end
             You can see that there are still
             many that somewhat <i>resemble</i> others,
             but there's no more <i>exact</i> duplication.&nbsp;
-            That's not guaranteed though;
-            some twins could undergo identical mutation,
-            or some may mutate <i>into</i> twinship,
-            though we <i>could</i> guarantee it with
-            a more complicated mutation function.&nbsp;
-            (So long, of course, as we're using
-            a small enough population.)&nbsp;
+            That's not guaranteed though<span data-time-max="34">.&nbsp;</span><span data-time-min="35">;
+              some twins could undergo identical mutation,
+              or some may mutate <i>into</i> twinship,
+              though we <i>could</i> guarantee it with
+              a more complicated mutation function.&nbsp;
+              <span data-time-min="40">
+                (So long, of course, as we're using
+                a small enough population.)&nbsp;
+              </span>
+            </span>
             Now that they're in their final forms,
             we can . . .
           </aside>
@@ -2898,8 +2954,9 @@ end
           </div>
           <aside class="notes">
             . . . this, after sorting by fitness.&nbsp;
-            Just as before, our best fitness went down, from -6470 to -7609,
-            in other words, our best route in this generation is
+            Just as before, our best fitness went down,
+            <span data-time-min="40">from -6470 to -7609, in other words,</span>
+            our best route in this generation is
             1039 km longer than the best of the prior generation.&nbsp;
             But just like before, we haven't lost that best one,
             it's recorded in that best_route class variable.&nbsp;
@@ -2938,24 +2995,26 @@ end
 
             <br><br>
 
-            This sequence of cities would have the same fitness
-            if we started in any of them, and went in either direction first,
-            so there are in fact sixteen equivalent routes.&nbsp;
-            As I mentioned before,
-            we <i>could</i> have dictated a starting city,
-            whether one on this list or not,
-            and the cost might not really be the same in either direction,
-            plus there may be further complications such as
-            how long we need to stay in each city,
-            which could affect the best route to the next one and the
-            time of arrival at the next one,
-            which could how affect many hotel nights we need,
-            which of course contributes to the total cost.&nbsp;
-            So, realistically, it could almost certainly be narrowed down to
-            one, or at least far fewer than sixteen, but at the cost of
-            a far more complicated fitness function.
+            <span data-time-min="40">
+              This sequence of cities would have the same fitness
+              if we started in any of them, and went in either direction first,
+              so there are in fact sixteen equivalent routes.&nbsp;
+              As I mentioned before,
+              we <i>could</i> have dictated a starting city,
+              whether one on this list or not,
+              and the cost might not really be the same in either direction,
+              plus there may be further complications such as
+              how long we need to stay in each city,
+              which could affect the best route to the next one and the
+              time of arrival at the next one,
+              which could how affect many hotel nights we need,
+              which of course contributes to the total cost.&nbsp;
+              So, realistically, it could almost certainly be narrowed down to
+              one, or at least far fewer than sixteen, but at the cost of
+              a far more complicated fitness function.
+            </span>
 
-            <span data-time-max="74"><br><br>There are . . . </span>
+            <span data-time-max="74">There are . . . </span>
             <span data-time-min="75">
               <br><br>
 
@@ -4456,20 +4515,22 @@ end
           <span class="slide-caption">Image: https://commons.wikimedia.org/wiki/File:Noun_76041_-_Different_Ways.svg</span>
           <aside class="notes">
             . . . many other ways we can use genetic algorithms.&nbsp;
-            They can create images and music
-            (though the fitness functions would be rather difficult),
-            even code
-            (maybe with a fitness function consisting of passing tests),
+            They can create images and music<span data-time-min="40">
+              (though the fitness functions would be rather difficult)</span>,
+            even code<span data-time-min="40">
+              (maybe with a fitness function consisting of passing tests)</span>,
             and I'm now working on a system to use them to
             schedule the talks for a conference.&nbsp;
             Mey Beisaron has a talk on using one to
             schedule her college classes.&nbsp;
             So, think about it,
-            and you might be able to use them for something.&nbsp;
+            and you might be able to use them for something.
+            <span data-time-min="40">&nbsp;
             If not, keep the idea in your toolchest,
             and maybe eventually you'll be called upon to
             code up something to solve problems that
             might be computationally intractable by normal means.
+            </span>
 
             <br><br>
 
@@ -4653,9 +4714,9 @@ end
       // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
         // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
-        // 'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'prog-lang = ruby'
-           'human-lang = english',   'var-city-en = London', 'var-conf = sdd', 'var-year = 25', 'time @ 75', 'prog-lang = n/a',
-        // 'human-lang = lithuanian', 'var-city-en = Vilnius',  'var-conf = devdayseu', 'time @ 35'
+        // 'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'conf-prog-lang = ruby'
+        // 'human-lang = english',   'var-city-en = London', 'var-conf = sdd', 'var-year = 25', 'time @ 75', 'conf-prog-lang = n/a',
+        'human-lang = lithuanian', 'var-city-en = Vilnius',  'var-conf = dd-eu', 'var-year = 25', 'time @ 35', 'conf-prog-lang = n/a',
         // 'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30'
         // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40' // slot is 50, leave 5-10 for Q&A, so talk is 40-45
         // 'human-lang = spanish',   'var-city-en = Málaga',  'var-conf = jotb'
