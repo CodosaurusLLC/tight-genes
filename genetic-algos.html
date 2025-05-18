@@ -3,7 +3,8 @@
   <head>
     <!--
       Need to look at WHY this doesn't render to PDF properly with
-      the version of Reveal.JS from 2023-04, but is fine with 2020-11!
+      the version of Reveal.JS from 2023-04, nor 2025-03,
+      but is fine with 2020-11!
     -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -592,7 +593,7 @@
               I've also heard them called individuals, solutions,
               or
               <i>phenotypes</i>,
-              to use an actual genetic term,
+              to use another actual genetic term,
               but most people don't know that word,
               so I'll skip that one too.
             </span>
@@ -2405,9 +2406,7 @@ end
             We can subtract it from a constant,
             divide a constant by it,
             or all kinds of other solutions.&nbsp;
-            To keep things simple, I'm just going to negate it,
-            and yes it is perfectly legitimate to have a negative fitness.&nbsp;
-            To do that is fairly straightforward:
+            I decided to subtract the total distance of each one from . . .
           </aside>
         </section>
 
@@ -2415,7 +2414,36 @@ end
           <div class="all vctring">
             <div>
               <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
-def fitness = -total_distance
+WORST_ROUTE = Route.new(%w(AMS
+                           LIS
+                           LUX
+                           MAD
+                           BRU
+                           MTC
+                           PAR
+                           AND))
+
+# this works out to 12_029
+WORST_DISTANCE = WORST_ROUTE.fitness()
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . . the fitness of the worst route
+            I could easily construct manually.&nbsp;
+            I started in Amsterdam,
+            and then did the <i>opposite</i> of the usual heuristic,
+            repeatedly going to the <i>furthest</i> unvisited city,
+            until I had included them all, then back to Amsterdam.&nbsp;
+            The fitness function is fairly straightforward:
+          </aside>
+        </section>
+
+        <section>
+          <div class="all vctring">
+            <div>
+              <pre style="font-size: 0.8em"><code data-trim class="language-ruby">
+def fitness = WORST_DISTANCE - total_distance
 
 def total_distance
   stops.
@@ -2433,8 +2461,8 @@ end
             <span data-time-min="40">
               if you know Ruby.&nbsp;
               If you don't, what's going on here is,</span>
-            we take the stops,
-            extract each consecutive pair,
+            we calculate the total distance by taking the stops,
+            extracting each consecutive pair,
             <span data-time-min="40">
               but that gets us an Enumerator so
               we have to convert that to an actual array,
@@ -2446,8 +2474,10 @@ end
               that looks up the distance in that table
               (but in the interests of time I'll hand-wave over that code),
             </span>
-            add them all up,
-            then add the distance back to the starting point.&nbsp;
+            add them all up, and finally
+            add the distance back to the starting point.&nbsp;
+            Then to get the fitness we finally
+            subtract that total distance from the worst distance.&nbsp;
             <span data-time-min="40">
               I'm making the simplifying assumption that
               the route could start anywhere,
@@ -2529,20 +2559,25 @@ end
           <div class="all vctring">
             <table style="font-size: 0.8em">
               <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th class="numeric">Fit</th></tr>
-              <tr><td>AND</td><td>PAR</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>MAD</td><td>MTC</td><td class="numeric">-6470</td></tr>
-              <tr><td>MTC</td><td>PAR</td><td>LUX</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>BRU</td><td class="numeric">-7401</td></tr>
-              <tr><td>AND</td><td>MAD</td><td>AMS</td><td>LUX</td><td>PAR</td><td>BRU</td><td>MTC</td><td>LIS</td><td class="numeric">-7766</td></tr>
-              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td><td class="numeric">-8466</td></tr>
-              <tr><td>BRU</td><td>LUX</td><td>LIS</td><td>PAR</td><td>AND</td><td>MAD</td><td>MTC</td><td>AMS</td><td class="numeric">-8499</td></tr>
-              <tr><td>LIS</td><td>LUX</td><td>MTC</td><td>AMS</td><td>AND</td><td>BRU</td><td>PAR</td><td>MAD</td><td class="numeric">-9344</td></tr>
-              <tr><td>PAR</td><td>MAD</td><td>AMS</td><td>BRU</td><td>AND</td><td>MTC</td><td>LIS</td><td>LUX</td><td class="numeric">-9453</td></tr>
-              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-9700</td></tr>
-              <tr><td>AND</td><td>AMS</td><td>MTC</td><td>PAR</td><td>LIS</td><td>BRU</td><td>LUX</td><td>MAD</td><td class="numeric">-10028</td></tr>
-              <tr><td>AND</td><td>LUX</td><td>PAR</td><td>MTC</td><td>BRU</td><td>MAD</td><td>AMS</td><td>LIS</td><td class="numeric">-10535</td></tr>
+              <tr><td>AND</td><td>PAR</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>MAD</td><td>MTC</td><td class="numeric">5559</td></tr>
+              <tr><td>MTC</td><td>PAR</td><td>LUX</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>BRU</td><td class="numeric">4628</td></tr>
+              <tr><td>AND</td><td>MAD</td><td>AMS</td><td>LUX</td><td>PAR</td><td>BRU</td><td>MTC</td><td>LIS</td><td class="numeric">4263</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td><td class="numeric">3563</td></tr>
+              <tr><td>BRU</td><td>LUX</td><td>LIS</td><td>PAR</td><td>AND</td><td>MAD</td><td>MTC</td><td>AMS</td><td class="numeric">3530</td></tr>
+              <tr><td>LIS</td><td>LUX</td><td>MTC</td><td>AMS</td><td>AND</td><td>BRU</td><td>PAR</td><td>MAD</td><td class="numeric">2685</td></tr>
+              <tr><td>PAR</td><td>MAD</td><td>AMS</td><td>BRU</td><td>AND</td><td>MTC</td><td>LIS</td><td>LUX</td><td class="numeric">2576</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">2329</td></tr>
+              <tr><td>AND</td><td>AMS</td><td>MTC</td><td>PAR</td><td>LIS</td><td>BRU</td><td>LUX</td><td>MAD</td><td class="numeric">2001</td></tr>
+              <tr><td>AND</td><td>LUX</td><td>PAR</td><td>MTC</td><td>BRU</td><td>MAD</td><td>AMS</td><td>LIS</td><td class="numeric">1494</td></tr>
             </table>
           </div>
           <aside class="notes">
             . . . this.&nbsp;
+            The best route of this generation
+            is 5_559 km shorter than
+            the worst route I could easily construct manually,
+            and the worst of this generation is still
+            1_494 km shorter than that same worst route.
             So now we can use this information to decide . . .
           </aside>
         </section>
@@ -2569,7 +2604,7 @@ end
             For now I'm going to stick with the idea of
             declaring a winner if it hasn't been outdone in 100 generations,
             so of course we're not done on the first pass.&nbsp;
-            But the code . . .
+            The code . . .
           </aside>
         </section>
 
@@ -2577,17 +2612,15 @@ end
           <div class="vctring">
             <div>
               <pre style="font-size: .6em"><code data-trim class="language-ruby">
-@@best_route = nil
-@@best_fitness = -100_000
+@@best_route = WORST_ROUTE
 @@generations = 0
 
 def self.done?(population)
   @@generations += 1
   better = population.
-    select { |r| r.fitness &gt; @@best_fitness }
+    select { |r| r.fitness &gt; @@best_route.fitness }
   if better.any?
     @@best_route = better.sort_by(&:fitness).last
-    @@best_fitness = @@best_route.fitness
     @@generations = 0
     return false
   else
@@ -2598,15 +2631,8 @@ end
             </div>
           </div>
           <aside class="notes">
-            . . . is a little bit different from last time.&nbsp;
-            Since it's not so trivial to construct the worst Route,
-            as opposed to the worst Truckload,
-            I've split out the best <i>fitness</i>
-            from the best <i>route</i>,
-            so we can just start with a very bad fitness,
-            and not worry about creating a route that would
-            evaluate to that fitness.&nbsp;
-            Other than that, though, the logic is completely the same.
+            . . . is exactly the same as last time, except that
+            now we're using Routes instead of Truckloads.&nbsp;
 
             <br><br>
 
@@ -2637,14 +2663,14 @@ end
             a <i>chance</i> to be selected,
             <i>but</i> the <i>size</i> of the chance is
             based on the candidate's <i>fitness</i>.&nbsp;
-            The simplest version is that it's just equal,
-            or at least directly proportional,
-            to the fitness.&nbsp;
             (So I think this is actually a misnomer;
             one would <i>hope</i> that an actual roulette wheel
             has an <i>equal</i> chance for <i>all</i> the numbers!&nbsp;
             But, they didn't ask my opinion when naming this.)&nbsp;
-            Anyway, the . . .
+            The simplest version is that it's just equal,
+            or at least directly proportional,
+            to the fitness.&nbsp;
+            The . . .
           </aside>
         </section>
 
@@ -2653,18 +2679,18 @@ end
             <div>
               <pre style="font-size: .6em"><code data-trim class="language-ruby">
 def self.select_breeders(pop)
-  total = -pop.map(&:fitness).sum
-  # set p2 = p1 so until-loop will start
-  p2 = p1 = pick_winner(pop, rand(total))
-  p2 = pick_winner(pop, rand(total)) until p2 != p1
+  p1 = pick_winner(pop)
+  p2 = pick_winner(pop - [p1])
   [p1, p2]
 end
 
-def self.pick_winner(pop, num)
-  total = 0
+def self.pick_winner(pop)
+  total = pop.map(&:fitness).sum
+  target = rand(total)
+  so_far = 0
   pop.each do |p|
-    total -= p.fitness
-    return p if total &gt; num
+    so_far += p.fitness
+    return p if so_far &gt; target
   end
 end
               </code></pre>
@@ -2675,20 +2701,15 @@ end
             when we simply chose the top two.&nbsp;
             Basically what we're doing is
             summing up all the fitnesses,
-            negating the sum just because a positive number
-            is easier to deal with.&nbsp;
-            Then we generate a random number from 0 to the sum minus 1,
-            and figure out which route's range that falls in.&nbsp;
+            generating a random number from 0 to the sum minus 1,
+            and figuring out which route's range that falls in.&nbsp;
             To do that, we iterate over the routes,
-            summing the negated fitnesses again,
+            summing the fitnesses again,
             until we exceed the random number.&nbsp;
             When that happens, it means that
             the one whose fitness we just added
             is the lucky winner.&nbsp;
-            Then we do that again,
-            repeating if needed in order to
-            actually get a second breeder
-            (since we might happen to pick the first one again).&nbsp;
+            Then we do that again, without the one we already picked.
 
             <br><br>
 
@@ -2718,9 +2739,9 @@ end
             <table>
               <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th class="numeric">Fit</th></tr>
               <tr><td colspan="9"><br></td></tr>
-              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td><td class="numeric">-8466</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>LIS</td><td>AND</td><td>MTC</td><td>PAR</td><td class="numeric">3563</td></tr>
               <tr><td colspan="9"><br></td></tr>
-              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-9700</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">2329</td></tr>
             </table>
           </div>
           <aside class="notes">
@@ -2740,7 +2761,7 @@ end
           <aside class="notes">
             . . . Tom Petty,
             even the losers get lucky sometimes.&nbsp;
-            <span data-time-min="35">Even I managed to land a wife!&nbsp;</span>
+            <span data-time-min="40">Even I managed to land a wife!&nbsp;</span>
             So now it's time to . . .
           </aside>
         </section>
@@ -2792,8 +2813,8 @@ end
             between 0 and the number of cities, inclusive,
             copy that many from the first parent,
             and fill the rest (if any) from the second parent.&nbsp;
-            However, we don't do it by
-            matching the indices like with regular crossover,
+            However, we don't do it by copying them straight down in place,
+            like with regular crossover,
             but by using the missing cities,
             in the order they appear in the second parent,
             no matter exactly <i>where</i> they appeared.&nbsp;
@@ -2814,8 +2835,17 @@ end
             </table>
           </div>
           <aside class="notes">
-            . . . this.&nbsp;
-            But as you may recall, this is just one of ten results,
+            <!-- TODO MAYBE: ADD ARROWS showing copying of cities -->
+            . . . this,
+            with Madrid, Luxembourg, and Brussels copied straight down,
+            and then Andorra la Vella, Paris, Lisbon, Amsterdam, and Monte Carlo
+            filled in in the order they appear in the second parent.&nbsp;
+            It <i>happens</i> to match their order in the first parent,
+            but that's actually unusual, and they're not consecutive
+            in the second one, interrupted by Madrid.&nbsp;
+            Do you see how that works?&nbsp;
+            (PAUSE FOR CONFIRMATION, EXPLAIN IF NEEDED.)&nbsp;
+            Next, as you may recall, this is just one of ten results,
             as we're making a whole new population.&nbsp;
             <span data-time-min="40">
             The way we would do that would be exactly the same as before,
@@ -2843,8 +2873,8 @@ end
           </div>
           <aside class="notes">
             . . . this.&nbsp;
-            We have not only strong family resemblance,
-            but a fair bit of duplication too.&nbsp;
+            This time we have not only strong family resemblance,
+            but a fair bit of full duplication too.&nbsp;
             If you want to continue the biological analogy,
             you could call them twins<span data-time-min="40">,
               triplets, and so on</span>.&nbsp;
@@ -2894,9 +2924,9 @@ end
             we could make some cities or indices more or less likely to swap,
             or require that they be consecutive, or not consecutive,
             or we could have a probability of multiple mutations,
-            but we're going to keep it simple and just do one swap each,
-            relying on the chance of the two numbers being the same
-            to give us a chance of not really mutating.&nbsp;
+            but we're going to keep it simple and just do one swap each.&nbsp;
+            The chance of the two numbers being the same
+            will give us some chance of not really mutating.&nbsp;
             If we apply this to our current routes, we might wind up with . . .
           </aside>
         </section>
@@ -2926,7 +2956,7 @@ end
               some twins could undergo identical mutation,
               or some may mutate <i>into</i> twinship,
               though we <i>could</i> guarantee it with
-              a more complicated mutation function.&nbsp;
+              a much more complicated mutation function.&nbsp;
               <span data-time-min="40">
                 (So long, of course, as we're using
                 a small enough population.)&nbsp;
@@ -2963,25 +2993,22 @@ end
           <div class="all vctring">
             <table style="font-size: 0.8em">
               <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th class="numeric">Fit</th></tr>
-              <tr><td>PAR</td><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-7609</td></tr>
-              <tr><td>AMS</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>MAD</td><td>MTC</td><td class="numeric">-7727</td></tr>
-              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>MAD</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-8835</td></tr>
-              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>AND</td><td>PAR</td><td>LIS</td><td>MTC</td><td class="numeric">-9198</td></tr>
-              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-9700</td></tr>
-              <tr><td>BRU</td><td>LUX</td><td>MAD</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-9972</td></tr>
-              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>MTC</td><td>PAR</td><td>LIS</td><td>AMS</td><td>AND</td><td class="numeric">-10002</td></tr>
-              <tr><td>LUX</td><td>BRU</td><td>MTC</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>AND</td><td class="numeric">-10486</td></tr>
-              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">-10609</td></tr>
-              <tr><td>LIS</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>MAD</td><td>AMS</td><td>MTC</td><td class="numeric">-10700</td></tr>
+              <tr><td>PAR</td><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">4420</td></tr>
+              <tr><td>AMS</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>MAD</td><td>MTC</td><td class="numeric">4302</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>MAD</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">3194</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AMS</td><td>AND</td><td>PAR</td><td>LIS</td><td>MTC</td><td class="numeric">2831</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>AND</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">2329</td></tr>
+              <tr><td>BRU</td><td>LUX</td><td>MAD</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">2057</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>MTC</td><td>PAR</td><td>LIS</td><td>AMS</td><td>AND</td><td class="numeric">2027</td></tr>
+              <tr><td>LUX</td><td>BRU</td><td>MTC</td><td>MAD</td><td>PAR</td><td>LIS</td><td>AMS</td><td>AND</td><td class="numeric">1543</td></tr>
+              <tr><td>MAD</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>LIS</td><td>AMS</td><td>MTC</td><td class="numeric">1420</td></tr>
+              <tr><td>LIS</td><td>LUX</td><td>BRU</td><td>AND</td><td>PAR</td><td>MAD</td><td>AMS</td><td>MTC</td><td class="numeric">1329</td></tr>
             </table>
           </div>
           <aside class="notes">
             . . . this, after sorting by fitness.&nbsp;
-            Just as before, our best fitness went down,
-            <span data-time-min="40">from -6470 to -7609, in other words,</span>
-            our best route in this generation is
-            1039 km longer than the best of the prior generation.&nbsp;
-            But just like before, we haven't lost that best one,
+            Just as before, our best fitness went down!&nbsp;
+            But, also just like before, we haven't lost that best one,
             it's recorded in that best_route class variable.&nbsp;
             Let's let it run to completion, producing . . .
           </aside>
@@ -2991,10 +3018,10 @@ end
           <div class="all vctring">
             <table style="font-size: 0.8em">
               <tr><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th><th>7th</th><th>8th</th><th class="numeric">Fit</th><th class="numeric">Gens</th></tr>
-<tr><td>LIS</td><td>AND</td><td>MTC</td><td>LUX</td><td>PAR</td><td>BRU</td><td>AMS</td><td>MAD</td><td>-6227</td><td class="numeric">22</td></tr>
-<tr><td>LUX</td><td>BRU</td><td>PAR</td><td>MTC</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>-6017</td><td class="numeric">18</td></tr>
-<tr><td>LIS</td><td>MAD</td><td>PAR</td><td>AMS</td><td>BRU</td><td>LUX</td><td>MTC</td><td>AND</td><td>-5754</td><td class="numeric">26</td></tr>
-<tr><td>AMS</td><td>BRU</td><td>PAR</td><td>LIS</td><td>MAD</td><td>AND</td><td>MTC</td><td>LUX</td><td>-5605</td><td class="numeric">100</td></tr>
+<tr><td>LIS</td><td>AND</td><td>MTC</td><td>LUX</td><td>PAR</td><td>BRU</td><td>AMS</td><td>MAD</td><td>5802</td><td class="numeric">22</td></tr>
+<tr><td>LUX</td><td>BRU</td><td>PAR</td><td>MTC</td><td>AND</td><td>MAD</td><td>LIS</td><td>AMS</td><td>6012</td><td class="numeric">18</td></tr>
+<tr><td>LIS</td><td>MAD</td><td>PAR</td><td>AMS</td><td>BRU</td><td>LUX</td><td>MTC</td><td>AND</td><td>6275</td><td class="numeric">26</td></tr>
+<tr><td>AMS</td><td>BRU</td><td>PAR</td><td>LIS</td><td>MAD</td><td>AND</td><td>MTC</td><td>LUX</td><td>6424</td><td class="numeric">100</td></tr>
             </table>
           </div>
           <aside class="notes">
@@ -4538,14 +4565,17 @@ end
           <span class="slide-caption">Image: https://commons.wikimedia.org/wiki/File:Noun_76041_-_Different_Ways.svg</span>
           <aside class="notes">
             . . . many other ways we can use genetic algorithms.&nbsp;
-            They can create images and music<span data-time-min="40">
-              (though the fitness functions would be rather difficult)</span>,
-            even code<span data-time-min="40">
-              (maybe with a fitness function consisting of passing tests)</span>,
-            and I'm now working on a system to use them to
+            Longer versions of this talk show how to use them to generate
+            Dungeons & Dragons character stats,
+            and recipes for brewing mead.&nbsp;
+            I'm now working on a system to use them to
             schedule the talks for a conference.&nbsp;
             Mey Beisaron has a talk on using one to
             schedule her college classes.&nbsp;
+            They can create images and music<span data-time-min="40">
+              (though the fitness functions would be rather difficult)</span>,
+            even code<span data-time-min="40">
+              (maybe with a fitness function consisting of passing tests)</span>.&nbsp;
             So, think about it,
             and you might be able to use them for something.
             <span data-time-min="40">&nbsp;
@@ -4733,17 +4763,18 @@ end
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
-      // Uncomment one of the next config lines ONLY WHEN FORMATTING TO PRINT,
-      // w/ ?print-pdf -- remember to include background graphics when dark
+      // Uncomment one of the next two config lines
+      // ONLY WHEN FORMATTING TO PRINT, w/ ?print-pdf
+      // (and remember to include background graphics to get dark page bg)
       // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: false });
-      Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
+      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
         // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
         // 'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'conf-prog-lang = ruby'
         // 'human-lang = english',   'var-city-en = London', 'var-conf = sdd', 'var-year = 25', 'time @ 75', 'conf-prog-lang = n/a',
         'human-lang = lithuanian', 'var-city-en = Vilnius',  'var-conf = dd-eu', 'var-year = 25', 'time @ 35', 'conf-prog-lang = n/a',
         // 'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30'
-        // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40' // slot is 50, leave 5-10 for Q&A, so talk is 40-45
+        // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40'
         // 'human-lang = spanish',   'var-city-en = Málaga',  'var-conf = jotb'
         // 'human-lang = norwegian', 'var-city-en = Oslo',    'var-conf = ndc-oslo',
       ]);
