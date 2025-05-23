@@ -2603,6 +2603,8 @@ end
             What are our criteria?&nbsp;
             For now I'm going to stick with the idea of
             declaring a winner if it hasn't been outdone in 100 generations,
+            but with the twist that we'll also
+            stop after a maximum of 1000 generations,
             so of course we're not done on the first pass.&nbsp;
             The code . . .
           </aside>
@@ -2622,16 +2624,19 @@ def self.done?(population)
   if better.any?
     @@best_route = better.sort_by(&:fitness).last
     @@generations = 0
-    return false
+    result = false
   else
-    return @@generations &gt;= 100
+    result = @@generations &gt;= 100
   end
-end
-              </code></pre>
+  return result || @@generations &gt;= 1000
+end</code></pre>
             </div>
           </div>
           <aside class="notes">
-            . . . is exactly the same as last time, except that
+            . . . is exactly the same as last time, except for
+            stashing the result in a variable and OR-ing that with
+            the total generation check,
+            and of course that
             now we're using Routes instead of Truckloads.&nbsp;
 
             <br><br>
@@ -3027,7 +3032,11 @@ end
           <aside class="notes">
             . . . these additional best routes, with those fitnesses,
             that stay as the best for that many generations.&nbsp;
-            On a map, the final best one,
+            The total count of generations is well under a thousand,
+            so it turns out we didn't really need that,
+            especially since only the final best one
+            lasted anywhere near 100 generations.&nbsp;
+            On a map, that final best one,
             that reigned supreme for a hundred generations,
             would look like . . .
           </aside>
