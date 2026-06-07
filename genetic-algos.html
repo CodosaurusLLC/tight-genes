@@ -69,7 +69,7 @@
             <div data-human-lang="dutch">haLLO uTREKHT!</div>
             <div data-human-lang="greek">Ya Sas, AhTHEEna!</div>
             <div data-human-lang="norwegian">Hi, osLO!</div>
-            <div data-human-lang="english">Good morning, London!</div>
+            <div data-human-lang="english">Good morning, Singapore!</div>
           </aside>
         </section>
 
@@ -556,7 +556,10 @@
             </span>
             <span data-time-max="49">
               So, how do genetic algorithms work?&nbsp;
-              They consist of a simple series of steps:
+              They consist of a simple series of steps,
+              simple enough that I personally don't consider this
+              to be a form of AI, but some conferences do, so here I am!&nbsp;
+              Anyway:
             </span>
           </aside>
         </section>
@@ -575,7 +578,10 @@
             <br><br>
 
             So, how do genetic algorithms work?&nbsp;
-            They consist of a simple series of steps:
+            They consist of a simple series of steps,
+            simple enough that I personally don't consider this
+            to be a form of AI, but some conferences do, so here I am!&nbsp;
+            Anyway:
           </aside>
         </section>
 
@@ -2624,11 +2630,11 @@ def self.done?(population)
   if better.any?
     @@best_route = better.sort_by(&:fitness).last
     @@generations = 0
-    result = false
+    result = false  # just stash it
   else
-    result = @@generations &gt;= 100
+    result = @@generations &gt;= 100  # just stash it
   end
-  return result || @@generations &gt;= 1000
+  return result || @@generations &gt;= 1000  # apply limit
 end</code></pre>
             </div>
           </div>
@@ -4775,17 +4781,17 @@ end
       // Uncomment one of the next two config lines
       // ONLY WHEN FORMATTING TO PRINT, w/ ?print-pdf
       // (and remember to include background graphics to get dark page bg)
-      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: false });
-      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
+      Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: false });
+      Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([
-        // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation'
-        // 'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'conf-prog-lang = ruby'
+        // 'human-lang = dutch',     'var-city-en = Utrecht', 'var-conf = teqnation', 'time @ 40', 'var-year = 23'
+        // 'human-lang = english',   'var-city-en = Singapore', 'var-conf = rdrc', 'time @ 30', 'conf-prog-lang = ruby', 'var-year = 24'
         // 'human-lang = english',   'var-city-en = London', 'var-conf = sdd', 'var-year = 25', 'time @ 75', 'conf-prog-lang = n/a',
-        'human-lang = lithuanian', 'var-city-en = Vilnius',  'var-conf = dd-eu', 'var-year = 25', 'time @ 35', 'conf-prog-lang = n/a',
-        // 'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30'
-        // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40'
-        // 'human-lang = spanish',   'var-city-en = Málaga',  'var-conf = jotb'
-        // 'human-lang = norwegian', 'var-city-en = Oslo',    'var-conf = ndc-oslo',
+        // 'human-lang = lithuanian', 'var-city-en = Vilnius',  'var-conf = dd-eu', 'var-year = 25', 'time @ 35', 'conf-prog-lang = n/a',
+        // 'human-lang = greek',     'var-city-en = Athens',  'var-conf = open', 'time @ 30', 'var-year = 23'
+        // 'human-lang = portuguese', 'var-city-en = Coimbra',  'var-conf = jnation', 'time @ 40', 'var-year = 23'
+        // 'human-lang = spanish',   'time @ 30', 'var-city-en = Málaga',  'var-conf = jotb', 'var-year = 23'
+        'human-lang = norwegian', 'time @ 45', 'var-city-en = Oslo',    'var-conf = ndc-oslo', 'var-year = 23'
       ]);
     </script>
   </body>
